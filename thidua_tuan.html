@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Thi đua tuần</title>
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f7ff;
+padding:30px;
+}
+
+h1{
+text-align:center;
+color:#1565c0;
+}
+
+
+.box{
+
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px #ccc;
+
+}
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:12px;
+
+}
+
+
+td{
+
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+
+}
+
+
+input{
+
+width:60px;
+padding:5px;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:0;
+padding:10px 20px;
+border-radius:8px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<h1>🏆 THEO DÕI THI ĐUA TUẦN</h1>
+
+
+<div class="box">
+
+
+<table>
+
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ tên</th>
+
+<th>Điểm đầu tuần</th>
+
+<th>Cộng</th>
+
+<th>Trừ</th>
+
+<th>Tổng điểm</th>
+
+<th>Xếp loại</th>
+
+</tr>
+
+
+
+<tr>
+
+<td>1</td>
+
+<td>Nguyễn Văn A</td>
+
+<td>100</td>
+
+<td>
+<input id="plus1" value="0">
+</td>
+
+<td>
+<input id="minus1" value="0">
+</td>
+
+
+<td id="score1">
+100
+</td>
+
+
+<td id="rank1">
+</td>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>2</td>
+
+<td>Trần Thị B</td>
+
+<td>100</td>
+
+<td>
+<input id="plus2" value="0">
+</td>
+
+<td>
+<input id="minus2" value="0">
+</td>
+
+
+<td id="score2">
+100
+</td>
+
+
+<td id="rank2">
+</td>
+
+
+</tr>
+
+
+</table>
+
+
+<br>
+
+
+<button onclick="tinhdiem()">
+
+Tính điểm
+
+</button>
+
+
+<br><br>
+
+
+<a href="index.html">
+
+<button>
+⬅ Trang chủ
+</button>
+
+</a>
+
+
+</div>
+
+
+
+
+<script>
+
+
+function tinhdiem(){
+
+
+for(let i=1;i<=2;i++){
+
+
+let cong=
+Number(document.getElementById("plus"+i).value);
+
+
+let tru=
+Number(document.getElementById("minus"+i).value);
+
+
+
+let diem=100+cong-tru;
+
+
+document.getElementById("score"+i).innerHTML=diem;
+
+
+
+let xeploai="";
+
+
+if(diem>=90)
+xeploai="Xuất sắc";
+
+else if(diem>=80)
+xeploai="Tốt";
+
+else if(diem>=65)
+xeploai="Khá";
+
+else
+xeploai="Cần cố gắng";
+
+
+
+document.getElementById("rank"+i).innerHTML=xeploai;
+
+
+}
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
