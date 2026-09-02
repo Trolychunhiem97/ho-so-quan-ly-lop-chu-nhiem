@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Kiểm tra tổng hợp</title>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#f2f7ff;
+padding:30px;
+
+}
+
+
+h1{
+
+text-align:center;
+color:#1565c0;
+
+}
+
+
+.box{
+
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px #ccc;
+
+}
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+
+}
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:12px;
+
+}
+
+
+td{
+
+padding:10px;
+border-bottom:1px solid #ddd;
+text-align:center;
+
+}
+
+
+input{
+
+width:60px;
+padding:5px;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:0;
+padding:10px 20px;
+border-radius:8px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+📚 KIỂM TRA TỔNG HỢP HỌC SINH
+</h1>
+
+
+<div class="box">
+
+
+<table>
+
+
+<tr>
+
+<th>
+STT
+</th>
+
+<th>
+Họ tên
+</th>
+
+<th>
+Toán
+</th>
+
+<th>
+Ngữ văn
+</th>
+
+<th>
+Tiếng Anh
+</th>
+
+<th>
+Điểm TB
+</th>
+
+<th>
+Xếp loại
+</th>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+1
+</td>
+
+<td>
+Nguyễn Văn A
+</td>
+
+
+<td>
+<input id="toan1" value="8">
+</td>
+
+
+<td>
+<input id="van1" value="7">
+</td>
+
+
+<td>
+<input id="anh1" value="9">
+</td>
+
+
+<td id="tb1">
+
+</td>
+
+
+<td id="xl1">
+
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>
+2
+</td>
+
+<td>
+Trần Thị B
+</td>
+
+
+<td>
+<input id="toan2" value="6">
+</td>
+
+
+<td>
+<input id="van2" value="7">
+</td>
+
+
+<td>
+<input id="anh2" value="8">
+</td>
+
+
+<td id="tb2">
+
+</td>
+
+
+<td id="xl2">
+
+</td>
+
+
+</tr>
+
+
+
+</table>
+
+
+<br>
+
+
+<button onclick="tinh()">
+
+Tính kết quả
+
+</button>
+
+
+<br><br>
+
+
+<a href="index.html">
+
+<button>
+⬅ Trang chủ
+</button>
+
+</a>
+
+
+
+</div>
+
+
+
+<script>
+
+
+function tinh(){
+
+
+for(let i=1;i<=2;i++){
+
+
+let toan=
+Number(document.getElementById("toan"+i).value);
+
+
+let van=
+Number(document.getElementById("van"+i).value);
+
+
+let anh=
+Number(document.getElementById("anh"+i).value);
+
+
+
+let tb=
+((toan+van+anh)/3).toFixed(2);
+
+
+
+document.getElementById("tb"+i).innerHTML=tb;
+
+
+
+let xl="";
+
+
+if(tb>=8)
+xl="Giỏi";
+
+else if(tb>=6.5)
+xl="Khá";
+
+else if(tb>=5)
+xl="Trung bình";
+
+else
+xl="Yếu";
+
+
+
+document.getElementById("xl"+i).innerHTML=xl;
+
+
+}
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
