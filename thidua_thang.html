@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Thi đua tháng</title>
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f7ff;
+padding:30px;
+}
+
+
+h1{
+text-align:center;
+color:#1565c0;
+}
+
+
+.box{
+
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px #ccc;
+
+}
+
+
+select{
+
+padding:8px;
+font-size:16px;
+
+}
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:12px;
+
+}
+
+
+td{
+
+padding:10px;
+text-align:center;
+border-bottom:1px solid #ddd;
+
+}
+
+
+input{
+
+width:60px;
+padding:5px;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<h1>
+📊 THI ĐUA THÁNG
+</h1>
+
+
+<div class="box">
+
+
+<label>
+Chọn tháng:
+</label>
+
+
+<select>
+
+<option>Tháng 9</option>
+
+<option>Tháng 10</option>
+
+<option>Tháng 11</option>
+
+<option>Tháng 12</option>
+
+</select>
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+STT
+</th>
+
+<th>
+Họ tên
+</th>
+
+<th>
+Tuần 1
+</th>
+
+<th>
+Tuần 2
+</th>
+
+<th>
+Tuần 3
+</th>
+
+<th>
+Tuần 4
+</th>
+
+<th>
+Điểm tháng
+</th>
+
+<th>
+Xếp loại
+</th>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>1</td>
+
+<td>
+Nguyễn Văn A
+</td>
+
+
+<td>
+<input value="100">
+</td>
+
+
+<td>
+<input value="95">
+</td>
+
+
+<td>
+<input value="98">
+</td>
+
+
+<td>
+<input value="100">
+</td>
+
+
+<td id="tong1">
+</td>
+
+
+<td id="loai1">
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>2</td>
+
+<td>
+Trần Thị B
+</td>
+
+
+<td>
+<input value="90">
+</td>
+
+
+<td>
+<input value="85">
+</td>
+
+
+<td>
+<input value="95">
+</td>
+
+
+<td>
+<input value="92">
+</td>
+
+
+<td id="tong2">
+</td>
+
+
+<td id="loai2">
+</td>
+
+
+</tr>
+
+
+</table>
+
+
+
+<br>
+
+
+<button onclick="tinhthang()">
+
+Tổng hợp tháng
+
+</button>
+
+
+<br><br>
+
+
+<a href="index.html">
+
+<button>
+⬅ Trang chủ
+</button>
+
+</a>
+
+
+
+</div>
+
+
+
+<script>
+
+
+function tinhthang(){
+
+
+for(let i=1;i<=2;i++){
+
+
+let inputs=
+document.querySelectorAll("tr:nth-child("+(i+1)+") input");
+
+
+
+let tong=0;
+
+
+inputs.forEach(function(x){
+
+tong+=Number(x.value);
+
+});
+
+
+
+let diem=Math.round(tong/4);
+
+
+
+document.getElementById("tong"+i)
+.innerHTML=diem;
+
+
+
+let loai="";
+
+
+if(diem>=90)
+loai="Xuất sắc";
+
+else if(diem>=80)
+loai="Tốt";
+
+else if(diem>=65)
+loai="Khá";
+
+else
+loai="Cần cố gắng";
+
+
+
+document.getElementById("loai"+i)
+.innerHTML=loai;
+
+
+
+}
+
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>
