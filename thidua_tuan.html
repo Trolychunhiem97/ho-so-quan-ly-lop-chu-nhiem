@@ -2,83 +2,67 @@
 <html lang="vi">
 
 <head>
-
 <meta charset="UTF-8">
 
-<title>Thi đua tuần</title>
+<title>Thi đua tuần lớp 97</title>
 
+<link rel="stylesheet" href="style.css">
 
 <style>
 
-body{
-font-family:Arial;
-background:#f2f7ff;
-padding:30px;
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
 }
 
+th{
+background:#1565c0;
+color:white;
+padding:12px;
+font-size:18px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+font-size:16px;
+}
+
+tr:hover{
+background:#eef6ff;
+}
+
+input{
+width:60px;
+padding:5px;
+text-align:center;
+}
 
 h1{
 text-align:center;
 color:#1565c0;
 }
 
-
-.box{
-
+.container{
 background:white;
-padding:25px;
+padding:30px;
 border-radius:20px;
-box-shadow:0 5px 20px #ccc;
-
 }
-
-
-table{
-
-width:100%;
-border-collapse:collapse;
-
-}
-
-
-th{
-
-background:#1565c0;
-color:white;
-padding:12px;
-
-}
-
-
-td{
-
-border:1px solid #ddd;
-padding:10px;
-text-align:center;
-
-}
-
-
-input{
-
-width:70px;
-padding:5px;
-
-}
-
 
 button{
-
 background:#1565c0;
 color:white;
-padding:10px 20px;
 border:none;
-border-radius:8px;
-
+padding:12px 25px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
 }
 
 </style>
-
 
 </head>
 
@@ -86,12 +70,12 @@ border-radius:8px;
 <body>
 
 
-<h1>
-🏆 THEO DÕI THI ĐUA TUẦN
-</h1>
+<div class="container">
+
+<h1>🏆 THI ĐUA TUẦN LỚP CHỦ NHIỆM 97</h1>
 
 
-<div class="box">
+<h2>Tuần: ............</h2>
 
 
 <table>
@@ -100,77 +84,55 @@ border-radius:8px;
 <tr>
 
 <th>STT</th>
-
 <th>Họ và tên</th>
-
 <th>Điểm đầu tuần</th>
-
 <th>Cộng</th>
-
 <th>Trừ</th>
-
 <th>Tổng điểm</th>
-
 <th>Xếp loại</th>
 
 </tr>
 
 
-
 <tr>
-
 <td>1</td>
-
 <td>Nguyễn Văn A</td>
-
 <td>100</td>
-
-<td><input value="0"></td>
-
-<td><input value="0"></td>
-
+<td><input></td>
+<td><input></td>
 <td>100</td>
-
 <td>Tốt</td>
-
 </tr>
 
 
 <tr>
-
 <td>2</td>
-
-<td>Nguyễn Văn B</td>
-
+<td>Trần Thị B</td>
 <td>100</td>
-
-<td><input value="0"></td>
-
-<td><input value="0"></td>
-
+<td><input></td>
+<td><input></td>
 <td>100</td>
-
 <td>Tốt</td>
-
 </tr>
 
 
 <tr>
-
 <td>3</td>
-
-<td>Nguyễn Văn C</td>
-
+<td>Lê Văn C</td>
 <td>100</td>
-
-<td><input value="0"></td>
-
-<td><input value="0"></td>
-
+<td><input></td>
+<td><input></td>
 <td>100</td>
-
 <td>Tốt</td>
+</tr>
 
+
+<tr>
+<td colspan="7">
+
+(Thầy sẽ thay danh sách thật lớp 97 vào đây)
+
+</td>
 </tr>
 
 
@@ -180,10 +142,41 @@ border-radius:8px;
 <br>
 
 
+<h2>📌 Quy định cộng điểm</h2>
+
+<ul>
+
+<li>Phát biểu xây dựng bài: +5 điểm</li>
+
+<li>Giúp đỡ bạn: +5 điểm</li>
+
+<li>Việc tốt: +5 điểm</li>
+
+<li>Đạt thành tích: +10 điểm</li>
+
+</ul>
+
+
+<h2>📌 Quy định trừ điểm</h2>
+
+<ul>
+
+<li>Không làm bài: -5 điểm</li>
+
+<li>Mất trật tự: -5 điểm</li>
+
+<li>Vi phạm nội quy: -10 điểm</li>
+
+</ul>
+
+
+<br>
+
+
 <a href="index.html">
 
 <button>
-⬅ Về trang chủ
+⬅ Quay lại trang chủ
 </button>
 
 </a>
