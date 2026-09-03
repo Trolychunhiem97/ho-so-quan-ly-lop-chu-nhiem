@@ -11,32 +11,34 @@
 <style>
 
 body{
+
 font-family:Arial;
+
 background:#f2f7ff;
+
 padding:30px;
+
 }
 
 
 h1{
+
 text-align:center;
+
 color:#1565c0;
+
 }
 
 
 .box{
 
 background:white;
+
 padding:25px;
+
 border-radius:20px;
+
 box-shadow:0 5px 20px #ccc;
-
-}
-
-
-select{
-
-padding:8px;
-font-size:16px;
 
 }
 
@@ -44,7 +46,9 @@ font-size:16px;
 table{
 
 width:100%;
+
 border-collapse:collapse;
+
 margin-top:20px;
 
 }
@@ -53,7 +57,9 @@ margin-top:20px;
 th{
 
 background:#1565c0;
+
 color:white;
+
 padding:12px;
 
 }
@@ -61,28 +67,44 @@ padding:12px;
 
 td{
 
+border:1px solid #ddd;
+
 padding:10px;
+
 text-align:center;
-border-bottom:1px solid #ddd;
 
 }
 
 
-input{
+.xs{
 
-width:60px;
-padding:5px;
+color:green;
+
+font-weight:bold;
 
 }
 
 
-button{
+.tot{
+
+color:#1565c0;
+
+font-weight:bold;
+
+}
+
+
+.button{
 
 background:#1565c0;
+
 color:white;
-border:none;
-padding:10px 20px;
-border-radius:8px;
+
+padding:12px 20px;
+
+border-radius:10px;
+
+text-decoration:none;
 
 }
 
@@ -97,30 +119,16 @@ border-radius:8px;
 
 
 <h1>
-📊 THI ĐUA THÁNG
+🏆 THI ĐUA THÁNG LỚP CHỦ NHIỆM
 </h1>
 
 
 <div class="box">
 
 
-<label>
-Chọn tháng:
-</label>
-
-
-<select>
-
-<option>Tháng 9</option>
-
-<option>Tháng 10</option>
-
-<option>Tháng 11</option>
-
-<option>Tháng 12</option>
-
-</select>
-
+<h2>
+📅 Tháng 9 - Năm học 2026-2027
+</h2>
 
 
 <table>
@@ -128,41 +136,24 @@ Chọn tháng:
 
 <tr>
 
-<th>
-STT
-</th>
+<th>STT</th>
 
-<th>
-Họ tên
-</th>
+<th>Họ và tên</th>
 
-<th>
-Tuần 1
-</th>
+<th>Tuần 1</th>
 
-<th>
-Tuần 2
-</th>
+<th>Tuần 2</th>
 
-<th>
-Tuần 3
-</th>
+<th>Tuần 3</th>
 
-<th>
-Tuần 4
-</th>
+<th>Tuần 4</th>
 
-<th>
-Điểm tháng
-</th>
+<th>Tổng điểm</th>
 
-<th>
-Xếp loại
-</th>
+<th>Xếp loại</th>
 
 
 </tr>
-
 
 
 
@@ -170,36 +161,20 @@ Xếp loại
 
 <td>1</td>
 
-<td>
-Nguyễn Văn A
-</td>
+<td>Nguyễn Văn A</td>
 
+<td>100</td>
 
-<td>
-<input value="100">
-</td>
+<td>98</td>
 
+<td>105</td>
 
-<td>
-<input value="95">
-</td>
+<td>100</td>
 
+<td>403</td>
 
-<td>
-<input value="98">
-</td>
-
-
-<td>
-<input value="100">
-</td>
-
-
-<td id="tong1">
-</td>
-
-
-<td id="loai1">
+<td class="xs">
+Xuất sắc
 </td>
 
 
@@ -212,36 +187,46 @@ Nguyễn Văn A
 
 <td>2</td>
 
+<td>Nguyễn Văn B</td>
+
+<td>95</td>
+
+<td>100</td>
+
+<td>97</td>
+
+<td>98</td>
+
+<td>390</td>
+
+<td class="tot">
+Tốt
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<td>3</td>
+
+<td>Nguyễn Văn C</td>
+
+<td>90</td>
+
+<td>85</td>
+
+<td>95</td>
+
+<td>92</td>
+
+<td>362</td>
+
 <td>
-Trần Thị B
-</td>
-
-
-<td>
-<input value="90">
-</td>
-
-
-<td>
-<input value="85">
-</td>
-
-
-<td>
-<input value="95">
-</td>
-
-
-<td>
-<input value="92">
-</td>
-
-
-<td id="tong2">
-</td>
-
-
-<td id="loai2">
+Khá
 </td>
 
 
@@ -251,99 +236,18 @@ Trần Thị B
 </table>
 
 
-
 <br>
 
 
-<button onclick="tinhthang()">
+<a class="button" href="index.html">
 
-Tổng hợp tháng
-
-</button>
-
-
-<br><br>
-
-
-<a href="index.html">
-
-<button>
-⬅ Trang chủ
-</button>
+⬅ Quay về trang chủ
 
 </a>
 
 
 
 </div>
-
-
-
-<script>
-
-
-function tinhthang(){
-
-
-for(let i=1;i<=2;i++){
-
-
-let inputs=
-document.querySelectorAll("tr:nth-child("+(i+1)+") input");
-
-
-
-let tong=0;
-
-
-inputs.forEach(function(x){
-
-tong+=Number(x.value);
-
-});
-
-
-
-let diem=Math.round(tong/4);
-
-
-
-document.getElementById("tong"+i)
-.innerHTML=diem;
-
-
-
-let loai="";
-
-
-if(diem>=90)
-loai="Xuất sắc";
-
-else if(diem>=80)
-loai="Tốt";
-
-else if(diem>=65)
-loai="Khá";
-
-else
-loai="Cần cố gắng";
-
-
-
-document.getElementById("loai"+i)
-.innerHTML=loai;
-
-
-
-}
-
-
-
-}
-
-
-</script>
-
 
 
 </body>
