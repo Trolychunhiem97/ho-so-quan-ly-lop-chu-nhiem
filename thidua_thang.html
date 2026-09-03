@@ -11,21 +11,31 @@
 
 <style>
 
+body{
+font-family:Arial;
+}
+
+.container{
+background:white;
+padding:25px;
+border-radius:20px;
+}
+
 table{
 width:100%;
 border-collapse:collapse;
-background:white;
+margin-top:20px;
 }
 
 th{
 background:#1565c0;
 color:white;
-padding:10px;
+padding:12px;
 }
 
 td{
 border:1px solid #ddd;
-padding:8px;
+padding:10px;
 text-align:center;
 }
 
@@ -39,10 +49,12 @@ text-align:center;
 color:#1565c0;
 }
 
-.container{
-background:white;
-padding:25px;
-border-radius:20px;
+button{
+background:#1565c0;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:10px;
 }
 
 </style>
@@ -56,10 +68,13 @@ border-radius:20px;
 <div class="container">
 
 
-<h1>🏆 THI ĐUA THÁNG LỚP 97</h1>
+<h1>
+🏆 THI ĐUA THÁNG LỚP 97
+</h1>
+
 
 <h3>
-Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
+Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 </h3>
 
 
@@ -67,6 +82,7 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 
 
 <tr>
+
 <th>STT</th>
 <th>Họ và tên</th>
 <th>Tuần 1</th>
@@ -75,7 +91,9 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 <th>Tuần 4</th>
 <th>TB tháng</th>
 <th>Xếp loại</th>
+
 </tr>
+
 
 
 <tr>
@@ -136,6 +154,8 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 <td>100</td>
 <td>Xuất sắc</td>
 </tr>
+
+
 <tr>
 <td>6</td>
 <td>Nguyễn Hoàng Khánh Linh</td>
@@ -314,6 +334,8 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 <td>100</td>
 <td>Xuất sắc</td>
 </tr>
+
+
 <tr>
 <td>21</td>
 <td>Vũ Ngọc Như Quỳnh</td>
@@ -374,7 +396,7 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 </tr>
 
 
-<tr>
+  <tr>
 <td>26</td>
 <td>Vũ Ngọc Anh Thư</td>
 <td><input value="100"></td>
@@ -476,40 +498,71 @@ Cách tính: Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
 <br>
 
 
-<h3>📌 Quy tắc xếp loại</h3>
-
-<ul>
-
-<li>95 - 100 điểm: ⭐ Xuất sắc</li>
-
-<li>85 - dưới 95 điểm: Tốt</li>
-
-<li>70 - dưới 85 điểm: Khá</li>
-
-<li>Dưới 70 điểm: Cần cố gắng</li>
-
-</ul>
-
-
-<br>
+<button onclick="tinhDiem()">
+🔄 Tính điểm tháng
+</button>
 
 
 <a href="index.html">
-
 <button>
 ⬅ Quay lại trang chủ
 </button>
-
 </a>
 
 
 </div>
 
 
+<script>
+
+function tinhDiem(){
+
+let rows=document.querySelectorAll("table tr");
+
+for(let i=1;i<rows.length;i++){
+
+let input=rows[i].querySelectorAll("input");
+
+if(input.length==4){
+
+let tong=0;
+
+input.forEach(x=>{
+tong += Number(x.value);
+});
+
+
+let tb=tong/4;
+
+
+rows[i].cells[6].innerHTML=tb.toFixed(2);
+
+
+if(tb>=95)
+rows[i].cells[7].innerHTML="⭐ Xuất sắc";
+
+else if(tb>=85)
+rows[i].cells[7].innerHTML="🟢 Tốt";
+
+else if(tb>=70)
+rows[i].cells[7].innerHTML="🟡 Khá";
+
+else
+rows[i].cells[7].innerHTML="🔴 Cần cố gắng";
+
+
+}
+
+}
+
+}
+
+</script>
+
+
 </body>
 
 </html>
-
 
 
 
