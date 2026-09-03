@@ -13,7 +13,9 @@
 body{
 
 font-family:Arial;
+
 background:#f2f7ff;
+
 padding:30px;
 
 }
@@ -22,6 +24,7 @@ padding:30px;
 h1{
 
 text-align:center;
+
 color:#1565c0;
 
 }
@@ -30,8 +33,11 @@ color:#1565c0;
 .box{
 
 background:white;
+
 padding:25px;
+
 border-radius:20px;
+
 box-shadow:0 5px 20px #ccc;
 
 }
@@ -40,6 +46,7 @@ box-shadow:0 5px 20px #ccc;
 table{
 
 width:100%;
+
 border-collapse:collapse;
 
 }
@@ -48,7 +55,9 @@ border-collapse:collapse;
 th{
 
 background:#1565c0;
+
 color:white;
+
 padding:12px;
 
 }
@@ -56,33 +65,39 @@ padding:12px;
 
 td{
 
+border:1px solid #ddd;
+
 padding:10px;
-border-bottom:1px solid #ddd;
+
 text-align:center;
 
 }
 
 
-input{
+.note{
 
-width:60px;
-padding:5px;
+width:200px;
 
 }
 
 
-button{
+.button{
 
 background:#1565c0;
+
 color:white;
-border:0;
-padding:10px 20px;
-border-radius:8px;
+
+padding:12px 20px;
+
+border-radius:10px;
+
+text-decoration:none;
 
 }
 
 
 </style>
+
 
 </head>
 
@@ -91,11 +106,16 @@ border-radius:8px;
 
 
 <h1>
-📚 KIỂM TRA TỔNG HỢP HỌC SINH
+📊 KIỂM TRA TỔNG HỢP HỌC SINH
 </h1>
 
 
 <div class="box">
+
+
+<h2>
+Lớp chủ nhiệm: 6A6
+</h2>
 
 
 <table>
@@ -103,117 +123,92 @@ border-radius:8px;
 
 <tr>
 
-<th>
-STT
-</th>
+<th>STT</th>
 
-<th>
-Họ tên
-</th>
+<th>Họ và tên</th>
 
-<th>
-Toán
-</th>
+<th>Toán</th>
 
-<th>
-Ngữ văn
-</th>
+<th>Ngữ văn</th>
 
-<th>
-Tiếng Anh
-</th>
+<th>Anh</th>
 
-<th>
-Điểm TB
-</th>
+<th>TB</th>
 
-<th>
-Xếp loại
-</th>
+<th>Rèn luyện</th>
+
+<th>Ghi chú</th>
 
 </tr>
-
 
 
 <tr>
 
-<td>
-1
+<td>1</td>
+
+<td>Nguyễn Văn A</td>
+
+<td>8.5</td>
+
+<td>8</td>
+
+<td>9</td>
+
+<td>8.5</td>
+
+<td>Tốt</td>
+
+<td class="note">
+Chăm ngoan
 </td>
-
-<td>
-Nguyễn Văn A
-</td>
-
-
-<td>
-<input id="toan1" value="8">
-</td>
-
-
-<td>
-<input id="van1" value="7">
-</td>
-
-
-<td>
-<input id="anh1" value="9">
-</td>
-
-
-<td id="tb1">
-
-</td>
-
-
-<td id="xl1">
-
-</td>
-
 
 </tr>
-
-
 
 
 <tr>
 
-<td>
-2
-</td>
+<td>2</td>
+
+<td>Nguyễn Văn B</td>
+
+<td>7</td>
+
+<td>7.5</td>
+
+<td>8</td>
+
+<td>7.5</td>
+
+<td>Tốt</td>
 
 <td>
-Trần Thị B
+Cần phát huy
 </td>
-
-
-<td>
-<input id="toan2" value="6">
-</td>
-
-
-<td>
-<input id="van2" value="7">
-</td>
-
-
-<td>
-<input id="anh2" value="8">
-</td>
-
-
-<td id="tb2">
-
-</td>
-
-
-<td id="xl2">
-
-</td>
-
 
 </tr>
 
+
+<tr>
+
+<td>3</td>
+
+<td>Nguyễn Văn C</td>
+
+<td>5</td>
+
+<td>6</td>
+
+<td>5.5</td>
+
+<td>5.5</td>
+
+<td>Khá</td>
+
+<td>
+Cần hỗ trợ
+</td>
+
+</tr>
 
 
 </table>
@@ -222,88 +217,14 @@ Trần Thị B
 <br>
 
 
-<button onclick="tinh()">
+<a class="button" href="index.html">
 
-Tính kết quả
-
-</button>
-
-
-<br><br>
-
-
-<a href="index.html">
-
-<button>
-⬅ Trang chủ
-</button>
+⬅ Về trang chủ
 
 </a>
 
 
-
 </div>
-
-
-
-<script>
-
-
-function tinh(){
-
-
-for(let i=1;i<=2;i++){
-
-
-let toan=
-Number(document.getElementById("toan"+i).value);
-
-
-let van=
-Number(document.getElementById("van"+i).value);
-
-
-let anh=
-Number(document.getElementById("anh"+i).value);
-
-
-
-let tb=
-((toan+van+anh)/3).toFixed(2);
-
-
-
-document.getElementById("tb"+i).innerHTML=tb;
-
-
-
-let xl="";
-
-
-if(tb>=8)
-xl="Giỏi";
-
-else if(tb>=6.5)
-xl="Khá";
-
-else if(tb>=5)
-xl="Trung bình";
-
-else
-xl="Yếu";
-
-
-
-document.getElementById("xl"+i).innerHTML=xl;
-
-
-}
-
-
-}
-
-
-</script>
 
 
 </body>
