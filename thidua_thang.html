@@ -7,120 +7,7 @@
 
 <title>Thi đua tháng</title>
 
-<style>
-
-body{
-
-font-family:Arial;
-
-background:#f2f7ff;
-
-padding:30px;
-
-}
-
-
-h1{
-
-text-align:center;
-
-color:#1565c0;
-
-}
-
-
-.box{
-
-background:white;
-
-padding:25px;
-
-border-radius:20px;
-
-box-shadow:0 5px 20px #ccc;
-
-}
-
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-}
-
-
-th{
-
-background:#1565c0;
-
-color:white;
-
-padding:12px;
-
-}
-
-
-td{
-
-border:1px solid #ddd;
-
-padding:10px;
-
-text-align:center;
-
-}
-
-
-.xuat-sac{
-
-color:green;
-
-font-weight:bold;
-
-}
-
-
-.tot{
-
-color:#1565c0;
-
-font-weight:bold;
-
-}
-
-
-.can-co-gang{
-
-color:red;
-
-font-weight:bold;
-
-}
-
-
-a{
-
-display:inline-block;
-
-margin-top:20px;
-
-background:#1565c0;
-
-color:white;
-
-padding:12px 20px;
-
-border-radius:10px;
-
-text-decoration:none;
-
-}
-
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -128,210 +15,84 @@ text-decoration:none;
 <body>
 
 
-<h1>
-🏆 THEO DÕI THI ĐUA THÁNG
-</h1>
+<h1>🏆 THI ĐUA THÁNG</h1>
 
 
 <div class="box">
 
 
-<h2>
-Lớp chủ nhiệm: 6A6
-</h2>
-
-
-<p>
-⭐ Điểm khởi đầu mỗi học sinh: <b>400 điểm/tháng</b>
-</p>
+<h2>📅 Bảng tổng hợp thi đua tháng</h2>
 
 
 <table>
 
 
 <tr>
-
-<th>
-STT
-</th>
-
-<th>
-Họ và tên
-</th>
-
-<th>
-Điểm thi đua
-</th>
-
-<th>
-Xếp loại
-</th>
-
-<th>
-Nhận xét
-</th>
-
+<th>STT</th>
+<th>Họ và tên</th>
+<th>Tuần 1</th>
+<th>Tuần 2</th>
+<th>Tuần 3</th>
+<th>Tuần 4</th>
+<th>Tổng điểm</th>
+<th>Xếp loại</th>
 </tr>
 
 
 <tr>
-
-<td>
-1
-</td>
-
-<td>
-Nguyễn Văn A
-</td>
-
-<td>
-420
-</td>
-
-<td class="xuat-sac">
-Xuất sắc
-</td>
-
-<td>
-Có nhiều cố gắng, giúp đỡ bạn
-</td>
-
+<td>1</td>
+<td>Nguyễn Văn A</td>
+<td>100</td>
+<td>105</td>
+<td>98</td>
+<td>110</td>
+<td>413</td>
+<td>Tốt</td>
 </tr>
 
 
 <tr>
-
-<td>
-2
-</td>
-
-<td>
-Nguyễn Văn B
-</td>
-
-<td>
-385
-</td>
-
-<td class="tot">
-Tốt
-</td>
-
-<td>
-Thực hiện khá tốt nội quy
-</td>
-
+<td>2</td>
+<td>Trần Văn B</td>
+<td>95</td>
+<td>100</td>
+<td>90</td>
+<td>98</td>
+<td>383</td>
+<td>Khá</td>
 </tr>
 
 
 <tr>
-
-<td>
-3
-</td>
-
-<td>
-Nguyễn Văn C
-</td>
-
-<td>
-320
-</td>
-
-<td class="can-co-gang">
-Cần cố gắng
-</td>
-
-<td>
-Cần rèn luyện ý thức học tập
-</td>
-
+<td>3</td>
+<td>Lê Thị C</td>
+<td>110</td>
+<td>105</td>
+<td>115</td>
+<td>110</td>
+<td>440</td>
+<td>Xuất sắc</td>
 </tr>
 
 
 </table>
-<h3>📝 Cập nhật thi đua tháng</h3>
 
-<table>
 
-<tr>
-<th>Họ tên học sinh</th>
-<th>Nội dung</th>
-<th>Cộng/Trừ điểm</th>
-</tr>
+</div>
 
-<tr>
 
-<td>
-<input type="text" placeholder="Nhập họ tên">
-</td>
-
-<td>
-<input type="text" placeholder="Nội dung khen hoặc lỗi">
-</td>
-
-<td>
-<input type="number" placeholder="+/- điểm">
-</td>
-
-</tr>
-
-</table>
 
 <br>
-
-<button onclick="alert('Đã cập nhật điểm thi đua tháng!')">
-💾 Lưu kết quả
-</button>
-
-<br>
-
-
-<h3>
-📌 Quy định cộng điểm
-</h3>
-
-<ul>
-
-<li>Phát biểu xây dựng bài: +5 điểm</li>
-
-<li>Giúp đỡ bạn: +5 điểm</li>
-
-<li>Đạt điểm tốt: +10 điểm</li>
-
-<li>Tham gia hoạt động lớp: +5 điểm</li>
-
-</ul>
-
-
-
-<h3>
-📌 Quy định trừ điểm
-</h3>
-
-
-<ul>
-
-<li>Đi học muộn: -5 điểm</li>
-
-<li>Quên sách vở: -3 điểm</li>
-
-<li>Không làm bài tập: -10 điểm</li>
-
-<li>Vi phạm nội quy: -20 điểm</li>
-
-</ul>
-
 
 
 <a href="index.html">
 
-⬅ Về trang chủ
+<button>
+⬅ Quay lại hồ sơ
+</button>
 
 </a>
 
-
-</div>
 
 
 </body>
