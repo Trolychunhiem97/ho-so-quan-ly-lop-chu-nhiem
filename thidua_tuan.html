@@ -3,262 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Thi đua tuần lớp 97</title>
-
-<link rel="stylesheet" href="style.css">
-
 <style>
-body{
-font-family:Arial;
-}
-
-.container{
-background:white;
-padding:25px;
-border-radius:20px;
-}
-
-h1{
-text-align:center;
-color:#1565c0;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th{
-background:#1565c0;
-color:white;
-padding:10px;
-}
-
-td{
-border:1px solid #ddd;
-padding:8px;
-text-align:center;
-}
-
-input{
-width:55px;
-text-align:center;
-}
-
-button{
-background:#1565c0;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:8px;
-margin:10px;
-cursor:pointer;
-}
-
+body{font-family:Arial;background:#f2f7ff;padding:20px}
+.container{background:white;padding:20px;border-radius:15px}
+h1{text-align:center;color:#1565c0}
+table{width:100%;border-collapse:collapse}
+th{background:#1565c0;color:white;padding:8px}
+td{border:1px solid #ddd;padding:8px;text-align:center}
+input{width:55px;text-align:center}
+button{padding:10px 15px;margin:10px;background:#1565c0;color:white;border:0;border-radius:8px}
 </style>
 </head>
-
-
 <body>
-
-
 <div class="container">
-
-
 <h1>🏆 THI ĐUA TUẦN LỚP 97</h1>
-
-<p>
-Tuần số:
-<input id="tuan" value="1" style="width:50px">
-</p>
-
-
+<p>Tuần số: <input id="tuan" value="1"></p>
 <table id="bang">
-
-<tr>
-<th>STT</th>
-<th>Họ và tên</th>
-<th>Điểm đầu tuần</th>
-<th>Cộng</th>
-<th>Trừ</th>
-<th>Tổng điểm</th>
-<th>Xếp loại</th>
-</tr>
-
+<tr><th>STT</th><th>Họ và tên</th><th>Điểm đầu tuần</th><th>Cộng</th><th>Trừ</th><th>Tổng</th><th>Xếp loại</th></tr>
 </table>
-
-
-<button onclick="tinhDiem()">
-🔄 Tính điểm
-</button>
-
-
-<button onclick="resetDiem()">
-🧹 Làm mới
-</button>
-
-
-<a href="index.html">
-<button>
-⬅ Trang chủ
-</button>
-</a>
-
-
+<button onclick="tinh()">🔄 Tính điểm</button>
+<button onclick="localStorage.setItem('thidua97',document.querySelector('.container').innerHTML);alert('Đã lưu')">💾 Lưu tuần</button>
 </div>
-
-
-
 <script>
-
-
-const hocSinh=[
-
-"Vũ Ngọc Ánh",
-"Trần Thị Ngọc Diệp",
-"Nguyễn Anh Duy",
-"Lý Gia Huy",
-"Hứa Bảo Khang",
-"Nguyễn Hoàng Khánh Linh",
-"Nguyễn Hoàng Nhật Linh",
-"Trương Đỗ Thục Linh",
-"Lê Quốc Long",
-"Nguyễn Bùi Hoàng Long",
-"Lâm Thị Trúc Ly",
-"Trần Lê Nhật Minh",
-"Vũ Thị Trà My",
-"Đỗ Phạm Hoàng Nam",
-"Bùi Thị Kim Ngân",
-"Hoàng Nguyễn Tuấn Ngọc",
-"Lô Thị Minh Nhi",
-"Nguyễn Thị Quỳnh Như",
-"Phạm Hoàng Thiên Phú",
-"Ngô Như Quỳnh",
-"Vũ Ngọc Như Quỳnh",
-"Trần Thị Thủy Tiên",
-"Hoàng Duy Thành",
-"Phạm Trường Thành",
-"Hoàng Thị Anh Thư",
-"Vũ Ngọc Anh Thư",
-"Trần Hoàng Bảo Trân",
-"Lô Thanh Trúc",
-"Nguyễn Thị Kiều Vi",
-"Nguyễn Thanh Vũ",
-"Hoàng Thị Thảo Vy",
-"Lâm Huỳnh Thảo Vy",
-"Nguyễn Ngô Hoàng Yến"
-
-];
-
-
-let bang=document.getElementById("bang");
-
-
-hocSinh.forEach((ten,index)=>{
-
-
-let row=bang.insertRow();
-
-
-row.innerHTML=`
-
-<td>${index+1}</td>
-
-<td>${ten}</td>
-
-<td>100</td>
-
-<td>
-<input class="cong" value="0">
-</td>
-
-<td>
-<input class="tru" value="0">
-</td>
-
-<td class="tong">100</td>
-
-<td class="loai">
-Xuất sắc
-</td>
-
-`;
-
-});
-
-
-
-function tinhDiem(){
-
-
-let rows=document.querySelectorAll("#bang tr");
-
-
-for(let i=1;i<rows.length;i++){
-
-
-let cong=Number(rows[i].querySelector(".cong").value)||0;
-
-let tru=Number(rows[i].querySelector(".tru").value)||0;
-
-
-let tong=100+cong-tru;
-
-
-rows[i].querySelector(".tong").innerHTML=tong;
-
-
-
-let loai="";
-
-
-if(tong>=100)
-
-loai="⭐ Xuất sắc";
-
-else if(tong>=90)
-
-loai="🟢 Tốt";
-
-else if(tong>=70)
-
-loai="🟡 Khá";
-
-else
-
-loai="🔴 Cần cố gắng";
-
-
-rows[i].querySelector(".loai").innerHTML=loai;
-
-
-}
-
-
-}
-
-
-
-function resetDiem(){
-
-
-document.querySelectorAll(".cong")
-.forEach(x=>x.value=0);
-
-
-document.querySelectorAll(".tru")
-.forEach(x=>x.value=0);
-
-
-tinhDiem();
-
-
-}
-
-
-
+const ds=["Vũ Ngọc Ánh","Trần Thị Ngọc Diệp","Nguyễn Anh Duy","Lý Gia Huy","Hứa Bảo Khang","Nguyễn Hoàng Khánh Linh","Nguyễn Hoàng Nhật Linh","Trương Đỗ Thục Linh","Lê Quốc Long","Nguyễn Bùi Hoàng Long","Lâm Thị Trúc Ly","Trần Lê Nhật Minh","Vũ Thị Trà My","Đỗ Phạm Hoàng Nam","Bùi Thị Kim Ngân","Hoàng Nguyễn Tuấn Ngọc","Lô Thị Minh Nhi","Nguyễn Thị Quỳnh Như","Phạm Hoàng Thiên Phú","Ngô Như Quỳnh","Vũ Ngọc Như Quỳnh","Trần Thị Thủy Tiên","Hoàng Duy Thành","Phạm Trường Thành","Hoàng Thị Anh Thư","Vũ Ngọc Anh Thư","Trần Hoàng Bảo Trân","Lô Thanh Trúc","Nguyễn Thị Kiều Vi","Nguyễn Thanh Vũ","Hoàng Thị Thảo Vy","Lâm Huỳnh Thảo Vy","Nguyễn Ngô Hoàng Yến"];
+let b=document.getElementById("bang");
+ds.forEach((x,i)=>{b.insertRow().innerHTML=`<td>${i+1}</td><td>${x}</td><td>100</td><td><input value="0"></td><td><input value="0"></td><td>100</td><td>Xuất sắc</td>`});
+function tinh(){document.querySelectorAll("#bang tr").forEach((r,i)=>{if(i){let c=100+Number(r.cells[3].children[0].value)-Number(r.cells[4].children[0].value);r.cells[5].innerHTML=c;r.cells[6].innerHTML=c>=100?"⭐ Xuất sắc":c>=90?"🟢 Tốt":c>=70?"🟡 Khá":"🔴 Cần cố gắng"}})}
 </script>
-
-
 </body>
 </html>
