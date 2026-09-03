@@ -16,6 +16,7 @@ background:#f2f7ff;
 padding:30px;
 }
 
+
 h1{
 text-align:center;
 color:#1565c0;
@@ -27,7 +28,7 @@ color:#1565c0;
 background:white;
 padding:25px;
 border-radius:20px;
-box-shadow:0 5px 15px #ccc;
+box-shadow:0 5px 20px #ccc;
 
 }
 
@@ -51,8 +52,8 @@ padding:12px;
 
 td{
 
+border:1px solid #ddd;
 padding:10px;
-border-bottom:1px solid #ddd;
 text-align:center;
 
 }
@@ -60,7 +61,7 @@ text-align:center;
 
 input{
 
-width:60px;
+width:70px;
 padding:5px;
 
 }
@@ -70,12 +71,11 @@ button{
 
 background:#1565c0;
 color:white;
-border:0;
 padding:10px 20px;
+border:none;
 border-radius:8px;
 
 }
-
 
 </style>
 
@@ -86,7 +86,9 @@ border-radius:8px;
 <body>
 
 
-<h1>🏆 THEO DÕI THI ĐUA TUẦN</h1>
+<h1>
+🏆 THEO DÕI THI ĐUA TUẦN
+</h1>
 
 
 <div class="box">
@@ -99,7 +101,7 @@ border-radius:8px;
 
 <th>STT</th>
 
-<th>Họ tên</th>
+<th>Họ và tên</th>
 
 <th>Điểm đầu tuần</th>
 
@@ -123,53 +125,51 @@ border-radius:8px;
 
 <td>100</td>
 
-<td>
-<input id="plus1" value="0">
-</td>
+<td><input value="0"></td>
 
-<td>
-<input id="minus1" value="0">
-</td>
+<td><input value="0"></td>
 
+<td>100</td>
 
-<td id="score1">
-100
-</td>
-
-
-<td id="rank1">
-</td>
-
+<td>Tốt</td>
 
 </tr>
-
 
 
 <tr>
 
 <td>2</td>
 
-<td>Trần Thị B</td>
+<td>Nguyễn Văn B</td>
 
 <td>100</td>
 
-<td>
-<input id="plus2" value="0">
-</td>
+<td><input value="0"></td>
 
-<td>
-<input id="minus2" value="0">
-</td>
+<td><input value="0"></td>
 
+<td>100</td>
 
-<td id="score2">
-100
-</td>
+<td>Tốt</td>
+
+</tr>
 
 
-<td id="rank2">
-</td>
+<tr>
 
+<td>3</td>
+
+<td>Nguyễn Văn C</td>
+
+<td>100</td>
+
+<td><input value="0"></td>
+
+<td><input value="0"></td>
+
+<td>100</td>
+
+<td>Tốt</td>
 
 </tr>
 
@@ -180,82 +180,16 @@ border-radius:8px;
 <br>
 
 
-<button onclick="tinhdiem()">
-
-Tính điểm
-
-</button>
-
-
-<br><br>
-
-
 <a href="index.html">
 
 <button>
-⬅ Trang chủ
+⬅ Về trang chủ
 </button>
 
 </a>
 
 
 </div>
-
-
-
-
-<script>
-
-
-function tinhdiem(){
-
-
-for(let i=1;i<=2;i++){
-
-
-let cong=
-Number(document.getElementById("plus"+i).value);
-
-
-let tru=
-Number(document.getElementById("minus"+i).value);
-
-
-
-let diem=100+cong-tru;
-
-
-document.getElementById("score"+i).innerHTML=diem;
-
-
-
-let xeploai="";
-
-
-if(diem>=90)
-xeploai="Xuất sắc";
-
-else if(diem>=80)
-xeploai="Tốt";
-
-else if(diem>=65)
-xeploai="Khá";
-
-else
-xeploai="Cần cố gắng";
-
-
-
-document.getElementById("rank"+i).innerHTML=xeploai;
-
-
-}
-
-
-}
-
-
-</script>
 
 
 </body>
