@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Xuất Excel lớp 97</title>
+
+
+<script src="danhsach.js"></script>
+
+
+<!-- Thư viện tạo Excel -->
+<script 
+src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js">
+</script>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#f2f7ff;
+padding:30px;
+
+}
+
+
+.container{
+
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:700px;
+margin:auto;
+text-align:center;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+📥 XUẤT BÁO CÁO LỚP 97 RA EXCEL
+</h1>
+
+
+<p>
+Xuất toàn bộ dữ liệu:
+<br>
+- Danh sách học sinh
+<br>
+- Thi đua tuần
+<br>
+- Thi đua tháng
+<br>
+- Hạnh kiểm
+<br>
+- Nhận xét AI
+</p>
+
+
+<button onclick="xuatExcel()">
+
+📊 Xuất file Excel
+
+</button>
+
+
+
+<br><br>
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function xuatExcel(){
+
+
+
+let wb =
+XLSX.utils.book_new();
+
+
+
+
+// SHEET 1: DANH SÁCH
+
+
+let ds=[];
+
+
+ds.push([
+"STT",
+"Họ và tên"
+]);
+
+
+
+danhSachHocSinh.forEach((ten,i)=>{
+
+
+ds.push([
+i+1,
+ten
+]);
+
+
+});
+
+
+
+let ws1 =
+XLSX.utils.aoa_to_sheet(ds);
+
+
+XLSX.utils.book_append_sheet(
+wb,
+ws1,
+"Danh sách"
+);
+
+
+
+
+
+
+// SHEET 2: THI ĐUA
+
+
+let thiDua=[];
+
+
+thiDua.push([
+
+"STT",
+"Họ tên",
+"Tuần 1",
+"Tuần 2",
+"Tuần 3",
+"Tuần 4",
+"TB tháng"
+
+]);
+
+
+
+
+let lichSu =
+JSON.parse(
+localStorage.getItem("lichSuTuan97")
+)
+|| [];
+
+
+
+
+
+danhSachHocSinh.forEach((ten,i)=>{
+
+
+let diem=[
+"",
+"",
+"",
+""
+];
+
+
+let tong=0;
+
+let dem=0;
+
+
+
+lichSu.forEach(t=>{
+
+
+let hs =
+t.hocSinh.find(
+x=>x.ten==ten
+);
+
+
+
+if(hs){
+
+let vt=
+Number(t.tuan)-1;
+
+
+diem[vt]=hs.diem;
+
+
+tong+=Number(hs.diem);
+
+dem++;
+
+}
+
+
+});
+
+
+
+let tb=
+dem?
+(tong/dem).toFixed(2)
+:"";
+
+
+
+thiDua.push([
+
+i+1,
+ten,
+diem[0],
+diem[1],
+diem[2],
+diem[3],
+tb
+
+]);
+
+
+});
+
+
+
+
+let ws2 =
+XLSX.utils.aoa_to_sheet(thiDua);
+
+
+
+XLSX.utils.book_append_sheet(
+
+wb,
+
+ws2,
+
+"Thi đua"
+
+);
+
+
+
+
+
+
+
+// SHEET 3 HẠNH KIỂM
+
+
+let hk=[];
+
+
+hk.push([
+
+"STT",
+"Họ tên",
+"Điểm",
+"Xếp loại"
+
+]);
+
+
+
+let hanhKiem =
+JSON.parse(
+localStorage.getItem("hanhKiem97")
+)
+|| [];
+
+
+
+if(hanhKiem.length){
+
+
+let thang =
+hanhKiem[hanhKiem.length-1];
+
+
+
+thang.hocSinh.forEach((hs,i)=>{
+
+
+hk.push([
+
+i+1,
+hs.ten,
+hs.diem,
+hs.xeploai
+
+]);
+
+
+});
+
+
+}
+
+
+
+
+let ws3 =
+XLSX.utils.aoa_to_sheet(hk);
+
+
+
+XLSX.utils.book_append_sheet(
+
+wb,
+
+ws3,
+
+"Hạnh kiểm"
+
+);
+
+
+
+
+
+
+
+// SHEET 4 NHẬN XÉT AI
+
+
+let nx=[];
+
+
+nx.push([
+
+"STT",
+"Họ tên",
+"Nhận xét"
+
+]);
+
+
+
+let baoCao =
+localStorage.getItem(
+"baoCaoNhanXet97"
+);
+
+
+
+if(baoCao){
+
+
+nx.push([
+
+"",
+"",
+baoCao
+
+]);
+
+
+}
+
+
+
+
+let ws4 =
+XLSX.utils.aoa_to_sheet(nx);
+
+
+
+XLSX.utils.book_append_sheet(
+
+wb,
+
+ws4,
+
+"Nhận xét AI"
+
+);
+
+
+
+
+
+// XUẤT FILE
+
+
+XLSX.writeFile(
+
+wb,
+
+"Bao_cao_lop_97.xlsx"
+
+);
+
+
+
+alert(
+"Đã xuất file Excel thành công!"
+);
+
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
