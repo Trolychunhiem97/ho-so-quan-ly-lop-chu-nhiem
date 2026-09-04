@@ -9,6 +9,7 @@
 
 <script src="danhsach.js"></script>
 
+
 <style>
 
 body{
@@ -31,29 +32,23 @@ color:#1565c0;
 
 
 table{
-
 width:100%;
 border-collapse:collapse;
 margin-top:20px;
-
 }
 
 
 th{
-
 background:#1565c0;
 color:white;
 padding:10px;
-
 }
 
 
 td{
-
 border:1px solid #ddd;
 padding:8px;
 text-align:center;
-
 }
 
 
@@ -61,19 +56,16 @@ button{
 
 background:#1565c0;
 color:white;
-border:none;
 padding:10px 20px;
+border:none;
 border-radius:8px;
 margin:10px;
 
 }
 
-
 </style>
 
-
 </head>
-
 
 
 <body>
@@ -85,13 +77,6 @@ margin:10px;
 <h1>
 🏆 THI ĐUA THÁNG LỚP 97
 </h1>
-
-
-
-<h2>
-📊 Bảng tổng hợp kết quả
-</h2>
-
 
 
 <table id="bang">
@@ -115,30 +100,27 @@ margin:10px;
 
 <th>Xếp loại</th>
 
-
 </tr>
 
 
 </table>
 
 
-
 <h2>
-🥇 Xếp hạng tháng
+🥇 TOP 10 THI ĐUA THÁNG
 </h2>
 
 
-
-<table id="xephang">
+<table id="top10">
 
 
 <tr>
 
 <th>Hạng</th>
 
-<th>Họ và tên</th>
+<th>Họ tên</th>
 
-<th>Điểm</th>
+<th>Điểm tháng</th>
 
 </tr>
 
@@ -147,9 +129,9 @@ margin:10px;
 
 
 
-<button onclick="location.href='quanly_thidua.html'">
+<button onclick="location.href='thidua_tuan.html'">
 
-⬅ Quản lý thi đua
+⬅ Thi đua tuần
 
 </button>
 
@@ -161,7 +143,6 @@ margin:10px;
 </button>
 
 
-
 </div>
 
 
@@ -170,73 +151,84 @@ margin:10px;
 <script>
 
 
-let bang=document.getElementById("bang");
-
-let xephang=document.getElementById("xephang");
-
-
-
-let ketQua = 
-JSON.parse(localStorage.getItem("ketQuaTuan97"));
+let lichSu = 
+JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
 
 
 
-let bangDiem=[];
+let bang =
+document.getElementById("bang");
+
+
+let top10 =
+document.getElementById("top10");
+
+
+
+let bangXepHang=[];
 
 
 
 danhSachHocSinh.forEach((ten,index)=>{
 
 
-let diem=[];
+let diemTuan=[0,0,0,0];
 
 
-if(ketQua){
+
+lichSu.forEach(t=>{
 
 
-let hs=
-ketQua.hocSinh.find(x=>x.ten==ten);
+let hs =
+t.hocSinh.find(x=>x.ten==ten);
+
 
 
 if(hs){
 
-diem.push(hs.diem);
+let vt =
+Number(t.tuan)-1;
+
+
+if(vt>=0 && vt<4){
+
+diemTuan[vt]=hs.diem;
 
 }
 
 }
 
-
-
-while(diem.length<4){
-
-diem.push("");
-
-}
-
-
-
-let tong=0;
-
-let dem=0;
-
-
-diem.forEach(x=>{
-
-if(x!=""){
-
-tong+=Number(x);
-
-dem++;
-
-}
 
 });
 
 
 
-let tb=dem?
-(tong/dem).toFixed(2):
+let tong=0;
+
+let soTuan=0;
+
+
+
+diemTuan.forEach(d=>{
+
+
+if(d>0){
+
+tong+=d;
+
+soTuan++;
+
+}
+
+
+});
+
+
+
+let tb =
+soTuan>0 ?
+(tong/soTuan).toFixed(2)
+:
 "0";
 
 
@@ -267,7 +259,7 @@ loai="🔴 Cần cố gắng";
 
 
 
-bangDiem.push({
+bangXepHang.push({
 
 ten:ten,
 
@@ -278,8 +270,7 @@ diem:Number(tb)
 
 
 
-
-bang.innerHTML+=`
+bang.innerHTML += `
 
 <tr>
 
@@ -287,13 +278,13 @@ bang.innerHTML+=`
 
 <td>${ten}</td>
 
-<td>${diem[0]}</td>
+<td>${diemTuan[0]||""}</td>
 
-<td>${diem[1]}</td>
+<td>${diemTuan[1]||""}</td>
 
-<td>${diem[2]}</td>
+<td>${diemTuan[2]||""}</td>
 
-<td>${diem[3]}</td>
+<td>${diemTuan[3]||""}</td>
 
 <td>${tb}</td>
 
@@ -311,16 +302,17 @@ bang.innerHTML+=`
 
 
 
+bangXepHang.sort(
+(a,b)=>b.diem-a.diem
+);
 
-bangDiem.sort((a,b)=>b.diem-a.diem);
 
 
-
-bangDiem.slice(0,10)
+bangXepHang.slice(0,10)
 .forEach((hs,index)=>{
 
 
-xephang.innerHTML+=`
+top10.innerHTML +=`
 
 <tr>
 
@@ -332,8 +324,8 @@ xephang.innerHTML+=`
 
 </tr>
 
-
 `;
+
 
 
 });
