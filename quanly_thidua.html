@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
+
 <title>Quản lý thi đua lớp 97</title>
 
 <link rel="stylesheet" href="style.css">
+
 
 <style>
 
@@ -14,59 +18,72 @@ background:#f2f7ff;
 padding:20px;
 }
 
+
 .container{
+
 background:white;
 padding:25px;
-border-radius:15px;
+border-radius:20px;
+
 }
+
 
 h1{
+
 text-align:center;
 color:#1565c0;
+
 }
 
+
 table{
+
 width:100%;
 border-collapse:collapse;
 margin-top:20px;
+
 }
 
+
 th{
+
 background:#1565c0;
 color:white;
 padding:10px;
+
 }
+
 
 td{
+
 border:1px solid #ddd;
-padding:10px;
+padding:8px;
 text-align:center;
+
 }
 
+
 button{
+
 background:#1565c0;
 color:white;
 border:none;
 padding:10px 20px;
 border-radius:8px;
-cursor:pointer;
 margin:10px;
+
 }
 
-button:hover{
-background:#0d47a1;
-}
-
-input{
-padding:8px;
-}
 
 </style>
+
 
 </head>
 
 
+
 <body>
+
 
 <div class="container">
 
@@ -76,24 +93,25 @@ padding:8px;
 </h1>
 
 
-<h3>
-Tổng hợp kết quả các tuần
-</h3>
+
+<h2>
+📅 Kết quả tuần
+</h2>
 
 
-<table id="bang">
+
+<table id="bangTuan">
+
 
 <tr>
 
 <th>Tuần</th>
 
-<th>Thời gian</th>
+<th>Ngày lưu</th>
 
 <th>Điểm TB lớp</th>
 
 <th>Số HS xuất sắc</th>
-
-<th>Ghi chú</th>
 
 </tr>
 
@@ -102,20 +120,24 @@ Tổng hợp kết quả các tuần
 
 
 
-<h3>
-🏆 XẾP HẠNG THI ĐUA THÁNG
-</h3>
 
 
-<table id="xephang">
+<h2>
+👨‍🎓 Chi tiết học sinh tuần gần nhất
+</h2>
+
+
+
+<table id="bangHocSinh">
+
 
 <tr>
 
-<th>Hạng</th>
+<th>STT</th>
 
 <th>Họ và tên</th>
 
-<th>Điểm tháng</th>
+<th>Điểm</th>
 
 <th>Xếp loại</th>
 
@@ -126,69 +148,133 @@ Tổng hợp kết quả các tuần
 
 
 
-<button onclick="themTuan()">
-➕ Thêm tuần
+
+<button onclick="location.href='thidua_tuan.html'">
+
+⬅ Thi đua tuần
+
 </button>
 
 
-<button onclick="xoaDuLieu()">
-🗑 Xóa dữ liệu
+<button onclick="location.href='thidua_thang.html'">
+
+📈 Thi đua tháng
+
 </button>
 
 
 <button onclick="location.href='index.html'">
-⬅ Trang chủ
+
+🏠 Trang chủ
+
 </button>
+
 
 
 </div>
 
 
 
+
+
 <script>
 
 
-let danhSachTuan = 
-JSON.parse(localStorage.getItem("tuan97")) || [];
+let duLieu = 
+JSON.parse(localStorage.getItem("ketQuaTuan97"));
 
 
 
-function hienThi(){
+let bangTuan =
+document.getElementById("bangTuan");
 
 
-let bang=document.getElementById("bang");
+let bangHS =
+document.getElementById("bangHocSinh");
 
 
-bang.innerHTML=
-`
+
+
+
+if(duLieu){
+
+
+let tong=0;
+
+let soXuatSac=0;
+
+
+
+duLieu.hocSinh.forEach(hs=>{
+
+
+tong += hs.diem;
+
+
+if(hs.diem>=100)
+
+soXuatSac++;
+
+
+});
+
+
+
+let diemTB=
+(tong/duLieu.hocSinh.length).toFixed(2);
+
+
+
+bangTuan.innerHTML += `
+
 <tr>
-<th>Tuần</th>
-<th>Thời gian</th>
-<th>Điểm TB lớp</th>
-<th>Số HS xuất sắc</th>
-<th>Ghi chú</th>
+
+<td>
+Tuần ${duLieu.soTuan}
+</td>
+
+
+<td>
+${duLieu.ngay}
+</td>
+
+
+<td>
+${diemTB}
+</td>
+
+
+<td>
+${soXuatSac}
+</td>
+
+
 </tr>
+
 `;
 
 
 
-danhSachTuan.forEach((t,i)=>{
 
 
-let row=bang.insertRow();
+
+duLieu.hocSinh.forEach((hs,index)=>{
 
 
-row.innerHTML=
-`
-<td>Tuần ${i+1}</td>
+bangHS.innerHTML += `
 
-<td>${t.ngay}</td>
+<tr>
 
-<td>${t.diem}</td>
+<td>${index+1}</td>
 
-<td>${t.xs}</td>
+<td>${hs.ten}</td>
 
-<td>${t.ghichu}</td>
+<td>${hs.diem}</td>
+
+<td>${hs.xeploai}</td>
+
+</tr>
+
 
 `;
 
@@ -197,76 +283,33 @@ row.innerHTML=
 
 }
 
-
-function themTuan(){
-
-
-let ngay=
-prompt("Nhập thời gian tuần:");
-
-if(!ngay) return;
+else{
 
 
-let diem=
-prompt("Nhập điểm trung bình lớp:");
+bangTuan.innerHTML +=`
 
-let xs=
-prompt("Nhập số học sinh xuất sắc:");
+<tr>
 
-let ghichu=
-prompt("Ghi chú:");
+<td colspan="4">
 
+Chưa có dữ liệu tuần. Vui lòng lưu kết quả từ Thi đua tuần.
 
+</td>
 
-danhSachTuan.push({
+</tr>
 
-ngay:ngay,
-
-diem:diem,
-
-xs:xs,
-
-ghichu:ghichu
-
-});
-
-
-
-localStorage.setItem(
-"tuan97",
-JSON.stringify(danhSachTuan)
-);
-
-
-
-hienThi();
-
+`;
 
 }
 
 
-
-function xoaDuLieu(){
-
-if(confirm("Xóa toàn bộ dữ liệu?")){
-
-
-localStorage.removeItem("tuan97");
-
-
-location.reload();
-
-
-}
-
-}
-
-
-hienThi();
 
 
 </script>
 
 
+
 </body>
+
+
 </html>
