@@ -5,15 +5,21 @@
 
 <meta charset="UTF-8">
 
-<title>Xuất Word lớp 97</title>
+<title>Xuất Word báo cáo chủ nhiệm lớp 97</title>
 
 
 <script src="danhsach.js"></script>
 
 
-<!-- Thư viện tạo Word -->
+<!-- Thư viện tạo file Word -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js">
 </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js">
+</script>
+
 
 
 <style>
@@ -21,7 +27,7 @@
 body{
 
 font-family:Arial;
-background:#f2f7ff;
+background:#eef5ff;
 padding:30px;
 
 }
@@ -29,14 +35,34 @@ padding:30px;
 
 .container{
 
+max-width:800px;
+margin:auto;
 background:white;
 padding:30px;
-border-radius:20px;
-max-width:700px;
-margin:auto;
+border-radius:25px;
 text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 
 }
+
+
+
+h1{
+
+color:#1565c0;
+
+}
+
+
+.info{
+
+background:#f2f7ff;
+padding:20px;
+border-radius:15px;
+margin:20px;
+
+}
+
 
 
 button{
@@ -44,12 +70,23 @@ button{
 background:#1565c0;
 color:white;
 border:none;
-padding:15px 30px;
+padding:15px 25px;
 border-radius:10px;
 font-size:18px;
+margin:10px;
 cursor:pointer;
 
 }
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
 
 </style>
 
@@ -57,39 +94,43 @@ cursor:pointer;
 </head>
 
 
-
 <body>
+
 
 
 <div class="container">
 
 
 <h1>
-📄 XUẤT BÁO CÁO WORD LỚP 97
+
+📄 XUẤT BÁO CÁO WORD CHỦ NHIỆM
+
 </h1>
 
 
+
+<div class="info">
+
+
+<h3>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h3>
+
+
 <p>
-
-Xuất báo cáo chủ nhiệm:
-
-<br>
-
-- Kết quả thi đua
-
-<br>
-
-- Hạnh kiểm
-
-<br>
-
-- Nhận xét AI
-
-<br>
-
-- Nhận xét giáo viên chủ nhiệm
-
+📘 Lớp: <b>97</b>
 </p>
+
+
+<p>
+👨‍🏫 Giáo viên chủ nhiệm:
+<b>Trần Sáng</b>
+</p>
+
+
+</div>
+
+
 
 
 <button onclick="xuatWord()">
@@ -99,7 +140,9 @@ Xuất báo cáo chủ nhiệm:
 </button>
 
 
-<br><br>
+
+<br>
+
 
 
 <button onclick="location.href='index.html'">
@@ -107,6 +150,7 @@ Xuất báo cáo chủ nhiệm:
 🏠 Trang chủ
 
 </button>
+
 
 
 </div>
@@ -118,42 +162,99 @@ Xuất báo cáo chủ nhiệm:
 <script>
 
 
+const {
+
+Document,
+
+Packer,
+
+Paragraph,
+
+TextRun,
+
+Table,
+
+TableRow,
+
+TableCell,
+
+AlignmentType,
+
+WidthType
+
+
+}=docx;
 async function xuatWord(){
 
 
 
-const {
-Document,
-Packer,
-Paragraph,
-TextRun,
-Table,
-TableRow,
-TableCell
-}=docx;
+let lichSuTuan =
 
-
-
-
-
-let lichSu =
 JSON.parse(
+
 localStorage.getItem("lichSuTuan97")
+
 )||[];
 
 
 
+
 let hanhKiem =
+
 JSON.parse(
+
 localStorage.getItem("hanhKiem97")
+
 )||[];
 
 
 
 
 let nhanXetChung =
-localStorage.getItem("nhanXetChung97")
-||"";
+
+localStorage.getItem(
+
+"nhanXetChung97"
+
+)||"";
+
+
+
+let bangNhanXet =
+
+localStorage.getItem(
+
+"baoCaoNhanXet97"
+
+)||"";
+
+
+
+
+
+
+let {
+
+Document,
+
+Packer,
+
+Paragraph,
+
+TextRun,
+
+Table,
+
+TableRow,
+
+TableCell,
+
+AlignmentType,
+
+WidthType
+
+}=docx;
+
 
 
 
@@ -161,6 +262,153 @@ localStorage.getItem("nhanXetChung97")
 
 let noiDung=[];
 
+
+
+
+
+// ========================
+// TIÊU ĐỀ
+// ========================
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+
+children:[
+
+
+new TextRun({
+
+text:
+
+"TRƯỜNG THCS TRẦN PHÚ",
+
+bold:true,
+
+size:28
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+
+children:[
+
+
+new TextRun({
+
+text:
+
+"BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97",
+
+bold:true,
+
+size:30
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+
+children:[
+
+
+new TextRun({
+
+text:
+
+"Giáo viên chủ nhiệm: Trần Sáng",
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+"Ngày lập báo cáo: "
+
++
+
+new Date().toLocaleDateString("vi-VN")
+
+)
+
+);
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+""
+
+)
+
+);
+
+
+
+
+
+
+// ========================
+// THÔNG TIN LỚP
+// ========================
 
 
 noiDung.push(
@@ -171,23 +419,19 @@ children:[
 
 new TextRun({
 
-text:"BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97",
+text:"I. THÔNG TIN CHUNG",
 
 bold:true,
 
-size:32
+size:24
 
 })
 
-],
-
-alignment:"center"
+]
 
 })
 
 );
-
-
 
 
 
@@ -207,7 +451,15 @@ noiDung.push(
 
 new Paragraph(
 
-"Sĩ số: "+danhSachHocSinh.length+" học sinh"
+"Sĩ số: "
+
++
+
+danhSachHocSinh.length
+
++
+
+" học sinh"
 
 )
 
@@ -218,40 +470,26 @@ new Paragraph(
 
 
 
-// Bảng kết quả
+
+// ========================
+// BẢNG KẾT QUẢ
+// ========================
 
 
-let hang=[];
 
+noiDung.push(
 
-
-hang.push(
-
-new TableRow({
+new Paragraph({
 
 children:[
 
-new TableCell({
+new TextRun({
 
-children:[new Paragraph("STT")]
+text:"II. KẾT QUẢ RÈN LUYỆN HỌC SINH",
 
-}),
+bold:true,
 
-new TableCell({
-
-children:[new Paragraph("Họ tên")]
-
-}),
-
-new TableCell({
-
-children:[new Paragraph("Điểm")]
-
-}),
-
-new TableCell({
-
-children:[new Paragraph("Hạnh kiểm")]
+size:24
 
 })
 
@@ -265,7 +503,74 @@ children:[new Paragraph("Hạnh kiểm")]
 
 
 
-danhSachHocSinh.forEach((ten,i)=>{
+let rows=[];
+
+
+
+rows.push(
+
+new TableRow({
+
+children:[
+
+
+new TableCell({
+
+children:[
+new Paragraph("STT")
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph("Họ tên")
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph("Điểm")
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph("Hạnh kiểm")
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph("Xếp loại")
+]
+
+})
+
+
+]
+
+})
+
+);
+
+
+
+
+
+
+danhSachHocSinh.forEach((ten,index)=>{
 
 
 let tong=0;
@@ -274,17 +579,22 @@ let dem=0;
 
 
 
-lichSu.forEach(t=>{
+lichSuTuan.forEach(t=>{
 
 
-let hs=t.hocSinh.find(
+let hs=
+
+t.hocSinh.find(
+
 x=>x.ten==ten
+
 );
+
 
 
 if(hs){
 
-tong+=Number(hs.diem);
+tong += Number(hs.diem);
 
 dem++;
 
@@ -296,9 +606,13 @@ dem++;
 
 
 let diem=
+
 dem?
+
 (tong/dem).toFixed(2)
+
 :
+
 0;
 
 
@@ -311,26 +625,54 @@ if(hanhKiem.length){
 
 
 let thang=
+
 hanhKiem[hanhKiem.length-1];
 
 
+
 let hsHK=
+
 thang.hocSinh.find(
+
 x=>x.ten==ten
+
 );
 
 
-if(hsHK){
+
+if(hsHK)
 
 hk=hsHK.xeploai;
 
-}
 
 }
 
 
 
-hang.push(
+
+let xl="";
+
+
+
+if(diem>=90)
+
+xl="Tốt";
+
+
+else if(diem>=75)
+
+xl="Khá";
+
+
+else
+
+xl="Cần cố gắng";
+
+
+
+
+
+rows.push(
 
 new TableRow({
 
@@ -340,7 +682,9 @@ children:[
 new TableCell({
 
 children:[
-new Paragraph(String(i+1))
+new Paragraph(
+String(index+1)
+)
 ]
 
 }),
@@ -370,6 +714,15 @@ children:[
 new Paragraph(hk)
 ]
 
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph(xl)
+]
+
 })
 
 
@@ -380,18 +733,11 @@ new Paragraph(hk)
 );
 
 
+
 });
 
 
 
-
-noiDung.push(
-
-new Paragraph(
-"KẾT QUẢ THI ĐUA VÀ RÈN LUYỆN"
-)
-
-);
 
 
 
@@ -399,7 +745,12 @@ noiDung.push(
 
 new Table({
 
-rows:hang
+rows:rows,
+
+width:{
+size:100,
+type:WidthType.PERCENTAGE
+}
 
 })
 
@@ -410,13 +761,139 @@ rows:hang
 
 
 
+
+
+// ========================
+// NHẬN XÉT AI
+// ========================
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:"III. NHẬN XÉT CÁ NHÂN HỌC SINH",
+
+bold:true,
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+let divTam=document.createElement("div");
+
+divTam.innerHTML=bangNhanXet;
+
+
+
+let cacDong=
+
+divTam.querySelectorAll("tr");
+
+
+
+
+for(let i=1;i<cacDong.length;i++){
+
+
+
+let ten=
+
+cacDong[i].cells[1]?.innerText
+||"";
+
+
+let nx=
+
+cacDong[i].cells[5]?.innerText
+||"";
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:
+ten,
+
+bold:true
+
+})
+
+]
+
+})
+
+);
+
+
+
 noiDung.push(
 
 new Paragraph(
-"NHẬN XÉT CHUNG CỦA GIÁO VIÊN CHỦ NHIỆM:"
+
+nx
+
 )
 
 );
+
+
+
+}
+
+
+
+
+
+
+
+// ========================
+// NHẬN XÉT CHUNG
+// ========================
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:"IV. NHẬN XÉT CHUNG CỦA GIÁO VIÊN CHỦ NHIỆM",
+
+bold:true,
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
 
 
 
@@ -435,7 +912,57 @@ nhanXetChung
 
 
 
-let doc=new Document({
+
+
+// ========================
+// KÝ TÊN
+// ========================
+
+
+noiDung.push(
+
+new Paragraph("")
+
+);
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.RIGHT,
+
+
+children:[
+
+new TextRun({
+
+text:
+
+"GIÁO VIÊN CHỦ NHIỆM\nTrần Sáng",
+
+bold:true
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+
+let doc =
+
+new Document({
 
 sections:[{
 
@@ -449,7 +976,7 @@ children:noiDung
 
 
 
-let file=
+let file =
 
 await Packer.toBlob(doc);
 
@@ -459,23 +986,18 @@ saveAs(
 
 file,
 
-"Bao_cao_chu_nhiem_lop_97.docx"
+"Bao_cao_chu_nhiem_lop_97_Tran_Sang.docx"
+
+);
+
+
+
+alert(
+
+"✅ Đã xuất báo cáo Word thành công!"
 
 );
 
 
 
 }
-
-
-
-
-</script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
-
-</body>
-
-</html>
