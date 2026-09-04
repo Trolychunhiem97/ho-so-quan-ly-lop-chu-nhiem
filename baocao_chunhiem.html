@@ -7,6 +7,7 @@
 
 <title>Báo cáo chủ nhiệm lớp 97</title>
 
+
 <script src="danhsach.js"></script>
 
 <script src="ai_nhanxet.js"></script>
@@ -15,52 +16,70 @@
 <style>
 
 body{
-font-family:Arial;
-background:#f2f7ff;
+
+font-family:Arial, sans-serif;
+background:#eef5ff;
 padding:20px;
+
 }
 
 
 .container{
+
+max-width:1400px;
+margin:auto;
 background:white;
-padding:25px;
-border-radius:20px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
 }
 
 
-h1{
+
+.header{
+
 text-align:center;
+
+}
+
+
+
+.header h2{
+
 color:#1565c0;
+font-size:30px;
+
 }
 
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
+.header h1{
+
+color:#1565c0;
+font-size:36px;
+
 }
 
 
-th{
-background:#1565c0;
-color:white;
-padding:10px;
-}
 
+.info{
 
-td{
-border:1px solid #ddd;
-padding:8px;
 text-align:center;
-}
-
-
-.nhanxet{
-
-text-align:left;
-min-width:300px;
+font-size:20px;
+margin:20px;
 
 }
+
+
+
+
+.menu{
+
+text-align:center;
+margin:20px;
+
+}
+
 
 
 button{
@@ -68,27 +87,84 @@ button{
 background:#1565c0;
 color:white;
 border:none;
-padding:10px 20px;
-border-radius:8px;
-margin:10px;
+padding:12px 20px;
+border-radius:10px;
+font-size:16px;
+margin:5px;
+cursor:pointer;
 
 }
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:10px;
+
+}
+
+
+
+td{
+
+border:1px solid #ddd;
+padding:8px;
+
+text-align:center;
+
+}
+
+
+
+.nhanxet{
+
+text-align:left;
+min-width:350px;
+
+}
+
 
 
 textarea{
 
 width:95%;
-height:80px;
+height:100px;
+font-size:16px;
 
 }
+
 
 
 
 @media print{
 
 button{
+
 display:none;
+
 }
+
 
 }
 
@@ -99,10 +175,20 @@ display:none;
 </head>
 
 
+
 <body>
 
 
 <div class="container">
+
+
+
+<div class="header">
+
+
+<h2>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h2>
 
 
 <h1>
@@ -110,37 +196,69 @@ display:none;
 </h1>
 
 
-
-<table id="bang">
-
-
-<tr>
-
-<th>STT</th>
-
-<th>Họ và tên</th>
-
-<th>Điểm thi đua</th>
-
-<th>Hạnh kiểm</th>
-
-<th>Kết quả chung</th>
-
-<th>Nhận xét AI</th>
-
-</tr>
+<p>
+👨‍🏫 Giáo viên chủ nhiệm: <b>Trần Sáng</b>
+</p>
 
 
-</table>
+</div>
 
+
+
+
+
+<div class="info">
+
+
+👨‍🎓 Sĩ số:
+<b id="siso"></b>
+học sinh
 
 
 <br>
 
 
+📅 Ngày lập báo cáo:
+<b id="ngay"></b>
+
+
+</div>
+
+
+
+
+
+
+<div class="menu">
+
+
+<button onclick="chonNhanXet('thang')">
+
+📝 Nhận xét tháng
+
+</button>
+
+
+
+<button onclick="chonNhanXet('hocky')">
+
+📘 Nhận xét học kỳ
+
+</button>
+
+
+
+<button onclick="chonNhanXet('nam')">
+
+🏆 Nhận xét cuối năm
+
+</button>
+
+
+
 <button onclick="taoNhanXetLop()">
 
-✨ AI tạo nhận xét lớp
+🤖 Tạo nhận xét AI
 
 </button>
 
@@ -162,273 +280,79 @@ display:none;
 
 
 
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
-
-</button>
-
-
-
-<h3>
-✍ Nhận xét chung của giáo viên chủ nhiệm
-</h3>
-
-
-<textarea id="nhanXetChung"
-placeholder="Nhập nhận xét chung..."></textarea>
-
-
-
 </div>
 
 
 
 
 
-<script>
+<h3>
+📊 KẾT QUẢ RÈN LUYỆN HỌC SINH
+</h3>
 
 
-let bang=document.getElementById("bang");
 
 
-// Lấy dữ liệu thi đua
+<table id="bang">
 
-let lichSu = 
-JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
-
-
-// Lấy hạnh kiểm
-
-let hanhKiem =
-JSON.parse(localStorage.getItem("hanhKiem97")) || [];
-
-
-
-
-// Tạo bảng
-
-
-danhSachHocSinh.forEach((ten,index)=>{
-
-
-let tong=0;
-
-let soTuan=0;
-
-
-
-lichSu.forEach(t=>{
-
-
-let hs =
-t.hocSinh.find(x=>x.ten==ten);
-
-
-if(hs){
-
-tong += Number(hs.diem);
-
-soTuan++;
-
-}
-
-
-});
-
-
-
-let diem =
-
-soTuan ?
-
-(tong/soTuan).toFixed(2)
-
-:
-
-0;
-
-
-
-let hk="Chưa có";
-
-
-
-if(hanhKiem.length){
-
-
-let thangCuoi =
-hanhKiem[hanhKiem.length-1];
-
-
-let hsHK =
-thangCuoi.hocSinh.find(
-x=>x.ten==ten
-);
-
-
-if(hsHK){
-
-hk=hsHK.xeploai;
-
-}
-
-
-}
-
-
-
-
-let ketQua="";
-
-
-if(diem>=95 && hk=="⭐ Tốt")
-
-ketQua="⭐ Hoàn thành xuất sắc";
-
-
-else if(diem>=85)
-
-ketQua="🟢 Hoàn thành tốt";
-
-
-else
-
-ketQua="🟡 Cần cố gắng";
-
-
-
-
-bang.innerHTML +=`
 
 <tr>
 
-<td>${index+1}</td>
 
-<td>${ten}</td>
+<th>
+STT
+</th>
 
-<td>${diem}</td>
 
-<td>${hk}</td>
+<th>
+Họ và tên
+</th>
 
-<td>${ketQua}</td>
 
-<td class="nhanxet">
-<span class="chua-tao">
-Chưa tạo
-</span>
-</td>
+<th>
+Điểm thi đua
+</th>
+
+
+<th>
+Hạnh kiểm
+</th>
+
+
+<th>
+Xếp loại
+</th>
+
+
+<th>
+Nhận xét AI
+</th>
+
 
 </tr>
 
 
-`;
 
+</table>
 
 
-});
 
 
 
+<h3>
 
+✍ NHẬN XÉT CHUNG CỦA GIÁO VIÊN CHỦ NHIỆM
 
+</h3>
 
-function taoNhanXetLop(){
 
 
-let rows =
-document.querySelectorAll("#bang tr");
+<textarea id="nhanXetChung"
 
+placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
 
+</textarea>
 
-for(let i=1;i<rows.length;i++){
 
 
-let hs={
-
-
-ten:
-rows[i].cells[1].innerHTML,
-
-
-diem:
-rows[i].cells[2].innerHTML,
-
-
-hanhKiem:
-rows[i].cells[3].innerHTML
-
-
-
-};
-
-
-
-let nx =
-taoNhanXetAI(hs);
-
-
-
-rows[i].cells[5].innerHTML=nx;
-
-
-
-}
-
-
-
-alert("✨ Đã tạo nhận xét AI cho lớp!");
-
-
-
-}
-
-
-
-
-
-
-function luuBaoCao(){
-
-
-localStorage.setItem(
-
-"baoCaoNhanXet97",
-
-document.getElementById("bang").innerHTML
-
-);
-
-
-
-localStorage.setItem(
-
-"nhanXetChung97",
-
-document.getElementById("nhanXetChung").value
-
-);
-
-
-
-alert("Đã lưu báo cáo!");
-
-
-
-}
-
-
-
-document.getElementById("nhanXetChung").value =
-
-localStorage.getItem("nhanXetChung97") || "";
-
-
-
-</script>
-
-
-
-</body>
-
-</html>
+</div>
