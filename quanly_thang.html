@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Quản lý tháng lớp 97</title>
+
+
+<script src="danhsach.js"></script>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#eef5ff;
+padding:20px;
+
+}
+
+
+.container{
+
+max-width:1000px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+}
+
+
+
+h1{
+
+text-align:center;
+color:#1565c0;
+
+}
+
+
+
+.info{
+
+text-align:center;
+font-size:20px;
+margin:20px;
+
+}
+
+
+
+select{
+
+padding:10px;
+font-size:18px;
+border-radius:8px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+font-size:16px;
+margin:5px;
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:10px;
+
+}
+
+
+td{
+
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+
+}
+
+
+
+textarea{
+
+width:95%;
+height:100px;
+
+}
+
+
+
+.footer{
+
+margin-top:30px;
+text-align:center;
+color:#666;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="container">
+
+
+<h1>
+
+🏫 TRƯỜNG THCS TRẦN PHÚ
+
+</h1>
+
+
+
+<h2 style="text-align:center;color:#1565c0">
+
+📘 QUẢN LÝ HỒ SƠ THÁNG - LỚP 97
+
+</h2>
+
+
+
+<div class="info">
+
+
+👨‍🏫 GVCN: <b>Trần Sáng</b>
+
+
+<br><br>
+
+
+Chọn tháng:
+
+
+<select id="thang">
+
+
+<option value="Tháng 9">
+Tháng 9
+</option>
+
+
+<option value="Tháng 10">
+Tháng 10
+</option>
+
+
+<option value="Tháng 11">
+Tháng 11
+</option>
+
+
+<option value="Tháng 12">
+Tháng 12
+</option>
+
+
+<option value="Tháng 1">
+Tháng 1
+</option>
+
+
+<option value="Tháng 2">
+Tháng 2
+</option>
+
+
+<option value="Tháng 3">
+Tháng 3
+</option>
+
+
+<option value="Tháng 4">
+Tháng 4
+</option>
+
+
+<option value="Tháng 5">
+Tháng 5
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div style="text-align:center">
+
+
+<button onclick="luuThang()">
+
+💾 Lưu dữ liệu tháng
+
+</button>
+
+
+
+<button onclick="xemThang()">
+
+📂 Xem dữ liệu
+
+</button>
+
+
+
+<button onclick="xoaThang()">
+
+🗑 Xóa tháng
+
+</button>
+
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<h3>
+📊 Thông tin tháng đang chọn
+</h3>
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Nội dung
+</th>
+
+<th>
+Trạng thái
+</th>
+
+
+</tr>
+
+
+<tr>
+
+<td>
+Thi đua
+</td>
+
+<td id="tdThiDua">
+Chưa lưu
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Hạnh kiểm
+</td>
+
+<td id="tdHanhKiem">
+Chưa lưu
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Nhận xét AI
+</td>
+
+<td id="tdNhanXet">
+Chưa lưu
+</td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
+<h3>
+✍ Nhận xét chung tháng
+</h3>
+
+
+<textarea id="nhanXet"
+placeholder="Nhập nhận xét chung của tháng...">
+</textarea>
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+<script>
+
+
+// Lấy tháng hiện tại
+
+function layThang(){
+
+return document.getElementById("thang").value;
+
+}
+
+
+
+
+
+
+
+// Kho dữ liệu tháng
+
+function layDuLieuThang(){
+
+
+let data =
+
+JSON.parse(
+
+localStorage.getItem("duLieuLop97TheoThang")
+
+)
+
+||{};
+
+
+return data;
+
+
+}
+
+
+
+
+
+
+
+// ===========================
+// LƯU DỮ LIỆU THÁNG
+// ===========================
+
+
+function luuThang(){
+
+
+
+let thang=
+
+layThang();
+
+
+
+let data=
+
+layDuLieuThang();
+
+
+
+
+
+data[thang]={
+
+
+thoiGian:
+
+new Date().toLocaleString("vi-VN"),
+
+
+
+thiDua:
+
+localStorage.getItem(
+"lichSuTuan97"
+),
+
+
+
+hanhKiem:
+
+localStorage.getItem(
+"hanhKiem97"
+),
+
+
+
+nhanXetAI:
+
+localStorage.getItem(
+"baoCaoNhanXet97"
+),
+
+
+
+nhanXetChung:
+
+document.getElementById(
+"nhanXet"
+).value
+
+
+
+};
+
+
+
+
+
+localStorage.setItem(
+
+"duLieuLop97TheoThang",
+
+JSON.stringify(data)
+
+);
+
+
+
+
+
+capNhatTrangThai();
+
+
+
+alert(
+
+"✅ Đã lưu dữ liệu "+thang
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ===========================
+// XEM DỮ LIỆU THÁNG
+// ===========================
+
+
+function xemThang(){
+
+
+
+let thang=
+
+layThang();
+
+
+
+let data=
+
+layDuLieuThang();
+
+
+
+let item=
+
+data[thang];
+
+
+
+
+
+if(!item){
+
+
+alert(
+
+"Chưa có dữ liệu "+thang
+
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+document.getElementById(
+"nhanXet"
+).value=
+
+item.nhanXetChung || "";
+
+
+
+
+document.getElementById(
+"tdThiDua"
+).innerHTML=
+
+item.thiDua?
+
+"✅ Đã lưu"
+
+:
+
+"❌ Chưa có";
+
+
+
+
+
+document.getElementById(
+"tdHanhKiem"
+).innerHTML=
+
+item.hanhKiem?
+
+"✅ Đã lưu"
+
+:
+
+"❌ Chưa có";
+
+
+
+
+
+document.getElementById(
+"tdNhanXet"
+).innerHTML=
+
+item.nhanXetAI?
+
+"✅ Đã lưu"
+
+:
+
+"❌ Chưa có";
+
+
+
+
+
+alert(
+
+"📂 Đã mở dữ liệu "+thang
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ===========================
+// XÓA THÁNG
+// ===========================
+
+
+function xoaThang(){
+
+
+
+let thang=
+
+layThang();
+
+
+
+if(
+
+!confirm(
+
+"Xóa toàn bộ dữ liệu "+thang+"?"
+
+)
+
+)
+
+return;
+
+
+
+
+
+let data=
+
+layDuLieuThang();
+
+
+
+delete data[thang];
+
+
+
+
+
+localStorage.setItem(
+
+"duLieuLop97TheoThang",
+
+JSON.stringify(data)
+
+);
+
+
+
+
+
+capNhatTrangThai();
+
+
+
+alert(
+
+"🗑 Đã xóa "+thang
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ===========================
+// HIỂN THỊ TRẠNG THÁI
+// ===========================
+
+
+function capNhatTrangThai(){
+
+
+
+let thang=
+
+layThang();
+
+
+
+let data=
+
+layDuLieuThang();
+
+
+
+let item=
+
+data[thang];
+
+
+
+
+
+if(!item){
+
+
+document.getElementById(
+"tdThiDua"
+).innerHTML=
+
+"❌ Chưa lưu";
+
+
+
+document.getElementById(
+"tdHanhKiem"
+).innerHTML=
+
+"❌ Chưa lưu";
+
+
+
+document.getElementById(
+"tdNhanXet"
+).innerHTML=
+
+"❌ Chưa lưu";
+
+
+
+return;
+
+}
+
+
+
+
+
+document.getElementById(
+"tdThiDua"
+).innerHTML=
+
+item.thiDua?
+
+"✅ Đã lưu":
+
+"❌ Chưa có";
+
+
+
+
+
+document.getElementById(
+"tdHanhKiem"
+).innerHTML=
+
+item.hanhKiem?
+
+"✅ Đã lưu":
+
+"❌ Chưa có";
+
+
+
+
+
+document.getElementById(
+"tdNhanXet"
+).innerHTML=
+
+item.nhanXetAI?
+
+"✅ Đã lưu":
+
+"❌ Chưa có";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+document
+
+.getElementById("thang")
+
+.addEventListener(
+
+"change",
+
+capNhatTrangThai
+
+);
+
+
+
+
+
+window.onload=
+
+capNhatTrangThai;
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+</div>
