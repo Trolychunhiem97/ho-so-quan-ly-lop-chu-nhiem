@@ -7,18 +7,24 @@
 
 <title>Thi đua tuần lớp 97</title>
 
-<link rel="stylesheet" href="style.css">
-
 <script src="danhsach.js"></script>
 
 
 <style>
+
+body{
+font-family:Arial;
+background:#f2f7ff;
+padding:20px;
+}
+
 
 .container{
 background:white;
 padding:25px;
 border-radius:20px;
 }
+
 
 h1{
 text-align:center;
@@ -34,28 +40,22 @@ margin-top:20px;
 
 
 th{
-
 background:#1565c0;
 color:white;
 padding:10px;
-
 }
 
 
 td{
-
 border:1px solid #ddd;
 padding:8px;
 text-align:center;
-
 }
 
 
 input{
-
 width:60px;
 text-align:center;
-
 }
 
 
@@ -63,13 +63,12 @@ button{
 
 background:#1565c0;
 color:white;
-border:none;
 padding:10px 20px;
+border:none;
 border-radius:8px;
 margin:10px;
 
 }
-
 
 </style>
 
@@ -90,8 +89,18 @@ margin:10px;
 
 
 <p>
+
 Tuần số:
-<input id="soTuan" value="1">
+
+<select id="soTuan">
+
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+
+</select>
+
 </p>
 
 
@@ -103,7 +112,7 @@ Tuần số:
 
 <th>STT</th>
 
-<th>Họ và tên</th>
+<th>Họ tên</th>
 
 <th>Điểm đầu tuần</th>
 
@@ -115,7 +124,6 @@ Tuần số:
 
 <th>Xếp loại</th>
 
-<th>Nhận xét</th>
 
 </tr>
 
@@ -125,17 +133,25 @@ Tuần số:
 
 
 <button onclick="tinhDiem()">
+
 🔄 Tính điểm
+
 </button>
+
 
 
 <button onclick="luuTuan()">
-💾 Lưu kết quả tuần
+
+💾 Lưu tuần
+
 </button>
 
 
-<button onclick="location.reload()">
-🧹 Tuần mới
+
+<button onclick="xemLichSu()">
+
+📂 Xem lịch sử
+
 </button>
 
 
@@ -143,11 +159,15 @@ Tuần số:
 <a href="index.html">
 
 <button>
-⬅ Trang chủ
+
+🏠 Trang chủ
+
 </button>
 
 </a>
 
+
+<h2 id="lichSu"></h2>
 
 
 </div>
@@ -165,10 +185,10 @@ let bang=document.getElementById("bang");
 danhSachHocSinh.forEach((ten,index)=>{
 
 
-let dong=bang.insertRow();
+let row=bang.insertRow();
 
 
-dong.innerHTML=`
+row.innerHTML=`
 
 <td>${index+1}</td>
 
@@ -176,31 +196,21 @@ dong.innerHTML=`
 
 <td>100</td>
 
-
 <td>
 <input class="cong" value="0">
 </td>
-
 
 <td>
 <input class="tru" value="0">
 </td>
 
-
 <td class="tong">
 100
 </td>
 
-
-<td class="xeploai">
-Xuất sắc
+<td class="loai">
+⭐ Xuất sắc
 </td>
-
-
-<td>
-<input class="nhanxet" style="width:150px">
-</td>
-
 
 `;
 
@@ -214,62 +224,57 @@ Xuất sắc
 function tinhDiem(){
 
 
-let dong=document.querySelectorAll("#bang tr");
+let rows=document.querySelectorAll("#bang tr");
 
 
-for(let i=1;i<dong.length;i++){
+for(let i=1;i<rows.length;i++){
 
 
 let cong=
-Number(dong[i].querySelector(".cong").value)||0;
+Number(rows[i].querySelector(".cong").value)||0;
 
 
 let tru=
-Number(dong[i].querySelector(".tru").value)||0;
+Number(rows[i].querySelector(".tru").value)||0;
 
 
 
-let tong=100+cong-tru;
+let diem=100+cong-tru;
 
 
 
-dong[i].querySelector(".tong").innerHTML=tong;
+rows[i].cells[5].innerHTML=diem;
 
 
 
 let loai="";
 
 
-if(tong>=100)
+if(diem>=100)
 
 loai="⭐ Xuất sắc";
 
-
-else if(tong>=90)
+else if(diem>=90)
 
 loai="🟢 Tốt";
 
-
-else if(tong>=70)
+else if(diem>=70)
 
 loai="🟡 Khá";
-
 
 else
 
 loai="🔴 Cần cố gắng";
 
 
-
-dong[i].querySelector(".xeploai").innerHTML=loai;
-
+rows[i].cells[6].innerHTML=loai;
 
 
 }
 
 
-
 }
+
 
 
 
@@ -278,23 +283,33 @@ dong[i].querySelector(".xeploai").innerHTML=loai;
 function luuTuan(){
 
 
-let duLieu=[];
-
-
-let dong=document.querySelectorAll("#bang tr");
+tinhDiem();
 
 
 
-for(let i=1;i<dong.length;i++){
+let ds=[];
 
 
-duLieu.push({
+let rows=document.querySelectorAll("#bang tr");
 
-ten:dong[i].cells[1].innerHTML,
 
-diem:Number(dong[i].cells[5].innerHTML),
 
-xeploai:dong[i].cells[6].innerHTML
+for(let i=1;i<rows.length;i++){
+
+
+ds.push({
+
+ten:
+rows[i].cells[1].innerHTML,
+
+
+diem:
+Number(rows[i].cells[5].innerHTML),
+
+
+xeploai:
+rows[i].cells[6].innerHTML
+
 
 });
 
@@ -303,44 +318,97 @@ xeploai:dong[i].cells[6].innerHTML
 
 
 
-let tuan={
+let lichSu=
 
-
-soTuan:
-document.getElementById("soTuan").value,
-
-
-ngay:
-new Date().toLocaleDateString(),
-
-
-hocSinh:duLieu
+JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
 
 
 
-};
+let soTuan=
+document.getElementById("soTuan").value;
+
+
+
+// xóa dữ liệu cũ của tuần đó nếu có
+
+lichSu=
+lichSu.filter(x=>x.tuan!=soTuan);
+
+
+
+lichSu.push({
+
+tuan:soTuan,
+
+ngay:new Date().toLocaleDateString(),
+
+hocSinh:ds
+
+
+});
 
 
 
 localStorage.setItem(
 
-"ketQuaTuan97",
+"lichSuTuan97",
 
-JSON.stringify(tuan)
+JSON.stringify(lichSu)
 
 );
 
 
 
-alert("Đã lưu kết quả tuần!");
+alert(
+"Lưu thành công tuần "+soTuan
+);
 
 
 
 }
 
 
-</script>
 
+
+
+function xemLichSu(){
+
+
+let lichSu=
+
+JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
+
+
+
+let text="";
+
+
+lichSu.forEach(t=>{
+
+
+text +=
+
+"Tuần "+t.tuan+
+" - "+
+t.ngay+
+"<br>";
+
+
+});
+
+
+
+document.getElementById("lichSu").innerHTML=
+
+"📂 Lịch sử:<br>"+text;
+
+
+
+}
+
+
+
+</script>
 
 
 </body>
