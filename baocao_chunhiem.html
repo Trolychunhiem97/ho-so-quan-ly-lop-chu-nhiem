@@ -9,6 +9,8 @@
 
 <script src="danhsach.js"></script>
 
+<script src="ai_nhanxet.js"></script>
+
 
 <style>
 
@@ -53,10 +55,10 @@ text-align:center;
 }
 
 
-textarea{
+.nhanxet{
 
-width:95%;
-height:80px;
+text-align:left;
+min-width:300px;
 
 }
 
@@ -65,12 +67,21 @@ button{
 
 background:#1565c0;
 color:white;
-padding:10px 20px;
 border:none;
+padding:10px 20px;
 border-radius:8px;
 margin:10px;
 
 }
+
+
+textarea{
+
+width:95%;
+height:80px;
+
+}
+
 
 
 @media print{
@@ -81,11 +92,11 @@ display:none;
 
 }
 
+
 </style>
 
 
 </head>
-
 
 
 <body>
@@ -97,12 +108,6 @@ display:none;
 <h1>
 📘 BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97
 </h1>
-
-
-
-<h3>
-📅 Kết quả tháng
-</h3>
 
 
 
@@ -121,6 +126,8 @@ display:none;
 
 <th>Kết quả chung</th>
 
+<th>Nhận xét AI</th>
+
 </tr>
 
 
@@ -128,25 +135,20 @@ display:none;
 
 
 
-
-<h3>
-✍ Nhận xét của giáo viên chủ nhiệm
-</h3>
-
-
-<textarea id="nhanxet"
-placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
-</textarea>
-
-
-
 <br>
 
 
+<button onclick="taoNhanXetLop()">
 
-<button onclick="luuNhanXet()">
+✨ AI tạo nhận xét lớp
 
-💾 Lưu nhận xét
+</button>
+
+
+
+<button onclick="luuBaoCao()">
+
+💾 Lưu báo cáo
 
 </button>
 
@@ -168,6 +170,16 @@ placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
 
 
 
+<h3>
+✍ Nhận xét chung của giáo viên chủ nhiệm
+</h3>
+
+
+<textarea id="nhanXetChung"
+placeholder="Nhập nhận xét chung..."></textarea>
+
+
+
 </div>
 
 
@@ -180,26 +192,21 @@ placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
 let bang=document.getElementById("bang");
 
 
-
 // Lấy dữ liệu thi đua
 
-let thiDua = 
+let lichSu = 
 JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
 
 
+// Lấy hạnh kiểm
 
-// Lấy dữ liệu hạnh kiểm
-
-let hanhKiem = 
+let hanhKiem =
 JSON.parse(localStorage.getItem("hanhKiem97")) || [];
 
 
 
 
-// Lấy tuần cuối cùng
-
-let ketQuaCuoi = thiDua;
-
+// Tạo bảng
 
 
 danhSachHocSinh.forEach((ten,index)=>{
@@ -207,21 +214,22 @@ danhSachHocSinh.forEach((ten,index)=>{
 
 let tong=0;
 
-let dem=0;
+let soTuan=0;
 
 
 
-ketQuaCuoi.forEach(t=>{
+lichSu.forEach(t=>{
 
 
-let hs=t.hocSinh.find(x=>x.ten==ten);
+let hs =
+t.hocSinh.find(x=>x.ten==ten);
 
 
 if(hs){
 
-tong+=Number(hs.diem);
+tong += Number(hs.diem);
 
-dem++;
+soTuan++;
 
 }
 
@@ -230,30 +238,33 @@ dem++;
 
 
 
-let diemThiDua=
-dem?
-(tong/dem).toFixed(2)
+let diem =
+
+soTuan ?
+
+(tong/soTuan).toFixed(2)
+
 :
-"0";
+
+0;
 
 
-
-
-// tìm hạnh kiểm
 
 let hk="Chưa có";
 
 
-if(hanKiem.length){
+
+if(hanhKiem.length){
 
 
-let thangCuoi=
-hanKiem[hanKiem.length-1];
+let thangCuoi =
+hanhKiem[hanhKiem.length-1];
 
 
-let hsHK=
-thangCuoi.hocSinh.find(x=>x.ten==ten);
-
+let hsHK =
+thangCuoi.hocSinh.find(
+x=>x.ten==ten
+);
 
 
 if(hsHK){
@@ -271,13 +282,12 @@ hk=hsHK.xeploai;
 let ketQua="";
 
 
-
-if(Number(diemThiDua)>=95 && hk.includes("Tốt"))
+if(diem>=95 && hk=="⭐ Tốt")
 
 ketQua="⭐ Hoàn thành xuất sắc";
 
 
-else if(Number(diemThiDua)>=85)
+else if(diem>=85)
 
 ketQua="🟢 Hoàn thành tốt";
 
@@ -285,7 +295,6 @@ ketQua="🟢 Hoàn thành tốt";
 else
 
 ketQua="🟡 Cần cố gắng";
-
 
 
 
@@ -298,13 +307,20 @@ bang.innerHTML +=`
 
 <td>${ten}</td>
 
-<td>${diemThiDua}</td>
+<td>${diem}</td>
 
 <td>${hk}</td>
 
 <td>${ketQua}</td>
 
+<td class="nhanxet">
+<span class="chua-tao">
+Chưa tạo
+</span>
+</td>
+
 </tr>
+
 
 `;
 
@@ -316,32 +332,101 @@ bang.innerHTML +=`
 
 
 
-function luuNhanXet(){
+
+function taoNhanXetLop(){
 
 
-localStorage.setItem(
-
-"nhanXetGVCN97",
-
-document.getElementById("nhanxet").value
-
-);
+let rows =
+document.querySelectorAll("#bang tr");
 
 
-alert("Đã lưu nhận xét!");
+
+for(let i=1;i<rows.length;i++){
+
+
+let hs={
+
+
+ten:
+rows[i].cells[1].innerHTML,
+
+
+diem:
+rows[i].cells[2].innerHTML,
+
+
+hanhKiem:
+rows[i].cells[3].innerHTML
+
+
+
+};
+
+
+
+let nx =
+taoNhanXetAI(hs);
+
+
+
+rows[i].cells[5].innerHTML=nx;
+
+
+
+}
+
+
+
+alert("✨ Đã tạo nhận xét AI cho lớp!");
+
+
 
 }
 
 
 
 
-document.getElementById("nhanxet").value =
 
-localStorage.getItem("nhanXetGVCN97") || "";
+
+function luuBaoCao(){
+
+
+localStorage.setItem(
+
+"baoCaoNhanXet97",
+
+document.getElementById("bang").innerHTML
+
+);
+
+
+
+localStorage.setItem(
+
+"nhanXetChung97",
+
+document.getElementById("nhanXetChung").value
+
+);
+
+
+
+alert("Đã lưu báo cáo!");
+
+
+
+}
+
+
+
+document.getElementById("nhanXetChung").value =
+
+localStorage.getItem("nhanXetChung97") || "";
 
 
 
 </script>
+
 
 
 </body>
