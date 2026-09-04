@@ -1,116 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-<title>Hồ sơ quản lý lớp chủ nhiệm 97</title>
+
+<title>Quản lý lớp 97</title>
+
+<script src="danhsach.js"></script>
+
 
 <style>
 
 body{
+
 font-family:Arial;
-background:#eef6ff;
-padding:30px;
+background:#f2f7ff;
+padding:20px;
+
 }
 
-h1{
-text-align:center;
-color:#1769c2;
-font-size:40px;
-}
 
 .container{
+
+max-width:900px;
+margin:auto;
 background:white;
-border-radius:20px;
-padding:35px;
-box-shadow:0 5px 20px #ccc;
+padding:30px;
+border-radius:25px;
+
 }
 
-h2{
-color:#1769c2;
+
+h1{
+
+text-align:center;
+color:#1565c0;
+
 }
+
+
+.thongtin{
+
+text-align:center;
+font-size:18px;
+margin:20px;
+
+}
+
+
 
 .menu{
+
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:20px;
+
 }
+
+
 
 .card{
-background:#f8fbff;
+
+background:#1565c0;
+color:white;
 padding:25px;
 border-radius:15px;
-font-size:20px;
-border-left:6px solid #1769c2;
+text-align:center;
+font-size:18px;
+cursor:pointer;
+
+transition:0.3s;
+
 }
 
-button{
-background:#1769c2;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:10px;
-font-size:18px;
-margin-top:20px;
+
+
+.card:hover{
+
+transform:scale(1.05);
+background:#0d47a1;
+
 }
+
+
+
+.icon{
+
+font-size:35px;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+margin-top:30px;
+color:#666;
+
+}
+
 
 </style>
 
+
 </head>
+
 
 <body>
 
-<h1>HỒ SƠ QUẢN LÝ LỚP CHỦ NHIỆM 97</h1>
 
 <div class="container">
 
-<h2>📚 Quản lý lớp học</h2>
+
+<h1>
+📘 HỆ THỐNG QUẢN LÝ LỚP 97
+</h1>
+
+
+<div class="thongtin">
+
+<p>
+🏫 Lớp: <b>97</b>
+</p>
+
+<p>
+👨‍🎓 Sĩ số:
+<b id="siso"></b> học sinh
+</p>
+
+<p id="ngay"></p>
+
+
+</div>
+
+
 
 <div class="menu">
 
-<div class="card">
-<a href="hocsinh.html">
-👨‍🎓 Danh sách học sinh
-</a>
+
+
+<div class="card"
+onclick="location.href='hocsinh.html'">
+
+<div class="icon">
+👨‍🎓
 </div>
 
-<div class="card">
-<a href="thidua_tuan.html">
-🏆 Theo dõi thi đua tuần
-</a>
-</div>
-
-  <div class="card">
-<a href="thidua_thang.html">
-📅 Thi đua tháng
-</a>
-</div>
-  
-<div class="card">
-<a href="kiemtra.html">
-📊 Kiểm tra tổng hợp
-</a>
-</div>
-
-<div class="card">
-📝 Lịch sử duyệt
-</div>
-
-<div class="card">
-👨‍👩‍👧 Quản lý phụ huynh
-</div>
-
-<div class="card">
-📅 Kế hoạch chủ nhiệm
-</div>
+Danh sách học sinh
 
 </div>
 
-<button>
-Mở hồ sơ
-</button>
+
+
+
+<div class="card"
+onclick="location.href='thidua_tuan.html'">
+
+<div class="icon">
+🏆
+</div>
+
+Thi đua tuần
 
 </div>
+
+
+
+
+
+<div class="card"
+onclick="location.href='quanly_thidua.html'">
+
+<div class="icon">
+📊
+</div>
+
+Quản lý thi đua
+
+</div>
+
+
+
+
+
+<div class="card"
+onclick="location.href='thidua_thang.html'">
+
+<div class="icon">
+📈
+</div>
+
+Thi đua tháng
+
+</div>
+
+
+
+
+
+<div class="card"
+onclick="location.href='hanhkiem.html'">
+
+<div class="icon">
+📘
+</div>
+
+Hạnh kiểm
+
+</div>
+
+
+
+
+
+<div class="card"
+onclick="location.href='baocao_chunhiem.html'">
+
+<div class="icon">
+🤖
+</div>
+
+Báo cáo AI chủ nhiệm
+
+</div>
+
+
+
+</div>
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - Giáo viên chủ nhiệm
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+document.getElementById("siso").innerHTML =
+danhSachHocSinh.length;
+
+
+
+document.getElementById("ngay").innerHTML =
+"📅 Ngày: " +
+new Date().toLocaleDateString("vi-VN");
+
+
+</script>
+
+
 
 </body>
+
 </html>
