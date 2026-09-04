@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Hạnh kiểm lớp 97</title>
+
+<script src="danhsach.js"></script>
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f7ff;
+padding:20px;
+}
+
+
+.container{
+background:white;
+padding:25px;
+border-radius:20px;
+}
+
+
+h1{
+text-align:center;
+color:#1565c0;
+}
+
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+
+th{
+background:#1565c0;
+color:white;
+padding:10px;
+}
+
+
+td{
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+}
+
+
+input{
+width:60px;
+text-align:center;
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+margin:10px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+📘 THEO DÕI HẠNH KIỂM - Ý THỨC LỚP 97
+</h1>
+
+
+<p>
+
+Tháng:
+
+<select id="thang">
+
+<option>Tháng 9</option>
+<option>Tháng 10</option>
+<option>Tháng 11</option>
+<option>Tháng 12</option>
+<option>Tháng 1</option>
+<option>Tháng 2</option>
+<option>Tháng 3</option>
+<option>Tháng 4</option>
+<option>Tháng 5</option>
+
+</select>
+
+</p>
+
+
+
+<table id="bang">
+
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ và tên</th>
+
+<th>Điểm đầu tháng</th>
+
+<th>Nghỉ phép</th>
+
+<th>Đi muộn</th>
+
+<th>Vi phạm</th>
+
+<th>Tổng điểm</th>
+
+<th>Xếp loại</th>
+
+</tr>
+
+
+</table>
+
+
+
+<button onclick="tinhHanhKiem()">
+
+🔄 Tính xếp loại
+
+</button>
+
+
+<button onclick="luuHanhKiem()">
+
+💾 Lưu tháng
+
+</button>
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+</div>
+
+
+
+
+<script>
+
+
+let bang=document.getElementById("bang");
+
+
+
+danhSachHocSinh.forEach((ten,index)=>{
+
+
+let row=bang.insertRow();
+
+
+row.innerHTML=`
+
+<td>${index+1}</td>
+
+<td>${ten}</td>
+
+<td>100</td>
+
+
+<td>
+<input class="nghiphep" value="0">
+</td>
+
+
+<td>
+<input class="muon" value="0">
+</td>
+
+
+<td>
+<input class="vipham" value="0">
+</td>
+
+
+<td class="tong">
+100
+</td>
+
+
+<td class="loai">
+⭐ Tốt
+</td>
+
+
+`;
+
+
+
+});
+
+
+
+
+
+function tinhHanhKiem(){
+
+
+let rows=document.querySelectorAll("#bang tr");
+
+
+
+for(let i=1;i<rows.length;i++){
+
+
+let nghi=
+Number(rows[i].querySelector(".nghiphep").value)||0;
+
+
+let muon=
+Number(rows[i].querySelector(".muon").value)||0;
+
+
+let vipham=
+Number(rows[i].querySelector(".vipham").value)||0;
+
+
+
+let diem=
+
+100-(nghi*3)-(muon*2)-(vipham*5);
+
+
+
+rows[i].cells[6].innerHTML=diem;
+
+
+
+let loai="";
+
+
+if(diem>=90)
+
+loai="⭐ Tốt";
+
+
+else if(diem>=70)
+
+loai="🟡 Khá";
+
+
+else
+
+loai="🔴 Cần cố gắng";
+
+
+
+rows[i].cells[7].innerHTML=loai;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+function luuHanhKiem(){
+
+
+tinhHanhKiem();
+
+
+
+let duLieu=[];
+
+
+let rows=document.querySelectorAll("#bang tr");
+
+
+
+for(let i=1;i<rows.length;i++){
+
+
+duLieu.push({
+
+ten:
+rows[i].cells[1].innerHTML,
+
+
+diem:
+rows[i].cells[6].innerHTML,
+
+
+xeploai:
+rows[i].cells[7].innerHTML
+
+
+});
+
+
+}
+
+
+
+
+let thang=
+document.getElementById("thang").value;
+
+
+
+let lichSu=
+
+JSON.parse(localStorage.getItem("hanhKiem97")) || [];
+
+
+
+lichSu=
+lichSu.filter(x=>x.thang!=thang);
+
+
+
+lichSu.push({
+
+thang:thang,
+
+hocSinh:duLieu
+
+
+});
+
+
+
+localStorage.setItem(
+
+"hanhKiem97",
+
+JSON.stringify(lichSu)
+
+);
+
+
+
+alert(
+"Đã lưu hạnh kiểm "+thang
+);
+
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
