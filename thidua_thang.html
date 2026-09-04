@@ -7,12 +7,14 @@
 
 <title>Thi đua tháng lớp 97</title>
 
-<link rel="stylesheet" href="style.css">
+<script src="danhsach.js"></script>
 
 <style>
 
 body{
 font-family:Arial;
+background:#f2f7ff;
+padding:20px;
 }
 
 .container{
@@ -21,45 +23,57 @@ padding:25px;
 border-radius:20px;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th{
-background:#1565c0;
-color:white;
-padding:12px;
-}
-
-td{
-border:1px solid #ddd;
-padding:10px;
-text-align:center;
-}
-
-input{
-width:55px;
-text-align:center;
-}
 
 h1{
 text-align:center;
 color:#1565c0;
 }
 
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+
+th{
+
+background:#1565c0;
+color:white;
+padding:10px;
+
+}
+
+
+td{
+
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+
+}
+
+
 button{
+
 background:#1565c0;
 color:white;
 border:none;
-padding:12px 25px;
-border-radius:10px;
+padding:10px 20px;
+border-radius:8px;
+margin:10px;
+
 }
+
 
 </style>
 
+
 </head>
+
 
 
 <body>
@@ -73,500 +87,263 @@ border-radius:10px;
 </h1>
 
 
-<h3>
-Điểm tháng = (Tuần 1 + Tuần 2 + Tuần 3 + Tuần 4) / 4
-</h3>
+
+<h2>
+📊 Bảng tổng hợp kết quả
+</h2>
 
 
-<table>
+
+<table id="bang">
 
 
 <tr>
 
 <th>STT</th>
+
 <th>Họ và tên</th>
+
 <th>Tuần 1</th>
+
 <th>Tuần 2</th>
+
 <th>Tuần 3</th>
+
 <th>Tuần 4</th>
+
 <th>TB tháng</th>
+
 <th>Xếp loại</th>
 
-</tr>
 
-
-
-<tr>
-<td>1</td>
-<td>Vũ Ngọc Ánh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>2</td>
-<td>Trần Thị Ngọc Diệp</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>3</td>
-<td>Nguyễn Anh Duy</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>4</td>
-<td>Lý Gia Huy</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>5</td>
-<td>Hứa Bảo Khang</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>6</td>
-<td>Nguyễn Hoàng Khánh Linh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>7</td>
-<td>Nguyễn Hoàng Nhật Linh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>8</td>
-<td>Trương Đỗ Thục Linh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>9</td>
-<td>Lê Quốc Long</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>10</td>
-<td>Nguyễn Bùi Hoàng Long</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>11</td>
-<td>Lâm Thị Trúc Ly</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>12</td>
-<td>Trần Lê Nhật Minh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>13</td>
-<td>Vũ Thị Trà My</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>14</td>
-<td>Đỗ Phạm Hoàng Nam</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>15</td>
-<td>Bùi Thị Kim Ngân</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>16</td>
-<td>Hoàng Nguyễn Tuấn Ngọc</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>17</td>
-<td>Lô Thị Minh Nhi</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>18</td>
-<td>Nguyễn Thị Quỳnh Như</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>19</td>
-<td>Phạm Hoàng Thiên Phú</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>20</td>
-<td>Ngô Như Quỳnh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>21</td>
-<td>Vũ Ngọc Như Quỳnh</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>22</td>
-<td>Trần Thị Thủy Tiên</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>23</td>
-<td>Hoàng Duy Thành</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>24</td>
-<td>Phạm Trường Thành</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>25</td>
-<td>Hoàng Thị Anh Thư</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-  <tr>
-<td>26</td>
-<td>Vũ Ngọc Anh Thư</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>27</td>
-<td>Trần Hoàng Bảo Trân</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>28</td>
-<td>Lô Thanh Trúc</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>29</td>
-<td>Nguyễn Thị Kiều Vi</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>30</td>
-<td>Nguyễn Thanh Vũ</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>31</td>
-<td>Hoàng Thị Thảo Vy</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>32</td>
-<td>Lâm Huỳnh Thảo Vy</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
-</tr>
-
-
-<tr>
-<td>33</td>
-<td>Nguyễn Ngô Hoàng Yến</td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td><input value="100"></td>
-<td>100</td>
-<td>Xuất sắc</td>
 </tr>
 
 
 </table>
 
 
-<br>
+
+<h2>
+🥇 Xếp hạng tháng
+</h2>
 
 
-<button onclick="tinhDiem()">
-🔄 Tính điểm tháng
+
+<table id="xephang">
+
+
+<tr>
+
+<th>Hạng</th>
+
+<th>Họ và tên</th>
+
+<th>Điểm</th>
+
+</tr>
+
+
+</table>
+
+
+
+<button onclick="location.href='quanly_thidua.html'">
+
+⬅ Quản lý thi đua
+
 </button>
 
 
-<a href="index.html">
-<button>
-⬅ Quay lại trang chủ
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
 </button>
-</a>
+
 
 
 </div>
 
 
+
+
 <script>
 
-function tinhDiem(){
 
-let rows=document.querySelectorAll("table tr");
+let bang=document.getElementById("bang");
 
-for(let i=1;i<rows.length;i++){
+let xephang=document.getElementById("xephang");
 
-let input=rows[i].querySelectorAll("input");
 
-if(input.length==4){
+
+let ketQua = 
+JSON.parse(localStorage.getItem("ketQuaTuan97"));
+
+
+
+let bangDiem=[];
+
+
+
+danhSachHocSinh.forEach((ten,index)=>{
+
+
+let diem=[];
+
+
+if(ketQua){
+
+
+let hs=
+ketQua.hocSinh.find(x=>x.ten==ten);
+
+
+if(hs){
+
+diem.push(hs.diem);
+
+}
+
+}
+
+
+
+while(diem.length<4){
+
+diem.push("");
+
+}
+
+
 
 let tong=0;
 
-input.forEach(x=>{
-tong += Number(x.value);
+let dem=0;
+
+
+diem.forEach(x=>{
+
+if(x!=""){
+
+tong+=Number(x);
+
+dem++;
+
+}
+
 });
 
 
-let tb=tong/4;
+
+let tb=dem?
+(tong/dem).toFixed(2):
+"0";
 
 
-rows[i].cells[6].innerHTML=tb.toFixed(2);
+
+let loai="";
 
 
 if(tb>=95)
-rows[i].cells[7].innerHTML="⭐ Xuất sắc";
+
+loai="⭐ Xuất sắc";
+
 
 else if(tb>=85)
-rows[i].cells[7].innerHTML="🟢 Tốt";
+
+loai="🟢 Tốt";
+
 
 else if(tb>=70)
-rows[i].cells[7].innerHTML="🟡 Khá";
+
+loai="🟡 Khá";
+
 
 else
-rows[i].cells[7].innerHTML="🔴 Cần cố gắng";
+
+loai="🔴 Cần cố gắng";
 
 
-}
 
-}
 
-}
+
+bangDiem.push({
+
+ten:ten,
+
+diem:Number(tb)
+
+});
+
+
+
+
+
+bang.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${ten}</td>
+
+<td>${diem[0]}</td>
+
+<td>${diem[1]}</td>
+
+<td>${diem[2]}</td>
+
+<td>${diem[3]}</td>
+
+<td>${tb}</td>
+
+<td>${loai}</td>
+
+</tr>
+
+`;
+
+
+
+});
+
+
+
+
+
+
+bangDiem.sort((a,b)=>b.diem-a.diem);
+
+
+
+bangDiem.slice(0,10)
+.forEach((hs,index)=>{
+
+
+xephang.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${hs.ten}</td>
+
+<td>${hs.diem}</td>
+
+</tr>
+
+
+`;
+
+
+});
+
+
 
 </script>
+
 
 
 </body>
 
 </html>
-
-
-
-
-
-
-  
