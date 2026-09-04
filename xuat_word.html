@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Xuất Word lớp 97</title>
+
+
+<script src="danhsach.js"></script>
+
+
+<!-- Thư viện tạo Word -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js">
+</script>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#f2f7ff;
+padding:30px;
+
+}
+
+
+.container{
+
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:700px;
+margin:auto;
+text-align:center;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:none;
+padding:15px 30px;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+📄 XUẤT BÁO CÁO WORD LỚP 97
+</h1>
+
+
+<p>
+
+Xuất báo cáo chủ nhiệm:
+
+<br>
+
+- Kết quả thi đua
+
+<br>
+
+- Hạnh kiểm
+
+<br>
+
+- Nhận xét AI
+
+<br>
+
+- Nhận xét giáo viên chủ nhiệm
+
+</p>
+
+
+<button onclick="xuatWord()">
+
+📄 Tạo file Word
+
+</button>
+
+
+<br><br>
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+async function xuatWord(){
+
+
+
+const {
+Document,
+Packer,
+Paragraph,
+TextRun,
+Table,
+TableRow,
+TableCell
+}=docx;
+
+
+
+
+
+let lichSu =
+JSON.parse(
+localStorage.getItem("lichSuTuan97")
+)||[];
+
+
+
+let hanhKiem =
+JSON.parse(
+localStorage.getItem("hanhKiem97")
+)||[];
+
+
+
+
+let nhanXetChung =
+localStorage.getItem("nhanXetChung97")
+||"";
+
+
+
+
+
+let noiDung=[];
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:"BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97",
+
+bold:true,
+
+size:32
+
+})
+
+],
+
+alignment:"center"
+
+})
+
+);
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+"Lớp: 97"
+
+)
+
+);
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+"Sĩ số: "+danhSachHocSinh.length+" học sinh"
+
+)
+
+);
+
+
+
+
+
+
+// Bảng kết quả
+
+
+let hang=[];
+
+
+
+hang.push(
+
+new TableRow({
+
+children:[
+
+new TableCell({
+
+children:[new Paragraph("STT")]
+
+}),
+
+new TableCell({
+
+children:[new Paragraph("Họ tên")]
+
+}),
+
+new TableCell({
+
+children:[new Paragraph("Điểm")]
+
+}),
+
+new TableCell({
+
+children:[new Paragraph("Hạnh kiểm")]
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+danhSachHocSinh.forEach((ten,i)=>{
+
+
+let tong=0;
+
+let dem=0;
+
+
+
+lichSu.forEach(t=>{
+
+
+let hs=t.hocSinh.find(
+x=>x.ten==ten
+);
+
+
+if(hs){
+
+tong+=Number(hs.diem);
+
+dem++;
+
+}
+
+
+});
+
+
+
+let diem=
+dem?
+(tong/dem).toFixed(2)
+:
+0;
+
+
+
+let hk="";
+
+
+
+if(hanhKiem.length){
+
+
+let thang=
+hanhKiem[hanhKiem.length-1];
+
+
+let hsHK=
+thang.hocSinh.find(
+x=>x.ten==ten
+);
+
+
+if(hsHK){
+
+hk=hsHK.xeploai;
+
+}
+
+}
+
+
+
+hang.push(
+
+new TableRow({
+
+children:[
+
+
+new TableCell({
+
+children:[
+new Paragraph(String(i+1))
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph(ten)
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph(String(diem))
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+new Paragraph(hk)
+]
+
+})
+
+
+]
+
+})
+
+);
+
+
+});
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+"KẾT QUẢ THI ĐUA VÀ RÈN LUYỆN"
+)
+
+);
+
+
+
+noiDung.push(
+
+new Table({
+
+rows:hang
+
+})
+
+);
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+"NHẬN XÉT CHUNG CỦA GIÁO VIÊN CHỦ NHIỆM:"
+)
+
+);
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+nhanXetChung
+
+)
+
+);
+
+
+
+
+
+
+let doc=new Document({
+
+sections:[{
+
+children:noiDung
+
+}]
+
+});
+
+
+
+
+
+let file=
+
+await Packer.toBlob(doc);
+
+
+
+saveAs(
+
+file,
+
+"Bao_cao_chu_nhiem_lop_97.docx"
+
+);
+
+
+
+}
+
+
+
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+
+</body>
+
+</html>
