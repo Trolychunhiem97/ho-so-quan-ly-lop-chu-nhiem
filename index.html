@@ -7,78 +7,100 @@
 
 <title>Hệ thống quản lý lớp 97</title>
 
+
 <script src="danhsach.js"></script>
+
 
 
 <style>
 
+
 body{
 
 font-family:"Arial",sans-serif;
+
 background:#eef5ff;
-margin:0;
+
 padding:20px;
 
 }
 
 
+
+
 .container{
 
 max-width:1100px;
+
 margin:auto;
+
 background:white;
+
+padding:35px;
+
 border-radius:30px;
-padding:30px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 
 }
 
 
 
-/* tiêu đề */
 
 .school{
 
 text-align:center;
+
 font-size:32px;
+
 font-weight:bold;
+
 color:#1565c0;
 
 }
+
 
 
 .title{
 
 text-align:center;
+
 font-size:38px;
+
 font-weight:bold;
+
 color:#1565c0;
+
 margin:15px;
 
 }
 
 
 
+
 .info{
 
 text-align:center;
+
 font-size:22px;
-margin:20px;
+
+margin:25px;
 
 }
 
 
-
-/* menu */
 
 
 .menu{
 
 display:grid;
+
 grid-template-columns:repeat(2,1fr);
+
 gap:25px;
 
 }
+
 
 
 
@@ -100,30 +122,50 @@ justify-content:center;
 
 align-items:center;
 
-font-size:24px;
+font-size:23px;
 
 cursor:pointer;
 
-transition:0.3s;
+transition:.3s;
 
 }
+
 
 
 
 .card:hover{
 
-transform:translateY(-5px);
-
 background:#0d47a1;
 
+transform:translateY(-5px);
+
 }
+
 
 
 
 .icon{
 
 font-size:45px;
+
 margin-bottom:10px;
+
+}
+
+
+
+
+.status{
+
+margin-top:30px;
+
+background:#f2f7ff;
+
+padding:20px;
+
+border-radius:20px;
+
+font-size:18px;
 
 }
 
@@ -132,19 +174,20 @@ margin-bottom:10px;
 
 .footer{
 
+text-align:center;
+
 margin-top:35px;
 
 border-top:1px solid #ddd;
 
 padding-top:20px;
 
-text-align:center;
-
 color:#555;
 
 font-size:20px;
 
 }
+
 
 
 
@@ -158,7 +201,9 @@ font-size:20px;
 <body>
 
 
+
 <div class="container">
+
 
 
 <div class="school">
@@ -182,16 +227,26 @@ font-size:20px;
 
 👨‍🎓 Sĩ số:
 
-<b id="siso"></b>
+<b id="siso">
+
+</b>
+
+học sinh
+
 
 &nbsp;&nbsp; | &nbsp;&nbsp;
 
+
 📅 Ngày:
 
-<b id="ngay"></b>
+<b id="ngay">
+
+</b>
+
 
 
 </div>
+
 
 
 
@@ -201,76 +256,194 @@ font-size:20px;
 
 
 <div class="card"
+
 onclick="location.href='hocsinh.html'">
 
-<div class="icon">👨‍🎓</div>
+
+<div class="icon">
+👨‍🎓
+</div>
+
 
 Danh sách học sinh
 
+
 </div>
 
 
 
 
+
 <div class="card"
+
 onclick="location.href='thidua_tuan.html'">
 
-<div class="icon">🏆</div>
+
+<div class="icon">
+🏆
+</div>
+
 
 Thi đua tuần
 
+
 </div>
 
 
 
 
+
 <div class="card"
+
 onclick="location.href='quanly_thidua.html'">
 
-<div class="icon">📊</div>
+
+<div class="icon">
+📊
+</div>
+
 
 Quản lý thi đua
 
+
 </div>
 
 
 
 
+
 <div class="card"
+
 onclick="location.href='thidua_thang.html'">
 
-<div class="icon">📈</div>
+
+<div class="icon">
+📈
+</div>
+
 
 Thi đua tháng
 
+
 </div>
 
 
 
 
+
 <div class="card"
+
+onclick="location.href='quanly_thang.html'">
+
+
+<div class="icon">
+📅
+</div>
+
+
+Quản lý theo tháng
+
+
+</div>
+
+
+
+
+
+<div class="card"
+
 onclick="location.href='hanhkiem.html'">
 
-<div class="icon">📘</div>
+
+<div class="icon">
+📘
+</div>
+
 
 Hạnh kiểm
 
+
 </div>
+
 
 
 
 
 <div class="card"
+
 onclick="location.href='baocao_chunhiem.html'">
 
-<div class="icon">🤖</div>
+
+<div class="icon">
+🤖
+</div>
+
 
 Báo cáo AI chủ nhiệm
 
+
 </div>
 
 
+
+
+
+<div class="card"
+
+onclick="location.href='backup.html'">
+
+
+<div class="icon">
+💾
 </div>
+
+
+Sao lưu dữ liệu
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="status">
+
+
+<h3>
+
+📌 TRẠNG THÁI HỆ THỐNG
+
+</h3>
+
+
+
+<p id="statusHocSinh">
+
+</p>
+
+
+<p id="statusBackup">
+
+</p>
+
+
+<p id="statusThang">
+
+</p>
+
+
+
+</div>
+
+
 
 
 
@@ -297,7 +470,11 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 
 
+
+
 </div>
+
+
 
 
 
@@ -307,15 +484,88 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 
 document.getElementById("siso").innerHTML =
+
 danhSachHocSinh.length;
 
 
 
 document.getElementById("ngay").innerHTML =
+
 new Date().toLocaleDateString("vi-VN");
 
 
+
+
+
+// Kiểm tra trạng thái
+
+
+let hs = localStorage.getItem(
+
+"danhSachHocSinh"
+
+);
+
+
+
+document.getElementById(
+
+"statusHocSinh"
+
+).innerHTML =
+
+hs ?
+
+"✅ Đã có danh sách học sinh"
+
+:
+
+"⚠ Chưa có dữ liệu học sinh";
+
+
+
+
+
+
+let backup = localStorage.getItem(
+
+"duLieuLop97TheoThang"
+
+);
+
+
+
+document.getElementById(
+
+"statusThang"
+
+).innerHTML =
+
+backup ?
+
+"✅ Đã có dữ liệu quản lý tháng"
+
+:
+
+"⚠ Chưa có dữ liệu tháng";
+
+
+
+
+
+document.getElementById(
+
+"statusBackup"
+
+).innerHTML =
+
+"💾 Sao lưu dữ liệu: Sẵn sàng";
+
+
+
 </script>
+
+
 
 
 </body>
