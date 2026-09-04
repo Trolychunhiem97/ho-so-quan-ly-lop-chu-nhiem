@@ -356,3 +356,480 @@ placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
 
 
 </div>
+  <script>
+
+
+let loaiNhanXet="thang";
+
+
+// Hiển thị thông tin
+
+document.getElementById("siso").innerHTML =
+danhSachHocSinh.length;
+
+
+document.getElementById("ngay").innerHTML =
+new Date().toLocaleDateString("vi-VN");
+
+
+
+
+
+// Chọn loại nhận xét
+
+function chonNhanXet(loai){
+
+
+loaiNhanXet=loai;
+
+
+if(loai=="thang"){
+
+alert(
+"Đã chọn nhận xét tháng"
+);
+
+}
+
+
+if(loai=="hocky"){
+
+alert(
+"Đã chọn nhận xét học kỳ"
+);
+
+}
+
+
+if(loai=="nam"){
+
+alert(
+"Đã chọn nhận xét cuối năm"
+);
+
+}
+
+
+}
+
+
+
+
+
+
+
+let bang=document.getElementById("bang");
+
+
+
+// Lấy dữ liệu
+
+let lichSuTuan =
+
+JSON.parse(
+
+localStorage.getItem(
+"lichSuTuan97"
+)
+
+)||[];
+
+
+
+
+let hanhKiem =
+
+JSON.parse(
+
+localStorage.getItem(
+"hanhKiem97"
+)
+
+)||[];
+
+
+
+
+
+// Tạo bảng học sinh
+
+
+danhSachHocSinh.forEach((ten,index)=>{
+
+
+let tong=0;
+
+let soTuan=0;
+
+
+
+lichSuTuan.forEach(t=>{
+
+
+let hs=
+
+t.hocSinh.find(
+
+x=>x.ten==ten
+
+);
+
+
+
+if(hs){
+
+tong += Number(hs.diem);
+
+soTuan++;
+
+}
+
+
+});
+
+
+
+let diem=
+
+soTuan ?
+
+(tong/soTuan).toFixed(2)
+
+:
+
+0;
+
+
+
+
+let hk="Chưa có";
+
+
+
+if(hanhKiem.length){
+
+
+let thang=
+
+hanhKiem[
+hanhKiem.length-1
+];
+
+
+
+let hsHK=
+
+thang.hocSinh.find(
+
+x=>x.ten==ten
+
+);
+
+
+
+if(hsHK){
+
+hk=hsHK.xeploai;
+
+}
+
+
+}
+
+
+
+
+let xepLoai="";
+
+
+
+if(diem>=90){
+
+xepLoai="⭐ Tốt";
+
+}
+
+else if(diem>=75){
+
+xepLoai="🟢 Khá";
+
+}
+
+else{
+
+xepLoai="🟡 Cần cố gắng";
+
+}
+
+
+
+
+bang.innerHTML += `
+
+
+<tr>
+
+
+<td>${index+1}</td>
+
+
+<td>${ten}</td>
+
+
+<td>${diem}</td>
+
+
+<td>${hk}</td>
+
+
+<td>${xepLoai}</td>
+
+
+<td class="nhanxet">
+
+<span>
+
+Chưa tạo
+
+</span>
+
+</td>
+
+
+</tr>
+
+
+`;
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+// ==========================
+// TẠO NHẬN XÉT AI
+// ==========================
+
+
+function taoNhanXetLop(){
+
+
+let rows =
+
+document.querySelectorAll(
+"#bang tr"
+);
+
+
+
+for(let i=1;i<rows.length;i++){
+
+
+
+let hocSinh={
+
+
+ten:
+
+rows[i].cells[1].innerText,
+
+
+diem:
+
+rows[i].cells[2].innerText,
+
+
+hanhKiem:
+
+rows[i].cells[3].innerText
+
+
+};
+
+
+
+
+let nhanXet="";
+
+
+
+// Nhận xét tháng
+
+if(loaiNhanXet=="thang"){
+
+
+nhanXet=
+
+taoNhanXetThang(
+hocSinh
+);
+
+
+}
+
+
+
+
+// Nhận xét học kỳ
+
+else{
+
+
+nhanXet=
+
+taoNhanXetHocKy(
+hocSinh
+);
+
+
+}
+
+
+
+rows[i].cells[5].innerText=
+
+nhanXet;
+
+
+
+}
+
+
+
+alert(
+
+"🤖 Đã tạo nhận xét AI cho lớp!"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// LƯU BÁO CÁO
+// ==========================
+
+
+function luuBaoCao(){
+
+
+
+localStorage.setItem(
+
+"baoCaoNhanXet97",
+
+document.getElementById(
+"bang"
+).innerHTML
+
+);
+
+
+
+localStorage.setItem(
+
+"nhanXetChung97",
+
+document.getElementById(
+"nhanXetChung"
+).value
+
+);
+
+
+
+alert(
+
+"💾 Đã lưu báo cáo!"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ==========================
+// KHÔI PHỤC NHẬN XÉT
+// ==========================
+
+
+window.onload=function(){
+
+
+
+let old =
+
+localStorage.getItem(
+"baoCaoNhanXet97"
+);
+
+
+
+if(old){
+
+
+document.getElementById(
+"bang"
+).innerHTML=old;
+
+
+}
+
+
+
+let nx =
+
+localStorage.getItem(
+"nhanXetChung97"
+);
+
+
+
+if(nx){
+
+
+document.getElementById(
+"nhanXetChung"
+).value=nx;
+
+
+}
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
