@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Sao lưu dữ liệu lớp 97</title>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#eef5ff;
+padding:30px;
+
+}
+
+
+.container{
+
+background:white;
+max-width:700px;
+margin:auto;
+padding:30px;
+border-radius:25px;
+text-align:center;
+
+}
+
+
+button{
+
+padding:15px 25px;
+margin:10px;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+background:#1565c0;
+color:white;
+
+}
+
+
+input{
+
+margin:15px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+💾 SAO LƯU - KHÔI PHỤC DỮ LIỆU LỚP 97
+</h1>
+
+
+<p>
+TRƯỜNG THCS TRẦN PHÚ
+</p>
+
+<p>
+GVCN: Trần Sáng
+</p>
+
+
+<hr>
+
+
+<h3>
+💾 Sao lưu dữ liệu
+</h3>
+
+
+<button onclick="saoLuu()">
+
+📥 Tải file sao lưu
+
+</button>
+
+
+
+<hr>
+
+
+<h3>
+♻️ Khôi phục dữ liệu
+</h3>
+
+
+<input 
+type="file"
+id="fileInput"
+accept=".json">
+
+
+<br>
+
+
+<button onclick="khoiPhuc()">
+
+♻️ Khôi phục
+
+</button>
+
+
+
+<br><br>
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+// Các dữ liệu cần lưu
+
+let danhSachLuu=[
+
+
+"lichSuTuan97",
+
+"hanhKiem97",
+
+"baoCaoNhanXet97",
+
+"nhanXetChung97"
+
+
+];
+
+
+
+
+
+function saoLuu(){
+
+
+let duLieu={};
+
+
+
+danhSachLuu.forEach(key=>{
+
+
+duLieu[key]=
+
+localStorage.getItem(key);
+
+
+
+});
+
+
+
+duLieu.thoiGian=
+
+new Date().toLocaleString("vi-VN");
+
+
+
+duLieu.lop="97";
+
+duLieu.truong="THCS Trần Phú";
+
+duLieu.gvcn="Trần Sáng";
+
+
+
+
+
+let file=new Blob(
+
+[
+JSON.stringify(duLieu,null,2)
+],
+
+{
+type:"application/json"
+}
+
+);
+
+
+
+let link=document.createElement("a");
+
+
+link.href=
+
+URL.createObjectURL(file);
+
+
+
+link.download=
+
+"backup_lop97.json";
+
+
+
+link.click();
+
+
+
+alert(
+"✅ Đã tạo file sao lưu dữ liệu lớp 97"
+);
+
+
+
+}
+
+
+
+
+
+
+
+function khoiPhuc(){
+
+
+let file=
+
+document.getElementById(
+"fileInput"
+).files[0];
+
+
+
+if(!file){
+
+alert(
+"Thầy hãy chọn file backup trước!"
+);
+
+return;
+
+}
+
+
+
+let reader=new FileReader();
+
+
+
+reader.onload=function(e){
+
+
+
+let duLieu=
+
+JSON.parse(e.target.result);
+
+
+
+danhSachLuu.forEach(key=>{
+
+
+if(duLieu[key]){
+
+
+localStorage.setItem(
+
+key,
+
+duLieu[key]
+
+);
+
+
+}
+
+
+});
+
+
+
+alert(
+"✅ Khôi phục dữ liệu thành công!"
+);
+
+
+
+location.href="index.html";
+
+
+
+};
+
+
+
+reader.readAsText(file);
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
