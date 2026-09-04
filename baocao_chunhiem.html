@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Báo cáo chủ nhiệm lớp 97</title>
+
+<script src="danhsach.js"></script>
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f7ff;
+padding:20px;
+}
+
+
+.container{
+background:white;
+padding:25px;
+border-radius:20px;
+}
+
+
+h1{
+text-align:center;
+color:#1565c0;
+}
+
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+
+th{
+background:#1565c0;
+color:white;
+padding:10px;
+}
+
+
+td{
+border:1px solid #ddd;
+padding:8px;
+text-align:center;
+}
+
+
+textarea{
+
+width:95%;
+height:80px;
+
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+margin:10px;
+
+}
+
+
+@media print{
+
+button{
+display:none;
+}
+
+}
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+📘 BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97
+</h1>
+
+
+
+<h3>
+📅 Kết quả tháng
+</h3>
+
+
+
+<table id="bang">
+
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ và tên</th>
+
+<th>Điểm thi đua</th>
+
+<th>Hạnh kiểm</th>
+
+<th>Kết quả chung</th>
+
+</tr>
+
+
+</table>
+
+
+
+
+<h3>
+✍ Nhận xét của giáo viên chủ nhiệm
+</h3>
+
+
+<textarea id="nhanxet"
+placeholder="Nhập nhận xét chung của giáo viên chủ nhiệm...">
+</textarea>
+
+
+
+<br>
+
+
+
+<button onclick="luuNhanXet()">
+
+💾 Lưu nhận xét
+
+</button>
+
+
+
+<button onclick="window.print()">
+
+🖨 In báo cáo
+
+</button>
+
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+let bang=document.getElementById("bang");
+
+
+
+// Lấy dữ liệu thi đua
+
+let thiDua = 
+JSON.parse(localStorage.getItem("lichSuTuan97")) || [];
+
+
+
+// Lấy dữ liệu hạnh kiểm
+
+let hanhKiem = 
+JSON.parse(localStorage.getItem("hanhKiem97")) || [];
+
+
+
+
+// Lấy tuần cuối cùng
+
+let ketQuaCuoi = thiDua;
+
+
+
+danhSachHocSinh.forEach((ten,index)=>{
+
+
+let tong=0;
+
+let dem=0;
+
+
+
+ketQuaCuoi.forEach(t=>{
+
+
+let hs=t.hocSinh.find(x=>x.ten==ten);
+
+
+if(hs){
+
+tong+=Number(hs.diem);
+
+dem++;
+
+}
+
+
+});
+
+
+
+let diemThiDua=
+dem?
+(tong/dem).toFixed(2)
+:
+"0";
+
+
+
+
+// tìm hạnh kiểm
+
+let hk="Chưa có";
+
+
+if(hanKiem.length){
+
+
+let thangCuoi=
+hanKiem[hanKiem.length-1];
+
+
+let hsHK=
+thangCuoi.hocSinh.find(x=>x.ten==ten);
+
+
+
+if(hsHK){
+
+hk=hsHK.xeploai;
+
+}
+
+
+}
+
+
+
+
+let ketQua="";
+
+
+
+if(Number(diemThiDua)>=95 && hk.includes("Tốt"))
+
+ketQua="⭐ Hoàn thành xuất sắc";
+
+
+else if(Number(diemThiDua)>=85)
+
+ketQua="🟢 Hoàn thành tốt";
+
+
+else
+
+ketQua="🟡 Cần cố gắng";
+
+
+
+
+
+bang.innerHTML +=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${ten}</td>
+
+<td>${diemThiDua}</td>
+
+<td>${hk}</td>
+
+<td>${ketQua}</td>
+
+</tr>
+
+`;
+
+
+
+});
+
+
+
+
+
+function luuNhanXet(){
+
+
+localStorage.setItem(
+
+"nhanXetGVCN97",
+
+document.getElementById("nhanxet").value
+
+);
+
+
+alert("Đã lưu nhận xét!");
+
+}
+
+
+
+
+document.getElementById("nhanxet").value =
+
+localStorage.getItem("nhanXetGVCN97") || "";
+
+
+
+</script>
+
+
+</body>
+
+</html>
