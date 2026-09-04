@@ -21,26 +21,51 @@ padding:30px;
 
 .container{
 
-background:white;
 max-width:700px;
 margin:auto;
+background:white;
 padding:30px;
 border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
 text-align:center;
+
+}
+
+
+h1{
+
+color:#1565c0;
+
+}
+
+
+.info{
+
+background:#f2f7ff;
+padding:15px;
+border-radius:15px;
+margin:20px;
 
 }
 
 
 button{
 
-padding:15px 25px;
-margin:10px;
-border:none;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
 background:#1565c0;
 color:white;
+border:none;
+padding:15px 25px;
+border-radius:10px;
+font-size:18px;
+margin:10px;
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#0d47a1;
 
 }
 
@@ -51,9 +76,12 @@ margin:15px;
 
 }
 
+
 </style>
 
+
 </head>
+
 
 
 <body>
@@ -63,36 +91,43 @@ margin:15px;
 
 
 <h1>
-💾 SAO LƯU - KHÔI PHỤC DỮ LIỆU LỚP 97
+💾 SAO LƯU - KHÔI PHỤC DỮ LIỆU
 </h1>
 
 
-<p>
-TRƯỜNG THCS TRẦN PHÚ
-</p>
-
-<p>
-GVCN: Trần Sáng
-</p>
-
-
-<hr>
-
+<div class="info">
 
 <h3>
-💾 Sao lưu dữ liệu
+🏫 TRƯỜNG THCS TRẦN PHÚ
 </h3>
+
+<p>
+📘 Lớp: <b>97</b>
+</p>
+
+<p>
+👨‍🏫 GVCN: <b>Trần Sáng</b>
+</p>
+
+
+<p id="thoigian">
+
+</p>
+
+
+</div>
+
 
 
 <button onclick="saoLuu()">
 
-📥 Tải file sao lưu
+📥 Tạo file sao lưu
 
 </button>
 
 
-
 <hr>
+
 
 
 <h3>
@@ -102,7 +137,7 @@ GVCN: Trần Sáng
 
 <input 
 type="file"
-id="fileInput"
+id="fileBackup"
 accept=".json">
 
 
@@ -127,6 +162,7 @@ accept=".json">
 </button>
 
 
+
 </div>
 
 
@@ -136,21 +172,72 @@ accept=".json">
 <script>
 
 
-// Các dữ liệu cần lưu
+// Các dữ liệu cần bảo vệ
 
-let danhSachLuu=[
+const danhSachDuLieu = {
 
 
-"lichSuTuan97",
+truong:
 
-"hanhKiem97",
+"THCS Trần Phú",
 
-"baoCaoNhanXet97",
 
+lop:
+
+"97",
+
+
+gvcn:
+
+"Trần Sáng",
+
+
+thoiGian:
+
+new Date().toLocaleString("vi-VN"),
+
+
+
+danhSachHocSinh:
+
+localStorage.getItem(
+"danhSachHocSinh"
+),
+
+
+
+thiDua:
+
+localStorage.getItem(
+"lichSuTuan97"
+),
+
+
+
+hanhKiem:
+
+localStorage.getItem(
+"hanhKiem97"
+),
+
+
+
+nhanXetAI:
+
+localStorage.getItem(
+"baoCaoNhanXet97"
+),
+
+
+
+nhanXetChung:
+
+localStorage.getItem(
 "nhanXetChung97"
+)
 
 
-];
+};
 
 
 
@@ -159,47 +246,51 @@ let danhSachLuu=[
 function saoLuu(){
 
 
-let duLieu={};
+
+let duLieu={
 
 
-
-danhSachLuu.forEach(key=>{
-
-
-duLieu[key]=
-
-localStorage.getItem(key);
+thongTin:{
 
 
+truong:"THCS Trần Phú",
 
-});
+lop:"97",
+
+gvcn:"Trần Sáng",
+
+ngay:
+new Date().toLocaleString("vi-VN")
 
 
-
-duLieu.thoiGian=
-
-new Date().toLocaleString("vi-VN");
+},
 
 
+duLieu:danhSachDuLieu
 
-duLieu.lop="97";
 
-duLieu.truong="THCS Trần Phú";
-
-duLieu.gvcn="Trần Sáng";
+};
 
 
 
 
 
-let file=new Blob(
+let file = new Blob(
 
 [
-JSON.stringify(duLieu,null,2)
+
+JSON.stringify(
+duLieu,
+null,
+2
+)
+
 ],
 
 {
+
 type:"application/json"
+
 }
 
 );
@@ -210,14 +301,13 @@ let link=document.createElement("a");
 
 
 link.href=
-
 URL.createObjectURL(file);
 
 
 
 link.download=
 
-"backup_lop97.json";
+"Backup_Lop97_TranSang.json";
 
 
 
@@ -226,7 +316,9 @@ link.click();
 
 
 alert(
-"✅ Đã tạo file sao lưu dữ liệu lớp 97"
+
+"✅ Đã tạo file sao lưu thành công!"
+
 );
 
 
@@ -237,26 +329,28 @@ alert(
 
 
 
-
-
 function khoiPhuc(){
 
 
-let file=
+
+let file =
 
 document.getElementById(
-"fileInput"
+"fileBackup"
 ).files[0];
 
 
 
 if(!file){
 
+
 alert(
 "Thầy hãy chọn file backup trước!"
 );
 
+
 return;
+
 
 }
 
@@ -270,41 +364,99 @@ reader.onload=function(e){
 
 
 
-let duLieu=
+let data=
 
-JSON.parse(e.target.result);
-
-
-
-danhSachLuu.forEach(key=>{
-
-
-if(duLieu[key]){
-
-
-localStorage.setItem(
-
-key,
-
-duLieu[key]
-
+JSON.parse(
+e.target.result
 );
+
+
+
+if(
+
+data.thongTin.lop!="97"
+
+){
+
+
+alert(
+"❌ File không đúng dữ liệu lớp 97!"
+);
+
+
+return;
 
 
 }
 
 
-});
+
+
+if(
+
+confirm(
+
+"Dữ liệu hiện tại sẽ bị thay thế. Tiếp tục?"
+
+)
+
+){
+
+
+
+let duLieu=data.duLieu;
+
+
+
+if(duLieu.thiDua)
+
+localStorage.setItem(
+"lichSuTuan97",
+duLieu.thiDua
+);
+
+
+
+if(duLieu.hanhKiem)
+
+localStorage.setItem(
+"hanhKiem97",
+duLieu.hanhKiem
+);
+
+
+
+if(duLieu.nhanXetAI)
+
+localStorage.setItem(
+"baoCaoNhanXet97",
+duLieu.nhanXetAI
+);
+
+
+
+if(duLieu.nhanXetChung)
+
+localStorage.setItem(
+"nhanXetChung97",
+duLieu.nhanXetChung
+);
 
 
 
 alert(
+
 "✅ Khôi phục dữ liệu thành công!"
+
 );
 
 
 
 location.href="index.html";
+
+
+
+}
 
 
 
@@ -317,6 +469,18 @@ reader.readAsText(file);
 
 
 }
+
+
+
+
+
+document.getElementById("thoigian").innerHTML=
+
+"⏰ Hôm nay: "
+
++
+
+new Date().toLocaleDateString("vi-VN");
 
 
 
