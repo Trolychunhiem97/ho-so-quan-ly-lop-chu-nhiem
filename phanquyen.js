@@ -1,7 +1,8 @@
-// =================================
+// =====================================
 // PHÂN QUYỀN QUẢN LÝ LỚP 97
 // GVCN TRẦN SÁNG
-// =================================
+// =====================================
+
 
 
 const taiKhoan97 = [
@@ -51,34 +52,35 @@ const taiKhoan97 = [
 
 
 
-// ==============================
-// ĐĂNG NHẬP
-// ==============================
+// =====================================
+// HÀM ĐĂNG NHẬP
+// =====================================
 
 
-function dangNhapTaiKhoan(user,pass){
+function dangNhapTaiKhoan(username,password){
 
 
-let taiKhoan = taiKhoan97.find(
 
-(x)=>
+let user = taiKhoan97.find(
 
-x.username===user
+(item)=>
+
+item.username===username
 &&
-x.password===pass
+item.password===password
 
 );
 
 
 
-if(taiKhoan){
+if(user){
 
 
 localStorage.setItem(
 
 "nguoiDungDangNhap",
 
-JSON.stringify(taiKhoan)
+JSON.stringify(user)
 
 );
 
@@ -99,17 +101,16 @@ return false;
 
 
 
-// ==============================
-// LẤY NGƯỜI DÙNG
-// ==============================
+
+// =====================================
+// LẤY NGƯỜI ĐANG ĐĂNG NHẬP
+// =====================================
 
 
 function layNguoiDung(){
 
 
-let user=
-
-localStorage.getItem(
+let data = localStorage.getItem(
 
 "nguoiDungDangNhap"
 
@@ -117,12 +118,13 @@ localStorage.getItem(
 
 
 
-if(user){
+if(data){
 
-return JSON.parse(user);
+
+return JSON.parse(data);
+
 
 }
-
 
 
 return null;
@@ -133,12 +135,61 @@ return null;
 
 
 
-// ==============================
+
+
+
+// =====================================
+// KIỂM TRA QUYỀN GVCN
+// =====================================
+
+
+function laGVCN(){
+
+
+let user = layNguoiDung();
+
+
+
+return user && user.quyen==="gvcn";
+
+
+}
+
+
+
+
+
+
+// =====================================
+// KIỂM TRA QUYỀN
+// =====================================
+
+
+function coQuyen(quyen){
+
+
+let user = layNguoiDung();
+
+
+
+return user && user.quyen===quyen;
+
+
+}
+
+
+
+
+
+
+
+// =====================================
 // ĐĂNG XUẤT
-// ==============================
+// =====================================
 
 
 function dangXuat(){
+
 
 
 localStorage.removeItem(
@@ -148,7 +199,8 @@ localStorage.removeItem(
 );
 
 
-location.href="dangnhap.html";
+
+window.location.href="index.html";
 
 
 }
