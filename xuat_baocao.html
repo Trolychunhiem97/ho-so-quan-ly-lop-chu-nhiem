@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+
+<title>
+Báo cáo chủ nhiệm lớp 97
+</title>
+
+
+<script src="js/danhsach.js"></script>
+
+
+
+<style>
+
+
+body{
+
+font-family:"Segoe UI",Arial;
+
+background:#eef5ff;
+
+padding:20px;
+
+}
+
+
+
+.container{
+
+max-width:1200px;
+
+margin:auto;
+
+background:white;
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px #ccc;
+
+}
+
+
+
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:30px;
+
+border-radius:25px;
+
+text-align:center;
+
+}
+
+
+
+.box{
+
+background:#f8fbff;
+
+padding:25px;
+
+margin-top:25px;
+
+border-radius:20px;
+
+}
+
+
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
+}
+
+
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 5px 15px #ddd;
+
+}
+
+
+
+.card h2{
+
+color:#1565c0;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+
+color:white;
+
+padding:12px;
+
+}
+
+
+
+td{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:12px 20px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+margin-right:10px;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+.ai{
+
+background:#fff8e1;
+
+padding:25px;
+
+border-radius:20px;
+
+white-space:pre-line;
+
+line-height:1.7;
+
+}
+
+
+
+@media print{
+
+
+button{
+
+display:none;
+
+}
+
+
+body{
+
+background:white;
+
+}
+
+
+.container{
+
+box-shadow:none;
+
+}
+
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<div class="header">
+
+
+<h1>
+📄 BÁO CÁO CÔNG TÁC CHỦ NHIỆM
+</h1>
+
+
+<h2>
+LỚP 97
+</h2>
+
+
+<p>
+🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="box">
+
+
+<div class="dashboard">
+
+
+
+<div class="card">
+
+<h2 id="siSo">
+
+0
+
+</h2>
+
+<p>
+Sĩ số học sinh
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2 id="tot">
+
+0
+
+</h2>
+
+<p>
+Xếp loại Tốt
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2 id="kha">
+
+0
+
+</h2>
+
+<p>
+Xếp loại Khá
+</p>
+
+</div>
+
+
+
+
+
+<div class="card">
+
+<h2 id="canHoTro">
+
+0
+
+</h2>
+
+<p>
+Cần quan tâm
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+📊 Danh sách tổng hợp
+</h2>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+STT
+</th>
+
+
+<th>
+Họ tên
+</th>
+
+
+<th>
+Điểm TB
+</th>
+
+
+<th>
+Xếp loại
+</th>
+
+
+<th>
+Ghi chú
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="bangBaoCao">
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+🤖 Nhận xét AI công tác chủ nhiệm
+</h2>
+
+
+<div id="baoCaoAI"
+
+class="ai">
+
+Chưa tạo báo cáo
+
+</div>
+
+
+
+<br>
+
+
+<button onclick="taoBaoCaoAI()">
+
+🤖 Tạo báo cáo AI
+
+</button>
+
+
+
+<button onclick="window.print()">
+
+🖨 In báo cáo
+
+</button>
+
+
+
+</div>
+<script>
+
+
+// ======================================
+// XUẤT BÁO CÁO CHỦ NHIỆM LỚP 97
+// ======================================
+
+
+const KEY_BAO_CAO = "baoCaoChuNhiem97";
+
+
+let duLieuBaoCao = [];
+
+
+
+
+
+
+// ======================================
+// LẤY DỮ LIỆU TỔNG HỢP NĂM
+// ======================================
+
+
+function layTongHopNam(){
+
+
+let data = localStorage.getItem(
+
+"tongHopNam97"
+
+);
+
+
+
+if(data){
+
+
+return JSON.parse(data);
+
+
+}
+
+
+
+return [];
+
+
+
+}
+
+
+
+
+
+
+
+// ======================================
+// HIỂN THỊ BÁO CÁO
+// ======================================
+
+
+function hienThiBaoCao(){
+
+
+
+duLieuBaoCao = layTongHopNam();
+
+
+
+let bang = document.getElementById(
+
+"bangBaoCao"
+
+);
+
+
+
+bang.innerHTML="";
+
+
+
+
+
+let tot=0;
+
+let kha=0;
+
+let can=0;
+
+
+
+
+
+
+
+duLieuBaoCao.forEach(
+
+(hs)=>{
+
+
+
+if(hs.xepLoai=="Tốt")
+
+tot++;
+
+
+
+else if(hs.xepLoai=="Khá")
+
+kha++;
+
+
+
+else
+
+can++;
+
+
+
+
+
+
+
+bang.innerHTML +=
+
+`
+
+<tr>
+
+
+<td>
+
+${hs.stt}
+
+</td>
+
+
+
+<td>
+
+${hs.hoTen}
+
+</td>
+
+
+
+<td>
+
+${hs.diemTB}
+
+</td>
+
+
+
+<td>
+
+${hs.xepLoai}
+
+</td>
+
+
+
+<td>
+
+${hs.nhanXet}
+
+</td>
+
+
+</tr>
+
+
+`;
+
+
+
+});
+
+
+
+
+
+
+
+
+document.getElementById(
+
+"siSo"
+
+).innerText=
+
+duLieuBaoCao.length;
+
+
+
+document.getElementById(
+
+"tot"
+
+).innerText=
+
+tot;
+
+
+
+document.getElementById(
+
+"kha"
+
+).innerText=
+
+kha;
+
+
+
+document.getElementById(
+
+"canHoTro"
+
+).innerText=
+
+can;
+
+
+
+}
+
+
+
+
+
+
+
+
+// ======================================
+// AI TẠO BÁO CÁO CHỦ NHIỆM
+// ======================================
+
+
+function taoBaoCaoAI(){
+
+
+
+if(duLieuBaoCao.length==0){
+
+
+alert(
+
+"Chưa có dữ liệu tổng hợp"
+
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+let tot = duLieuBaoCao.filter(
+
+hs=>hs.xepLoai=="Tốt"
+
+).length;
+
+
+
+
+
+let kha = duLieuBaoCao.filter(
+
+hs=>hs.xepLoai=="Khá"
+
+).length;
+
+
+
+
+
+let can = duLieuBaoCao.filter(
+
+hs=>hs.xepLoai=="Cần cố gắng"
+
+).length;
+
+
+
+
+
+
+let noiDung =
+
+`
+
+BÁO CÁO CÔNG TÁC CHỦ NHIỆM LỚP 97
+
+
+1. Tình hình chung:
+
+
+- Sĩ số: ${duLieuBaoCao.length} học sinh.
+
+
+- Số học sinh xếp loại Tốt: ${tot} em.
+
+
+- Số học sinh xếp loại Khá: ${kha} em.
+
+
+- Số học sinh cần quan tâm: ${can} em.
+
+
+
+2. Nhận xét:
+
+
+Trong năm học, tập thể lớp 97 đã có nhiều cố gắng
+trong học tập và rèn luyện.
+
+
+Đa số học sinh có ý thức thực hiện nội quy,
+tham gia các hoạt động tập thể và có tinh thần
+đoàn kết.
+
+
+Những học sinh còn hạn chế cần tiếp tục được
+quan tâm, động viên và phối hợp giữa gia đình
+với nhà trường.
+
+
+3. Phương hướng:
+
+
+- Tiếp tục duy trì nền nếp lớp học.
+
+- Phát huy tinh thần tự quản của học sinh.
+
+- Tăng cường phối hợp với phụ huynh.
+
+- Quan tâm hỗ trợ học sinh chưa tiến bộ.
+
+
+
+GVCN lớp 97
+
+Trần Sáng
+
+
+`;
+
+
+
+
+
+
+document.getElementById(
+
+"baoCaoAI"
+
+).innerText=noiDung;
+
+
+
+
+
+localStorage.setItem(
+
+KEY_BAO_CAO,
+
+noiDung
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ======================================
+// KHỞI ĐỘNG
+// ======================================
+
+
+window.onload=function(){
+
+
+
+hienThiBaoCao();
+
+
+
+let old = localStorage.getItem(
+
+KEY_BAO_CAO
+
+);
+
+
+
+if(old){
+
+
+document.getElementById(
+
+"baoCaoAI"
+
+).innerText=old;
+
+
+}
+
+
+
+};
+
+
+
+</script>
+
+
+
+
+</div>
