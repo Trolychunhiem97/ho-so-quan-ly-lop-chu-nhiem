@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 
 <head>
@@ -8,9 +7,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>
-Trợ lý quản lý lớp 97
+Đăng nhập - Trợ lý quản lý lớp 97
 </title>
 
 
@@ -19,11 +17,9 @@ Trợ lý quản lý lớp 97
 
 <style>
 
-
 *{
 box-sizing:border-box;
 }
-
 
 
 body{
@@ -34,24 +30,19 @@ min-height:100vh;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-font-family:"Segoe UI",Arial,sans-serif;
+justify-content:center;
 
-background:linear-gradient(
-135deg,
-#1565c0,
-#90caf9
-);
+font-family:"Segoe UI",Arial;
+
+background:linear-gradient(135deg,#1565c0,#90caf9);
 
 }
 
 
 
-
-.container{
+.box{
 
 width:420px;
 
@@ -61,7 +52,7 @@ padding:35px;
 
 border-radius:30px;
 
-box-shadow:0 15px 40px rgba(0,0,0,.25);
+box-shadow:0 15px 35px rgba(0,0,0,.25);
 
 }
 
@@ -89,13 +80,11 @@ font-size:28px;
 
 
 
-.subtitle{
+p.title{
 
 text-align:center;
 
 color:#666;
-
-margin-bottom:30px;
 
 }
 
@@ -107,18 +96,19 @@ font-weight:bold;
 
 display:block;
 
-margin-bottom:8px;
+margin-top:15px;
 
 }
 
 
 
-select,
-input{
+select,input{
 
 width:100%;
 
 padding:14px;
+
+margin-top:8px;
 
 border-radius:15px;
 
@@ -126,13 +116,11 @@ border:1px solid #ccc;
 
 font-size:16px;
 
-margin-bottom:18px;
-
 }
 
 
 
-.password-box{
+.pass{
 
 position:relative;
 
@@ -140,28 +128,23 @@ position:relative;
 
 
 
-.password-box button{
-
+.pass button{
 
 position:absolute;
 
 right:8px;
 
-top:5px;
-
-width:45px;
-
-height:45px;
+top:8px;
 
 border:none;
 
-background:#eef5ff;
+background:#eee;
+
+padding:10px;
 
 border-radius:10px;
 
 cursor:pointer;
-
-font-size:18px;
 
 }
 
@@ -169,6 +152,7 @@ font-size:18px;
 
 .login{
 
+margin-top:25px;
 
 width:100%;
 
@@ -202,13 +186,13 @@ background:#0d47a1;
 
 #error{
 
-text-align:center;
-
 color:red;
 
-font-weight:bold;
+text-align:center;
 
 height:25px;
+
+font-weight:bold;
 
 }
 
@@ -227,9 +211,7 @@ font-size:14px;
 }
 
 
-
 </style>
-
 
 </head>
 
@@ -238,29 +220,20 @@ font-size:14px;
 <body>
 
 
-
-<div class="container">
-
+<div class="box">
 
 
 <div class="logo">
-
 🤖
-
 </div>
 
 
-
-
 <h1>
-
 TRỢ LÝ QUẢN LÝ LỚP 97
-
 </h1>
 
 
-
-<p class="subtitle">
+<p class="title">
 
 🏫 Trường THCS Trần Phú
 
@@ -273,50 +246,36 @@ GVCN Trần Sáng
 
 
 
-
 <label>
-
 👤 Vai trò
-
 </label>
-
 
 
 <select id="vaiTro">
 
 
 <option value="gvcn">
-
 Giáo viên chủ nhiệm
-
 </option>
 
 
 <option value="loptruong">
-
 Lớp trưởng
-
 </option>
 
 
 <option value="hoctap">
-
 Lớp phó học tập
-
 </option>
 
 
 <option value="laodong">
-
 Lớp phó lao động
-
 </option>
 
 
 <option value="totruong">
-
 Tổ trưởng
-
 </option>
 
 
@@ -325,54 +284,34 @@ Tổ trưởng
 
 
 
-
-
 <label>
-
 Tên đăng nhập
-
 </label>
 
 
-<input 
-
-id="taiKhoan"
-
+<input id="taiKhoan"
 placeholder="Nhập tài khoản">
 
 
 
 
 
-
-
 <label>
-
 Mật khẩu
-
 </label>
 
 
+<div class="pass">
 
-<div class="password-box">
 
-
-<input
-
-id="matKhau"
-
+<input id="matKhau"
 type="password"
-
 placeholder="Nhập mật khẩu">
 
 
-
-<button onclick="anHienMatKhau()">
-
+<button onclick="hienMatKhau()">
 👁
-
 </button>
-
 
 
 </div>
@@ -380,12 +319,7 @@ placeholder="Nhập mật khẩu">
 
 
 
-
-
-
-
 <button class="login"
-
 onclick="dangNhap()">
 
 🔐 Đăng nhập hệ thống
@@ -394,19 +328,13 @@ onclick="dangNhap()">
 
 
 
-
-
 <p id="error"></p>
-
-
-
 
 
 
 <div class="footer">
 
-
-🤖 Trợ lý quản lý lớp 97
+Trợ lý quản lý lớp 97
 
 <br>
 
@@ -423,130 +351,80 @@ GVCN Trần Sáng
 
 
 
-
-
 <script>
-
-
-// =============================
-// XỬ LÝ ĐĂNG NHẬP
-// =============================
 
 
 function dangNhap(){
 
 
+let user=document.getElementById("taiKhoan").value.trim();
 
-let user = document.getElementById(
-"taiKhoan"
-).value.trim();
-
+let pass=document.getElementById("matKhau").value.trim();
 
 
-let pass = document.getElementById(
-"matKhau"
-).value.trim();
+let tb=document.getElementById("error");
 
 
 
-let thongBao =
-document.getElementById("error");
+if(user=="" || pass==""){
 
 
-
-
-
-if(user==="" || pass===""){
-
-
-thongBao.innerHTML=
-"⚠ Vui lòng nhập đầy đủ thông tin";
-
+tb.innerHTML="⚠ Chưa nhập đủ thông tin";
 
 return;
-
 
 }
 
 
 
-
-
-let ketQua = dangNhapTaiKhoan(
-user,
-pass
-);
+let ketqua=dangNhapTaiKhoan(user,pass);
 
 
 
-
-
-
-if(ketQua){
-
+if(ketqua){
 
 
 window.location.href="trangchu.html";
 
 
-
 }
-
 else{
 
 
-thongBao.innerHTML=
-"❌ Sai tài khoản hoặc mật khẩu";
+tb.innerHTML="❌ Sai tài khoản hoặc mật khẩu";
+
+
+}
 
 
 }
 
 
 
-}
 
 
 
 
+function hienMatKhau(){
 
 
-
-// =============================
-// ẨN HIỆN MẬT KHẨU
-// =============================
-
-
-function anHienMatKhau(){
-
-
-
-let o =
-document.getElementById(
-"matKhau"
-);
-
+let o=document.getElementById("matKhau");
 
 
 if(o.type==="password"){
 
-
 o.type="text";
-
 
 }
 
 else{
 
-
 o.type="password";
 
-
 }
 
 
-
 }
-
 
 
 </script>
@@ -554,6 +432,5 @@ o.type="password";
 
 
 </body>
-
 
 </html>
