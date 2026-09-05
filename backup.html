@@ -5,62 +5,108 @@
 
 <meta charset="UTF-8">
 
-<title>Sao lưu dữ liệu lớp 97</title>
+<title>Sao lưu - Khôi phục dữ liệu lớp 97</title>
+
+
+<script src="phanquyen.js"></script>
+
 
 
 <style>
 
+
 body{
 
-font-family:Arial;
+font-family:Arial,sans-serif;
+
 background:#eef5ff;
-padding:30px;
+
+padding:20px;
 
 }
+
 
 
 .container{
 
-max-width:700px;
+max-width:1000px;
+
 margin:auto;
+
 background:white;
-padding:30px;
+
+padding:35px;
+
 border-radius:25px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,.1);
 
 }
 
 
-h1{
+
+h1,h2{
+
+text-align:center;
 
 color:#1565c0;
 
 }
 
 
-.info{
+
+.user{
+
+text-align:center;
 
 background:#f2f7ff;
+
 padding:15px;
+
 border-radius:15px;
-margin:20px;
 
 }
+
+
+
+.box{
+
+background:#f7fbff;
+
+padding:25px;
+
+margin-top:25px;
+
+border-radius:20px;
+
+border:1px solid #ddd;
+
+text-align:center;
+
+}
+
 
 
 button{
 
 background:#1565c0;
+
 color:white;
+
 border:none;
-padding:15px 25px;
-border-radius:10px;
-font-size:18px;
-margin:10px;
+
+padding:15px 30px;
+
+border-radius:12px;
+
+font-size:17px;
+
 cursor:pointer;
 
+margin:10px;
+
 }
+
 
 
 button:hover{
@@ -70,11 +116,45 @@ background:#0d47a1;
 }
 
 
-input{
 
-margin:15px;
+input[type=file]{
+
+padding:15px;
+
+margin:10px;
 
 }
+
+
+
+.note{
+
+background:#fff8e1;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-top:20px;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:40px;
+
+border-top:1px solid #ddd;
+
+padding-top:20px;
+
+color:#555;
+
+}
+
 
 
 </style>
@@ -87,79 +167,132 @@ margin:15px;
 <body>
 
 
+
 <div class="container">
 
 
+
+<h2>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h2>
+
+
 <h1>
-💾 SAO LƯU - KHÔI PHỤC DỮ LIỆU
+💾 SAO LƯU - KHÔI PHỤC DỮ LIỆU LỚP 97
 </h1>
 
 
-<div class="info">
+
+
+<div class="user" id="nguoiDung">
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
 
 <h3>
-🏫 TRƯỜNG THCS TRẦN PHÚ
+💾 Sao lưu dữ liệu
 </h3>
 
-<p>
-📘 Lớp: <b>97</b>
-</p>
 
 <p>
-👨‍🏫 GVCN: <b>Trần Sáng</b>
-</p>
 
-
-<p id="thoigian">
+Xuất toàn bộ hồ sơ quản lý lớp 97 ra file bảo mật.
 
 </p>
+
+
+<button onclick="saoLuuDuLieu()">
+
+💾 Tạo file sao lưu
+
+</button>
 
 
 </div>
 
 
 
-<button onclick="saoLuu()">
-
-📥 Tạo file sao lưu
-
-</button>
 
 
-<hr>
 
+
+<div class="box">
 
 
 <h3>
-♻️ Khôi phục dữ liệu
+📂 Khôi phục dữ liệu
 </h3>
 
 
-<input 
-type="file"
-id="fileBackup"
+<p>
+
+Chọn file sao lưu (.json) để phục hồi dữ liệu.
+
+</p>
+
+
+
+<input type="file"
+
+id="fileKhoiPhuc"
+
 accept=".json">
+
 
 
 <br>
 
 
-<button onclick="khoiPhuc()">
+<button onclick="khoiPhucDuLieu()">
 
-♻️ Khôi phục
-
-</button>
-
-
-
-<br><br>
-
-
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
+📂 Khôi phục
 
 </button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="note">
+
+
+<h3>
+⚠ Lưu ý
+</h3>
+
+
+<p>
+
+- Nên sao lưu định kỳ mỗi tuần.
+
+</p>
+
+
+<p>
+
+- Không xóa file sao lưu sau khi tải về.
+
+</p>
+
+
+<p>
+
+- Có thể dùng file này để chuyển sang máy tính khác.
+
+</p>
 
 
 
@@ -169,104 +302,158 @@ accept=".json">
 
 
 
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+
 <script>
 
 
-// Các dữ liệu cần bảo vệ
-
-const danhSachDuLieu = {
-
-
-truong:
-
-"THCS Trần Phú",
+// ==================================
+// KIỂM TRA ĐĂNG NHẬP
+// ==================================
 
 
-lop:
-
-"97",
-
-
-gvcn:
-
-"Trần Sáng",
-
-
-thoiGian:
-
-new Date().toLocaleString("vi-VN"),
-
-
-
-danhSachHocSinh:
+let nguoiDung = JSON.parse(
 
 localStorage.getItem(
-"danhSachHocSinh"
-),
-
-
-
-thiDua:
-
-localStorage.getItem(
-"lichSuTuan97"
-),
-
-
-
-hanhKiem:
-
-localStorage.getItem(
-"hanhKiem97"
-),
-
-
-
-nhanXetAI:
-
-localStorage.getItem(
-"baoCaoNhanXet97"
-),
-
-
-
-nhanXetChung:
-
-localStorage.getItem(
-"nhanXetChung97"
+"nguoiDungDangNhap"
 )
 
-
-};
-
+);
 
 
 
+if(!nguoiDung){
 
-function saoLuu(){
+location.href="dangnhap.html";
+
+}
+
+
+
+
+
+document.getElementById(
+
+"nguoiDung"
+
+).innerHTML=
+
+"👤 Xin chào: <b>"
+
++
+
+nguoiDung.ten
+
++
+
+"</b>";
+
+
+
+
+
+
+
+
+
+// ==================================
+// DANH SÁCH DỮ LIỆU CẦN SAO LƯU
+// ==================================
+
+
+
+const danhSachBackup97 = [
+
+
+
+"nguoiDungDangNhap",
+
+
+"tongHopNam97",
+
+
+"nhanXetAI97",
+
+
+"nhanXetTongHop97",
+
+
+"duLieuAI97",
+
+
+"phuHuynh97",
+
+
+"lichSuPhuHuynh97",
+
+
+"xepLoaiThang97",
+
+
+"thiDuaTuan97",
+
+
+"thiDuaThang97",
+
+
+"danhSachHocSinh"
+
+
+
+];
+
+
+
+
+
+
+
+
+
+// ==================================
+// SAO LƯU DỮ LIỆU
+// ==================================
+
+
+
+function saoLuuDuLieu(){
 
 
 
 let duLieu={
 
 
-thongTin:{
+
+thoiGian:
+
+new Date().toLocaleString(
+
+"vi-VN"
+
+),
 
 
-truong:"THCS Trần Phú",
 
-lop:"97",
+tenHeThong:
 
-gvcn:"Trần Sáng",
-
-ngay:
-new Date().toLocaleString("vi-VN")
+"Tro ly quan ly lop 97",
 
 
-},
+
+namHoc:
+
+"2026-2027",
 
 
-duLieu:danhSachDuLieu
+
+duLieu:{}
+
 
 
 };
@@ -275,21 +462,70 @@ duLieu:danhSachDuLieu
 
 
 
-let file = new Blob(
 
-[
+danhSachBackup97.forEach(
+
+(key)=>{
+
+
+
+let value=
+
+localStorage.getItem(key);
+
+
+
+if(value){
+
+
+
+duLieu.duLieu[key]=
+
+JSON.parse(value);
+
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+let file=
 
 JSON.stringify(
-duLieu,
-null,
-2
-)
 
-],
+duLieu,
+
+null,
+
+2
+
+);
+
+
+
+
+
+
+
+let blob=
+
+new Blob(
+
+[file],
 
 {
 
-type:"application/json"
+type:
+
+"application/json"
 
 }
 
@@ -297,17 +533,28 @@ type:"application/json"
 
 
 
-let link=document.createElement("a");
+
+
+
+let link=
+
+document.createElement(
+
+"a"
+
+);
+
 
 
 link.href=
-URL.createObjectURL(file);
+
+URL.createObjectURL(blob);
 
 
 
 link.download=
 
-"Backup_Lop97_TranSang.json";
+"Backup_Lop97_2026_2027.json";
 
 
 
@@ -315,9 +562,11 @@ link.click();
 
 
 
+
+
 alert(
 
-"✅ Đã tạo file sao lưu thành công!"
+"✅ Đã tạo file sao lưu dữ liệu lớp 97!"
 
 );
 
@@ -329,24 +578,42 @@ alert(
 
 
 
-function khoiPhuc(){
 
 
 
-let file =
+
+// ==================================
+// KHÔI PHỤC DỮ LIỆU
+// ==================================
+
+
+
+function khoiPhucDuLieu(){
+
+
+
+let file=
 
 document.getElementById(
-"fileBackup"
+
+"fileKhoiPhuc"
+
 ).files[0];
+
+
 
 
 
 if(!file){
 
 
+
 alert(
-"Thầy hãy chọn file backup trước!"
+
+"Vui lòng chọn file sao lưu!"
+
 );
+
 
 
 return;
@@ -356,7 +623,17 @@ return;
 
 
 
-let reader=new FileReader();
+
+
+
+
+let reader=
+
+new FileReader();
+
+
+
+
 
 
 
@@ -364,27 +641,39 @@ reader.onload=function(e){
 
 
 
+try{
+
+
+
 let data=
 
 JSON.parse(
+
 e.target.result
+
 );
 
 
 
-if(
 
-data.thongTin.lop!="97"
 
-){
+
+
+
+if(!data.duLieu){
+
 
 
 alert(
-"❌ File không đúng dữ liệu lớp 97!"
+
+"❌ File không đúng định dạng!"
+
 );
 
 
+
 return;
+
 
 
 }
@@ -392,55 +681,40 @@ return;
 
 
 
-if(
 
-confirm(
 
-"Dữ liệu hiện tại sẽ bị thay thế. Tiếp tục?"
+
+
+Object.keys(
+
+data.duLieu
+
+).forEach(
+
+(key)=>{
+
+
+
+localStorage.setItem(
+
+key,
+
+JSON.stringify(
+
+data.duLieu[key]
 
 )
 
-){
-
-
-
-let duLieu=data.duLieu;
-
-
-
-if(duLieu.thiDua)
-
-localStorage.setItem(
-"lichSuTuan97",
-duLieu.thiDua
 );
 
 
 
-if(duLieu.hanhKiem)
-
-localStorage.setItem(
-"hanhKiem97",
-duLieu.hanhKiem
-);
+});
 
 
 
-if(duLieu.nhanXetAI)
-
-localStorage.setItem(
-"baoCaoNhanXet97",
-duLieu.nhanXetAI
-);
 
 
-
-if(duLieu.nhanXetChung)
-
-localStorage.setItem(
-"nhanXetChung97",
-duLieu.nhanXetChung
-);
 
 
 
@@ -456,11 +730,33 @@ location.href="index.html";
 
 
 
+
+
+
+
+}
+
+catch(error){
+
+
+
+alert(
+
+"❌ Không thể đọc file sao lưu!"
+
+);
+
+
+
 }
 
 
 
 };
+
+
+
+
 
 
 
@@ -474,20 +770,9 @@ reader.readAsText(file);
 
 
 
-document.getElementById("thoigian").innerHTML=
-
-"⏰ Hôm nay: "
-
-+
-
-new Date().toLocaleDateString("vi-VN");
 
 
 
 </script>
 
-
-
-</body>
-
-</html>
+</div>
