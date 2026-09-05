@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 <title>
@@ -13,47 +14,37 @@ Trợ lý quản lý lớp 97
 </title>
 
 
-<link rel="stylesheet" href="style_mobile.css">
-
-
-<link rel="manifest" href="manifest.json">
-
-
-<meta name="theme-color" content="#1565c0">
-
-
-
 <script src="phanquyen.js"></script>
 
 
 <style>
 
+
 body{
 
-font-family:Arial,sans-serif;
+font-family:Arial;
 
 background:#eef5ff;
 
 margin:0;
 
-padding:15px;
+padding:20px;
 
 }
 
 
+
 .container{
 
-max-width:1200px;
+max-width:1100px;
 
 margin:auto;
 
 background:white;
 
-padding:25px;
+padding:30px;
 
 border-radius:25px;
-
-box-shadow:0 10px 30px #ccc;
 
 }
 
@@ -69,7 +60,7 @@ color:#1565c0;
 
 
 
-.header{
+.user{
 
 text-align:center;
 
@@ -79,19 +70,7 @@ padding:20px;
 
 border-radius:20px;
 
-}
-
-
-
-.user{
-
-margin-top:15px;
-
-background:white;
-
-padding:15px;
-
-border-radius:15px;
+font-size:18px;
 
 }
 
@@ -107,7 +86,7 @@ repeat(auto-fit,minmax(220px,1fr));
 
 gap:20px;
 
-margin-top:25px;
+margin-top:30px;
 
 }
 
@@ -117,21 +96,13 @@ margin-top:25px;
 
 background:#f8fbff;
 
-border-radius:20px;
-
 padding:25px;
+
+border-radius:20px;
 
 text-align:center;
 
 border:1px solid #ddd;
-
-}
-
-
-
-.card h3{
-
-color:#1565c0;
 
 }
 
@@ -143,23 +114,15 @@ background:#1565c0;
 
 color:white;
 
-border:none;
-
 padding:12px 25px;
+
+border:none;
 
 border-radius:12px;
 
-font-size:16px;
-
 cursor:pointer;
 
-}
-
-
-
-button:hover{
-
-background:#0d47a1;
+font-size:16px;
 
 }
 
@@ -173,45 +136,6 @@ display:none;
 
 
 
-.footer{
-
-margin-top:40px;
-
-text-align:center;
-
-color:#666;
-
-border-top:1px solid #ddd;
-
-padding-top:20px;
-
-}
-
-
-
-@media(max-width:600px){
-
-
-.menu{
-
-grid-template-columns:1fr;
-
-}
-
-
-
-button{
-
-width:100%;
-
-margin-top:10px;
-
-}
-
-
-}
-
-
 </style>
 
 
@@ -222,11 +146,7 @@ margin-top:10px;
 <body>
 
 
-
 <div class="container">
-
-
-<div class="header">
 
 
 <h2>
@@ -239,28 +159,15 @@ margin-top:10px;
 </h1>
 
 
-<p>
-GVCN: <b>Trần Sáng</b>
-</p>
 
-
-<div class="user" id="nguoiDung">
+<div class="user" id="userBox">
 
 </div>
-
-
-
-</div>
-
-
 
 
 
 <div class="menu">
 
-
-
-<!-- GVCN -->
 
 
 <div class="card gvcn">
@@ -269,15 +176,11 @@ GVCN: <b>Trần Sáng</b>
 📊 Tổng hợp năm
 </h3>
 
-<button onclick="moTrang('tonghop_nam.html')">
-
+<button onclick="mo('tonghop_nam.html')">
 Mở
-
 </button>
 
 </div>
-
-
 
 
 
@@ -287,16 +190,11 @@ Mở
 📄 Xuất báo cáo
 </h3>
 
-
-<button onclick="moTrang('xuat_tonghop_word.html')">
-
+<button onclick="mo('xuat_tonghop_word.html')">
 Mở
-
 </button>
 
 </div>
-
-
 
 
 
@@ -306,63 +204,13 @@ Mở
 👨‍👩‍👧 Quản lý phụ huynh
 </h3>
 
-
-<button onclick="moTrang('quanly_phuhuynh.html')">
-
+<button onclick="mo('quanly_phuhuynh.html')">
 Mở
-
 </button>
-
 
 </div>
 
 
-
-
-
-<div class="card gvcn">
-
-<h3>
-🔔 Thông báo phụ huynh
-</h3>
-
-
-<button onclick="moTrang('thongbao_phuhuynh.html')">
-
-Mở
-
-</button>
-
-
-</div>
-
-
-
-
-
-<div class="card gvcn">
-
-<h3>
-💾 Sao lưu dữ liệu
-</h3>
-
-
-<button onclick="moTrang('backup.html')">
-
-Mở
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- Lớp trưởng -->
 
 
 <div class="card loptruong">
@@ -371,123 +219,70 @@ Mở
 🏆 Thi đua tuần
 </h3>
 
-
-<button onclick="moTrang('thidua_tuan.html')">
-
+<button onclick="mo('thidua_tuan.html')">
 Mở
-
 </button>
-
 
 </div>
 
-
-
-
-
-
-<!-- Học tập -->
 
 
 <div class="card hoc_tap">
 
 <h3>
-📚 Theo dõi học tập
+📚 Học tập
 </h3>
 
-
-<button onclick="moTrang('hoctap.html')">
-
+<button onclick="mo('hoctap.html')">
 Mở
-
 </button>
-
 
 </div>
 
-
-
-
-
-
-
-<!-- Lao động -->
 
 
 <div class="card lao_dong">
 
-
 <h3>
-🧹 Theo dõi lao động
+🧹 Lao động
 </h3>
 
-
-<button onclick="moTrang('laodong.html')">
-
+<button onclick="mo('laodong.html')">
 Mở
-
 </button>
-
 
 </div>
 
 
-
-
-
-
-
-<!-- Tổ trưởng -->
 
 
 <div class="card to_truong">
 
-
 <h3>
-👥 Đánh giá tổ
+👥 Tổ trưởng
 </h3>
 
-
-<button onclick="moTrang('totruong.html')">
-
+<button onclick="mo('totruong.html')">
 Mở
-
 </button>
 
-
 </div>
 
 
 
-
 </div>
 
 
+<br>
 
 
-
-<div style="text-align:center;margin-top:30px">
-
+<div style="text-align:center">
 
 <button onclick="dangXuat()">
 
 🚪 Đăng xuất
 
 </button>
-
-
-</div>
-
-
-
-
-
-
-<div class="footer">
-
-
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
-
 
 </div>
 
@@ -502,13 +297,11 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 <script>
 
 
-// ============================
-// KIỂM TRA ĐĂNG NHẬP
-// ============================
+let user=
+
+layNguoiDung();
 
 
-
-let user = layNguoiDung();
 
 
 
@@ -526,9 +319,10 @@ location.href="dangnhap.html";
 
 document.getElementById(
 
-"nguoiDung"
+"userBox"
 
 ).innerHTML=
+
 
 `
 
@@ -548,24 +342,9 @@ document.getElementById(
 
 
 
+// Ẩn toàn bộ
 
-
-
-
-// ============================
-// PHÂN QUYỀN HIỂN THỊ
-// ============================
-
-
-
-function anTatCa(){
-
-
-document.querySelectorAll(
-
-".card"
-
-)
+document.querySelectorAll(".card")
 
 .forEach(
 
@@ -574,30 +353,16 @@ document.querySelectorAll(
 );
 
 
-}
 
 
 
-
-
-function hienTheoQuyen(){
-
-
-
-anTatCa();
-
-
-
+// GVCN xem tất cả
 
 
 if(user.quyen=="gvcn"){
 
 
-document.querySelectorAll(
-
-".card"
-
-)
+document.querySelectorAll(".card")
 
 .forEach(
 
@@ -610,16 +375,14 @@ document.querySelectorAll(
 
 
 
+
+// Các quyền khác
 
 
 if(user.quyen=="loptruong"){
 
 
-document.querySelectorAll(
-
-".loptruong"
-
-)
+document.querySelectorAll(".loptruong")
 
 .forEach(
 
@@ -629,19 +392,13 @@ document.querySelectorAll(
 
 
 }
-
-
 
 
 
 if(user.quyen=="hoc_tap"){
 
 
-document.querySelectorAll(
-
-".hoc_tap"
-
-)
+document.querySelectorAll(".hoc_tap")
 
 .forEach(
 
@@ -651,19 +408,13 @@ document.querySelectorAll(
 
 
 }
-
-
 
 
 
 if(user.quyen=="lao_dong"){
 
 
-document.querySelectorAll(
-
-".lao_dong"
-
-)
+document.querySelectorAll(".lao_dong")
 
 .forEach(
 
@@ -673,19 +424,13 @@ document.querySelectorAll(
 
 
 }
-
-
 
 
 
 if(user.quyen=="to_truong"){
 
 
-document.querySelectorAll(
-
-".to_truong"
-
-)
+document.querySelectorAll(".to_truong")
 
 .forEach(
 
@@ -698,53 +443,13 @@ document.querySelectorAll(
 
 
 
-}
 
-
-
-
-
-
-
-function moTrang(trang){
-
+function mo(trang){
 
 location.href=trang;
 
-
 }
 
-
-
-
-
-
-hienTheoQuyen();
-
-
-
-
-
-
-
-
-// PWA
-
-if(
-
-"serviceWorker" in navigator
-
-){
-
-
-navigator.serviceWorker.register(
-
-"service-worker.js"
-
-);
-
-
-}
 
 
 </script>
