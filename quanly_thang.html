@@ -4,9 +4,7 @@
 
 <head>
 
-
 <meta charset="UTF-8">
-
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -14,6 +12,9 @@
 <title>
 Quản lý tháng lớp 97
 </title>
+
+
+<script src="js/danhsach.js"></script>
 
 
 
@@ -50,11 +51,21 @@ box-shadow:0 10px 30px #ccc;
 
 
 
-h1,h2{
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:25px;
+
+border-radius:20px;
 
 text-align:center;
-
-color:#1565c0;
 
 }
 
@@ -66,29 +77,9 @@ background:#f8fbff;
 
 padding:20px;
 
-border-radius:20px;
-
 margin-top:20px;
 
-}
-
-
-
-input,select,textarea{
-
-
-width:100%;
-
-padding:12px;
-
-margin:8px 0;
-
-border-radius:10px;
-
-border:1px solid #ccc;
-
-font-size:16px;
-
+border-radius:20px;
 
 }
 
@@ -102,13 +93,31 @@ color:white;
 
 border:none;
 
-padding:13px 25px;
+padding:12px 20px;
 
 border-radius:12px;
 
 cursor:pointer;
 
-font-size:16px;
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+input,select{
+
+padding:10px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
 
 }
 
@@ -120,7 +129,7 @@ width:100%;
 
 border-collapse:collapse;
 
-margin-top:25px;
+margin-top:20px;
 
 }
 
@@ -150,7 +159,7 @@ text-align:center;
 
 
 
-.good{
+.tot{
 
 color:green;
 
@@ -160,11 +169,17 @@ font-weight:bold;
 
 
 
-.warn{
+.ai{
 
-color:red;
+background:#fff8e1;
 
-font-weight:bold;
+padding:20px;
+
+border-radius:15px;
+
+white-space:pre-line;
+
+line-height:1.6;
 
 }
 
@@ -176,157 +191,58 @@ font-weight:bold;
 </head>
 
 
-
 <body>
-
 
 
 <div class="container">
 
 
 
+<div class="header">
+
+
+<h1>
+📅 QUẢN LÝ RÈN LUYỆN THÁNG LỚP 97
+</h1>
+
+
+<p>
+🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="box">
+
+
 <h2>
-🏫 TRƯỜNG THCS TRẦN PHÚ
+📌 Chọn tháng
 </h2>
 
 
 
-<h1>
-📅 QUẢN LÝ HỌC SINH THEO THÁNG - LỚP 97
-</h1>
+<input id="thang"
 
+placeholder="Ví dụ: Tháng 9/2026">
 
 
 
+<button onclick="taoThang()">
 
-<div class="box">
-
-
-<h3>
-📌 Chọn tháng
-</h3>
-
-
-<select id="thang">
-
-
-<option>
-Tháng 9
-</option>
-
-
-<option>
-Tháng 10
-</option>
-
-
-<option>
-Tháng 11
-</option>
-
-
-<option>
-Tháng 12
-</option>
-
-
-<option>
-Tháng 1
-</option>
-
-
-<option>
-Tháng 2
-</option>
-
-
-<option>
-Tháng 3
-</option>
-
-
-<option>
-Tháng 4
-</option>
-
-
-<option>
-Tháng 5
-</option>
-
-
-</select>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="box">
-
-
-<h3>
-✍️ Nhập đánh giá học sinh
-</h3>
-
-
-
-<input id="tenHS"
-
-placeholder="Tên học sinh">
-
-
-
-<select id="xepLoai">
-
-
-<option>
-Tốt
-</option>
-
-
-<option>
-Khá
-</option>
-
-
-<option>
-Đạt
-</option>
-
-
-<option>
-Chưa đạt
-</option>
-
-
-</select>
-
-
-
-
-
-<textarea id="nhanXet"
-
-placeholder="Nhập nhận xét hoặc để AI hỗ trợ">
-
-</textarea>
-
-
-
-
-
-<button onclick="luuDanhGia()">
-
-💾 Lưu đánh giá
+➕ Tạo đánh giá tháng
 
 </button>
 
 
+
 </div>
 
 
@@ -335,57 +251,120 @@ placeholder="Nhập nhận xét hoặc để AI hỗ trợ">
 
 
 
-
-<h3>
-📊 Bảng tổng hợp tháng
-</h3>
+<div class="box">
 
 
+<h2>
+📊 Bảng đánh giá tháng
+</h2>
 
-<table id="bang">
+
+
+<table>
+
+
+<thead>
 
 
 <tr>
+
 
 <th>
 STT
 </th>
 
+
 <th>
 Học sinh
 </th>
 
+
+<th>
+Điểm tháng
+</th>
+
+
 <th>
 Xếp loại
 </th>
+
 
 <th>
 Nhận xét
 </th>
 
 
+<th>
+AI
+</th>
+
+
 </tr>
 
 
+</thead>
+
+
+
+<tbody id="bangThang">
+
+
+</tbody>
+
+
 </table>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+🤖 Nhận xét AI tháng
+</h2>
+
+
+<div id="aiThang"
+
+class="ai">
+
+Chưa có dữ liệu
+
+</div>
+
+
+
+<br>
+
+
+<button onclick="taoNhanXetThang()">
+
+🤖 Tạo nhận xét tháng
+
+</button>
+
+
+</div>
 <script>
 
 
 // =====================================
-// DỮ LIỆU QUẢN LÝ THÁNG
+// QUẢN LÝ THÁNG LỚP 97
 // =====================================
 
 
-let duLieuThang = JSON.parse(
+const KEY_THANG = "xepLoaiThang97";
 
-localStorage.getItem(
-"xepLoaiThang97"
-)
 
-)
-
-|| [];
-
+let duLieuThang = [];
 
 
 
@@ -393,191 +372,71 @@ localStorage.getItem(
 
 
 // =====================================
-// LƯU ĐÁNH GIÁ
+// TẠO THÁNG MỚI
 // =====================================
 
 
-
-function luuDanhGia(){
-
+function taoThang(){
 
 
-let ten =
 
-document.getElementById(
+let thang = document.getElementById(
 
-"tenHS"
+"thang"
 
 ).value;
 
 
 
-let loai =
-
-document.getElementById(
-
-"xepLoai"
-
-).value;
-
-
-
-let nhanXet =
-
-document.getElementById(
-
-"nhanXet"
-
-).value;
-
-
-
-
-
-
-if(!ten){
+if(!thang){
 
 
 alert(
 
-"Vui lòng nhập tên học sinh"
+"Vui lòng nhập tháng"
 
 );
 
 
 return;
 
-
 }
 
 
 
 
 
+duLieuThang = danhSachHocSinh.map(
 
-// lấy dữ liệu thi đua tuần
+(ten,index)=>{
 
 
-let thiDua = JSON.parse(
+return{
 
-localStorage.getItem(
 
-"thiDuaTuan97"
+stt:index+1,
 
-)
 
-)
+hoTen:ten,
 
-|| [];
 
+thang:thang,
 
 
+diem:100,
 
 
+xepLoai:"Tốt",
 
 
-let hsThiDua = thiDua.find(
-
-(x)=>x.ten==ten
-
-);
-
-
-
-
-
-let diem=100;
-
-
-
-if(hsThiDua){
-
-
-diem=hsThiDua.diem;
-
-
-}
-
-
-
-
-
-
-
-// nếu chưa có nhận xét thì AI tạo
-
-
-if(nhanXet==""){
-
-
-nhanXet = taoNhanXetAI(
-
-loai,
-
-diem
-
-);
-
-
-}
-
-
-
-
-
-
-let hs={
-
-
-
-thang:
-
-document.getElementById(
-
-"thang"
-
-).value,
-
-
-
-ten:ten,
-
-
-
-diem:diem,
-
-
-
-xepLoai:loai,
-
-
-
-nhanXet:nhanXet
+nhanXet:""
 
 
 
 };
 
 
-
-
-
-
-
-// cập nhật nếu đã có
-
-
-let index=
-
-duLieuThang.findIndex(
-
-(x)=>
-
-x.ten==ten
-
-&&
-
-x.thang==hs.thang
+}
 
 );
 
@@ -585,33 +444,42 @@ x.thang==hs.thang
 
 
 
+luuThang();
 
 
-if(index>=0){
+
+hienThiBangThang();
 
 
-duLieuThang[index]=hs;
+
+alert(
+
+"✅ Đã tạo đánh giá tháng"
+
+);
+
 
 
 }
 
-else{
-
-
-duLieuThang.push(hs);
-
-
-}
 
 
 
 
 
+
+
+// =====================================
+// LƯU DỮ LIỆU
+// =====================================
+
+
+function luuThang(){
 
 
 localStorage.setItem(
 
-"xepLoaiThang97",
+KEY_THANG,
 
 JSON.stringify(
 
@@ -623,25 +491,41 @@ duLieuThang
 
 
 
+}
 
 
 
 
-hienThiBang();
 
 
 
-alert(
+// =====================================
+// TẢI DỮ LIỆU
+// =====================================
 
-"✅ Đã lưu đánh giá tháng"
+
+function taiThang(){
+
+
+let data = localStorage.getItem(
+
+KEY_THANG
 
 );
 
 
 
+if(data){
+
+
+duLieuThang = JSON.parse(data);
+
+
 }
 
 
+
+}
 
 
 
@@ -650,78 +534,36 @@ alert(
 
 
 // =====================================
-// AI NHẬN XÉT
+// XẾP LOẠI
 // =====================================
 
 
-
-function taoNhanXetAI(
-
-loai,
-
-diem
-
-){
+function xepLoai(diem){
 
 
 
-if(diem>=110){
+if(diem>=95)
+
+return "Tốt";
 
 
-return
 
-"Học sinh có tinh thần học tập tốt, "
+if(diem>=80)
 
-+
+return "Khá";
 
-tích cực tham gia các hoạt động, "
 
-+
 
-cần tiếp tục phát huy.";
+if(diem>=65)
 
+return "Đạt";
+
+
+
+return "Cần cố gắng";
 
 
 }
-
-
-
-
-if(diem>=90){
-
-
-return
-
-"Học sinh cơ bản thực hiện tốt nội quy, "
-
-+
-
-cần duy trì sự cố gắng và chủ động hơn trong học tập.";
-
-
-
-}
-
-
-
-
-return
-
-"Học sinh cần được quan tâm, "
-
-+
-
-rèn luyện ý thức học tập, "
-
-+
-
-phối hợp cùng gia đình để tiến bộ.";
-
-
-
-}
-
-
 
 
 
@@ -734,40 +576,19 @@ phối hợp cùng gia đình để tiến bộ.";
 // =====================================
 
 
-
-function hienThiBang(){
-
+function hienThiBangThang(){
 
 
-let bang=
 
-document.getElementById(
+let bang = document.getElementById(
 
-"bang"
+"bangThang"
 
 );
 
 
 
-bang.innerHTML=
-
-`
-
-<tr>
-
-<th>STT</th>
-
-<th>Học sinh</th>
-
-<th>Xếp loại</th>
-
-<th>Điểm</th>
-
-<th>Nhận xét</th>
-
-</tr>
-
-`;
+bang.innerHTML="";
 
 
 
@@ -775,93 +596,243 @@ bang.innerHTML=
 
 
 
+duLieuThang.forEach(
 
-let thangHienTai=
-
-document.getElementById(
-
-"thang"
-
-).value;
+(hs,index)=>{
 
 
 
-
-
-
-
-let ds=
-
-duLieuThang.filter(
-
-(x)=>
-
-x.thang==thangHienTai
-
-);
-
-
-
-
-
-
-
-ds.forEach(
-
-(hs,i)=>{
+hs.xepLoai = xepLoai(hs.diem);
 
 
 
 bang.innerHTML +=
 
 
+
 `
 
 <tr>
 
+
 <td>
 
-${i+1}
+${index+1}
 
 </td>
 
 
+
 <td>
 
-${hs.ten}
+${hs.hoTen}
 
 </td>
 
 
+
 <td>
+
+<input 
+
+type="number"
+
+value="${hs.diem}"
+
+onchange="capNhatDiem(${index},this.value)"
+
+>
+
+</td>
+
+
+
+<td class="tot">
 
 ${hs.xepLoai}
 
 </td>
 
 
+
 <td>
 
-${hs.diem}
+<input
+
+value="${hs.nhanXet}"
+
+onchange="capNhatNhanXet(${index},this.value)"
+
+>
 
 </td>
 
 
+
 <td>
 
-${hs.nhanXet}
+
+<button onclick="aiCaNhan(${index})">
+
+🤖
+
+</button>
+
 
 </td>
 
 
 </tr>
 
+
 `;
 
 
-});
+
+}
+
+);
 
 
+
+luuThang();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// CẬP NHẬT ĐIỂM
+// =====================================
+
+
+function capNhatDiem(index,diem){
+
+
+
+duLieuThang[index].diem=
+
+Number(diem);
+
+
+
+duLieuThang[index].xepLoai=
+
+xepLoai(
+
+Number(diem)
+
+);
+
+
+
+luuThang();
+
+
+hienThiBangThang();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// NHẬN XÉT
+// =====================================
+
+
+function capNhatNhanXet(index,text){
+
+
+
+duLieuThang[index].nhanXet=text;
+
+
+
+luuThang();
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// AI NHẬN XÉT CÁ NHÂN
+// =====================================
+
+
+function aiCaNhan(index){
+
+
+
+let hs=duLieuThang[index];
+
+
+
+document.getElementById(
+
+"aiThang"
+
+).innerText=
+
+
+`
+
+🤖 NHẬN XÉT AI THÁNG
+
+
+Học sinh:
+
+${hs.hoTen}
+
+
+
+Điểm:
+
+${hs.diem}
+
+
+
+Xếp loại:
+
+${hs.xepLoai}
+
+
+
+Nhận xét:
+
+
+${
+hs.diem>=95
+
+?
+
+"Em có ý thức tốt, tích cực tham gia hoạt động của lớp."
+
+:
+
+"Em cần cố gắng hơn trong việc thực hiện nội quy và nhiệm vụ học tập."
+
+}
+
+
+`;
 
 
 
@@ -874,21 +845,101 @@ ${hs.nhanXet}
 
 
 
+// =====================================
+// AI NHẬN XÉT CẢ LỚP
+// =====================================
 
-// thay đổi tháng
+
+function taoNhanXetThang(){
+
+
+
+if(duLieuThang.length==0)
+
+return;
+
+
+
+
+let tong=0;
+
+
+
+duLieuThang.forEach(
+
+hs=>{
+
+
+tong += hs.diem;
+
+
+}
+
+);
+
+
+
+let tb=Math.round(
+
+tong / duLieuThang.length
+
+);
+
+
+
+
+
+let nhanXet=
+
+
+
+`
+
+🤖 NHẬN XÉT THÁNG LỚP 97
+
+
+Điểm trung bình:
+
+${tb}
+
+
+
+Đánh giá:
+
+
+${
+tb>=95
+
+?
+
+"Tập thể lớp duy trì tốt nền nếp, có tinh thần tự giác và trách nhiệm."
+
+:
+
+"Lớp cần tiếp tục nâng cao ý thức học tập, rèn luyện và tinh thần tự quản."
+
+}
+
+
+
+GVCN tiếp tục theo dõi, động viên và phối hợp cùng phụ huynh.
+
+
+`;
+
+
 
 
 document.getElementById(
 
-"thang"
+"aiThang"
 
-).addEventListener(
+).innerText=nhanXet;
 
-"change",
 
-hienThiBang
 
-);
+}
+
 
 
 
@@ -898,7 +949,12 @@ hienThiBang
 window.onload=function(){
 
 
-hienThiBang();
+
+taiThang();
+
+
+hienThiBangThang();
+
 
 
 };
@@ -906,3 +962,8 @@ hienThiBang();
 
 
 </script>
+
+
+
+
+</div>
