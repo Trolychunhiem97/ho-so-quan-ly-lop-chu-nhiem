@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Trợ lý AI chủ nhiệm lớp 97
+</title>
+
+
+<style>
+
+
+body{
+
+font-family:"Segoe UI",Arial;
+
+background:#eef5ff;
+
+padding:20px;
+
+}
+
+
+
+.container{
+
+max-width:1000px;
+
+margin:auto;
+
+background:white;
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px #ccc;
+
+}
+
+
+
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:30px;
+
+border-radius:25px;
+
+text-align:center;
+
+}
+
+
+
+.header h1{
+
+font-size:35px;
+
+}
+
+
+
+.box{
+
+margin-top:25px;
+
+background:#f8fbff;
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+
+
+select,
+textarea{
+
+width:100%;
+
+padding:15px;
+
+font-size:17px;
+
+border-radius:15px;
+
+border:1px solid #ccc;
+
+}
+
+
+
+textarea{
+
+height:150px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:15px 30px;
+
+border-radius:15px;
+
+font-size:17px;
+
+cursor:pointer;
+
+margin-top:15px;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+.result{
+
+margin-top:25px;
+
+background:#fff8e1;
+
+padding:25px;
+
+border-radius:20px;
+
+min-height:150px;
+
+white-space:pre-line;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:40px;
+
+color:#666;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<div class="header">
+
+
+<h1>
+🤖 TRỢ LÝ AI CHỦ NHIỆM
+</h1>
+
+
+<p>
+Lớp 97 - GVCN Trần Sáng
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="box">
+
+
+<h3>
+1. Chọn nhiệm vụ
+</h3>
+
+
+
+<select id="loai">
+
+
+<option>
+Nhận xét học sinh
+</option>
+
+
+<option>
+Tin nhắn phụ huynh
+</option>
+
+
+<option>
+Kế hoạch chủ nhiệm
+</option>
+
+
+<option>
+Biện pháp giáo dục
+</option>
+
+
+<option>
+Nhận xét thi đua tuần
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h3>
+2. Nhập thông tin
+</h3>
+
+
+
+<textarea id="duLieu"
+
+placeholder="Ví dụ:
+Học sinh Nguyễn Văn A học lực yếu, chưa chăm học, hay quên bài tập...">
+
+</textarea>
+
+
+
+
+<button onclick="taoNhanXet()">
+
+🤖 Tạo nội dung
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="result" id="ketQua">
+
+Kết quả AI sẽ hiển thị ở đây...
+
+</div>
+
+
+
+
+
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+function taoNhanXet(){
+
+
+let loai=
+
+document.getElementById("loai").value;
+
+
+
+let nd=
+
+document.getElementById("duLieu").value;
+
+
+
+let kq="";
+
+
+
+
+
+if(loai=="Nhận xét học sinh"){
+
+
+kq=
+
+"Nhận xét học sinh:\n\n"
+
++
+
+"Em có ý thức học tập và rèn luyện. "
+
++
+
+"Trong thời gian tới cần tiếp tục phát huy ưu điểm, "
+
++
+
+"tích cực tham gia các hoạt động của lớp, "
+
++
+
+"đồng thời cố gắng khắc phục những hạn chế để tiến bộ hơn.\n\n"
+
++
+
+"Thông tin bổ sung:\n"
+
++
+
+nd;
+
+
+}
+
+
+
+
+if(loai=="Tin nhắn phụ huynh"){
+
+
+kq=
+
+"Kính gửi quý phụ huynh!\n\n"
+
++
+
+"GVCN xin thông báo về tình hình của học sinh:\n"
+
++
+
+nd
+
++
+
+"\n\n"
+
++
+
+"Mong gia đình phối hợp cùng nhà trường để hỗ trợ em ngày càng tiến bộ.";
+
+}
+
+
+
+
+if(loai=="Kế hoạch chủ nhiệm"){
+
+
+kq=
+
+"KẾ HOẠCH CHỦ NHIỆM\n\n"
+
++
+
+"1. Mục tiêu:\n"
+
++
+
+"- Duy trì nề nếp lớp học.\n"
+
++
+
+"- Nâng cao tinh thần học tập.\n"
+
++
+
+"- Xây dựng tập thể đoàn kết.\n\n"
+
++
+
+"2. Nội dung thực hiện:\n"
+
++
+
+nd;
+
+
+}
+
+
+
+
+if(loai=="Biện pháp giáo dục"){
+
+
+kq=
+
+"Biện pháp đề xuất:\n\n"
+
++
+
+"- Tìm hiểu nguyên nhân.\n"
+
++
+
+"- Trao đổi với học sinh.\n"
+
++
+
+"- Phối hợp phụ huynh.\n"
+
++
+
+"- Theo dõi sự tiến bộ hằng tuần.\n\n"
+
++
+
+nd;
+
+
+}
+
+
+
+
+if(loai=="Nhận xét thi đua tuần"){
+
+
+kq=
+
+"Nhận xét thi đua tuần:\n\n"
+
++
+
+"Lớp duy trì tốt nền nếp, các tổ có tinh thần thi đua. "
+
++
+
+"Cần tiếp tục phát huy tinh thần trách nhiệm, "
+
++
+
+"khắc phục các tồn tại trong tuần tới.\n\n"
+
++
+
+nd;
+
+
+}
+
+
+
+document.getElementById(
+
+"ketQua"
+
+).innerText=kq;
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
