@@ -14,6 +14,9 @@ Trợ lý quản lý lớp 97
 </title>
 
 
+<script src="phanquyen.js"></script>
+
+
 <style>
 
 
@@ -35,7 +38,7 @@ justify-content:center;
 
 align-items:center;
 
-font-family:"Segoe UI",Arial;
+font-family:"Segoe UI",Arial,sans-serif;
 
 background:linear-gradient(
 135deg,
@@ -47,8 +50,8 @@ background:linear-gradient(
 
 
 
-.container{
 
+.container{
 
 width:420px;
 
@@ -59,7 +62,6 @@ padding:35px;
 border-radius:30px;
 
 box-shadow:0 15px 40px rgba(0,0,0,.25);
-
 
 }
 
@@ -87,7 +89,7 @@ font-size:28px;
 
 
 
-.sub{
+.subtitle{
 
 text-align:center;
 
@@ -111,14 +113,12 @@ margin-bottom:8px;
 
 
 
-select,input{
-
+select,
+input{
 
 width:100%;
 
 padding:14px;
-
-margin-bottom:20px;
 
 border-radius:15px;
 
@@ -126,12 +126,13 @@ border:1px solid #ccc;
 
 font-size:16px;
 
+margin-bottom:18px;
 
 }
 
 
 
-.password{
+.password-box{
 
 position:relative;
 
@@ -139,25 +140,28 @@ position:relative;
 
 
 
-.password button{
+.password-box button{
 
 
 position:absolute;
 
 right:8px;
 
-top:7px;
+top:5px;
 
 width:45px;
 
-padding:8px;
+height:45px;
 
-background:#eee;
+border:none;
 
-color:#1565c0;
+background:#eef5ff;
+
+border-radius:10px;
+
+cursor:pointer;
 
 font-size:18px;
-
 
 }
 
@@ -184,7 +188,6 @@ font-weight:bold;
 
 cursor:pointer;
 
-
 }
 
 
@@ -199,10 +202,9 @@ background:#0d47a1;
 
 #error{
 
+text-align:center;
 
 color:red;
-
-text-align:center;
 
 font-weight:bold;
 
@@ -214,9 +216,9 @@ height:25px;
 
 .footer{
 
-margin-top:30px;
-
 text-align:center;
+
+margin-top:25px;
 
 color:#777;
 
@@ -225,10 +227,12 @@ font-size:14px;
 }
 
 
+
 </style>
 
 
 </head>
+
 
 
 <body>
@@ -240,17 +244,27 @@ font-size:14px;
 
 
 <div class="logo">
+
 🤖
+
 </div>
 
 
 
+
 <h1>
+
 TRỢ LÝ QUẢN LÝ LỚP 97
+
 </h1>
 
 
-<p class="sub">
+
+<p class="subtitle">
+
+🏫 Trường THCS Trần Phú
+
+<br>
 
 GVCN Trần Sáng
 
@@ -261,8 +275,11 @@ GVCN Trần Sáng
 
 
 <label>
+
 👤 Vai trò
+
 </label>
+
 
 
 <select id="vaiTro">
@@ -282,35 +299,29 @@ Lớp trưởng
 </option>
 
 
-<option value="to1">
+<option value="hoctap">
 
-Tổ trưởng tổ 1
-
-</option>
-
-
-<option value="to2">
-
-Tổ trưởng tổ 2
+Lớp phó học tập
 
 </option>
 
 
-<option value="to3">
+<option value="laodong">
 
-Tổ trưởng tổ 3
+Lớp phó lao động
 
 </option>
 
 
-<option value="to4">
+<option value="totruong">
 
-Tổ trưởng tổ 4
+Tổ trưởng
 
 </option>
 
 
 </select>
+
 
 
 
@@ -323,9 +334,13 @@ Tên đăng nhập
 </label>
 
 
-<input id="taiKhoan"
+<input 
+
+id="taiKhoan"
 
 placeholder="Nhập tài khoản">
+
+
 
 
 
@@ -339,14 +354,17 @@ Mật khẩu
 
 
 
-<div class="password">
+<div class="password-box">
 
 
-<input id="matKhau"
+<input
+
+id="matKhau"
 
 type="password"
 
 placeholder="Nhập mật khẩu">
+
 
 
 <button onclick="anHienMatKhau()">
@@ -356,7 +374,11 @@ placeholder="Nhập mật khẩu">
 </button>
 
 
+
 </div>
+
+
+
 
 
 
@@ -373,6 +395,7 @@ onclick="dangNhap()">
 
 
 
+
 <p id="error"></p>
 
 
@@ -382,11 +405,12 @@ onclick="dangNhap()">
 
 <div class="footer">
 
-Trường THCS Trần Phú
+
+🤖 Trợ lý quản lý lớp 97
 
 <br>
 
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+GVCN Trần Sáng
 
 </div>
 
@@ -404,190 +428,61 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 <script>
 
 
-// ================================
-// TÀI KHOẢN HỆ THỐNG
-// ================================
-
-
-
-const USERS={
-
-
-gvcn:{
-
-
-username:"gvcn97",
-
-password:"123456",
-
-name:"GVCN Trần Sáng",
-
-role:"all"
-
-
-},
-
-
-
-loptruong:{
-
-
-username:"loptruong97",
-
-password:"123456",
-
-name:"Lớp trưởng",
-
-role:"thi_dua"
-
-
-},
-
-
-
-to1:{
-
-
-username:"to1",
-
-password:"123456",
-
-name:"Tổ trưởng tổ 1",
-
-role:"to"
-
-
-},
-
-
-
-to2:{
-
-
-username:"to2",
-
-password:"123456",
-
-name:"Tổ trưởng tổ 2",
-
-role:"to"
-
-
-},
-
-
-
-to3:{
-
-
-username:"to3",
-
-password:"123456",
-
-name:"Tổ trưởng tổ 3",
-
-role:"to"
-
-
-},
-
-
-
-to4:{
-
-
-username:"to4",
-
-password:"123456",
-
-name:"Tổ trưởng tổ 4",
-
-role:"to"
-
-
-}
-
-
-};
-
-
-
-
-
-
-// ================================
-// ĐĂNG NHẬP
-// ================================
+// =============================
+// XỬ LÝ ĐĂNG NHẬP
+// =============================
 
 
 function dangNhap(){
 
 
 
-let vaiTro=document.getElementById(
-
-"vaiTro"
-
-).value;
-
-
-
-let user=document.getElementById(
-
+let user = document.getElementById(
 "taiKhoan"
-
 ).value.trim();
 
 
 
-let pass=document.getElementById(
-
+let pass = document.getElementById(
 "matKhau"
-
 ).value.trim();
 
 
 
-let error=document.getElementById(
+let thongBao =
+document.getElementById("error");
 
-"error"
 
+
+
+
+if(user==="" || pass===""){
+
+
+thongBao.innerHTML=
+"⚠ Vui lòng nhập đầy đủ thông tin";
+
+
+return;
+
+
+}
+
+
+
+
+
+let ketQua = dangNhapTaiKhoan(
+user,
+pass
 );
 
 
 
 
-let data=USERS[vaiTro];
 
 
-
-
-
-if(
-
-user===data.username &&
-
-pass===data.password
-
-){
-
-
-
-localStorage.setItem(
-
-"nguoiDung97",
-
-JSON.stringify({
-
-ten:data.name,
-
-vaiTro:vaiTro,
-
-quyen:data.role
-
-})
-
-);
+if(ketQua){
 
 
 
@@ -600,8 +495,7 @@ window.location.href="trangchu.html";
 else{
 
 
-error.innerHTML=
-
+thongBao.innerHTML=
 "❌ Sai tài khoản hoặc mật khẩu";
 
 
@@ -617,27 +511,26 @@ error.innerHTML=
 
 
 
-// ================================
+// =============================
 // ẨN HIỆN MẬT KHẨU
-// ================================
+// =============================
 
 
 function anHienMatKhau(){
 
 
 
-let mk=document.getElementById(
-
+let o =
+document.getElementById(
 "matKhau"
-
 );
 
 
 
-if(mk.type==="password"){
+if(o.type==="password"){
 
 
-mk.type="text";
+o.type="text";
 
 
 }
@@ -645,7 +538,7 @@ mk.type="text";
 else{
 
 
-mk.type="password";
+o.type="password";
 
 
 }
@@ -661,5 +554,6 @@ mk.type="password";
 
 
 </body>
+
 
 </html>
