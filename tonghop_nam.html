@@ -12,10 +12,10 @@
 
 <script src="danhsach.js"></script>
 
+<script src="ai_nhanxet.js"></script>
 
 
 <style>
-
 
 body{
 
@@ -26,7 +26,6 @@ background:#eef5ff;
 padding:20px;
 
 }
-
 
 
 .container{
@@ -46,7 +45,6 @@ box-shadow:0 10px 30px rgba(0,0,0,.1);
 }
 
 
-
 h1,h2{
 
 text-align:center;
@@ -54,7 +52,6 @@ text-align:center;
 color:#1565c0;
 
 }
-
 
 
 .user{
@@ -66,45 +63,6 @@ background:#f2f7ff;
 padding:15px;
 
 border-radius:15px;
-
-font-size:18px;
-
-}
-
-
-
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:25px;
-
-}
-
-
-
-th{
-
-background:#1565c0;
-
-color:white;
-
-padding:12px;
-
-}
-
-
-
-td{
-
-border:1px solid #ddd;
-
-padding:10px;
-
-text-align:center;
 
 }
 
@@ -124,12 +82,11 @@ border-radius:10px;
 
 font-size:16px;
 
-cursor:pointer;
-
 margin:10px;
 
-}
+cursor:pointer;
 
+}
 
 
 button:hover{
@@ -140,233 +97,48 @@ background:#0d47a1;
 
 
 
+table{
 
-.footer{
+width:100%;
 
-margin-top:30px;
+border-collapse:collapse;
 
-text-align:center;
-
-border-top:1px solid #ddd;
-
-padding-top:20px;
-
-color:#555;
+margin-top:20px;
 
 }
 
 
 
-</style>
+th{
 
+background:#1565c0;
 
-</head>
+color:white;
 
+padding:12px;
 
+}
 
-<body>
 
+td{
 
+border:1px solid #ddd;
 
-<div class="container">
+padding:10px;
 
+text-align:center;
 
+}
 
-<h2>
 
-🏫 TRƯỜNG THCS TRẦN PHÚ
 
-</h2>
+.thongke{
 
-
-
-<h1>
-
-📊 TỔNG HỢP CUỐI NĂM LỚP 97
-
-</h1>
-
-
-
-
-<div class="user" id="nguoiDung">
-
-</div>
-
-
-
-
-
-<div style="text-align:center">
-
-
-<button onclick="tinhTongHopNam()">
-
-📊 Tổng hợp kết quả năm
-
-</button>
-
-
-
-<button onclick="taoNhanXetNam()">
-
-🤖 AI nhận xét cuối năm
-
-</button>
-
-
-
-<button onclick="luuTongHopNam()">
-
-💾 Lưu tổng hợp
-
-</button>
-
-
-
-<button onclick="location.href='xuat_tonghop_word.html'">
-
-📄 Xuất báo cáo Word
-
-</button>
-
-
-
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<table id="bangTongHop">
-
-
-<tr>
-
-<th>
-STT
-</th>
-
-
-<th>
-Họ tên
-</th>
-
-
-<th>
-Điểm TB năm
-</th>
-
-
-<th>
-Số tháng Xuất sắc
-</th>
-
-
-<th>
-Xếp loại
-</th>
-
-
-<th>
-Nhận xét AI
-</th>
-
-
-</tr>
-
-
-</table>
-
-
-
-
-
-
-<div class="footer">
-
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
-
-</div>
-
-
-
-</div>
-  <!DOCTYPE html>
-<html lang="vi">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>Tổng hợp năm lớp 97</title>
-
-
-<script src="phanquyen.js"></script>
-
-<script src="danhsach.js"></script>
-
-
-
-<style>
-
-
-body{
-
-font-family:Arial,sans-serif;
-
-background:#eef5ff;
+background:#f2f7ff;
 
 padding:20px;
 
-}
-
-
-
-.container{
-
-max-width:1500px;
-
-margin:auto;
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-
-}
-
-
-
-h1,h2{
-
-text-align:center;
-
-color:#1565c0;
-
-}
-
-
-
-.user{
-
-text-align:center;
-
-background:#f2f7ff;
-
-padding:15px;
+margin-top:20px;
 
 border-radius:15px;
 
@@ -376,79 +148,11 @@ font-size:18px;
 
 
 
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:25px;
-
-}
-
-
-
-th{
-
-background:#1565c0;
-
-color:white;
-
-padding:12px;
-
-}
-
-
-
-td{
-
-border:1px solid #ddd;
-
-padding:10px;
-
-text-align:center;
-
-}
-
-
-
-button{
-
-background:#1565c0;
-
-color:white;
-
-border:none;
-
-padding:12px 25px;
-
-border-radius:10px;
-
-font-size:16px;
-
-cursor:pointer;
-
-margin:10px;
-
-}
-
-
-
-button:hover{
-
-background:#0d47a1;
-
-}
-
-
-
-
 .footer{
 
-margin-top:30px;
-
 text-align:center;
+
+margin-top:30px;
 
 border-top:1px solid #ddd;
 
@@ -459,36 +163,26 @@ color:#555;
 }
 
 
-
 </style>
 
 
 </head>
 
 
-
 <body>
-
 
 
 <div class="container">
 
 
-
 <h2>
-
 🏫 TRƯỜNG THCS TRẦN PHÚ
-
 </h2>
 
 
-
 <h1>
-
 📊 TỔNG HỢP CUỐI NĂM LỚP 97
-
 </h1>
-
 
 
 
@@ -498,20 +192,17 @@ color:#555;
 
 
 
-
-
 <div style="text-align:center">
 
 
-<button onclick="tinhTongHopNam()">
+<button onclick="tongHopNam()">
 
-📊 Tổng hợp kết quả năm
+📊 Tổng hợp năm
 
 </button>
 
 
-
-<button onclick="taoNhanXetNam()">
+<button onclick="taoAI_NhanXetNam()">
 
 🤖 AI nhận xét cuối năm
 
@@ -521,7 +212,7 @@ color:#555;
 
 <button onclick="luuTongHopNam()">
 
-💾 Lưu tổng hợp
+💾 Lưu dữ liệu
 
 </button>
 
@@ -529,7 +220,7 @@ color:#555;
 
 <button onclick="location.href='xuat_tonghop_word.html'">
 
-📄 Xuất báo cáo Word
+📄 Xuất Word
 
 </button>
 
@@ -546,7 +237,9 @@ color:#555;
 
 
 
+<div class="thongke" id="thongKe">
 
+</div>
 
 
 
@@ -559,31 +252,21 @@ color:#555;
 STT
 </th>
 
-
 <th>
 Họ tên
 </th>
-
 
 <th>
 Điểm TB năm
 </th>
 
-
-<th>
-Số tháng Xuất sắc
-</th>
-
-
 <th>
 Xếp loại
 </th>
 
-
 <th>
 Nhận xét AI
 </th>
-
 
 </tr>
 
@@ -592,15 +275,623 @@ Nhận xét AI
 
 
 
-
-
-
 <div class="footer">
 
 Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 </div>
+<script>
 
 
+// ===============================
+// KIỂM TRA NGƯỜI DÙNG
+// ===============================
+
+
+let nguoiDung = JSON.parse(
+
+localStorage.getItem(
+"nguoiDungDangNhap"
+)
+
+);
+
+
+
+if(!nguoiDung){
+
+location.href="dangnhap.html";
+
+}
+
+
+
+document.getElementById(
+"nguoiDung"
+).innerHTML =
+
+"👤 Xin chào: <b>"
++
+nguoiDung.ten
++
+"</b>";
+
+
+
+
+
+
+
+// ===============================
+// DANH SÁCH HỌC SINH
+// ===============================
+
+
+let dsHocSinh=[];
+
+
+
+if(typeof danhSachHocSinh!="undefined"){
+
+dsHocSinh=danhSachHocSinh;
+
+}
+
+else{
+
+
+dsHocSinh=[
+
+"Nguyễn Văn A",
+
+"Trần Văn B",
+
+"Lê Thị C"
+
+];
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// LẤY DỮ LIỆU THÁNG
+// ===============================
+
+
+function layDuLieuThang(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"xepLoaiThang97"
+)
+
+)
+
+||{
+
+duLieu:[]
+
+};
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// TỔNG HỢP NĂM
+// ===============================
+
+
+function tongHopNam(){
+
+
+
+let data=
+
+layDuLieuThang();
+
+
+
+let bang=
+
+document.getElementById(
+"bangTongHop"
+);
+
+
+
+bang.innerHTML=`
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ tên</th>
+
+<th>Điểm TB năm</th>
+
+<th>Xếp loại</th>
+
+<th>Nhận xét AI</th>
+
+</tr>
+
+`;
+
+
+
+
+let thongKe={
+
+
+xuatSac:0,
+
+tot:0,
+
+kha:0,
+
+canCoGang:0
+
+
+};
+
+
+
+
+
+
+let danhSachAI=[];
+
+
+
+
+
+
+dsHocSinh.forEach(
+
+(hs,index)=>{
+
+
+
+let diem=[];
+
+
+
+let tim=
+
+data.duLieu.find(
+
+(x)=>x.ten==hs
+
+);
+
+
+
+if(tim){
+
+diem.push(
+
+Number(tim.diem)
+
+);
+
+}
+
+
+
+
+let tb=0;
+
+
+
+if(diem.length){
+
+tb=Math.round(
+
+diem.reduce(
+
+(a,b)=>a+b,
+
+0
+
+)
+
+/diem.length
+
+);
+
+}
+
+
+
+
+
+let xepLoai="";
+
+
+
+if(tb>=110){
+
+
+xepLoai="🌟 Xuất sắc";
+
+thongKe.xuatSac++;
+
+
+}
+
+else if(tb>=100){
+
+
+xepLoai="✅ Tốt";
+
+thongKe.tot++;
+
+
+}
+
+else if(tb>=90){
+
+
+xepLoai="👍 Khá";
+
+thongKe.kha++;
+
+
+}
+
+else{
+
+
+xepLoai="⚠ Cần cố gắng";
+
+thongKe.canCoGang++;
+
+
+}
+
+
+
+
+
+
+
+
+// Chuẩn bị dữ liệu cho AI
+
+
+danhSachAI.push({
+
+ten:hs,
+
+diem:tb,
+
+xepLoai:xepLoai,
+
+hocTap:"",
+
+laoDong:"",
+
+yThuc:""
+
+
+});
+
+
+
+
+
+
+
+bang.innerHTML +=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${hs}</td>
+
+<td><b>${tb}</b></td>
+
+<td>${xepLoai}</td>
+
+<td class="nhanXet">
+
+Chưa tạo
+
+</td>
+
+</tr>
+
+`;
+
+
+
+});
+
+
+
+
+
+
+document.getElementById(
+
+"thongKe"
+
+).innerHTML=
+
+
+`
+📊 THỐNG KÊ LỚP 97
+
+<br><br>
+
+🌟 Xuất sắc: ${thongKe.xuatSac} học sinh
+
+<br>
+
+✅ Tốt: ${thongKe.tot} học sinh
+
+<br>
+
+👍 Khá: ${thongKe.kha} học sinh
+
+<br>
+
+⚠ Cần cố gắng: ${thongKe.canCoGang} học sinh
+
+`;
+
+
+
+
+
+// lưu tạm cho AI
+
+localStorage.setItem(
+
+"duLieuAI97",
+
+JSON.stringify(
+
+danhSachAI
+
+)
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// AI NHẬN XÉT CUỐI NĂM
+// ===============================
+
+
+function taoAI_NhanXetNam(){
+
+
+
+let data=
+
+JSON.parse(
+
+localStorage.getItem(
+
+"duLieuAI97"
+
+)
+
+)
+
+||[];
+
+
+
+
+
+let ketQua=
+
+taoNhanXetLop97(
+
+data
+
+);
+
+
+
+
+
+let dong=
+
+document.querySelectorAll(
+
+"#bangTongHop tr"
+
+);
+
+
+
+
+
+
+for(let i=1;i<dong.length;i++){
+
+
+if(ketQua[i-1]){
+
+
+dong[i].cells[4].innerText=
+
+ketQua[i-1].nhanXet;
+
+
+}
+
+
+}
+
+
+
+
+
+alert(
+
+"🤖 AI đã tạo nhận xét riêng cho từng học sinh!"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+// ===============================
+// LƯU TỔNG HỢP NĂM
+// ===============================
+
+
+
+function luuTongHopNam(){
+
+
+
+let dong=
+
+document.querySelectorAll(
+
+"#bangTongHop tr"
+
+);
+
+
+
+let ketQua=[];
+
+
+
+
+
+
+for(let i=1;i<dong.length;i++){
+
+
+ketQua.push({
+
+
+ten:
+
+dong[i].cells[1].innerText,
+
+
+diem:
+
+Number(
+
+dong[i].cells[2].innerText
+
+),
+
+
+xepLoai:
+
+dong[i].cells[3].innerText,
+
+
+nhanXet:
+
+dong[i].cells[4].innerText
+
+
+});
+
+
+}
+
+
+
+
+
+localStorage.setItem(
+
+"tongHopNam97",
+
+JSON.stringify({
+
+namHoc:"2026-2027",
+
+ngay:
+
+new Date().toLocaleString("vi-VN"),
+
+
+duLieu:ketQua
+
+
+})
+
+);
+
+
+
+
+
+alert(
+
+"✅ Đã lưu tổng hợp năm!"
+
+);
+
+
+
+}
+
+
+
+
+
+
+window.onload=function(){
+
+
+tongHopNam();
+
+
+};
+
+
+</script>
 
 </div>
