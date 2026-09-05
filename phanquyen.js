@@ -1,459 +1,261 @@
-// =================================================
-// PHÂN QUYỀN HỆ THỐNG QUẢN LÝ LỚP 97
+// ======================================
+// PHÂN QUYỀN TRỢ LÝ QUẢN LÝ LỚP 97
 // TRƯỜNG THCS TRẦN PHÚ
 // GVCN: TRẦN SÁNG
-// =================================================
+// ======================================
 
 
 
-// Lấy người dùng đang đăng nhập
+// Danh sách tài khoản
+
+
+const taiKhoan97 = [
+
+
+{
+user:"gvcn",
+pass:"123456",
+ten:"GVCN Trần Sáng",
+quyen:"gvcn"
+},
+
+
+
+{
+user:"loptruong",
+pass:"123456",
+ten:"Lớp trưởng",
+quyen:"loptruong"
+},
+
+
+
+{
+user:"hoc_tap",
+pass:"123456",
+ten:"Lớp phó học tập",
+quyen:"hoc_tap"
+},
+
+
+
+{
+user:"lao_dong",
+pass:"123456",
+ten:"Lớp phó lao động",
+quyen:"lao_dong"
+},
+
+
+
+{
+user:"to_truong",
+pass:"123456",
+ten:"Tổ trưởng",
+quyen:"to_truong"
+}
+
+
+
+];
+
+
+
+
+
+
+
+
+
+// ======================================
+// KIỂM TRA ĐĂNG NHẬP
+// ======================================
+
+
+function dangNhapTaiKhoan(user,pass){
+
+
+
+let tk=
+
+taiKhoan97.find(
+
+(x)=>
+
+x.user==user && x.pass==pass
+
+);
+
+
+
+
+
+if(tk){
+
+
+
+localStorage.setItem(
+
+"nguoiDungDangNhap",
+
+JSON.stringify(tk)
+
+);
+
+
+
+return true;
+
+
+
+}
+
+
+
+return false;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// LẤY NGƯỜI DÙNG HIỆN TẠI
+// ======================================
+
+
 
 function layNguoiDung(){
 
 
-let user =
+
+return JSON.parse(
 
 localStorage.getItem(
 
 "nguoiDungDangNhap"
 
-);
-
-
-
-if(!user){
-
-return null;
-
-}
-
-
-
-return JSON.parse(user);
-
-
-
-}
-
-
-
-
-
-// Kiểm tra quyền
-
-function coQuyen(quyenCanKiemTra){
-
-
-
-let user=
-
-layNguoiDung();
-
-
-
-if(!user){
-
-return false;
-
-}
-
-
-
-
-
-// Admin được toàn quyền
-
-if(user.quyen=="admin"){
-
-return true;
-
-}
-
-
-
-
-
-// Kiểm tra quyền cụ thể
-
-return user.quyen.includes(
-
-quyenCanKiemTra
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-// Hiển thị thông tin người dùng
-
-function hienThiNguoiDung(){
-
-
-
-let user=
-
-layNguoiDung();
-
-
-
-let khuVuc=
-
-document.getElementById(
-
-"nguoiDung"
-
-);
-
-
-
-if(khuVuc && user){
-
-
-khuVuc.innerHTML=
-
-"👤 Xin chào: <b>"
-
-+
-
-user.ten
-
-+
-
-"</b>";
-
-
-
-}
-
-}
-
-
-
-
-
-// Ẩn hiện menu theo quyền
-
-function apDungPhanQuyen(){
-
-
-
-let user=
-
-layNguoiDung();
-
-
-
-if(!user){
-
-return;
-
-}
-
-
-
-
-
-
-// Các nhóm chức năng
-
-
-
-let adminOnly=[
-
-
-"menuBackup",
-
-"menuTongHop",
-
-"menuBaoCao",
-
-"menuAI"
-
-
-];
-
-
-
-
-
-let thiDua=[
-
-
-"menuThiDua",
-
-"menuThiDuaThang"
-
-
-];
-
-
-
-
-
-
-let hocTap=[
-
-
-"menuHocTap"
-
-
-];
-
-
-
-
-
-
-let laoDong=[
-
-
-"menuLaoDong"
-
-
-];
-
-
-
-
-
-
-let toTruong=[
-
-
-"menuToTruong"
-
-
-];
-
-
-
-
-
-
-
-// Nếu không phải admin
-
-if(user.quyen!="admin"){
-
-
-
-adminOnly.forEach(id=>{
-
-
-let el=
-
-document.getElementById(id);
-
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-// Quyền thi đua
-
-if(
-
-!coQuyen("thidua")
-
-&&
-
-user.quyen!="admin"
-
-){
-
-
-thiDua.forEach(id=>{
-
-
-let el=
-
-document.getElementById(id);
-
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-// Quyền học tập
-
-if(
-
-!coQuyen("hoc_tap")
-
-&&
-
-user.quyen!="admin"
-
-){
-
-
-hocTap.forEach(id=>{
-
-
-let el=
-
-document.getElementById(id);
-
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-// Quyền lao động
-
-if(
-
-!coQuyen("lao_dong")
-
-&&
-
-user.quyen!="admin"
-
-){
-
-
-laoDong.forEach(id=>{
-
-
-let el=
-
-document.getElementById(id);
-
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-// Quyền tổ trưởng
-
-if(
-
-!coQuyen("totruong")
-
-&&
-
-user.quyen!="admin"
-
-){
-
-
-toTruong.forEach(id=>{
-
-
-let el=
-
-document.getElementById(id);
-
-
-
-if(el){
-
-el.style.display="none";
-
-}
-
-
-});
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-// Đăng xuất
-
-function dangXuat(){
-
-
-
-if(
-
-confirm(
-
-"Đăng xuất khỏi hệ thống?"
+)
 
 )
 
-){
+||null;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// KIỂM TRA QUYỀN
+// ======================================
+
+
+
+function kiemTraQuyen(quyenCan){
+
+
+
+let user=
+
+layNguoiDung();
+
+
+
+
+
+if(!user){
+
+
+alert(
+
+"Vui lòng đăng nhập!"
+
+);
+
+
+
+location.href="dangnhap.html";
+
+
+return false;
+
+
+}
+
+
+
+
+
+
+if(user.quyen=="gvcn"){
+
+
+return true;
+
+
+}
+
+
+
+
+
+
+if(user.quyen==quyenCan){
+
+
+return true;
+
+
+}
+
+
+
+
+
+
+
+alert(
+
+"⚠ Bạn không có quyền truy cập chức năng này!"
+
+);
+
+
+
+return false;
+
+
+
+}
+
+
+
+
+
+
+
+
+// ======================================
+// ĐĂNG XUẤT
+// ======================================
+
+
+
+function dangXuat(){
 
 
 
@@ -470,29 +272,3 @@ location.href="dangnhap.html";
 
 
 }
-
-
-}
-
-
-
-
-
-// Chạy khi mở trang
-
-window.addEventListener(
-
-"load",
-
-function(){
-
-
-hienThiNguoiDung();
-
-
-apDungPhanQuyen();
-
-
-}
-
-);
