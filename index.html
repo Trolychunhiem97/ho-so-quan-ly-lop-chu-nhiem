@@ -5,27 +5,24 @@
 
 <meta charset="UTF-8">
 
-<title>Hệ thống quản lý lớp 97</title>
+<title>Trợ lý quản lý lớp 97</title>
 
 
-<script src="danhsach.js"></script>
+<script src="phanquyen.js"></script>
 
 
 
 <style>
 
-
 body{
 
-font-family:"Arial",sans-serif;
+font-family:Arial,sans-serif;
 
 background:#eef5ff;
 
 padding:20px;
 
 }
-
-
 
 
 .container{
@@ -36,24 +33,35 @@ margin:auto;
 
 background:white;
 
-padding:35px;
+padding:30px;
 
 border-radius:30px;
 
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,.1);
 
 }
 
 
 
-
-.school{
+.header{
 
 text-align:center;
 
-font-size:32px;
+}
 
-font-weight:bold;
+
+
+.header h1{
+
+color:#1565c0;
+
+font-size:34px;
+
+}
+
+
+
+.header h2{
 
 color:#1565c0;
 
@@ -61,33 +69,20 @@ color:#1565c0;
 
 
 
-.title{
+
+.user{
 
 text-align:center;
 
-font-size:38px;
+background:#f2f7ff;
 
-font-weight:bold;
+padding:15px;
 
-color:#1565c0;
+border-radius:15px;
 
-margin:15px;
-
-}
-
-
-
-
-.info{
-
-text-align:center;
-
-font-size:22px;
-
-margin:25px;
+font-size:20px;
 
 }
-
 
 
 
@@ -97,39 +92,31 @@ display:grid;
 
 grid-template-columns:repeat(2,1fr);
 
-gap:25px;
+gap:20px;
+
+margin-top:30px;
 
 }
-
 
 
 
 .card{
 
-height:130px;
-
 background:#1565c0;
-
-border-radius:25px;
 
 color:white;
 
-display:flex;
+padding:30px;
 
-flex-direction:column;
+border-radius:20px;
 
-justify-content:center;
+text-align:center;
 
-align-items:center;
-
-font-size:23px;
+font-size:20px;
 
 cursor:pointer;
 
-transition:.3s;
-
 }
-
 
 
 
@@ -137,38 +124,23 @@ transition:.3s;
 
 background:#0d47a1;
 
-transform:translateY(-5px);
-
 }
-
 
 
 
 .icon{
 
-font-size:45px;
-
-margin-bottom:10px;
+font-size:40px;
 
 }
 
 
 
+.logout{
 
-.status{
-
-margin-top:30px;
-
-background:#f2f7ff;
-
-padding:20px;
-
-border-radius:20px;
-
-font-size:18px;
+background:#d32f2f;
 
 }
-
 
 
 
@@ -176,18 +148,15 @@ font-size:18px;
 
 text-align:center;
 
-margin-top:35px;
+margin-top:30px;
+
+color:#555;
 
 border-top:1px solid #ddd;
 
 padding-top:20px;
 
-color:#555;
-
-font-size:20px;
-
 }
-
 
 
 
@@ -206,46 +175,35 @@ font-size:20px;
 
 
 
-<div class="school">
+<div class="header">
 
+
+<h2>
 🏫 TRƯỜNG THCS TRẦN PHÚ
+</h2>
+
+
+<h1>
+📘 TRỢ LÝ QUẢN LÝ LỚP 97
+</h1>
+
+
+<p>
+GVCN: <b>Trần Sáng</b>
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="user" id="nguoiDung">
 
 </div>
 
 
-
-<div class="title">
-
-📘 HỆ THỐNG QUẢN LÝ LỚP 97
-
-</div>
-
-
-
-<div class="info">
-
-
-👨‍🎓 Sĩ số:
-
-<b id="siso">
-
-</b>
-
-học sinh
-
-
-&nbsp;&nbsp; | &nbsp;&nbsp;
-
-
-📅 Ngày:
-
-<b id="ngay">
-
-</b>
-
-
-
-</div>
 
 
 
@@ -264,9 +222,7 @@ onclick="location.href='hocsinh.html'">
 👨‍🎓
 </div>
 
-
 Danh sách học sinh
-
 
 </div>
 
@@ -274,7 +230,11 @@ Danh sách học sinh
 
 
 
+
+
 <div class="card"
+
+id="menuThiDua"
 
 onclick="location.href='thidua_tuan.html'">
 
@@ -283,11 +243,10 @@ onclick="location.href='thidua_tuan.html'">
 🏆
 </div>
 
-
 Thi đua tuần
 
-
 </div>
+
 
 
 
@@ -295,24 +254,7 @@ Thi đua tuần
 
 <div class="card"
 
-onclick="location.href='quanly_thidua.html'">
-
-
-<div class="icon">
-📊
-</div>
-
-
-Quản lý thi đua
-
-
-</div>
-
-
-
-
-
-<div class="card"
+id="menuThiDuaThang"
 
 onclick="location.href='thidua_thang.html'">
 
@@ -321,11 +263,10 @@ onclick="location.href='thidua_thang.html'">
 📈
 </div>
 
-
 Thi đua tháng
 
-
 </div>
+
 
 
 
@@ -333,18 +274,19 @@ Thi đua tháng
 
 <div class="card"
 
-onclick="location.href='quanly_thang.html'">
+id="menuHocTap"
+
+onclick="location.href='hoctap.html'">
 
 
 <div class="icon">
-📅
+📚
 </div>
 
-
-Quản lý theo tháng
-
+Theo dõi học tập
 
 </div>
+
 
 
 
@@ -352,24 +294,47 @@ Quản lý theo tháng
 
 <div class="card"
 
-onclick="location.href='hanhkiem.html'">
+id="menuLaoDong"
+
+onclick="location.href='laodong.html'">
 
 
 <div class="icon">
-📘
+🧹
 </div>
 
-
-Hạnh kiểm
-
+Lao động - vệ sinh
 
 </div>
+
 
 
 
 
 
 <div class="card"
+
+id="menuToTruong"
+
+onclick="location.href='totruong.html'">
+
+
+<div class="icon">
+👥
+</div>
+
+Đánh giá tổ
+
+</div>
+
+
+
+
+
+
+<div class="card"
+
+id="menuBaoCao"
 
 onclick="location.href='baocao_chunhiem.html'">
 
@@ -378,9 +343,7 @@ onclick="location.href='baocao_chunhiem.html'">
 🤖
 </div>
 
-
-Báo cáo AI chủ nhiệm
-
+Báo cáo AI
 
 </div>
 
@@ -388,7 +351,30 @@ Báo cáo AI chủ nhiệm
 
 
 
+
 <div class="card"
+
+id="menuTongHop"
+
+onclick="location.href='tonghop_nam.html'">
+
+
+<div class="icon">
+📊
+</div>
+
+Tổng hợp năm
+
+</div>
+
+
+
+
+
+
+<div class="card"
+
+id="menuBackup"
 
 onclick="location.href='backup.html'">
 
@@ -397,15 +383,8 @@ onclick="location.href='backup.html'">
 💾
 </div>
 
-
 Sao lưu dữ liệu
 
-
-</div>
-
-
-
-
 </div>
 
 
@@ -413,96 +392,64 @@ Sao lưu dữ liệu
 
 
 
+<div class="card"
 
-<div class="status">
-
-
-<h3>
-
-📌 TRẠNG THÁI HỆ THỐNG
-
-</h3>
+onclick="dangXuat()">
 
 
-
-<p id="statusHocSinh">
-
-</p>
-
-
-<p id="statusBackup">
-
-</p>
-
-
-<p id="statusThang">
-
-</p>
-
-
-
+<div class="icon">
+🚪
 </div>
 
-
-
-
-
-
-
-<div class="footer">
-
-
-<h3>
-
-🏫 TRƯỜNG THCS TRẦN PHÚ
-
-</h3>
-
-
-<p>
-
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
-
-</p>
-
+Đăng xuất
 
 </div>
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
 <script>
 
 
-document.getElementById("siso").innerHTML =
-
-danhSachHocSinh.length;
+// Kiểm tra đăng nhập
 
 
+let nguoiDung =
 
-document.getElementById("ngay").innerHTML =
+localStorage.getItem(
 
-new Date().toLocaleDateString("vi-VN");
+"nguoiDungDangNhap"
 
-
-
-
-
-// Kiểm tra trạng thái
+);
 
 
-let hs = localStorage.getItem(
 
-"danhSachHocSinh"
+if(!nguoiDung){
+
+
+alert(
+
+"⚠ Vui lòng đăng nhập trước!"
+
+);
+
+
+location.href="dangnhap.html";
+
+
+}
+
+
+
+
+
+// Hiển thị thông tin người dùng
+
+
+function hienThiNguoiDung(){
+
+
+let user=
+
+JSON.parse(
+
+nguoiDung
 
 );
 
@@ -510,56 +457,94 @@ let hs = localStorage.getItem(
 
 document.getElementById(
 
-"statusHocSinh"
+"nguoiDung"
 
-).innerHTML =
-
-hs ?
-
-"✅ Đã có danh sách học sinh"
-
-:
-
-"⚠ Chưa có dữ liệu học sinh";
+).innerHTML=
 
 
+"👤 Xin chào: <b>"
+
++
+
+user.ten
+
++
+
+"</b> | Quyền: "
+
++
+
+user.quyen;
+
+
+
+}
 
 
 
 
-let backup = localStorage.getItem(
 
-"duLieuLop97TheoThang"
+// Đăng xuất
+
+
+function dangXuat(){
+
+
+
+if(
+
+confirm(
+
+"Bạn muốn đăng xuất?"
+
+)
+
+){
+
+
+
+localStorage.removeItem(
+
+"nguoiDungDangNhap"
 
 );
 
 
 
-document.getElementById(
+location.href="dangnhap.html";
 
-"statusThang"
 
-).innerHTML =
 
-backup ?
+}
 
-"✅ Đã có dữ liệu quản lý tháng"
 
-:
-
-"⚠ Chưa có dữ liệu tháng";
+}
 
 
 
 
 
-document.getElementById(
 
-"statusBackup"
+window.onload=function(){
 
-).innerHTML =
 
-"💾 Sao lưu dữ liệu: Sẵn sàng";
+
+hienThiNguoiDung();
+
+
+
+if(typeof apDungPhanQuyen==="function"){
+
+
+apDungPhanQuyen();
+
+
+
+}
+
+
+
+}
 
 
 
@@ -567,7 +552,11 @@ document.getElementById(
 
 
 
-
 </body>
 
 </html>
+
+
+
+
+</div>
