@@ -14,6 +14,12 @@ Hồ sơ học sinh lớp 97
 </title>
 
 
+<!-- KẾT NỐI DỮ LIỆU GỐC -->
+
+<script src="js/danhsach.js"></script>
+
+
+
 <style>
 
 
@@ -39,9 +45,9 @@ background:white;
 
 padding:30px;
 
-border-radius:30px;
+border-radius:25px;
 
-box-shadow:0 10px 30px #ccc;
+box-shadow:0 10px 30px #bbb;
 
 }
 
@@ -49,17 +55,13 @@ box-shadow:0 10px 30px #ccc;
 
 .header{
 
-background:linear-gradient(
-135deg,
-#1565c0,
-#42a5f5
-);
+background:linear-gradient(135deg,#1565c0,#42a5f5);
 
 color:white;
 
-padding:30px;
+padding:25px;
 
-border-radius:25px;
+border-radius:20px;
 
 text-align:center;
 
@@ -67,9 +69,13 @@ text-align:center;
 
 
 
-.header h1{
+.grid{
 
-font-size:35px;
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
 
 }
 
@@ -79,17 +85,17 @@ font-size:35px;
 
 background:#f8fbff;
 
-padding:25px;
+padding:20px;
+
+margin-top:20px;
 
 border-radius:20px;
-
-margin-top:25px;
 
 }
 
 
 
-input,select,textarea{
+input,textarea,select{
 
 width:100%;
 
@@ -97,11 +103,11 @@ padding:12px;
 
 margin:8px 0;
 
-border-radius:12px;
+border-radius:10px;
 
 border:1px solid #ccc;
 
-font-size:16px;
+font-size:15px;
 
 }
 
@@ -109,7 +115,7 @@ font-size:16px;
 
 textarea{
 
-height:100px;
+height:90px;
 
 }
 
@@ -123,13 +129,11 @@ color:white;
 
 border:none;
 
-padding:13px 25px;
+padding:12px 20px;
 
-border-radius:15px;
+border-radius:12px;
 
 cursor:pointer;
-
-font-size:16px;
 
 }
 
@@ -149,7 +153,7 @@ width:100%;
 
 border-collapse:collapse;
 
-margin-top:25px;
+margin-top:15px;
 
 }
 
@@ -185,21 +189,11 @@ background:#fff8e1;
 
 padding:20px;
 
-border-radius:20px;
+border-radius:15px;
 
 white-space:pre-line;
 
-}
-
-
-
-.footer{
-
-text-align:center;
-
-margin-top:40px;
-
-color:#666;
+line-height:1.6;
 
 }
 
@@ -216,7 +210,6 @@ color:#666;
 
 
 <div class="container">
-
 
 
 <div class="header">
@@ -238,27 +231,54 @@ color:#666;
 
 
 
+<div class="box">
+
+
+<h2>
+📋 Chọn học sinh
+</h2>
+
+
+<select id="chonHocSinh"
+
+onchange="hienThiHoSo()">
+
+
+<option>
+-- Chọn học sinh --
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<div class="grid">
 
 
 <div class="box">
 
 
 <h2>
-➕ Thêm hồ sơ học sinh
+📝 Thông tin cá nhân
 </h2>
-
 
 
 <input id="hoTen"
 
-placeholder="Họ và tên học sinh">
+readonly>
 
 
 
 <input id="ngaySinh"
 
 placeholder="Ngày sinh">
-
 
 
 <select id="gioiTinh">
@@ -278,7 +298,6 @@ Nữ
 
 
 
-
 <input id="phuHuynh"
 
 placeholder="Họ tên phụ huynh">
@@ -287,9 +306,7 @@ placeholder="Họ tên phụ huynh">
 
 <input id="soDT"
 
-placeholder="Số điện thoại phụ huynh">
-
-
+placeholder="Số điện thoại">
 
 
 
@@ -301,15 +318,27 @@ placeholder="Hoàn cảnh gia đình">
 
 
 
+</div>
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+⭐ Đánh giá GVCN
+</h2>
+
 
 
 <textarea id="uuDiem"
 
-placeholder="Điểm mạnh của học sinh">
+placeholder="Điểm mạnh">
 
 </textarea>
-
-
 
 
 
@@ -321,9 +350,7 @@ placeholder="Điểm cần cải thiện">
 
 
 
-
-
-<button onclick="luuHoSo()">
+<button onclick="luuThongTin()">
 
 💾 Lưu hồ sơ
 
@@ -331,7 +358,19 @@ placeholder="Điểm cần cải thiện">
 
 
 
+<button onclick="phanTichAI()">
+
+🤖 AI phân tích
+
+</button>
+
+
+
 </div>
+
+
+</div>
+
 
 
 
@@ -343,13 +382,14 @@ placeholder="Điểm cần cải thiện">
 
 
 <h2>
-📋 Danh sách học sinh
+📊 Danh sách 33 học sinh lớp 97
 </h2>
 
 
+<table>
 
-<table id="bangHS">
 
+<thead>
 
 <tr>
 
@@ -357,17 +397,16 @@ placeholder="Điểm cần cải thiện">
 STT
 </th>
 
+
 <th>
 Họ tên
 </th>
 
-<th>
-Phụ huynh
-</th>
 
 <th>
-SĐT
+Xếp loại
 </th>
+
 
 <th>
 AI
@@ -377,11 +416,21 @@ AI
 </tr>
 
 
+</thead>
+
+
+
+<tbody id="bangHocSinh">
+
+
+</tbody>
+
+
 </table>
 
 
-
 </div>
+
 
 
 
@@ -393,11 +442,13 @@ AI
 
 
 <h2>
-🤖 Phân tích AI học sinh
+🤖 Nhận xét AI
 </h2>
 
 
-<div class="ai" id="aiPhanTich">
+<div id="ketQuaAI"
+
+class="ai">
 
 Chọn học sinh để phân tích...
 
@@ -408,148 +459,59 @@ Chọn học sinh để phân tích...
 
 
 
-
-
-<div class="footer">
-
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
-
 </div>
 
 
 
-</div>
+
+
+
+
 <script>
 
 
-// =====================================
-// KHO DỮ LIỆU HỒ SƠ HỌC SINH
-// =====================================
+// ================================
+// LẤY DỮ LIỆU
+// ================================
 
 
-let danhSachHoSo = JSON.parse(
+let danhSach = layHoSoHocSinh();
 
-localStorage.getItem(
 
-"hoSoHocSinh97"
 
-)
 
-)
 
-|| [];
 
+// ================================
+// HIỂN THỊ MENU HỌC SINH
+// ================================
 
 
+function khoiTaoDanhSach(){
 
 
+let select=document.getElementById(
 
-
-
-// =====================================
-// LƯU HỒ SƠ
-// =====================================
-
-
-function luuHoSo(){
-
-
-
-let hoTen =
-
-document.getElementById(
-
-"hoTen"
-
-).value;
-
-
-
-let ngaySinh =
-
-document.getElementById(
-
-"ngaySinh"
-
-).value;
-
-
-
-let gioiTinh =
-
-document.getElementById(
-
-"gioiTinh"
-
-).value;
-
-
-
-let phuHuynh =
-
-document.getElementById(
-
-"phuHuynh"
-
-).value;
-
-
-
-let soDT =
-
-document.getElementById(
-
-"soDT"
-
-).value;
-
-
-
-let hoanCanh =
-
-document.getElementById(
-
-"hoanCanh"
-
-).value;
-
-
-
-let uuDiem =
-
-document.getElementById(
-
-"uuDiem"
-
-).value;
-
-
-
-let hanChe =
-
-document.getElementById(
-
-"hanChe"
-
-).value;
-
-
-
-
-
-
-
-if(!hoTen){
-
-
-alert(
-
-"Vui lòng nhập họ tên học sinh"
+"chonHocSinh"
 
 );
 
 
-return;
+
+danhSach.forEach(hs=>{
+
+
+select.innerHTML +=`
+
+<option value="${hs.hoTen}">
+
+${hs.stt}. ${hs.hoTen}
+
+</option>
+
+`;
+
+});
 
 
 }
@@ -557,251 +519,23 @@ return;
 
 
 
-
-
-
-let hs={
-
-
-
-id:
-
-Date.now(),
-
-
-
-hoTen:hoTen,
-
-
-
-ngaySinh:ngaySinh,
-
-
-
-gioiTinh:gioiTinh,
-
-
-
-phuHuynh:phuHuynh,
-
-
-
-soDT:soDT,
-
-
-
-hoanCanh:hoanCanh,
-
-
-
-uuDiem:uuDiem,
-
-
-
-hanChe:hanChe,
-
-
-
-lichSu:[]
-
-};
-
-
-
-
-
-
-
-danhSachHoSo.push(hs);
-
-
-
-
-
-
-localStorage.setItem(
-
-"hoSoHocSinh97",
-
-JSON.stringify(
-
-danhSachHoSo
-
-)
-
-);
-
-
-
-
-
-
-
-hienThiHoSo();
-
-
-
-xoaNhap();
-
-
-
-alert(
-
-"✅ Đã lưu hồ sơ học sinh"
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =====================================
-// HIỂN THỊ DANH SÁCH
-// =====================================
+// ================================
+// HIỂN THỊ HỒ SƠ
+// ================================
 
 
 function hienThiHoSo(){
 
 
+let ten=document.getElementById(
 
-let bang=
+"chonHocSinh"
 
-document.getElementById(
+).value;
 
-"bangHS"
 
-);
 
-
-
-bang.innerHTML=
-
-`
-
-<tr>
-
-<th>STT</th>
-
-<th>Họ tên</th>
-
-<th>Phụ huynh</th>
-
-<th>SĐT</th>
-
-<th>AI</th>
-
-</tr>
-
-`;
-
-
-
-
-
-
-
-danhSachHoSo.forEach(
-
-(hs,index)=>{
-
-
-
-bang.innerHTML +=
-
-
-`
-
-<tr>
-
-<td>
-
-${index+1}
-
-</td>
-
-
-<td>
-
-${hs.hoTen}
-
-</td>
-
-
-<td>
-
-${hs.phuHuynh}
-
-</td>
-
-
-<td>
-
-${hs.soDT}
-
-</td>
-
-
-<td>
-
-<button onclick="phanTichAI(${hs.id})">
-
-🤖 Phân tích
-
-</button>
-
-</td>
-
-
-</tr>
-
-`;
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// =====================================
-// AI PHÂN TÍCH HỌC SINH
-// =====================================
-
-
-
-function phanTichAI(id){
-
-
-
-let hs=
-
-danhSachHoSo.find(
-
-(x)=>
-
-x.id==id
-
-);
-
-
-
+let hs=timHocSinh(ten);
 
 
 
@@ -812,53 +546,28 @@ return;
 
 
 
+document.getElementById("hoTen").value=hs.hoTen;
 
 
-
-let ketQua=
-
-`
-
-🤖 PHÂN TÍCH HỌC SINH:
+document.getElementById("ngaySinh").value=hs.ngaySinh;
 
 
-👨‍🎓 Họ tên:
-
-${hs.hoTen}
+document.getElementById("phuHuynh").value=hs.phuHuynh;
 
 
-
-⭐ Điểm mạnh:
-
-${hs.uuDiem || "Chưa cập nhật"}
+document.getElementById("soDT").value=hs.soDT;
 
 
-
-⚠ Điểm cần cải thiện:
-
-${hs.hanChe || "Chưa cập nhật"}
+document.getElementById("hoanCanh").value=hs.hoanCanh;
 
 
-
-👨‍👩‍👧 Hoàn cảnh:
-
-${hs.hoanCanh || "Chưa cập nhật"}
+document.getElementById("uuDiem").value=hs.uuDiem;
 
 
-
-📌 Đề xuất của AI:
-
-
-- Tiếp tục phát huy những ưu điểm hiện có.
-
-- GVCN thường xuyên động viên, khích lệ.
-
-- Phối hợp với gia đình để hỗ trợ kịp thời.
-
-- Theo dõi sự tiến bộ theo từng tháng.
+document.getElementById("hanChe").value=hs.hanChe;
 
 
-`;
+}
 
 
 
@@ -866,13 +575,76 @@ ${hs.hoanCanh || "Chưa cập nhật"}
 
 
 
-document.getElementById(
+// ================================
+// LƯU HỒ SƠ
+// ================================
 
-"aiPhanTich"
 
-).innerText=
+function luuThongTin(){
 
-ketQua;
+
+
+let ten=document.getElementById(
+
+"hoTen"
+
+).value;
+
+
+
+capNhatHocSinh(
+
+ten,
+
+{
+
+
+ngaySinh:
+
+document.getElementById("ngaySinh").value,
+
+
+gioiTinh:
+
+document.getElementById("gioiTinh").value,
+
+
+phuHuynh:
+
+document.getElementById("phuHuynh").value,
+
+
+soDT:
+
+document.getElementById("soDT").value,
+
+
+hoanCanh:
+
+document.getElementById("hoanCanh").value,
+
+
+uuDiem:
+
+document.getElementById("uuDiem").value,
+
+
+hanChe:
+
+document.getElementById("hanChe").value
+
+
+}
+
+);
+
+
+
+alert(
+
+"✅ Đã lưu hồ sơ"
+
+);
 
 
 
@@ -884,71 +656,146 @@ ketQua;
 
 
 
+// ================================
+// AI NHẬN XÉT
+// ================================
 
 
-// =====================================
-// XÓA Ô NHẬP
-// =====================================
+function phanTichAI(){
 
 
-
-function xoaNhap(){
-
-
-document.getElementById(
+let ten=document.getElementById(
 
 "hoTen"
 
-).value="";
+).value;
+
+
+
+let hs=timHocSinh(ten);
+
+
+
+if(!hs)
+
+return;
+
+
+
+let text=`
+
+🤖 PHÂN TÍCH HỌC SINH
+
+
+👨‍🎓 ${hs.hoTen}
+
+
+⭐ Điểm mạnh:
+
+${hs.uuDiem || "Chưa cập nhật"}
+
+
+⚠ Hạn chế:
+
+${hs.hanChe || "Chưa cập nhật"}
+
+
+👨‍👩‍👧 Hoàn cảnh:
+
+${hs.hoanCanh || "Chưa cập nhật"}
+
+
+
+📌 Đề xuất:
+
+
+- GVCN tiếp tục theo dõi sự tiến bộ.
+
+- Phối hợp phụ huynh thường xuyên.
+
+- Động viên học sinh phát huy điểm mạnh.
+
+
+`;
 
 
 
 document.getElementById(
 
-"ngaySinh"
+"ketQuaAI"
 
-).value="";
+).innerText=text;
 
+
+
+}
+
+
+
+
+
+
+// ================================
+// BẢNG DANH SÁCH
+// ================================
+
+
+function hienThiBang(){
+
+
+let bang=document.getElementById(
+
+"bangHocSinh"
+
+);
+
+
+
+danhSach.forEach(hs=>{
+
+
+bang.innerHTML+=`
+
+<tr>
+
+<td>${hs.stt}</td>
+
+<td>${hs.hoTen}</td>
+
+<td>${hs.xepLoai || ""}</td>
+
+<td>
+
+<button onclick="chon('${hs.hoTen}')">
+
+Xem
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+}
+
+
+
+function chon(ten){
 
 
 document.getElementById(
 
-"phuHuynh"
+"chonHocSinh"
 
-).value="";
-
-
-
-document.getElementById(
-
-"soDT"
-
-).value="";
+).value=ten;
 
 
-
-document.getElementById(
-
-"hoanCanh"
-
-).value="";
-
-
-
-document.getElementById(
-
-"uuDiem"
-
-).value="";
-
-
-
-document.getElementById(
-
-"hanChe"
-
-).value="";
-
+hienThiHoSo();
 
 
 }
@@ -962,11 +809,18 @@ document.getElementById(
 window.onload=function(){
 
 
-hienThiHoSo();
+khoiTaoDanhSach();
+
+
+hienThiBang();
 
 
 };
 
 
-
 </script>
+
+
+</body>
+
+</html>
