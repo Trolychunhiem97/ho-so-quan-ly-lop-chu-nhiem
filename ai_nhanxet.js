@@ -1,112 +1,109 @@
 // =================================================
-// AI NHẬN XÉT CHỦ NHIỆM LỚP 97
-// Trường THCS Trần Phú
-// GVCN: Trần Sáng
-// Phiên bản: Nhận xét tháng + học kỳ
+// AI NHẬN XÉT QUẢN LÝ LỚP 97
+// TRƯỜNG THCS TRẦN PHÚ
+// GVCN: TRẦN SÁNG
 // =================================================
 
 
 
-// Kho câu mở đầu
+// Tạo nhận xét cá nhân dựa trên dữ liệu học sinh
 
-const moDauTot = [
 
-"Em có ý thức học tập và rèn luyện tốt.",
-"Em luôn thể hiện tinh thần trách nhiệm trong học tập và các hoạt động của lớp.",
-"Em duy trì được nề nếp học tập nghiêm túc và có nhiều cố gắng.",
-"Em có thái độ học tập tích cực, biết thực hiện tốt nhiệm vụ được giao.",
-"Em luôn có ý thức tự giác và tham gia tích cực các hoạt động tập thể."
-
-];
+function taoNhanXetHocSinh(hs){
 
 
 
-const uuDiemTot = [
-
-"Em chấp hành tốt nội quy trường lớp, có tinh thần đoàn kết và giúp đỡ bạn bè.",
-"Em tích cực tham gia các hoạt động chung của lớp.",
-"Em có sự tiến bộ ổn định trong quá trình học tập và rèn luyện.",
-"Em biết phối hợp với giáo viên và bạn bè trong các hoạt động học tập.",
-"Em có tinh thần tự học và ý thức hoàn thành nhiệm vụ."
-
-];
+let nhanXet="";
 
 
 
-const phatHuyTot = [
-
-"Cần tiếp tục phát huy những ưu điểm đã đạt được.",
-"Tiếp tục duy trì tinh thần tự giác để đạt kết quả cao hơn.",
-"Cần phát huy khả năng của bản thân trong thời gian tới."
-
-];
+let diem = Number(hs.diem) || 0;
 
 
 
+let hocTap = hs.hocTap || "";
 
+let laoDong = hs.laoDong || "";
 
-const moDauKha = [
-
-"Em đã có nhiều cố gắng trong học tập và rèn luyện.",
-"Em có ý thức thực hiện nhiệm vụ được giao.",
-"Em đang từng bước hình thành thói quen học tập tích cực.",
-"Em có sự tiến bộ trong quá trình rèn luyện."
-
-];
-
-
-
-const uuDiemKha = [
-
-"Em cần duy trì sự cố gắng và phát huy tinh thần tự giác.",
-"Em đã có chuyển biến tích cực trong học tập.",
-"Em thực hiện tương đối tốt nội quy của lớp.",
-"Em có khả năng tiến bộ nếu tiếp tục nỗ lực."
-
-];
-
-
-
-const phatHuyKha = [
-
-"Cần chủ động hơn trong học tập và tham gia hoạt động tập thể.",
-"Cần cố gắng duy trì kết quả ổn định hơn.",
-"Cần mạnh dạn phát huy năng lực của bản thân."
-
-];
+let yThuc = hs.yThuc || "";
 
 
 
 
 
 
-const moDauCanCoGang = [
+// Nhóm học sinh xuất sắc
 
-"Em cần quan tâm nhiều hơn đến việc học tập và rèn luyện.",
-"Em cần có sự thay đổi tích cực trong ý thức học tập.",
-"Em cần cố gắng hơn để hoàn thành tốt các nhiệm vụ được giao."
-
-];
+if(diem >= 110){
 
 
+nhanXet =
 
-const uuDiemCanCoGang = [
+`Em ${hs.ten} đạt kết quả nổi bật với ${diem} điểm. 
+Em có ý thức học tập tốt, tích cực tham gia các hoạt động của lớp,
+có tinh thần trách nhiệm và là tấm gương tích cực để các bạn noi theo.`;
 
-"Giáo viên ghi nhận sự cố gắng của em trong thời gian qua.",
-"Em vẫn có khả năng tiến bộ nếu có sự quyết tâm và cố gắng.",
-"Em cần được động viên để hình thành thói quen học tập tốt hơn."
 
-];
+}
 
 
 
-const phatHuyCanCoGang = [
 
-"Cần phối hợp tốt hơn với gia đình và giáo viên để có sự tiến bộ.",
-"Cần rèn luyện tính tự giác và ý thức trách nhiệm.",
-"Cần tích cực hơn trong học tập và hoạt động của lớp."
 
-];
+
+// Nhóm học sinh tốt
+
+else if(diem >=100){
+
+
+
+nhanXet =
+
+`Em ${hs.ten} duy trì kết quả tốt trong quá trình học tập và rèn luyện.
+Em có ý thức thực hiện nội quy, hoàn thành nhiệm vụ được giao.
+Cần tiếp tục phát huy tinh thần tự giác để đạt kết quả cao hơn.`;
+
+
+}
+
+
+
+
+
+
+// Nhóm khá
+
+else if(diem >=90){
+
+
+
+nhanXet =
+
+`Em ${hs.ten} đã có nhiều cố gắng trong học tập và rèn luyện.
+Em cần tích cực hơn trong việc chuẩn bị bài, tham gia hoạt động lớp
+và nâng cao tinh thần tự giác.`;
+
+
+}
+
+
+
+
+
+
+// Nhóm cần cố gắng
+
+else{
+
+
+
+nhanXet =
+
+`Em ${hs.ten} cần được quan tâm và hỗ trợ thêm trong thời gian tới.
+Em cần chú ý hơn đến việc học tập, ý thức kỷ luật và thực hiện nhiệm vụ của lớp.`;
+
+
+}
 
 
 
@@ -114,204 +111,238 @@ const phatHuyCanCoGang = [
 
 
 
-// Lấy câu ngẫu nhiên
+// Bổ sung nhận xét theo học tập
 
-function layNgauNhien(mang){
 
-return mang[
-Math.floor(
-Math.random()*mang.length
+if(hocTap.includes("Tốt") || hocTap.includes("Đầy đủ")){
+
+
+nhanXet +=
+
+" Em có tinh thần học tập nghiêm túc.";
+
+
+}
+
+else if(hocTap.includes("Chưa")){
+
+
+nhanXet +=
+
+" Em cần chú ý hơn việc chuẩn bị bài và hoàn thành nhiệm vụ học tập.";
+
+
+}
+
+
+
+
+
+
+// Bổ sung lao động
+
+
+if(laoDong.includes("Tích cực") || laoDong.includes("Tốt")){
+
+
+nhanXet +=
+
+" Em tích cực tham gia công việc chung của lớp.";
+
+
+}
+
+else if(laoDong.includes("Chưa")){
+
+
+nhanXet +=
+
+" Em cần nâng cao ý thức tham gia lao động và giữ gìn vệ sinh chung.";
+
+
+}
+
+
+
+
+return nhanXet;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =================================================
+// Tạo nhận xét cho toàn bộ lớp
+// =================================================
+
+
+
+function taoNhanXetLop97(danhSach){
+
+
+
+let ketQua=[];
+
+
+
+danhSach.forEach(hs=>{
+
+
+ketQua.push({
+
+
+ten:
+
+hs.ten,
+
+
+diem:
+
+hs.diem,
+
+
+nhanXet:
+
+taoNhanXetHocSinh(hs)
+
+
+
+});
+
+
+});
+
+
+
+
+
+
+localStorage.setItem(
+
+"nhanXetAI97",
+
+JSON.stringify(ketQua)
+
+);
+
+
+
+return ketQua;
+
+
+
+}
+
+
+
+
+
+
+
+
+// =================================================
+// Nhận xét chung tập thể lớp
+// =================================================
+
+
+
+function taoNhanXetChungLop97(thongKe){
+
+
+
+let nx="";
+
+
+
+if(thongKe.xuatSac > 5){
+
+
+
+nx =
+
+"Tập thể lớp có nhiều học sinh đạt thành tích nổi bật, duy trì tốt phong trào học tập và rèn luyện.";
+
+
+
+}
+
+else if(thongKe.tot > thongKe.kha){
+
+
+
+nx =
+
+"Đa số học sinh có ý thức tốt, tập thể lớp duy trì được nền nếp và tinh thần đoàn kết.";
+
+
+
+}
+
+else{
+
+
+
+nx =
+
+"Lớp cần tiếp tục tăng cường công tác tự quản, nâng cao ý thức học tập và rèn luyện của học sinh.";
+
+
+
+}
+
+
+
+
+
+localStorage.setItem(
+
+"nhanXetTongHop97",
+
+nx
+
+);
+
+
+
+return nx;
+
+
+
+}
+
+
+
+
+
+
+// =================================================
+// Lấy nhận xét đã lưu
+// =================================================
+
+
+
+function layNhanXetAI97(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+
+"nhanXetAI97"
+
 )
-];
 
-}
+)
 
+||[];
 
-
-
-
-
-
-// ================================
-// NHẬN XÉT THÁNG
-// ================================
-
-
-function taoNhanXetThang(hocSinh){
-
-
-let diem =
-Number(hocSinh.diem)||0;
-
-
-let hk =
-hocSinh.hanhKiem||"";
-
-
-
-let nhanXet="";
-
-
-
-
-
-if(diem>=90 && hk.includes("Tốt")){
-
-
-nhanXet =
-
-layNgauNhien(moDauTot)
-+" "
-+
-layNgauNhien(uuDiemTot)
-+" "
-+
-layNgauNhien(phatHuyTot);
-
-
-
-}
-
-
-
-else if(diem>=75){
-
-
-
-nhanXet =
-
-layNgauNhien(moDauKha)
-+" "
-+
-layNgauNhien(uuDiemKha)
-+" "
-+
-layNgauNhien(phatHuyKha);
-
-
-
-}
-
-
-
-else{
-
-
-nhanXet =
-
-layNgauNhien(moDauCanCoGang)
-+" "
-+
-layNgauNhien(uuDiemCanCoGang)
-+" "
-+
-layNgauNhien(phatHuyCanCoGang);
-
-
-
-}
-
-
-
-return nhanXet;
-
-
-}
-
-
-
-
-
-
-
-
-// ================================
-// NHẬN XÉT HỌC KỲ / CUỐI NĂM
-// ================================
-
-
-function taoNhanXetHocKy(hocSinh){
-
-
-let diem =
-Number(hocSinh.diem)||0;
-
-
-let hk =
-hocSinh.hanhKiem||"";
-
-
-let nhanXet="";
-
-
-
-
-
-if(diem>=90 && hk.includes("Tốt")){
-
-
-nhanXet =
-
-"Trong học kỳ vừa qua, em đã thể hiện ý thức học tập và rèn luyện rất tốt. "
-+
-"Em luôn có tinh thần trách nhiệm, chấp hành nghiêm túc nội quy và tích cực tham gia các hoạt động của lớp. "
-+
-"Cần tiếp tục phát huy tinh thần tự giác, khả năng tự học để đạt được những kết quả cao hơn trong thời gian tới.";
-
-
-
-}
-
-
-
-else if(diem>=75){
-
-
-nhanXet =
-
-"Trong học kỳ vừa qua, em đã có nhiều cố gắng trong học tập và rèn luyện. "
-+
-"Em đã từng bước nâng cao ý thức thực hiện nhiệm vụ được giao. "
-+
-"Cần tiếp tục nỗ lực, chủ động hơn trong học tập và rèn luyện để phát huy tốt hơn năng lực của bản thân.";
-
-
-
-}
-
-
-
-else{
-
-
-nhanXet =
-
-"Trong học kỳ vừa qua, em cần quan tâm nhiều hơn đến việc học tập và rèn luyện. "
-+
-"Em cần xây dựng tinh thần tự giác, tích cực hơn trong việc thực hiện nội quy và nhiệm vụ học tập. "
-+
-"Giáo viên mong em có sự cố gắng, phối hợp cùng gia đình để đạt được sự tiến bộ trong thời gian tới.";
-
-
-
-}
-
-
-
-return nhanXet;
-
-
-}
-
-
-
-
-
-
-// Hàm cũ giữ lại để không lỗi các file đang gọi
-
-function taoNhanXetAI(hocSinh){
-
-return taoNhanXetThang(hocSinh);
 
 }
