@@ -5,10 +5,12 @@
 
 <meta charset="UTF-8">
 
-<title>Xuất báo cáo chủ nhiệm</title>
+<title>Xuất báo cáo chủ nhiệm lớp 97</title>
 
 
 <script src="phanquyen.js"></script>
+
+<script src="ai_nhanxet.js"></script>
 
 
 
@@ -29,7 +31,7 @@ padding:20px;
 
 .container{
 
-max-width:1100px;
+max-width:1200px;
 
 margin:auto;
 
@@ -77,11 +79,11 @@ color:white;
 
 border:none;
 
-padding:15px 30px;
+padding:14px 30px;
 
 border-radius:12px;
 
-font-size:18px;
+font-size:16px;
 
 cursor:pointer;
 
@@ -99,15 +101,15 @@ background:#0d47a1;
 
 
 
-.preview{
+#baoCao{
 
-margin-top:30px;
+background:white;
+
+padding:25px;
 
 border:1px solid #ddd;
 
-padding:20px;
-
-background:#fff;
+margin-top:20px;
 
 }
 
@@ -118,6 +120,8 @@ table{
 width:100%;
 
 border-collapse:collapse;
+
+margin-top:20px;
 
 }
 
@@ -137,7 +141,7 @@ padding:10px;
 
 td{
 
-border:1px solid #ddd;
+border:1px solid #999;
 
 padding:10px;
 
@@ -160,10 +164,12 @@ color:#555;
 }
 
 
+
 </style>
 
 
 </head>
+
 
 
 <body>
@@ -181,7 +187,7 @@ color:#555;
 
 
 <h1>
-📄 BÁO CÁO TỔNG HỢP CHỦ NHIỆM LỚP 97
+📄 BÁO CÁO CHỦ NHIỆM LỚP 97
 </h1>
 
 
@@ -192,7 +198,9 @@ Năm học 2026 - 2027
 
 <br>
 
-GVCN: <b>Trần Sáng</b>
+Giáo viên chủ nhiệm:
+
+<b>Trần Sáng</b>
 
 </p>
 
@@ -206,11 +214,10 @@ GVCN: <b>Trần Sáng</b>
 
 
 
-
 <div style="text-align:center">
 
 
-<button onclick="xemTruocBaoCao()">
+<button onclick="taoBaoCao()">
 
 👁 Xem trước báo cáo
 
@@ -240,15 +247,12 @@ GVCN: <b>Trần Sáng</b>
 
 
 
+<div id="baoCao">
 
-<div class="preview" id="baoCao">
-
-
-Chưa có dữ liệu báo cáo.
+Chưa tạo báo cáo.
 
 
 </div>
-
 
 
 
@@ -260,7 +264,6 @@ Chưa có dữ liệu báo cáo.
 Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 </div>
-
 <script>
 
 
@@ -269,14 +272,10 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 // ===============================
 
 
-let nguoiDung =
-
-JSON.parse(
+let nguoiDung = JSON.parse(
 
 localStorage.getItem(
-
 "nguoiDungDangNhap"
-
 )
 
 );
@@ -285,31 +284,21 @@ localStorage.getItem(
 
 if(!nguoiDung){
 
-
 location.href="dangnhap.html";
-
 
 }
 
 
 
 
-
 document.getElementById(
-
 "nguoiDung"
-
-).innerHTML=
-
+).innerHTML =
 
 "👤 Xin chào: <b>"
-
 +
-
 nguoiDung.ten
-
 +
-
 "</b>";
 
 
@@ -318,24 +307,18 @@ nguoiDung.ten
 
 
 
-
-
 // ===============================
-// LẤY DỮ LIỆU TỔNG HỢP
+// LẤY DỮ LIỆU BÁO CÁO
 // ===============================
 
 
-
-function layBaoCao(){
-
+function layTongHopNam(){
 
 
 return JSON.parse(
 
 localStorage.getItem(
-
 "tongHopNam97"
-
 )
 
 )
@@ -352,6 +335,23 @@ duLieu:[]
 
 
 
+function layNhanXetAI(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"nhanXetAI97"
+)
+
+)
+
+||[];
+
+
+}
+
+
 
 
 
@@ -359,18 +359,23 @@ duLieu:[]
 
 
 // ===============================
-// XEM TRƯỚC BÁO CÁO
+// TẠO BÁO CÁO
 // ===============================
 
 
-
-function xemTruocBaoCao(){
-
+function taoBaoCao(){
 
 
-let data=
 
-layBaoCao();
+let tongHop=
+
+layTongHopNam();
+
+
+
+let ai=
+
+layNhanXetAI();
 
 
 
@@ -387,20 +392,27 @@ BÁO CÁO TỔNG HỢP QUẢN LÝ LỚP 97
 
 <p>
 
-Năm học: 2026 - 2027
+<b>Trường:</b> THCS Trần Phú
 
 </p>
 
 
 <p>
 
-Giáo viên chủ nhiệm: Trần Sáng
+<b>Năm học:</b> 2026 - 2027
+
+</p>
+
+
+<p>
+
+<b>Giáo viên chủ nhiệm:</b> Trần Sáng
 
 </p>
 
 
 
-<table border="1" width="100%" cellspacing="0">
+<table>
 
 
 <tr>
@@ -413,13 +425,11 @@ Giáo viên chủ nhiệm: Trần Sáng
 
 <th>Xếp loại</th>
 
-<th>Nhận xét</th>
+<th>Nhận xét AI</th>
 
 </tr>
 
 `;
-
-
 
 
 
@@ -438,9 +448,37 @@ let canCoGang=0;
 
 
 
-data.duLieu.forEach(
+tongHop.duLieu.forEach(
 
 (hs,index)=>{
+
+
+
+let nx=
+
+ai.find(
+
+(x)=>x.ten==hs.ten
+
+);
+
+
+
+let nhanXet=
+
+hs.nhanXet;
+
+
+
+if(nx){
+
+nhanXet=
+
+nx.nhanXet;
+
+}
+
+
 
 
 
@@ -448,15 +486,21 @@ html+=`
 
 <tr>
 
+
 <td>${index+1}</td>
+
 
 <td>${hs.ten}</td>
 
+
 <td>${hs.diem}</td>
+
 
 <td>${hs.xepLoai}</td>
 
-<td>${hs.nhanXet}</td>
+
+<td>${nhanXet}</td>
+
 
 </tr>
 
@@ -466,28 +510,37 @@ html+=`
 
 
 
-if(hs.xepLoai.includes("Xuất sắc"))
+
+
+if(hs.xepLoai.includes("Xuất sắc")){
 
 xuatSac++;
 
+}
 
-else if(hs.xepLoai.includes("Tốt"))
+else if(hs.xepLoai.includes("Tốt")){
 
 tot++;
 
+}
 
-else if(hs.xepLoai.includes("Khá"))
+else if(hs.xepLoai.includes("Khá")){
 
 kha++;
 
+}
 
-else
+else{
 
 canCoGang++;
+
+}
 
 
 
 });
+
+
 
 
 
@@ -498,14 +551,13 @@ html+=`
 </table>
 
 
-<br>
-
 
 <h3>
 
-📊 Thống kê lớp
+📊 THỐNG KÊ LỚP
 
 </h3>
+
 
 
 <p>
@@ -537,28 +589,28 @@ html+=`
 
 
 
+
+
 <h3>
 
-🤖 Nhận xét chung
+🤖 NHẬN XÉT CHUNG
 
 </h3>
 
 
+
 <p>
 
-Tập thể lớp 97 duy trì tốt nề nếp học tập,
-có tinh thần đoàn kết và tham gia tích cực
-các hoạt động của lớp.
-
-Một số học sinh cần tiếp tục được quan tâm,
-động viên để tiến bộ hơn.
+Tập thể lớp 97 duy trì tốt nề nếp,
+có tinh thần đoàn kết, đa số học sinh
+có ý thức học tập và tích cực tham gia
+các hoạt động chung.
 
 </p>
 
 
+
 `;
-
-
 
 
 
@@ -582,11 +634,9 @@ document.getElementById(
 
 
 
-
 // ===============================
 // XUẤT FILE WORD
 // ===============================
-
 
 
 function xuatWord(){
@@ -607,13 +657,12 @@ document.getElementById(
 
 if(noiDung.includes(
 
-"Chưa có dữ liệu"
+"Chưa tạo báo cáo"
 
 )){
 
 
-
-xemTruocBaoCao();
+taoBaoCao();
 
 
 
@@ -626,7 +675,6 @@ document.getElementById(
 ).innerHTML;
 
 
-
 }
 
 
@@ -635,21 +683,13 @@ document.getElementById(
 
 
 
-let file=
-
-`
+let file=`
 
 <html>
 
 <head>
 
 <meta charset="UTF-8">
-
-<title>
-
-Bao cao lop 97
-
-</title>
 
 </head>
 
@@ -672,8 +712,6 @@ ${noiDung}
 
 
 
-
-
 let blob=
 
 new Blob(
@@ -689,7 +727,6 @@ type:
 }
 
 );
-
 
 
 
@@ -729,13 +766,10 @@ link.click();
 
 
 
-
 window.onload=function(){
 
 
-
-xemTruocBaoCao();
-
+taoBaoCao();
 
 
 };
@@ -743,5 +777,7 @@ xemTruocBaoCao();
 
 
 </script>
+
+
 
 </div>
