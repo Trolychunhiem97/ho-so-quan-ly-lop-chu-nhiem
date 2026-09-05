@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-Trợ lý quản lý lớp 97
+Trợ lý AI quản lý lớp 97
 </title>
 
 
@@ -17,18 +17,31 @@ Trợ lý quản lý lớp 97
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 
 body{
 
-font-family:"Segoe UI",Arial,sans-serif;
-
-background:#eef5ff;
-
 margin:0;
+
+font-family:
+"Segoe UI",
+Arial,
+sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#e3f2fd,
+#ffffff
+);
 
 padding:20px;
 
 }
+
 
 
 .container{
@@ -37,31 +50,37 @@ max-width:1200px;
 
 margin:auto;
 
-background:white;
-
-border-radius:25px;
-
-padding:30px;
-
-box-shadow:0 10px 30px #ccc;
-
 }
 
 
 
 .header{
 
+background:
+linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:35px;
+
+border-radius:30px;
+
 text-align:center;
+
+box-shadow:
+0 10px 30px #bbb;
 
 }
 
 
 
-.header h2{
+.logo{
 
-color:#1565c0;
-
-font-size:32px;
+font-size:60px;
 
 }
 
@@ -69,9 +88,42 @@ font-size:32px;
 
 .header h1{
 
-color:#1565c0;
-
 font-size:42px;
+
+margin:10px;
+
+}
+
+
+
+.header p{
+
+font-size:20px;
+
+}
+
+
+
+
+
+.user-card{
+
+margin-top:25px;
+
+background:white;
+
+border-radius:25px;
+
+padding:25px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:
+0 5px 20px #ddd;
 
 }
 
@@ -79,17 +131,84 @@ font-size:42px;
 
 .user{
 
+font-size:22px;
+
+}
+
+
+
+.logout{
+
+background:#e53935;
+
+color:white;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:15px;
+
+font-size:17px;
+
+cursor:pointer;
+
+}
+
+
+
+
+
+.title{
+
+margin-top:35px;
+
+font-size:28px;
+
+color:#1565c0;
+
+font-weight:bold;
+
+}
+
+
+
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(200px,1fr));
+
+gap:20px;
+
 margin-top:20px;
 
-background:#eaf3ff;
+}
+
+
+
+.stat{
+
+background:white;
 
 padding:20px;
 
-border-radius:20px;
+border-radius:25px;
 
 text-align:center;
 
-font-size:22px;
+box-shadow:
+0 5px 20px #ddd;
+
+}
+
+
+
+.stat span{
+
+font-size:35px;
 
 }
 
@@ -97,15 +216,14 @@ font-size:22px;
 
 .menu{
 
+margin-top:30px;
+
 display:grid;
 
 grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
 
-repeat(auto-fit,minmax(230px,1fr));
-
-gap:20px;
-
-margin-top:30px;
+gap:25px;
 
 }
 
@@ -113,15 +231,34 @@ margin-top:30px;
 
 .card{
 
-background:#f8fbff;
+background:white;
 
-border-radius:20px;
+padding:30px;
 
-padding:25px;
+border-radius:30px;
 
 text-align:center;
 
-border:1px solid #ddd;
+box-shadow:
+0 8px 25px #ddd;
+
+transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+
+
+.icon{
+
+font-size:45px;
 
 }
 
@@ -135,7 +272,7 @@ color:#1565c0;
 
 
 
-button{
+.card button{
 
 background:#1565c0;
 
@@ -143,21 +280,13 @@ color:white;
 
 border:none;
 
-padding:13px 30px;
+padding:12px 30px;
 
-border-radius:12px;
+border-radius:15px;
 
-font-size:17px;
+font-size:16px;
 
 cursor:pointer;
-
-}
-
-
-
-button:hover{
-
-background:#0d47a1;
 
 }
 
@@ -171,18 +300,56 @@ margin-top:40px;
 
 color:#666;
 
-border-top:1px solid #ddd;
+}
 
-padding-top:20px;
+
+
+.hide{
+
+display:none;
 
 }
 
 
 
+@media(max-width:600px){
+
+
+.header h1{
+
+font-size:30px;
+
+}
+
+
+
+.user-card{
+
+display:block;
+
+text-align:center;
+
+}
+
+
+
+.logout{
+
+margin-top:15px;
+
+width:100%;
+
+}
+
+
+
+}
+
+
 </style>
 
-</head>
 
+</head>
 
 
 <body>
@@ -195,24 +362,23 @@ padding-top:20px;
 <div class="header">
 
 
-<h2>
-🏫 TRƯỜNG THCS TRẦN PHÚ
-</h2>
+<div class="logo">
+🤖
+</div>
 
 
 <h1>
-🤖 TRỢ LÝ QUẢN LÝ LỚP 97
+TRỢ LÝ AI QUẢN LÝ LỚP 97
 </h1>
 
 
 <p>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</p>
 
-GVCN:
 
-<b>
-Trần Sáng
-</b>
-
+<p>
+Quản lý - Kết nối - Phát triển học sinh
 </p>
 
 
@@ -222,162 +388,17 @@ Trần Sáng
 
 
 
+<div class="user-card">
+
+
 <div class="user" id="userBox">
 
 </div>
 
 
 
-
-
-
-
-<div class="menu">
-
-
-
-<div class="card gvcn">
-
-<h3>
-📊 Tổng hợp năm
-</h3>
-
-<button onclick="moTrang('tonghop_nam.html')">
-Mở
-</button>
-
-</div>
-
-
-
-<div class="card gvcn">
-
-<h3>
-📄 Xuất báo cáo
-</h3>
-
-<button onclick="moTrang('xuat_tonghop_word.html')">
-Mở
-</button>
-
-</div>
-
-
-
-<div class="card gvcn">
-
-<h3>
-👨‍👩‍👧 Quản lý phụ huynh
-</h3>
-
-<button onclick="moTrang('quanly_phuhuynh.html')">
-Mở
-</button>
-
-</div>
-
-
-
-<div class="card gvcn">
-
-<h3>
-🔔 Thông báo phụ huynh
-</h3>
-
-<button onclick="moTrang('thongbao_phuhuynh.html')">
-Mở
-</button>
-
-</div>
-
-
-
-<div class="card gvcn">
-
-<h3>
-💾 Sao lưu dữ liệu
-</h3>
-
-<button onclick="moTrang('backup.html')">
-Mở
-</button>
-
-</div>
-
-
-
-
-<div class="card loptruong">
-
-<h3>
-🏆 Thi đua tuần
-</h3>
-
-<button onclick="moTrang('thidua_tuan.html')">
-Mở
-</button>
-
-</div>
-
-
-
-
-<div class="card hoc_tap">
-
-<h3>
-📚 Học tập
-</h3>
-
-<button onclick="moTrang('hoctap.html')">
-Mở
-</button>
-
-</div>
-
-
-
-
-<div class="card lao_dong">
-
-<h3>
-🧹 Lao động
-</h3>
-
-<button onclick="moTrang('laodong.html')">
-Mở
-</button>
-
-</div>
-
-
-
-
-<div class="card to_truong">
-
-<h3>
-👥 Tổ trưởng
-</h3>
-
-<button onclick="moTrang('totruong.html')">
-Mở
-</button>
-
-</div>
-
-
-
-</div>
-
-
-
-
-<br>
-
-
-<div style="text-align:center">
-
-
-<button onclick="dangXuat()">
+<button class="logout"
+onclick="dangXuat()">
 
 🚪 Đăng xuất
 
@@ -390,11 +411,303 @@ Mở
 
 
 
-<div class="footer">
 
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+<div class="title">
+
+⭐ Trung tâm điều hành
 
 </div>
+
+
+
+
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<span>👨‍🎓</span>
+
+<h3>
+Học sinh
+</h3>
+
+<p>
+Lớp 97
+</p>
+
+</div>
+
+
+
+
+<div class="stat">
+
+<span>🏆</span>
+
+<h3>
+Thi đua
+</h3>
+
+<p>
+Theo tuần/tháng
+</p>
+
+</div>
+
+
+
+<div class="stat">
+
+<span>🤖</span>
+
+<h3>
+AI hỗ trợ
+</h3>
+
+<p>
+Nhận xét tự động
+</p>
+
+</div>
+
+
+
+<div class="stat">
+
+<span>💾</span>
+
+<h3>
+Dữ liệu
+</h3>
+
+<p>
+An toàn sao lưu
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="menu">
+
+
+
+<div class="card gvcn">
+
+<div class="icon">
+📊
+</div>
+
+<h3>
+Tổng hợp năm
+</h3>
+
+
+<button onclick="moTrang('tonghop_nam.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card gvcn">
+
+<div class="icon">
+🤖
+</div>
+
+<h3>
+Trợ lý AI
+</h3>
+
+
+<button onclick="moTrang('ai_troly.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card gvcn">
+
+<div class="icon">
+👨‍👩‍👧
+</div>
+
+<h3>
+Quản lý phụ huynh
+</h3>
+
+
+<button onclick="moTrang('quanly_phuhuynh.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card gvcn">
+
+<div class="icon">
+📄
+</div>
+
+<h3>
+Xuất báo cáo
+</h3>
+
+
+<button onclick="moTrang('xuat_tonghop_word.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card loptruong">
+
+<div class="icon">
+🏆
+</div>
+
+<h3>
+Thi đua tuần
+</h3>
+
+
+<button onclick="moTrang('thidua_tuan.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card hoc_tap">
+
+<div class="icon">
+📚
+</div>
+
+<h3>
+Học tập
+</h3>
+
+
+<button onclick="moTrang('hoctap.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card lao_dong">
+
+<div class="icon">
+🧹
+</div>
+
+<h3>
+Lao động
+</h3>
+
+
+<button onclick="moTrang('laodong.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card to_truong">
+
+<div class="icon">
+👥
+</div>
+
+<h3>
+Tổ trưởng
+</h3>
+
+
+<button onclick="moTrang('totruong.html')">
+
+Mở
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="footer">
+
+🤖 Trợ lý quản lý lớp 97  
+<br>
+GVCN Trần Sáng
+
+</div>
+
 
 
 
@@ -408,33 +721,20 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 <script>
 
 
-// ================================
-// LẤY NGƯỜI DÙNG
-// ================================
-
-
 let user = layNguoiDung();
-
-
 
 
 
 if(!user){
 
-
 location.href="dangnhap.html";
-
 
 }
 
 
 
 
-
-// ================================
-// SỬA QUYỀN CŨ ADMIN
-// ================================
-
+// sửa quyền cũ
 
 if(user.quyen=="admin"){
 
@@ -456,15 +756,11 @@ JSON.stringify(user)
 
 
 
-
-
-
 document.getElementById(
 
 "userBox"
 
 ).innerHTML=
-
 
 `
 
@@ -485,11 +781,7 @@ document.getElementById(
 
 
 
-
-
-// ================================
-// ẨN TẤT CẢ MENU
-// ================================
+// Ẩn tất cả
 
 
 document.querySelectorAll(".card")
@@ -505,14 +797,7 @@ x=>x.style.display="none"
 
 
 
-
-// ================================
-// HIỂN THỊ THEO QUYỀN
-// ================================
-
-
 if(user.quyen=="gvcn"){
-
 
 
 document.querySelectorAll(".card")
@@ -524,59 +809,36 @@ x=>x.style.display="block"
 );
 
 
-
 }
-
 
 
 
 if(user.quyen=="loptruong"){
 
-
-document.querySelector(".loptruong")
-
-.style.display="block";
-
+document.querySelector(".loptruong").style.display="block";
 
 }
-
 
 
 if(user.quyen=="hoc_tap"){
 
-
-document.querySelector(".hoc_tap")
-
-.style.display="block";
-
+document.querySelector(".hoc_tap").style.display="block";
 
 }
-
 
 
 if(user.quyen=="lao_dong"){
 
-
-document.querySelector(".lao_dong")
-
-.style.display="block";
-
+document.querySelector(".lao_dong").style.display="block";
 
 }
-
 
 
 if(user.quyen=="to_truong"){
 
-
-document.querySelector(".to_truong")
-
-.style.display="block";
-
+document.querySelector(".to_truong").style.display="block";
 
 }
-
-
 
 
 
