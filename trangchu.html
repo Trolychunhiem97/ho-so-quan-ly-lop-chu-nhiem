@@ -18,255 +18,373 @@ Trợ lý quản lý lớp 97
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 
 body{
 
-margin:0;
+    margin:0;
 
-font-family:"Segoe UI",Arial,sans-serif;
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-background:#f1f6ff;
+    background:#f1f5fb;
+
+    color:#333;
 
 }
 
 
-/* HEADER */
+
+/* ======================
+ HEADER
+====================== */
+
 
 .header{
 
-background:linear-gradient(135deg,#1565c0,#42a5f5);
+    background:
+    linear-gradient(
+    135deg,
+    #1565c0,
+    #42a5f5
+    );
 
-color:white;
+    color:white;
 
-padding:25px;
+    padding:25px 30px;
 
-text-align:center;
+    display:flex;
 
-border-radius:0 0 30px 30px;
+    align-items:center;
 
-}
-
-
-.header h1{
-
-margin:5px;
-
-font-size:34px;
-
-}
-
-
-.header p{
-
-margin:5px;
-
-font-size:18px;
+    justify-content:space-between;
 
 }
 
 
 
+.header-left h1{
 
-.container{
+    margin:0;
 
-max-width:1300px;
-
-margin:auto;
-
-padding:25px;
+    font-size:32px;
 
 }
+
+
+
+.header-left p{
+
+    margin:6px 0 0;
+
+    font-size:17px;
+
+}
+
+
+
+.header-icon{
+
+    font-size:65px;
+
+}
+
+
+
+
+/* ======================
+ LAYOUT
+====================== */
+
+
+.layout{
+
+    display:flex;
+
+    min-height:calc(100vh - 130px);
+
+}
+
+
+
+/* MENU */
+
+.sidebar{
+
+
+    width:260px;
+
+
+    background:white;
+
+
+    padding:20px;
+
+
+    box-shadow:
+    3px 0 15px rgba(0,0,0,.08);
+
+
+}
+
+
+
+.menu-title{
+
+
+    color:#1565c0;
+
+
+    font-size:22px;
+
+
+    font-weight:bold;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.menu-item{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    padding:14px;
+
+
+    margin-bottom:10px;
+
+
+    border-radius:14px;
+
+
+    cursor:pointer;
+
+
+    font-size:16px;
+
+
+    transition:.25s;
+
+
+}
+
+
+
+.menu-item:hover{
+
+
+    background:#e3f2fd;
+
+
+    color:#1565c0;
+
+
+}
+
+
+
+
+
+/* CONTENT */
+
+
+.content{
+
+
+    flex:1;
+
+
+    padding:30px;
+
+
+}
+
+
+
 
 
 
 /* USER */
 
 
-.user-box{
+.user-card{
 
-background:white;
 
-padding:18px 25px;
+    background:white;
 
-border-radius:20px;
 
-display:flex;
+    border-radius:20px;
 
-justify-content:space-between;
 
-align-items:center;
+    padding:20px 25px;
 
-box-shadow:0 5px 15px #ddd;
 
-margin-bottom:25px;
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.1);
+
 
 }
 
 
 
-button{
+.user-info{
 
-background:#1565c0;
 
-color:white;
+    font-size:18px;
 
-border:none;
-
-padding:10px 20px;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-size:16px;
 
 }
 
 
 
-
-/* NHÓM */
-
-
-.section{
-
-margin-bottom:30px;
-
-}
+.logout{
 
 
-
-.section-title{
-
-background:#1565c0;
-
-color:white;
-
-padding:10px 20px;
-
-border-radius:15px;
-
-font-size:22px;
-
-font-weight:bold;
-
-}
+    background:#1565c0;
 
 
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(200px,1fr));
-
-gap:18px;
-
-margin-top:15px;
-
-}
+    color:white;
 
 
-
-.card{
-
-background:white;
-
-height:180px;
-
-border-radius:22px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-box-shadow:0 5px 15px #ddd;
-
-cursor:pointer;
-
-transition:.25s;
-
-padding:15px;
-
-}
+    border:none;
 
 
-
-.card:hover{
-
-transform:translateY(-5px);
-
-}
+    padding:12px 25px;
 
 
-
-.icon{
-
-font-size:42px;
-
-}
+    border-radius:12px;
 
 
+    cursor:pointer;
 
-.card h3{
-
-margin:10px 0;
-
-color:#1565c0;
-
-font-size:20px;
-
-}
-
-
-
-.card p{
-
-margin:0;
-
-font-size:15px;
 
 }
 
 
 
 
-.hide{
 
-display:none;
+
+/* DASHBOARD */
+
+
+.dashboard-title{
+
+
+    margin-top:30px;
+
+
+    font-size:26px;
+
+
+    color:#1565c0;
+
+
+    font-weight:bold;
+
 
 }
 
 
 
+.dashboard{
 
-@media(max-width:700px){
 
-.user-box{
+    margin-top:20px;
 
-display:block;
 
-text-align:center;
+    display:grid;
+
+
+    grid-template-columns:
+
+
+    repeat(3,1fr);
+
+
+    gap:20px;
+
 
 }
 
 
+
+.stat-card{
+
+
+    background:white;
+
+
+    border-radius:22px;
+
+
+    padding:25px;
+
+
+    text-align:center;
+
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.1);
+
+
 }
 
 
+
+.stat-icon{
+
+
+    font-size:45px;
+
+
+}
+
+
+
+.stat-card h2{
+
+
+    color:#1565c0;
+
+
+    margin:10px;
+
+
+}
+
+
+
+.stat-card p{
+
+
+    margin:0;
 </style>
-
 
 </head>
 
@@ -275,8 +393,12 @@ text-align:center;
 
 
 
+<!-- HEADER -->
+
 <div class="header">
 
+
+<div class="header-left">
 
 <h1>
 🤖 TRỢ LÝ QUẢN LÝ LỚP 97
@@ -289,7 +411,7 @@ text-align:center;
 
 
 <p>
-GVCN Trần Sáng
+👨‍🏫 GVCN: Trần Sáng
 </p>
 
 
@@ -297,14 +419,157 @@ GVCN Trần Sáng
 
 
 
-<div class="container">
+<div class="header-icon">
+
+📘
+
+</div>
+
+
+</div>
 
 
 
-<div class="user-box">
 
 
-<div>
+
+<div class="layout">
+
+
+
+<!-- MENU TRÁI -->
+
+
+<div class="sidebar">
+
+
+<div class="menu-title">
+
+📂 CHỨC NĂNG
+
+</div>
+
+
+
+<div class="menu-item"
+onclick="moTrang('danhsach_hocsinh.html')">
+
+👨‍🎓 Hồ sơ học sinh
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('hoctap.html')">
+
+📚 Học tập
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('kiemtra.html')">
+
+📝 Kiểm tra
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('hanhkiem.html')">
+
+⭐ Hạnh kiểm
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('thidua_tuan.html')">
+
+🏆 Thi đua tuần
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('thidua_thang.html')">
+
+🥇 Thi đua tháng
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('quanly_phuhuynh.html')">
+
+👨‍👩‍👧 Phụ huynh
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('ai_troly.html')">
+
+🤖 Trợ lý AI
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('baocao_chunhiem.html')">
+
+📄 Báo cáo
+
+</div>
+
+
+
+
+<div class="menu-item"
+onclick="moTrang('backup.html')">
+
+💾 Sao lưu
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- NỘI DUNG -->
+
+<div class="content">
+
+
+
+<div class="user-card">
+
+
+<div class="user-info">
+
 
 👤
 
@@ -317,7 +582,8 @@ GVCN Trần Sáng
 
 
 
-<button onclick="dangXuat()">
+<button class="logout"
+onclick="dangXuat()">
 
 🚪 Đăng xuất
 
@@ -332,134 +598,73 @@ GVCN Trần Sáng
 
 
 
-<!-- HỌC SINH -->
 
+<div class="dashboard-title">
 
-<div class="section">
-
-
-<div class="section-title">
-
-📚 QUẢN LÝ HỌC SINH
+📊 Tổng quan lớp 97
 
 </div>
 
 
-<div class="grid">
 
 
 
-<div class="card gvcn"
-onclick="moTrang('danhsach_hocsinh.html')">
+<div class="dashboard">
 
-<div class="icon">
+
+
+<div class="stat-card">
+
+
+<div class="stat-icon">
+
 👨‍🎓
+
 </div>
 
-<h3>
-Hồ sơ học sinh
-</h3>
+
+<h2>
+
+33
+
+</h2>
+
 
 <p>
-33 học sinh
+
+Học sinh
+
 </p>
 
-</div>
-
-
-
-<div class="card"
-onclick="moTrang('hoctap.html')">
-
-<div class="icon">
-📚
-</div>
-
-<h3>
-Học tập
-</h3>
-
-<p>
-Theo dõi kết quả
-</p>
 
 </div>
 
 
 
-<div class="card"
-onclick="moTrang('kiemtra.html')">
-
-<div class="icon">
-📝
-</div>
-
-<h3>
-Kiểm tra
-</h3>
-
-<p>
-Điểm kiểm tra
-</p>
-
-</div>
 
 
 
-<div class="card gvcn"
-onclick="moTrang('hanhkiem.html')">
-
-<div class="icon">
-⭐
-</div>
-
-<h3>
-Hạnh kiểm
-</h3>
-
-<p>
-Rèn luyện
-</p>
-
-</div>
+<div class="stat-card">
 
 
+<div class="stat-icon">
 
-</div>
-<!-- THI ĐUA -->
-
-<div class="section">
-
-
-<div class="section-title">
-
-🏆 THI ĐUA - NỀ NẾP
-
-</div>
-
-
-
-<div class="grid">
-
-
-
-<div class="card"
-
-onclick="moTrang('thidua_tuan.html')">
-
-
-<div class="icon">
 🏆
+
 </div>
 
 
-<h3>
-Thi đua tuần
-</h3>
+<h2>
+
+100
+
+</h2>
 
 
 <p>
-Theo dõi điểm rèn luyện
+
+Điểm thi đua đầu tuần
+
 </p>
 
 
@@ -469,23 +674,29 @@ Theo dõi điểm rèn luyện
 
 
 
-<div class="card"
-
-onclick="moTrang('thidua_thang.html')">
 
 
-<div class="icon">
-🥇
+<div class="stat-card">
+
+
+<div class="stat-icon">
+
+📅
+
 </div>
 
 
-<h3>
-Thi đua tháng
-</h3>
+<h2>
+
+2026-2027
+
+</h2>
 
 
 <p>
-Xếp loại tháng
+
+Năm học
+
 </p>
 
 
@@ -495,25 +706,16 @@ Xếp loại tháng
 
 
 
-<div class="card gvcn"
-
-onclick="moTrang('quanly_thidua.html')">
-
-
-<div class="icon">
-📋
 </div>
 
 
-<h3>
-Quản lý thi đua
-</h3>
 
 
-<p>
-Điều hành phong trào
-</p>
 
+
+<div class="dashboard-title">
+
+⚡ Truy cập nhanh
 
 </div>
 
@@ -521,23 +723,33 @@ Quản lý thi đua
 
 
 
-<div class="card gvcn"
 
+<div class="dashboard">
+
+
+
+<div class="stat-card"
 onclick="moTrang('quanly_thang.html')">
 
 
-<div class="icon">
+<div class="stat-icon">
+
 📅
+
 </div>
 
 
-<h3>
+<h2>
+
 Quản lý tháng
-</h3>
+
+</h2>
 
 
 <p>
+
 Đánh giá hạnh kiểm
+
 </p>
 
 
@@ -547,75 +759,28 @@ Quản lý tháng
 
 
 
-<div class="card gvcn"
-
+<div class="stat-card"
 onclick="moTrang('tonghop_nam.html')">
 
 
-<div class="icon">
+<div class="stat-icon">
+
 📊
+
 </div>
 
 
-<h3>
-Tổng hợp năm
-</h3>
+<h2>
+
+Tổng hợp
+
+</h2>
 
 
 <p>
+
 Kết quả cuối năm
-</p>
 
-
-</div>
-
-
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-<!-- PHỤ HUYNH -->
-
-
-<div class="section">
-
-
-<div class="section-title">
-
-👨‍👩‍👧 PHỤ HUYNH
-
-</div>
-
-
-
-<div class="grid">
-
-
-
-<div class="card gvcn"
-
-onclick="moTrang('quanly_phuhuynh.html')">
-
-
-<div class="icon">
-👨‍👩‍👧
-</div>
-
-
-<h3>
-Quản lý phụ huynh
-</h3>
-
-
-<p>
-Thông tin liên hệ
 </p>
 
 
@@ -625,77 +790,28 @@ Thông tin liên hệ
 
 
 
-<div class="card gvcn"
-
+<div class="stat-card"
 onclick="moTrang('thongbao_phuhuynh.html')">
 
 
-<div class="icon">
+<div class="stat-icon">
+
 🔔
+
 </div>
 
 
-<h3>
-Thông báo phụ huynh
-</h3>
+<h2>
+
+Thông báo
+
+</h2>
 
 
 <p>
-Gửi thông báo lớp
-</p>
 
+Gửi phụ huynh
 
-</div>
-
-
-
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-<!-- AI - BÁO CÁO -->
-
-
-<div class="section">
-
-
-<div class="section-title">
-
-🤖 TRỢ LÝ - BÁO CÁO
-
-</div>
-
-
-
-<div class="grid">
-
-
-
-<div class="card"
-
-onclick="moTrang('ai_troly.html')">
-
-
-<div class="icon">
-🤖
-</div>
-
-
-<h3>
-Trợ lý AI
-</h3>
-
-
-<p>
-Hỗ trợ GVCN
 </p>
 
 
@@ -705,25 +821,8 @@ Hỗ trợ GVCN
 
 
 
-<div class="card gvcn"
-
-onclick="moTrang('baocao_chunhiem.html')">
-
-
-<div class="icon">
-📄
 </div>
-
-
-<h3>
-Báo cáo chủ nhiệm
-</h3>
-
-
-<p>
-Xuất báo cáo
-</p>
-
+  </div>
 
 </div>
 
@@ -731,192 +830,22 @@ Xuất báo cáo
 
 
 
-<div class="card gvcn"
+<div style="
+text-align:center;
+padding:20px;
+color:#777;
+font-size:14px;
+">
 
-onclick="moTrang('xuat_baocao.html')">
+🤖 Trợ lý quản lý lớp 97
 
+<br>
 
-<div class="icon">
-📤
-</div>
-
-
-<h3>
-Xuất báo cáo
-</h3>
-
-
-<p>
-In hồ sơ
-</p>
-
+GVCN Trần Sáng
 
 </div>
 
 
-
-
-</div>
-
-</div>
-  <!-- HỆ THỐNG -->
-
-
-<div class="section">
-
-
-<div class="section-title">
-
-⚙️ HỆ THỐNG QUẢN LÝ
-
-</div>
-
-
-
-<div class="grid">
-
-
-
-<div class="card"
-
-onclick="moTrang('kehoach.html')">
-
-
-<div class="icon">
-📌
-</div>
-
-
-<h3>
-Kế hoạch
-</h3>
-
-
-<p>
-Kế hoạch chủ nhiệm
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card"
-
-onclick="moTrang('laodong.html')">
-
-
-<div class="icon">
-🧹
-</div>
-
-
-<h3>
-Lao động
-</h3>
-
-
-<p>
-Theo dõi vệ sinh
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card"
-
-onclick="moTrang('lichsu.html')">
-
-
-<div class="icon">
-📖
-</div>
-
-
-<h3>
-Sổ sự kiện
-</h3>
-
-
-<p>
-Hoạt động lớp
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card"
-
-onclick="moTrang('totruong.html')">
-
-
-<div class="icon">
-👥
-</div>
-
-
-<h3>
-Tổ trưởng
-</h3>
-
-
-<p>
-Quản lý tổ
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="card gvcn"
-
-onclick="moTrang('backup.html')">
-
-
-<div class="icon">
-💾
-</div>
-
-
-<h3>
-Sao lưu
-</h3>
-
-
-<p>
-Bảo vệ dữ liệu
-</p>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-</div>
 
 
 
@@ -925,12 +854,14 @@ Bảo vệ dữ liệu
 <script>
 
 
-// =============================
+// ==============================
 // KIỂM TRA ĐĂNG NHẬP
-// =============================
+// ==============================
 
 
 let nguoiDung = layNguoiDung();
+
+
 
 
 
@@ -954,9 +885,9 @@ window.location.href="index.html";
 
 
 
-// =============================
-// HIỂN THỊ THÔNG TIN
-// =============================
+// ==============================
+// HIỂN THỊ THÔNG TIN USER
+// ==============================
 
 
 document.getElementById(
@@ -984,31 +915,35 @@ document.getElementById(
 
 
 
-// =============================
+
+
+// ==============================
 // PHÂN QUYỀN
-// =============================
+// ==============================
 
 
-function hienThiQuyen(){
+function kiemTraQuyen(){
 
 
-let cacChucNangGVCN =
 
-document.querySelectorAll(".gvcn");
-
+let mucGVCN = document.querySelectorAll(".gvcn");
 
 
 
 
-if(nguoiDung.quyen !== "gvcn"){
+if(
+
+nguoiDung.quyen !== "gvcn"
+
+){
 
 
-cacChucNangGVCN.forEach(
+mucGVCN.forEach(
 
 function(item){
 
 
-item.classList.add("hide");
+item.style.display="none";
 
 
 }
@@ -1024,16 +959,18 @@ item.classList.add("hide");
 
 
 
-hienThiQuyen();
+kiemTraQuyen();
 
 
 
 
 
 
-// =============================
+
+
+// ==============================
 // MỞ TRANG
-// =============================
+// ==============================
 
 
 function moTrang(url){
@@ -1046,6 +983,7 @@ window.location.href=url;
 
 
 
+
 </script>
 
 
@@ -1055,5 +993,5 @@ window.location.href=url;
 </body>
 
 </html>
-  
-</div>
+
+}
