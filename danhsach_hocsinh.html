@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+
+<title>
+Hồ sơ học sinh lớp 97
+</title>
+
+
+<style>
+
+
+body{
+
+font-family:"Segoe UI",Arial;
+
+background:#eef5ff;
+
+padding:20px;
+
+}
+
+
+
+.container{
+
+max-width:1200px;
+
+margin:auto;
+
+background:white;
+
+padding:30px;
+
+border-radius:30px;
+
+box-shadow:0 10px 30px #ccc;
+
+}
+
+
+
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:30px;
+
+border-radius:25px;
+
+text-align:center;
+
+}
+
+
+
+.header h1{
+
+font-size:35px;
+
+}
+
+
+
+.box{
+
+background:#f8fbff;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-top:25px;
+
+}
+
+
+
+input,select,textarea{
+
+width:100%;
+
+padding:12px;
+
+margin:8px 0;
+
+border-radius:12px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+}
+
+
+
+textarea{
+
+height:100px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:13px 25px;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:25px;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+
+color:white;
+
+padding:12px;
+
+}
+
+
+
+td{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+text-align:center;
+
+}
+
+
+
+.ai{
+
+background:#fff8e1;
+
+padding:20px;
+
+border-radius:20px;
+
+white-space:pre-line;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:40px;
+
+color:#666;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<div class="header">
+
+
+<h1>
+👨‍🎓 HỒ SƠ HỌC SINH LỚP 97
+</h1>
+
+
+<p>
+🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+➕ Thêm hồ sơ học sinh
+</h2>
+
+
+
+<input id="hoTen"
+
+placeholder="Họ và tên học sinh">
+
+
+
+<input id="ngaySinh"
+
+placeholder="Ngày sinh">
+
+
+
+<select id="gioiTinh">
+
+
+<option>
+Nam
+</option>
+
+
+<option>
+Nữ
+</option>
+
+
+</select>
+
+
+
+
+<input id="phuHuynh"
+
+placeholder="Họ tên phụ huynh">
+
+
+
+<input id="soDT"
+
+placeholder="Số điện thoại phụ huynh">
+
+
+
+
+
+<textarea id="hoanCanh"
+
+placeholder="Hoàn cảnh gia đình">
+
+</textarea>
+
+
+
+
+
+<textarea id="uuDiem"
+
+placeholder="Điểm mạnh của học sinh">
+
+</textarea>
+
+
+
+
+
+<textarea id="hanChe"
+
+placeholder="Điểm cần cải thiện">
+
+</textarea>
+
+
+
+
+
+<button onclick="luuHoSo()">
+
+💾 Lưu hồ sơ
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+📋 Danh sách học sinh
+</h2>
+
+
+
+<table id="bangHS">
+
+
+<tr>
+
+<th>
+STT
+</th>
+
+<th>
+Họ tên
+</th>
+
+<th>
+Phụ huynh
+</th>
+
+<th>
+SĐT
+</th>
+
+<th>
+AI
+</th>
+
+
+</tr>
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+🤖 Phân tích AI học sinh
+</h2>
+
+
+<div class="ai" id="aiPhanTich">
+
+Chọn học sinh để phân tích...
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+
+
+
+</div>
+<script>
+
+
+// =====================================
+// KHO DỮ LIỆU HỒ SƠ HỌC SINH
+// =====================================
+
+
+let danhSachHoSo = JSON.parse(
+
+localStorage.getItem(
+
+"hoSoHocSinh97"
+
+)
+
+)
+
+|| [];
+
+
+
+
+
+
+
+
+// =====================================
+// LƯU HỒ SƠ
+// =====================================
+
+
+function luuHoSo(){
+
+
+
+let hoTen =
+
+document.getElementById(
+
+"hoTen"
+
+).value;
+
+
+
+let ngaySinh =
+
+document.getElementById(
+
+"ngaySinh"
+
+).value;
+
+
+
+let gioiTinh =
+
+document.getElementById(
+
+"gioiTinh"
+
+).value;
+
+
+
+let phuHuynh =
+
+document.getElementById(
+
+"phuHuynh"
+
+).value;
+
+
+
+let soDT =
+
+document.getElementById(
+
+"soDT"
+
+).value;
+
+
+
+let hoanCanh =
+
+document.getElementById(
+
+"hoanCanh"
+
+).value;
+
+
+
+let uuDiem =
+
+document.getElementById(
+
+"uuDiem"
+
+).value;
+
+
+
+let hanChe =
+
+document.getElementById(
+
+"hanChe"
+
+).value;
+
+
+
+
+
+
+
+if(!hoTen){
+
+
+alert(
+
+"Vui lòng nhập họ tên học sinh"
+
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+let hs={
+
+
+
+id:
+
+Date.now(),
+
+
+
+hoTen:hoTen,
+
+
+
+ngaySinh:ngaySinh,
+
+
+
+gioiTinh:gioiTinh,
+
+
+
+phuHuynh:phuHuynh,
+
+
+
+soDT:soDT,
+
+
+
+hoanCanh:hoanCanh,
+
+
+
+uuDiem:uuDiem,
+
+
+
+hanChe:hanChe,
+
+
+
+lichSu:[]
+
+};
+
+
+
+
+
+
+
+danhSachHoSo.push(hs);
+
+
+
+
+
+
+localStorage.setItem(
+
+"hoSoHocSinh97",
+
+JSON.stringify(
+
+danhSachHoSo
+
+)
+
+);
+
+
+
+
+
+
+
+hienThiHoSo();
+
+
+
+xoaNhap();
+
+
+
+alert(
+
+"✅ Đã lưu hồ sơ học sinh"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// HIỂN THỊ DANH SÁCH
+// =====================================
+
+
+function hienThiHoSo(){
+
+
+
+let bang=
+
+document.getElementById(
+
+"bangHS"
+
+);
+
+
+
+bang.innerHTML=
+
+`
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ tên</th>
+
+<th>Phụ huynh</th>
+
+<th>SĐT</th>
+
+<th>AI</th>
+
+</tr>
+
+`;
+
+
+
+
+
+
+
+danhSachHoSo.forEach(
+
+(hs,index)=>{
+
+
+
+bang.innerHTML +=
+
+
+`
+
+<tr>
+
+<td>
+
+${index+1}
+
+</td>
+
+
+<td>
+
+${hs.hoTen}
+
+</td>
+
+
+<td>
+
+${hs.phuHuynh}
+
+</td>
+
+
+<td>
+
+${hs.soDT}
+
+</td>
+
+
+<td>
+
+<button onclick="phanTichAI(${hs.id})">
+
+🤖 Phân tích
+
+</button>
+
+</td>
+
+
+</tr>
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// AI PHÂN TÍCH HỌC SINH
+// =====================================
+
+
+
+function phanTichAI(id){
+
+
+
+let hs=
+
+danhSachHoSo.find(
+
+(x)=>
+
+x.id==id
+
+);
+
+
+
+
+
+
+if(!hs)
+
+return;
+
+
+
+
+
+
+
+let ketQua=
+
+`
+
+🤖 PHÂN TÍCH HỌC SINH:
+
+
+👨‍🎓 Họ tên:
+
+${hs.hoTen}
+
+
+
+⭐ Điểm mạnh:
+
+${hs.uuDiem || "Chưa cập nhật"}
+
+
+
+⚠ Điểm cần cải thiện:
+
+${hs.hanChe || "Chưa cập nhật"}
+
+
+
+👨‍👩‍👧 Hoàn cảnh:
+
+${hs.hoanCanh || "Chưa cập nhật"}
+
+
+
+📌 Đề xuất của AI:
+
+
+- Tiếp tục phát huy những ưu điểm hiện có.
+
+- GVCN thường xuyên động viên, khích lệ.
+
+- Phối hợp với gia đình để hỗ trợ kịp thời.
+
+- Theo dõi sự tiến bộ theo từng tháng.
+
+
+`;
+
+
+
+
+
+
+
+document.getElementById(
+
+"aiPhanTich"
+
+).innerText=
+
+ketQua;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// =====================================
+// XÓA Ô NHẬP
+// =====================================
+
+
+
+function xoaNhap(){
+
+
+document.getElementById(
+
+"hoTen"
+
+).value="";
+
+
+
+document.getElementById(
+
+"ngaySinh"
+
+).value="";
+
+
+
+document.getElementById(
+
+"phuHuynh"
+
+).value="";
+
+
+
+document.getElementById(
+
+"soDT"
+
+).value="";
+
+
+
+document.getElementById(
+
+"hoanCanh"
+
+).value="";
+
+
+
+document.getElementById(
+
+"uuDiem"
+
+).value="";
+
+
+
+document.getElementById(
+
+"hanChe"
+
+).value="";
+
+
+
+}
+
+
+
+
+
+
+
+window.onload=function(){
+
+
+hienThiHoSo();
+
+
+};
+
+
+
+</script>
