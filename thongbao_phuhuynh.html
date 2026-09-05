@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 
 <head>
 
 <meta charset="UTF-8">
 
-<title>Thông báo phụ huynh lớp 97</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<script src="phanquyen.js"></script>
-
-<script src="ai_nhanxet.js"></script>
+<title>
+Thông báo phụ huynh lớp 97
+</title>
 
 
 <style>
@@ -18,7 +19,7 @@
 
 body{
 
-font-family:Arial,sans-serif;
+font-family:"Segoe UI",Arial;
 
 background:#eef5ff;
 
@@ -30,7 +31,7 @@ padding:20px;
 
 .container{
 
-max-width:1200px;
+max-width:1100px;
 
 margin:auto;
 
@@ -40,7 +41,7 @@ padding:30px;
 
 border-radius:25px;
 
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+box-shadow:0 10px 30px #ccc;
 
 }
 
@@ -56,25 +57,27 @@ color:#1565c0;
 
 
 
-.user{
+.box{
 
-text-align:center;
+background:#f8fbff;
 
-background:#f2f7ff;
+padding:25px;
 
-padding:15px;
+border-radius:20px;
 
-border-radius:15px;
+margin-top:20px;
 
 }
 
 
 
-select,textarea{
+input,select,textarea{
 
 width:100%;
 
 padding:12px;
+
+margin:8px 0;
 
 border-radius:10px;
 
@@ -82,7 +85,13 @@ border:1px solid #ccc;
 
 font-size:16px;
 
-margin-top:10px;
+}
+
+
+
+textarea{
+
+height:180px;
 
 }
 
@@ -96,15 +105,13 @@ color:white;
 
 border:none;
 
-padding:12px 25px;
+padding:14px 25px;
 
-border-radius:10px;
-
-font-size:16px;
+border-radius:12px;
 
 cursor:pointer;
 
-margin:8px;
+margin:5px;
 
 }
 
@@ -118,15 +125,49 @@ background:#0d47a1;
 
 
 
-.card{
+.result{
 
-background:#f7fbff;
+background:#fff8e1;
 
-padding:20px;
+padding:25px;
 
-border-radius:15px;
+border-radius:20px;
+
+white-space:pre-line;
+
+line-height:1.6;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
 
 margin-top:20px;
+
+}
+
+
+
+td,th{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+
+color:white;
 
 }
 
@@ -138,14 +179,9 @@ text-align:center;
 
 margin-top:30px;
 
-border-top:1px solid #ddd;
-
-padding-top:20px;
-
-color:#555;
+color:#666;
 
 }
-
 
 
 </style>
@@ -158,9 +194,7 @@ color:#555;
 <body>
 
 
-
 <div class="container">
-
 
 
 <h2>
@@ -169,21 +203,19 @@ color:#555;
 
 
 <h1>
-🔔 TRỢ LÝ THÔNG BÁO PHỤ HUYNH LỚP 97
+🔔 TRỢ LÝ THÔNG BÁO PHỤ HUYNH
 </h1>
 
 
-
-
-<div class="user" id="nguoiDung">
-
-</div>
+<h2>
+Lớp 97 - GVCN Trần Sáng
+</h2>
 
 
 
 
 
-<div class="card">
+<div class="box">
 
 
 <h3>
@@ -191,9 +223,9 @@ color:#555;
 </h3>
 
 
-<select id="chonHocSinh" onchange="xemThongTinHocSinh()">
+<select id="hocSinh">
 
-<option value="">
+<option>
 -- Chọn học sinh --
 </option>
 
@@ -209,19 +241,20 @@ color:#555;
 
 
 
-<div class="card" id="thongTin">
+
+<div class="box">
 
 
 <h3>
-📊 Kết quả học sinh
+👨‍👩‍👧 Thông tin phụ huynh
 </h3>
 
 
-<p>
+<div id="thongTinPH">
 
-Chưa chọn học sinh.
+Chưa chọn học sinh
 
-</p>
+</div>
 
 
 </div>
@@ -232,66 +265,77 @@ Chưa chọn học sinh.
 
 
 
-<div class="card">
+
+<div class="box">
 
 
 <h3>
-✍️ Nội dung gửi phụ huynh
+🤖 Nội dung thông báo AI
 </h3>
 
 
 
-<button onclick="taoTinTuyenDuong()">
+<select id="loaiThongBao">
 
-🌟 Tuyên dương
+
+<option>
+Nhận xét tháng
+</option>
+
+
+<option>
+Kết quả cuối năm
+</option>
+
+
+<option>
+Nhắc nhở học tập
+</option>
+
+
+<option>
+Tuyên dương
+</option>
+
+
+</select>
+
+
+
+<br>
+
+
+<button onclick="taoThongBao()">
+
+🤖 Tạo tin nhắn
+
+</button>
+
+
+
+<button onclick="saoChep()">
+
+📋 Sao chép
 
 </button>
 
-
-<button onclick="taoTinNhacNho()">
-
-⚠ Nhắc nhở
-
-</button>
-
-
-<button onclick="taoTinHocTap()">
-
-📚 Học tập
-
-</button>
-
-
-<button onclick="taoTinNeNep()">
-
-🧹 Nề nếp
-
-</button>
-
-
-
-
-
-<textarea id="noiDungThongBao"
-
-rows="8"
-
-placeholder="Nội dung trao đổi với phụ huynh...">
-
-</textarea>
-
-
-
-
-<button onclick="luuLichSu()">
-
-💾 Lưu lịch sử trao đổi
-
-</button>
 
 
 </div>
 
+
+
+
+
+
+
+
+<div class="result" id="noiDung">
+
+
+Nội dung thông báo sẽ hiện ở đây...
+
+</div>
 
 
 
@@ -303,149 +347,15 @@ Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 </div>
 
-// ===============================
-// KIỂM TRA ĐĂNG NHẬP
-// ===============================
+<script>
 
 
-let nguoiDung = JSON.parse(
+// =====================================
+// DỮ LIỆU
+// =====================================
 
-localStorage.getItem(
-"nguoiDungDangNhap"
-)
 
-);
-
-
-
-if(!nguoiDung){
-
-location.href="dangnhap.html";
-
-}
-
-
-
-
-document.getElementById(
-
-"nguoiDung"
-
-).innerHTML=
-
-"👤 Xin chào: <b>"
-
-+
-
-nguoiDung.ten
-
-+
-
-"</b>";
-
-
-
-
-
-
-
-// ===============================
-// DANH SÁCH HỌC SINH
-// ===============================
-
-
-
-let dsHocSinh=[];
-
-
-
-if(typeof danhSachHocSinh!="undefined"){
-
-
-dsHocSinh=danhSachHocSinh;
-
-
-}
-
-else{
-
-
-dsHocSinh=[
-
-"Nguyễn Văn A",
-
-"Trần Văn B",
-
-"Lê Thị C"
-
-];
-
-
-}
-
-
-
-
-
-
-
-
-// Đưa danh sách vào ô chọn
-
-
-let select=
-
-document.getElementById(
-
-"chonHocSinh"
-
-);
-
-
-
-dsHocSinh.forEach(hs=>{
-
-
-let option=
-
-document.createElement(
-
-"option"
-
-);
-
-
-option.value=hs;
-
-option.textContent=hs;
-
-
-select.appendChild(option);
-
-
-});
-
-
-
-
-
-
-
-
-
-// ===============================
-// LẤY DỮ LIỆU TỔNG HỢP
-// ===============================
-
-
-
-function layDuLieuHocSinh(ten){
-
-
-
-let tongHop=
-
-JSON.parse(
+let danhSachHS = JSON.parse(
 
 localStorage.getItem(
 
@@ -455,75 +365,73 @@ localStorage.getItem(
 
 )
 
-||{duLieu:[]};
+|| [];
 
 
 
 
-let ai=
 
-JSON.parse(
+let danhSachPH = JSON.parse(
 
 localStorage.getItem(
 
-"nhanXetAI97"
+"phuHuynh97"
 
 )
 
 )
 
-||[];
+|| [];
 
 
 
 
 
-let hs=
+
+
+// =====================================
+// ĐỔ DANH SÁCH HỌC SINH
+// =====================================
 
 
 
-tongHop.duLieu.find(
-
-(x)=>x.ten==ten
-
-)
-
-||{};
+function napHocSinh(){
 
 
 
-let nx=
+let select =
 
-ai.find(
+document.getElementById(
 
-(x)=>x.ten==ten
+"hocSinh"
 
-)
-
-||{};
+);
 
 
 
+danhSachHS.forEach(
+
+(hs)=>{
 
 
-return{
+
+select.innerHTML +=
 
 
-ten:ten,
+`
+
+<option value="${hs.ten}">
+
+${hs.ten}
+
+</option>
 
 
-diem:hs.diem || 0,
+`;
 
 
-xepLoai:hs.xepLoai || "Chưa xếp loại",
 
-
-nhanXet:
-
-nx.nhanXet || hs.nhanXet || ""
-
-
-};
+});
 
 
 
@@ -535,348 +443,140 @@ nx.nhanXet || hs.nhanXet || ""
 
 
 
+// =====================================
+// HIỂN THỊ PHỤ HUYNH
+// =====================================
 
 
-// ===============================
-// HIỂN THỊ THÔNG TIN HỌC SINH
-// ===============================
-
-
-
-function xemThongTinHocSinh(){
-
-
-
-let ten=
 
 document.getElementById(
 
-"chonHocSinh"
+"hocSinh"
+
+).addEventListener(
+
+"change",
+
+function(){
+
+
+
+let ten=this.value;
+
+
+
+let ph=
+
+danhSachPH.find(
+
+(x)=>x.tenHS==ten
+
+);
+
+
+
+
+
+if(ph){
+
+
+document.getElementById(
+
+"thongTinPH"
+
+).innerHTML=
+
+
+`
+
+👤 Học sinh:
+
+<b>${ph.tenHS}</b>
+
+<br><br>
+
+👨 Phụ huynh:
+
+<b>${ph.tenPH}</b>
+
+<br>
+
+📞 Số điện thoại:
+
+<b>${ph.sdt}</b>
+
+
+`;
+
+
+
+}
+
+else{
+
+
+document.getElementById(
+
+"thongTinPH"
+
+).innerHTML=
+
+
+`
+
+Chưa có dữ liệu phụ huynh.
+
+<br>
+
+Vui lòng cập nhật trong phần quản lý phụ huynh.
+
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+);
+
+
+
+
+
+
+
+
+
+// =====================================
+// TẠO THÔNG BÁO AI
+// =====================================
+
+
+function taoThongBao(){
+
+
+
+let ten =
+
+document.getElementById(
+
+"hocSinh"
 
 ).value;
-
-
 
 
 
 if(!ten){
 
-return;
-
-}
-
-
-
-
-
-let hs=
-
-layDuLieuHocSinh(ten);
-
-
-
-
-
-
-
-document.getElementById(
-
-"thongTin"
-
-).innerHTML=
-
-`
-
-<h3>
-📊 Kết quả học sinh
-</h3>
-
-
-<p>
-
-👨‍🎓 Họ tên:
-<b>${hs.ten}</b>
-
-</p>
-
-
-<p>
-
-Điểm TB năm:
-<b>${hs.diem}</b>
-
-</p>
-
-
-<p>
-
-Xếp loại:
-<b>${hs.xepLoai}</b>
-
-</p>
-
-
-<p>
-
-🤖 Nhận xét AI:
-
-<br>
-
-${hs.nhanXet}
-
-</p>
-
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// TẠO MẪU TIN NHẮN
-// ===============================
-
-
-
-function taoTinTuyenDuong(){
-
-
-let hs=
-
-layDuLieuHocSinh(
-
-document.getElementById(
-
-"chonHocSinh"
-
-).value
-
-);
-
-
-
-document.getElementById(
-
-"noiDungThongBao"
-
-).value=
-
-`
-
-Kính gửi quý phụ huynh em ${hs.ten}.
-
-Nhà trường và giáo viên chủ nhiệm ghi nhận những cố gắng, 
-tinh thần học tập và rèn luyện tích cực của em trong thời gian qua.
-
-Mong gia đình tiếp tục quan tâm, động viên để em phát huy tốt hơn nữa.
-
-Trân trọng.
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-
-function taoTinNhacNho(){
-
-
-let hs=
-
-layDuLieuHocSinh(
-
-document.getElementById(
-
-"chonHocSinh"
-
-).value
-
-);
-
-
-
-document.getElementById(
-
-"noiDungThongBao"
-
-).value=
-
-`
-
-Kính gửi quý phụ huynh em ${hs.ten}.
-
-Qua quá trình theo dõi, giáo viên nhận thấy em cần cố gắng hơn 
-trong việc học tập và rèn luyện.
-
-Rất mong gia đình phối hợp nhắc nhở, động viên em thực hiện tốt hơn 
-trong thời gian tới.
-
-Xin cảm ơn sự phối hợp của gia đình.
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-
-function taoTinHocTap(){
-
-
-
-let hs=
-
-layDuLieuHocSinh(
-
-document.getElementById(
-
-"chonHocSinh"
-
-).value
-
-);
-
-
-
-document.getElementById(
-
-"noiDungThongBao"
-
-).value=
-
-`
-
-Kính gửi phụ huynh em ${hs.ten}.
-
-Kết quả học tập hiện tại của em:
-
-${hs.xepLoai}.
-
-Đề nghị gia đình tiếp tục đồng hành, tạo điều kiện để em duy trì 
-thói quen học tập tốt.
-
-Trân trọng.
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-
-function taoTinNeNep(){
-
-
-
-let hs=
-
-layDuLieuHocSinh(
-
-document.getElementById(
-
-"chonHocSinh"
-
-).value
-
-);
-
-
-
-document.getElementById(
-
-"noiDungThongBao"
-
-).value=
-
-`
-
-Kính gửi phụ huynh em ${hs.ten}.
-
-Giáo viên chủ nhiệm mong gia đình phối hợp nhắc nhở em thực hiện tốt 
-nội quy lớp học, giữ gìn nề nếp và tinh thần trách nhiệm.
-
-Xin cảm ơn sự phối hợp của gia đình.
-
-`;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ===============================
-// LƯU LỊCH SỬ TRAO ĐỔI
-// ===============================
-
-
-
-function luuLichSu(){
-
-
-
-let ten=
-
-document.getElementById(
-
-"chonHocSinh"
-
-).value;
-
-
-
-let noiDung=
-
-document.getElementById(
-
-"noiDungThongBao"
-
-).value;
-
-
-
-
-
-if(!ten || !noiDung){
-
 
 alert(
 
-"Vui lòng chọn học sinh và nhập nội dung!"
+"Vui lòng chọn học sinh"
 
 );
 
@@ -888,6 +588,229 @@ return;
 
 
 
+
+
+
+let loai=
+
+document.getElementById(
+
+"loaiThongBao"
+
+).value;
+
+
+
+
+
+
+let hs=
+
+danhSachHS.find(
+
+(x)=>x.ten==ten
+
+);
+
+
+
+
+
+
+let ph=
+
+danhSachPH.find(
+
+(x)=>x.tenHS==ten
+
+);
+
+
+
+
+
+
+let noiDung="";
+
+
+
+
+
+
+
+if(loai=="Nhận xét tháng"){
+
+
+noiDung=
+
+`
+
+Kính gửi quý phụ huynh em ${ten}!
+
+
+GVCN xin gửi nhận xét về tình hình học tập và rèn luyện của em.
+
+
+Kết quả hiện tại:
+
+- Điểm đánh giá: ${hs?.diemTB || "Chưa cập nhật"}
+
+- Xếp loại: ${hs?.xepLoai || "Chưa cập nhật"}
+
+
+Nhận xét:
+
+${hs?.nhanXet || "Em cần tiếp tục cố gắng trong học tập và rèn luyện."}
+
+
+Rất mong gia đình tiếp tục phối hợp cùng nhà trường để hỗ trợ em ngày càng tiến bộ.
+
+
+Trân trọng!
+
+
+GVCN Trần Sáng
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+if(loai=="Kết quả cuối năm"){
+
+
+noiDung=
+
+`
+
+Kính gửi quý phụ huynh!
+
+
+GVCN thông báo kết quả rèn luyện cuối năm của em ${ten}.
+
+
+Xếp loại:
+
+${hs?.xepLoai || ""}
+
+
+Nhận xét:
+
+${hs?.nhanXet || ""}
+
+
+Gia đình tiếp tục động viên, khích lệ em phát huy ưu điểm và khắc phục hạn chế.
+
+
+Trân trọng!
+
+GVCN Trần Sáng
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+if(loai=="Nhắc nhở học tập"){
+
+
+noiDung=
+
+`
+
+Kính gửi quý phụ huynh em ${ten}!
+
+
+Hiện nay em cần chú ý hơn trong việc học tập, chuẩn bị bài và thực hiện nhiệm vụ được giao.
+
+
+Kính mong gia đình phối hợp nhắc nhở, động viên em.
+
+
+Xin cảm ơn sự đồng hành của gia đình.
+
+
+GVCN Trần Sáng
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+if(loai=="Tuyên dương"){
+
+
+noiDung=
+
+`
+
+Kính gửi quý phụ huynh!
+
+
+GVCN xin chúc mừng em ${ten} đã có những cố gắng và tiến bộ tích cực.
+
+
+Những kết quả đạt được là sự nỗ lực của em cùng sự đồng hành của gia đình.
+
+
+Rất mong em tiếp tục phát huy trong thời gian tới.
+
+
+GVCN Trần Sáng
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+document.getElementById(
+
+"noiDung"
+
+).innerText=
+
+noiDung;
+
+
+
+
+
+
+// lưu lịch sử
 
 
 let lichSu=
@@ -896,15 +819,13 @@ JSON.parse(
 
 localStorage.getItem(
 
-"lichSuPhuHuynh97"
+"lichSuThongBao97"
 
 )
 
 )
 
-||[];
-
-
+|| [];
 
 
 
@@ -912,31 +833,13 @@ localStorage.getItem(
 
 lichSu.push({
 
+hocSinh:ten,
 
-ngay:
+loai:loai,
 
-new Date().toLocaleString(
+noiDung:noiDung,
 
-"vi-VN"
-
-),
-
-
-hocSinh:
-
-ten,
-
-
-noiDung:
-
-noiDung,
-
-
-nguoiThucHien:
-
-nguoiDung.ten
-
-
+ngay:new Date().toLocaleString()
 
 });
 
@@ -946,23 +849,9 @@ nguoiDung.ten
 
 localStorage.setItem(
 
-"lichSuPhuHuynh97",
+"lichSuThongBao97",
 
-JSON.stringify(
-
-lichSu
-
-)
-
-);
-
-
-
-
-
-alert(
-
-"✅ Đã lưu lịch sử trao đổi phụ huynh!"
+JSON.stringify(lichSu)
 
 );
 
@@ -976,5 +865,61 @@ alert(
 
 
 
+
+
+
+// =====================================
+// SAO CHÉP ZALO
+// =====================================
+
+
+function saoChep(){
+
+
+
+let text=
+
+document.getElementById(
+
+"noiDung"
+
+).innerText;
+
+
+
+
+
+navigator.clipboard.writeText(text);
+
+
+
+alert(
+
+"✅ Đã sao chép nội dung. Có thể gửi qua Zalo."
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+window.onload=function(){
+
+
+napHocSinh();
+
+
+};
+
+
+
+</script>
 
 </div>
