@@ -1,60 +1,49 @@
-// ======================================
-// PHÂN QUYỀN TRỢ LÝ QUẢN LÝ LỚP 97
-// TRƯỜNG THCS TRẦN PHÚ
-// GVCN: TRẦN SÁNG
-// ======================================
-
-
-
-// Danh sách tài khoản
+// =================================
+// PHÂN QUYỀN QUẢN LÝ LỚP 97
+// GVCN TRẦN SÁNG
+// =================================
 
 
 const taiKhoan97 = [
 
-
 {
-user:"gvcn",
-pass:"123456",
-ten:"GVCN Trần Sáng",
-quyen:"gvcn"
+    username:"gvcn",
+    password:"123456",
+    ten:"GVCN Trần Sáng",
+    quyen:"gvcn"
 },
 
 
-
 {
-user:"loptruong",
-pass:"123456",
-ten:"Lớp trưởng",
-quyen:"loptruong"
+    username:"loptruong",
+    password:"123456",
+    ten:"Lớp trưởng",
+    quyen:"loptruong"
 },
 
 
-
 {
-user:"hoc_tap",
-pass:"123456",
-ten:"Lớp phó học tập",
-quyen:"hoc_tap"
+    username:"hoctap",
+    password:"123456",
+    ten:"Lớp phó học tập",
+    quyen:"hoc_tap"
 },
 
 
-
 {
-user:"lao_dong",
-pass:"123456",
-ten:"Lớp phó lao động",
-quyen:"lao_dong"
+    username:"laodong",
+    password:"123456",
+    ten:"Lớp phó lao động",
+    quyen:"lao_dong"
 },
 
 
-
 {
-user:"to_truong",
-pass:"123456",
-ten:"Tổ trưởng",
-quyen:"to_truong"
+    username:"totruong",
+    password:"123456",
+    ten:"Tổ trưởng",
+    quyen:"to_truong"
 }
-
 
 
 ];
@@ -62,50 +51,39 @@ quyen:"to_truong"
 
 
 
-
-
-
-
-
-// ======================================
-// KIỂM TRA ĐĂNG NHẬP
-// ======================================
+// ==============================
+// ĐĂNG NHẬP
+// ==============================
 
 
 function dangNhapTaiKhoan(user,pass){
 
 
-
-let tk=
-
-taiKhoan97.find(
+let taiKhoan = taiKhoan97.find(
 
 (x)=>
 
-x.user==user && x.pass==pass
+x.username===user
+&&
+x.password===pass
 
 );
 
 
 
-
-
-if(tk){
-
+if(taiKhoan){
 
 
 localStorage.setItem(
 
 "nguoiDungDangNhap",
 
-JSON.stringify(tk)
+JSON.stringify(taiKhoan)
 
 );
 
 
-
 return true;
-
 
 
 }
@@ -121,77 +99,33 @@ return false;
 
 
 
-
-
-
-
-// ======================================
-// LẤY NGƯỜI DÙNG HIỆN TẠI
-// ======================================
-
+// ==============================
+// LẤY NGƯỜI DÙNG
+// ==============================
 
 
 function layNguoiDung(){
 
 
-
-return JSON.parse(
+let user=
 
 localStorage.getItem(
 
 "nguoiDungDangNhap"
 
-)
-
-)
-
-||null;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ======================================
-// KIỂM TRA QUYỀN
-// ======================================
-
-
-
-function kiemTraQuyen(quyenCan){
-
-
-
-let user=
-
-layNguoiDung();
-
-
-
-
-
-if(!user){
-
-
-alert(
-
-"Vui lòng đăng nhập!"
-
 );
 
 
 
-location.href="dangnhap.html";
+if(user){
+
+return JSON.parse(user);
+
+}
 
 
-return false;
+
+return null;
 
 
 }
@@ -199,64 +133,12 @@ return false;
 
 
 
-
-
-if(user.quyen=="gvcn"){
-
-
-return true;
-
-
-}
-
-
-
-
-
-
-if(user.quyen==quyenCan){
-
-
-return true;
-
-
-}
-
-
-
-
-
-
-
-alert(
-
-"⚠ Bạn không có quyền truy cập chức năng này!"
-
-);
-
-
-
-return false;
-
-
-
-}
-
-
-
-
-
-
-
-
-// ======================================
+// ==============================
 // ĐĂNG XUẤT
-// ======================================
-
+// ==============================
 
 
 function dangXuat(){
-
 
 
 localStorage.removeItem(
@@ -266,9 +148,7 @@ localStorage.removeItem(
 );
 
 
-
 location.href="dangnhap.html";
-
 
 
 }
