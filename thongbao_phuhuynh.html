@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Thông báo phụ huynh lớp 97</title>
+
+
+<script src="phanquyen.js"></script>
+
+<script src="ai_nhanxet.js"></script>
+
+
+<style>
+
+
+body{
+
+font-family:Arial,sans-serif;
+
+background:#eef5ff;
+
+padding:20px;
+
+}
+
+
+
+.container{
+
+max-width:1200px;
+
+margin:auto;
+
+background:white;
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+}
+
+
+
+h1,h2{
+
+text-align:center;
+
+color:#1565c0;
+
+}
+
+
+
+.user{
+
+text-align:center;
+
+background:#f2f7ff;
+
+padding:15px;
+
+border-radius:15px;
+
+}
+
+
+
+select,textarea{
+
+width:100%;
+
+padding:12px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+margin-top:10px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+margin:8px;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+.card{
+
+background:#f7fbff;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-top:20px;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
+
+border-top:1px solid #ddd;
+
+padding-top:20px;
+
+color:#555;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="container">
+
+
+
+<h2>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h2>
+
+
+<h1>
+🔔 TRỢ LÝ THÔNG BÁO PHỤ HUYNH LỚP 97
+</h1>
+
+
+
+
+<div class="user" id="nguoiDung">
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+👨‍🎓 Chọn học sinh
+</h3>
+
+
+<select id="chonHocSinh" onchange="xemThongTinHocSinh()">
+
+<option value="">
+-- Chọn học sinh --
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="card" id="thongTin">
+
+
+<h3>
+📊 Kết quả học sinh
+</h3>
+
+
+<p>
+
+Chưa chọn học sinh.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h3>
+✍️ Nội dung gửi phụ huynh
+</h3>
+
+
+
+<button onclick="taoTinTuyenDuong()">
+
+🌟 Tuyên dương
+
+</button>
+
+
+<button onclick="taoTinNhacNho()">
+
+⚠ Nhắc nhở
+
+</button>
+
+
+<button onclick="taoTinHocTap()">
+
+📚 Học tập
+
+</button>
+
+
+<button onclick="taoTinNeNep()">
+
+🧹 Nề nếp
+
+</button>
+
+
+
+
+
+<textarea id="noiDungThongBao"
+
+rows="8"
+
+placeholder="Nội dung trao đổi với phụ huynh...">
+
+</textarea>
+
+
+
+
+<button onclick="luuLichSu()">
+
+💾 Lưu lịch sử trao đổi
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+
+// ===============================
+// KIỂM TRA ĐĂNG NHẬP
+// ===============================
+
+
+let nguoiDung = JSON.parse(
+
+localStorage.getItem(
+"nguoiDungDangNhap"
+)
+
+);
+
+
+
+if(!nguoiDung){
+
+location.href="dangnhap.html";
+
+}
+
+
+
+
+document.getElementById(
+
+"nguoiDung"
+
+).innerHTML=
+
+"👤 Xin chào: <b>"
+
++
+
+nguoiDung.ten
+
++
+
+"</b>";
+
+
+
+
+
+
+
+// ===============================
+// DANH SÁCH HỌC SINH
+// ===============================
+
+
+
+let dsHocSinh=[];
+
+
+
+if(typeof danhSachHocSinh!="undefined"){
+
+
+dsHocSinh=danhSachHocSinh;
+
+
+}
+
+else{
+
+
+dsHocSinh=[
+
+"Nguyễn Văn A",
+
+"Trần Văn B",
+
+"Lê Thị C"
+
+];
+
+
+}
+
+
+
+
+
+
+
+
+// Đưa danh sách vào ô chọn
+
+
+let select=
+
+document.getElementById(
+
+"chonHocSinh"
+
+);
+
+
+
+dsHocSinh.forEach(hs=>{
+
+
+let option=
+
+document.createElement(
+
+"option"
+
+);
+
+
+option.value=hs;
+
+option.textContent=hs;
+
+
+select.appendChild(option);
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// LẤY DỮ LIỆU TỔNG HỢP
+// ===============================
+
+
+
+function layDuLieuHocSinh(ten){
+
+
+
+let tongHop=
+
+JSON.parse(
+
+localStorage.getItem(
+
+"tongHopNam97"
+
+)
+
+)
+
+||{duLieu:[]};
+
+
+
+
+let ai=
+
+JSON.parse(
+
+localStorage.getItem(
+
+"nhanXetAI97"
+
+)
+
+)
+
+||[];
+
+
+
+
+
+let hs=
+
+
+
+tongHop.duLieu.find(
+
+(x)=>x.ten==ten
+
+)
+
+||{};
+
+
+
+let nx=
+
+ai.find(
+
+(x)=>x.ten==ten
+
+)
+
+||{};
+
+
+
+
+
+return{
+
+
+ten:ten,
+
+
+diem:hs.diem || 0,
+
+
+xepLoai:hs.xepLoai || "Chưa xếp loại",
+
+
+nhanXet:
+
+nx.nhanXet || hs.nhanXet || ""
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// HIỂN THỊ THÔNG TIN HỌC SINH
+// ===============================
+
+
+
+function xemThongTinHocSinh(){
+
+
+
+let ten=
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value;
+
+
+
+
+
+if(!ten){
+
+return;
+
+}
+
+
+
+
+
+let hs=
+
+layDuLieuHocSinh(ten);
+
+
+
+
+
+
+
+document.getElementById(
+
+"thongTin"
+
+).innerHTML=
+
+`
+
+<h3>
+📊 Kết quả học sinh
+</h3>
+
+
+<p>
+
+👨‍🎓 Họ tên:
+<b>${hs.ten}</b>
+
+</p>
+
+
+<p>
+
+Điểm TB năm:
+<b>${hs.diem}</b>
+
+</p>
+
+
+<p>
+
+Xếp loại:
+<b>${hs.xepLoai}</b>
+
+</p>
+
+
+<p>
+
+🤖 Nhận xét AI:
+
+<br>
+
+${hs.nhanXet}
+
+</p>
+
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// TẠO MẪU TIN NHẮN
+// ===============================
+
+
+
+function taoTinTuyenDuong(){
+
+
+let hs=
+
+layDuLieuHocSinh(
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value
+
+);
+
+
+
+document.getElementById(
+
+"noiDungThongBao"
+
+).value=
+
+`
+
+Kính gửi quý phụ huynh em ${hs.ten}.
+
+Nhà trường và giáo viên chủ nhiệm ghi nhận những cố gắng, 
+tinh thần học tập và rèn luyện tích cực của em trong thời gian qua.
+
+Mong gia đình tiếp tục quan tâm, động viên để em phát huy tốt hơn nữa.
+
+Trân trọng.
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+function taoTinNhacNho(){
+
+
+let hs=
+
+layDuLieuHocSinh(
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value
+
+);
+
+
+
+document.getElementById(
+
+"noiDungThongBao"
+
+).value=
+
+`
+
+Kính gửi quý phụ huynh em ${hs.ten}.
+
+Qua quá trình theo dõi, giáo viên nhận thấy em cần cố gắng hơn 
+trong việc học tập và rèn luyện.
+
+Rất mong gia đình phối hợp nhắc nhở, động viên em thực hiện tốt hơn 
+trong thời gian tới.
+
+Xin cảm ơn sự phối hợp của gia đình.
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+function taoTinHocTap(){
+
+
+
+let hs=
+
+layDuLieuHocSinh(
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value
+
+);
+
+
+
+document.getElementById(
+
+"noiDungThongBao"
+
+).value=
+
+`
+
+Kính gửi phụ huynh em ${hs.ten}.
+
+Kết quả học tập hiện tại của em:
+
+${hs.xepLoai}.
+
+Đề nghị gia đình tiếp tục đồng hành, tạo điều kiện để em duy trì 
+thói quen học tập tốt.
+
+Trân trọng.
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+function taoTinNeNep(){
+
+
+
+let hs=
+
+layDuLieuHocSinh(
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value
+
+);
+
+
+
+document.getElementById(
+
+"noiDungThongBao"
+
+).value=
+
+`
+
+Kính gửi phụ huynh em ${hs.ten}.
+
+Giáo viên chủ nhiệm mong gia đình phối hợp nhắc nhở em thực hiện tốt 
+nội quy lớp học, giữ gìn nề nếp và tinh thần trách nhiệm.
+
+Xin cảm ơn sự phối hợp của gia đình.
+
+`;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// LƯU LỊCH SỬ TRAO ĐỔI
+// ===============================
+
+
+
+function luuLichSu(){
+
+
+
+let ten=
+
+document.getElementById(
+
+"chonHocSinh"
+
+).value;
+
+
+
+let noiDung=
+
+document.getElementById(
+
+"noiDungThongBao"
+
+).value;
+
+
+
+
+
+if(!ten || !noiDung){
+
+
+alert(
+
+"Vui lòng chọn học sinh và nhập nội dung!"
+
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+let lichSu=
+
+JSON.parse(
+
+localStorage.getItem(
+
+"lichSuPhuHuynh97"
+
+)
+
+)
+
+||[];
+
+
+
+
+
+
+
+lichSu.push({
+
+
+ngay:
+
+new Date().toLocaleString(
+
+"vi-VN"
+
+),
+
+
+hocSinh:
+
+ten,
+
+
+noiDung:
+
+noiDung,
+
+
+nguoiThucHien:
+
+nguoiDung.ten
+
+
+
+});
+
+
+
+
+
+localStorage.setItem(
+
+"lichSuPhuHuynh97",
+
+JSON.stringify(
+
+lichSu
+
+)
+
+);
+
+
+
+
+
+alert(
+
+"✅ Đã lưu lịch sử trao đổi phụ huynh!"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+
+</div>
