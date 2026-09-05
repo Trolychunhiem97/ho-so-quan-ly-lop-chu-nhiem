@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
 Trợ lý quản lý lớp 97
@@ -22,7 +20,7 @@ Trợ lý quản lý lớp 97
 
 body{
 
-font-family:Arial;
+font-family:"Segoe UI",Arial,sans-serif;
 
 background:#eef5ff;
 
@@ -33,28 +31,47 @@ padding:20px;
 }
 
 
-
 .container{
 
-max-width:1100px;
+max-width:1200px;
 
 margin:auto;
 
 background:white;
 
+border-radius:25px;
+
 padding:30px;
 
-border-radius:25px;
+box-shadow:0 10px 30px #ccc;
 
 }
 
 
 
-h1,h2{
+.header{
 
 text-align:center;
 
+}
+
+
+
+.header h2{
+
 color:#1565c0;
+
+font-size:32px;
+
+}
+
+
+
+.header h1{
+
+color:#1565c0;
+
+font-size:42px;
 
 }
 
@@ -62,15 +79,17 @@ color:#1565c0;
 
 .user{
 
-text-align:center;
+margin-top:20px;
 
-background:#e3f2fd;
+background:#eaf3ff;
 
 padding:20px;
 
 border-radius:20px;
 
-font-size:18px;
+text-align:center;
+
+font-size:22px;
 
 }
 
@@ -82,7 +101,7 @@ display:grid;
 
 grid-template-columns:
 
-repeat(auto-fit,minmax(220px,1fr));
+repeat(auto-fit,minmax(230px,1fr));
 
 gap:20px;
 
@@ -96,13 +115,21 @@ margin-top:30px;
 
 background:#f8fbff;
 
-padding:25px;
-
 border-radius:20px;
+
+padding:25px;
 
 text-align:center;
 
 border:1px solid #ddd;
+
+}
+
+
+
+.card h3{
+
+color:#1565c0;
 
 }
 
@@ -114,30 +141,45 @@ background:#1565c0;
 
 color:white;
 
-padding:12px 25px;
-
 border:none;
+
+padding:13px 30px;
 
 border-radius:12px;
 
-cursor:pointer;
+font-size:17px;
 
-font-size:16px;
+cursor:pointer;
 
 }
 
 
 
-.hide{
+button:hover{
 
-display:none;
+background:#0d47a1;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:40px;
+
+color:#666;
+
+border-top:1px solid #ddd;
+
+padding-top:20px;
 
 }
 
 
 
 </style>
-
 
 </head>
 
@@ -147,6 +189,10 @@ display:none;
 
 
 <div class="container">
+
+
+
+<div class="header">
 
 
 <h2>
@@ -159,10 +205,30 @@ display:none;
 </h1>
 
 
+<p>
+
+GVCN:
+
+<b>
+Trần Sáng
+</b>
+
+</p>
+
+
+</div>
+
+
+
+
 
 <div class="user" id="userBox">
 
 </div>
+
+
+
+
 
 
 
@@ -176,7 +242,7 @@ display:none;
 📊 Tổng hợp năm
 </h3>
 
-<button onclick="mo('tonghop_nam.html')">
+<button onclick="moTrang('tonghop_nam.html')">
 Mở
 </button>
 
@@ -190,7 +256,7 @@ Mở
 📄 Xuất báo cáo
 </h3>
 
-<button onclick="mo('xuat_tonghop_word.html')">
+<button onclick="moTrang('xuat_tonghop_word.html')">
 Mở
 </button>
 
@@ -204,7 +270,35 @@ Mở
 👨‍👩‍👧 Quản lý phụ huynh
 </h3>
 
-<button onclick="mo('quanly_phuhuynh.html')">
+<button onclick="moTrang('quanly_phuhuynh.html')">
+Mở
+</button>
+
+</div>
+
+
+
+<div class="card gvcn">
+
+<h3>
+🔔 Thông báo phụ huynh
+</h3>
+
+<button onclick="moTrang('thongbao_phuhuynh.html')">
+Mở
+</button>
+
+</div>
+
+
+
+<div class="card gvcn">
+
+<h3>
+💾 Sao lưu dữ liệu
+</h3>
+
+<button onclick="moTrang('backup.html')">
 Mở
 </button>
 
@@ -219,11 +313,12 @@ Mở
 🏆 Thi đua tuần
 </h3>
 
-<button onclick="mo('thidua_tuan.html')">
+<button onclick="moTrang('thidua_tuan.html')">
 Mở
 </button>
 
 </div>
+
 
 
 
@@ -233,11 +328,12 @@ Mở
 📚 Học tập
 </h3>
 
-<button onclick="mo('hoctap.html')">
+<button onclick="moTrang('hoctap.html')">
 Mở
 </button>
 
 </div>
+
 
 
 
@@ -247,7 +343,7 @@ Mở
 🧹 Lao động
 </h3>
 
-<button onclick="mo('laodong.html')">
+<button onclick="moTrang('laodong.html')">
 Mở
 </button>
 
@@ -262,7 +358,7 @@ Mở
 👥 Tổ trưởng
 </h3>
 
-<button onclick="mo('totruong.html')">
+<button onclick="moTrang('totruong.html')">
 Mở
 </button>
 
@@ -273,10 +369,13 @@ Mở
 </div>
 
 
+
+
 <br>
 
 
 <div style="text-align:center">
+
 
 <button onclick="dangXuat()">
 
@@ -284,11 +383,23 @@ Mở
 
 </button>
 
+
+</div>
+
+
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
 </div>
 
 
 
 </div>
+
 
 
 
@@ -297,9 +408,12 @@ Mở
 <script>
 
 
-let user=
+// ================================
+// LẤY NGƯỜI DÙNG
+// ================================
 
-layNguoiDung();
+
+let user = layNguoiDung();
 
 
 
@@ -312,6 +426,34 @@ location.href="dangnhap.html";
 
 
 }
+
+
+
+
+
+// ================================
+// SỬA QUYỀN CŨ ADMIN
+// ================================
+
+
+if(user.quyen=="admin"){
+
+
+user.quyen="gvcn";
+
+
+localStorage.setItem(
+
+"nguoiDungDangNhap",
+
+JSON.stringify(user)
+
+);
+
+
+}
+
+
 
 
 
@@ -342,13 +484,19 @@ document.getElementById(
 
 
 
-// Ẩn toàn bộ
+
+
+
+// ================================
+// ẨN TẤT CẢ MENU
+// ================================
+
 
 document.querySelectorAll(".card")
 
 .forEach(
 
-(x)=>x.style.display="none"
+x=>x.style.display="none"
 
 );
 
@@ -356,19 +504,25 @@ document.querySelectorAll(".card")
 
 
 
-// GVCN xem tất cả
+
+
+// ================================
+// HIỂN THỊ THEO QUYỀN
+// ================================
 
 
 if(user.quyen=="gvcn"){
 
 
+
 document.querySelectorAll(".card")
 
 .forEach(
 
-(x)=>x.style.display="block"
+x=>x.style.display="block"
 
 );
+
 
 
 }
@@ -376,19 +530,12 @@ document.querySelectorAll(".card")
 
 
 
-// Các quyền khác
-
-
 if(user.quyen=="loptruong"){
 
 
-document.querySelectorAll(".loptruong")
+document.querySelector(".loptruong")
 
-.forEach(
-
-(x)=>x.style.display="block"
-
-);
+.style.display="block";
 
 
 }
@@ -398,13 +545,9 @@ document.querySelectorAll(".loptruong")
 if(user.quyen=="hoc_tap"){
 
 
-document.querySelectorAll(".hoc_tap")
+document.querySelector(".hoc_tap")
 
-.forEach(
-
-(x)=>x.style.display="block"
-
-);
+.style.display="block";
 
 
 }
@@ -414,13 +557,9 @@ document.querySelectorAll(".hoc_tap")
 if(user.quyen=="lao_dong"){
 
 
-document.querySelectorAll(".lao_dong")
+document.querySelector(".lao_dong")
 
-.forEach(
-
-(x)=>x.style.display="block"
-
-);
+.style.display="block";
 
 
 }
@@ -430,13 +569,9 @@ document.querySelectorAll(".lao_dong")
 if(user.quyen=="to_truong"){
 
 
-document.querySelectorAll(".to_truong")
+document.querySelector(".to_truong")
 
-.forEach(
-
-(x)=>x.style.display="block"
-
-);
+.style.display="block";
 
 
 }
@@ -444,7 +579,10 @@ document.querySelectorAll(".to_truong")
 
 
 
-function mo(trang){
+
+
+
+function moTrang(trang){
 
 location.href=trang;
 
