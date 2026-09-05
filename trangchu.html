@@ -14,15 +14,17 @@ Trang chủ quản lý lớp 97
 </title>
 
 
+<script src="phanquyen.js"></script>
+
 
 <style>
 
 
 body{
 
-font-family:"Segoe UI",Arial;
-
 margin:0;
+
+font-family:"Segoe UI",Arial;
 
 background:#eef5ff;
 
@@ -54,21 +56,21 @@ max-width:1200px;
 
 margin:auto;
 
-padding:30px;
+padding:25px;
 
 }
 
 
 
-.user{
+.user-box{
 
 background:white;
 
-padding:20px;
+padding:25px;
 
-border-radius:20px;
+border-radius:25px;
 
-box-shadow:0 5px 15px #ccc;
+box-shadow:0 8px 20px #ccc;
 
 margin-bottom:25px;
 
@@ -81,6 +83,7 @@ margin-bottom:25px;
 display:grid;
 
 grid-template-columns:
+
 repeat(auto-fit,minmax(230px,1fr));
 
 gap:20px;
@@ -97,9 +100,9 @@ padding:25px;
 
 border-radius:25px;
 
-text-align:center;
-
 box-shadow:0 5px 15px #ddd;
+
+text-align:center;
 
 cursor:pointer;
 
@@ -135,25 +138,17 @@ color:#1565c0;
 
 button{
 
-padding:12px 20px;
-
-border:none;
-
-border-radius:12px;
-
 background:#1565c0;
 
 color:white;
 
+border:none;
+
+padding:12px 20px;
+
+border-radius:12px;
+
 cursor:pointer;
-
-}
-
-
-
-button:hover{
-
-background:#0d47a1;
 
 }
 
@@ -166,11 +161,11 @@ display:none;
 }
 
 
+
 </style>
 
 
 </head>
-
 
 
 <body>
@@ -181,12 +176,16 @@ display:none;
 
 
 <h1>
+
 🤖 TRỢ LÝ QUẢN LÝ LỚP 97
+
 </h1>
 
 
 <p>
+
 GVCN Trần Sáng
+
 </p>
 
 
@@ -196,14 +195,19 @@ GVCN Trần Sáng
 
 
 
+
+
 <div class="container">
 
 
-<div class="user">
+
+<div class="user-box">
 
 
 <h2>
+
 👋 Xin chào
+
 </h2>
 
 
@@ -219,7 +223,9 @@ GVCN Trần Sáng
 </button>
 
 
+
 </div>
+
 
 
 
@@ -229,27 +235,36 @@ GVCN Trần Sáng
 
 
 
+
+
 <div class="card gvcn"
 
 onclick="moTrang('danhsach_hocsinh.html')">
 
 
 <div class="icon">
+
 👨‍🎓
+
 </div>
 
 
 <h2>
+
 Hồ sơ học sinh
+
 </h2>
 
 
 <p>
-Quản lý 33 học sinh
+
+Quản lý danh sách 33 em
+
 </p>
 
 
 </div>
+
 
 
 
@@ -262,21 +277,28 @@ onclick="moTrang('thidua_tuan.html')">
 
 
 <div class="icon">
+
 🏆
+
 </div>
 
 
 <h2>
+
 Thi đua tuần
+
 </h2>
 
 
 <p>
+
 Theo dõi điểm rèn luyện
+
 </p>
 
 
 </div>
+
 
 
 
@@ -289,21 +311,28 @@ onclick="moTrang('quanly_thang.html')">
 
 
 <div class="icon">
+
 📅
+
 </div>
 
 
 <h2>
+
 Quản lý tháng
+
 </h2>
 
 
 <p>
-Xếp loại rèn luyện
+
+Đánh giá hạnh kiểm
+
 </p>
 
 
 </div>
+
 
 
 
@@ -316,21 +345,28 @@ onclick="moTrang('tonghop_nam.html')">
 
 
 <div class="icon">
+
 📊
+
 </div>
 
 
 <h2>
+
 Tổng hợp năm
+
 </h2>
 
 
 <p>
+
 Kết quả cuối năm
+
 </p>
 
 
 </div>
+
 
 
 
@@ -339,21 +375,27 @@ Kết quả cuối năm
 
 <div class="card gvcn"
 
-onclick="moTrang('xuat_baocao.html')">
+onclick="moTrang('baocao_chunhiem.html')">
 
 
 <div class="icon">
+
 📄
+
 </div>
 
 
 <h2>
-Báo cáo
+
+Báo cáo chủ nhiệm
+
 </h2>
 
 
 <p>
-Xuất báo cáo GVCN
+
+Xuất báo cáo
+
 </p>
 
 
@@ -361,62 +403,45 @@ Xuất báo cáo GVCN
 
 
 
+
+
+
+
 </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
 <script>
 
 
-// ======================================
-// TRANG CHỦ HỆ THỐNG LỚP 97
-// ======================================
-
-
-
-let nguoiDung = JSON.parse(
-
-localStorage.getItem(
-
-"nguoiDung97"
-
-)
-
-);
-
-
-
-
-
-
-
-
-// ======================================
+// =================================
 // KIỂM TRA ĐĂNG NHẬP
-// ======================================
+// =================================
 
 
-function kiemTraDangNhap(){
+let nguoiDung = layNguoiDung();
 
 
 
 if(!nguoiDung){
 
 
-
 alert(
-
-"Bạn chưa đăng nhập hệ thống"
-
+"Bạn chưa đăng nhập"
 );
 
 
-
-window.location.href=
-
-"index.html";
-
-
-
-return;
-
+window.location.href="index.html";
 
 
 }
@@ -426,33 +451,27 @@ return;
 
 
 
+// HIỂN THỊ THÔNG TIN
+
+
 document.getElementById(
 
 "thongTinUser"
 
-).innerHTML =
-
+).innerHTML=
 
 
 `
 
-👤 Người dùng:
+👤 Tài khoản:
 
 <b>${nguoiDung.ten}</b>
 
 
-<br>
+<br><br>
 
 
-🔐 Vai trò:
-
-<b>${nguoiDung.vaiTro}</b>
-
-
-<br>
-
-
-Quyền:
+🔐 Quyền:
 
 <b>${nguoiDung.quyen}</b>
 
@@ -465,66 +484,34 @@ Quyền:
 
 
 
-phanQuyen();
 
-
-
-}
-
-
-
-
-
-
-
-
-
-// ======================================
+// =================================
 // PHÂN QUYỀN
-// ======================================
-
-
-function phanQuyen(){
+// =================================
 
 
 
-let cacNutGVCN = document.querySelectorAll(
-
-".gvcn"
-
-);
+function hienThiQuyen(){
 
 
 
+let chucNangGVCN=
 
-
-if(nguoiDung.quyen=="all"){
-
-
-
-cacNutGVCN.forEach(
-
-(x)=>{
-
-x.style.display="block";
-
-}
-
-);
+document.querySelectorAll(".gvcn");
 
 
 
-}
-
-else{
 
 
+if(nguoiDung.quyen!=="gvcn"){
 
-cacNutGVCN.forEach(
 
-(x)=>{
 
-x.style.display="none";
+chucNangGVCN.forEach(
+
+(item)=>{
+
+item.classList.add("hide");
 
 }
 
@@ -536,11 +523,11 @@ x.style.display="none";
 
 
 
-
 }
 
 
 
+hienThiQuyen();
 
 
 
@@ -548,71 +535,25 @@ x.style.display="none";
 
 
 
-// ======================================
+// =================================
 // MỞ TRANG
-// ======================================
+// =================================
 
 
-function moTrang(trang){
+function moTrang(url){
 
 
-
-window.location.href=trang;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ======================================
-// ĐĂNG XUẤT
-// ======================================
-
-
-function dangXuat(){
-
-
-
-localStorage.removeItem(
-
-"nguoiDung97"
-
-);
-
-
-
-window.location.href=
-
-"index.html";
-
+window.location.href=url;
 
 
 }
-
-
-
-
-
-
-window.onload=function(){
-
-
-
-kiemTraDangNhap();
-
-
-
-};
 
 
 
 </script>
 
-</div>
+
+
+</body>
+
+</html>
