@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Xuất Word tổng kết lớp 97</title>
+
+
+<script src="danhsach.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js">
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js">
+</script>
+
+
+
+<style>
+
+
+body{
+
+font-family:Arial;
+
+background:#eef5ff;
+
+padding:30px;
+
+}
+
+
+
+.container{
+
+max-width:800px;
+
+margin:auto;
+
+background:white;
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+text-align:center;
+
+}
+
+
+
+
+h1{
+
+color:#1565c0;
+
+}
+
+
+
+.info{
+
+background:#f2f7ff;
+
+padding:20px;
+
+border-radius:15px;
+
+margin:20px;
+
+font-size:18px;
+
+}
+
+
+
+select{
+
+padding:12px;
+
+font-size:18px;
+
+border-radius:8px;
+
+}
+
+
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:15px 25px;
+
+border-radius:10px;
+
+font-size:18px;
+
+margin:10px;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+.footer{
+
+margin-top:30px;
+
+color:#555;
+
+border-top:1px solid #ddd;
+
+padding-top:20px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+
+<h1>
+
+📄 XUẤT WORD TỔNG KẾT LỚP 97
+
+</h1>
+
+
+
+<div class="info">
+
+
+<h3>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h3>
+
+
+<p>
+👨‍🏫 Giáo viên chủ nhiệm:
+<b>Trần Sáng</b>
+</p>
+
+
+<p>
+📘 Lớp:
+<b>97</b>
+</p>
+
+
+
+</div>
+
+
+
+
+
+<h3>
+Chọn loại báo cáo
+</h3>
+
+
+
+<select id="loai">
+
+
+<option value="HK1">
+
+📘 Tổng kết học kỳ I
+
+</option>
+
+
+<option value="HK2">
+
+📗 Tổng kết học kỳ II
+
+</option>
+
+
+<option value="CANAM">
+
+🏆 Tổng kết cả năm
+
+</option>
+
+
+</select>
+
+
+
+
+
+<br><br>
+
+
+
+<button onclick="xuatWordTongKet()">
+
+📄 Tạo file Word tổng kết
+
+</button>
+
+
+
+
+<button onclick="location.href='index.html'">
+
+🏠 Trang chủ
+
+</button>
+
+
+
+
+
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</div>
+<script>
+
+
+async function xuatWordTongKet(){
+
+
+
+let loai =
+
+document.getElementById("loai").value;
+
+
+
+let tenBaoCao="";
+
+
+
+if(loai=="HK1"){
+
+tenBaoCao="Tong_ket_HKI_Lop_97_Tran_Sang.docx";
+
+}
+
+
+else if(loai=="HK2"){
+
+tenBaoCao="Tong_ket_HKII_Lop_97_Tran_Sang.docx";
+
+}
+
+
+else{
+
+tenBaoCao="Tong_ket_ca_nam_Lop_97_Tran_Sang.docx";
+
+}
+
+
+
+
+
+
+let bangLuu =
+
+localStorage.getItem(
+
+"tongHopLop97"
+
+)
+
+||"";
+
+
+
+
+
+let nhanXetChung =
+
+localStorage.getItem(
+
+"nhanXetTongHop97"
+
+)
+
+||"";
+
+
+
+
+
+
+let div = document.createElement("div");
+
+div.innerHTML = bangLuu;
+
+
+
+let dong =
+
+div.querySelectorAll("tr");
+
+
+
+
+
+
+const {
+
+Document,
+
+Packer,
+
+Paragraph,
+
+TextRun,
+
+Table,
+
+TableRow,
+
+TableCell,
+
+AlignmentType,
+
+WidthType
+
+
+}=docx;
+
+
+
+
+
+
+let noiDung=[];
+
+
+
+
+
+
+// ==========================
+// TIÊU ĐỀ
+// ==========================
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+children:[
+
+new TextRun({
+
+text:
+
+"TRƯỜNG THCS TRẦN PHÚ",
+
+bold:true,
+
+size:28
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+children:[
+
+new TextRun({
+
+text:
+
+"BÁO CÁO TỔNG KẾT LỚP 97",
+
+bold:true,
+
+size:30
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+let loaiText="";
+
+
+
+if(loai=="HK1")
+
+loaiText="HỌC KỲ I";
+
+
+if(loai=="HK2")
+
+loaiText="HỌC KỲ II";
+
+
+if(loai=="CANAM")
+
+loaiText="CẢ NĂM";
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.CENTER,
+
+children:[
+
+new TextRun({
+
+text:loaiText,
+
+bold:true,
+
+size:26
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+"Giáo viên chủ nhiệm: Trần Sáng"
+
+)
+
+);
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+""
+
+)
+
+);
+
+
+
+
+
+
+// ==========================
+// BẢNG KẾT QUẢ
+// ==========================
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:
+
+"I. KẾT QUẢ RÈN LUYỆN HỌC SINH",
+
+bold:true,
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+let rows=[];
+
+
+
+rows.push(
+
+new TableRow({
+
+children:[
+
+
+new TableCell({
+
+children:[
+
+new Paragraph("STT")
+
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+
+new Paragraph("Họ tên")
+
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+
+new Paragraph("Điểm TB")
+
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+
+new Paragraph("Hạnh kiểm")
+
+]
+
+}),
+
+
+new TableCell({
+
+children:[
+
+new Paragraph("Xếp loại")
+
+]
+
+})
+
+
+]
+
+})
+
+);
+
+
+
+
+
+
+
+
+for(let i=1;i<dong.length;i++){
+
+
+
+let o=dong[i].cells;
+
+
+
+if(!o) continue;
+
+
+
+rows.push(
+
+new TableRow({
+
+children:[
+
+
+new TableCell({
+
+children:[
+
+new Paragraph(
+
+String(i)
+
+)
+
+]
+
+}),
+
+
+
+new TableCell({
+
+children:[
+
+new Paragraph(
+
+o[1].innerText
+
+)
+
+]
+
+}),
+
+
+
+new TableCell({
+
+children:[
+
+new Paragraph(
+
+o[2].innerText
+
+)
+
+]
+
+}),
+
+
+
+new TableCell({
+
+children:[
+
+new Paragraph(
+
+o[3].innerText
+
+)
+
+]
+
+}),
+
+
+
+new TableCell({
+
+children:[
+
+new Paragraph(
+
+o[4].innerText
+
+)
+
+]
+
+})
+
+
+
+]
+
+})
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+noiDung.push(
+
+new Table({
+
+rows:rows,
+
+width:{
+
+size:100,
+
+type:WidthType.PERCENTAGE
+
+}
+
+})
+
+);
+
+
+
+
+
+
+
+
+// ==========================
+// NHẬN XÉT AI
+// ==========================
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:
+
+"II. NHẬN XÉT CÁ NHÂN HỌC SINH",
+
+bold:true,
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+
+for(let i=1;i<dong.length;i++){
+
+
+
+let o=dong[i].cells;
+
+
+
+if(!o) continue;
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:
+
+o[1].innerText,
+
+bold:true
+
+})
+
+]
+
+})
+
+);
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+o[5]?.innerText || ""
+
+)
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+// ==========================
+// NHẬN XÉT CHUNG
+// ==========================
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+children:[
+
+new TextRun({
+
+text:
+
+"III. NHẬN XÉT CHUNG CỦA GVCN",
+
+bold:true,
+
+size:24
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+noiDung.push(
+
+new Paragraph(
+
+nhanXetChung
+
+)
+
+);
+
+
+
+
+
+
+
+
+// ==========================
+// KÝ TÊN
+// ==========================
+
+
+noiDung.push(
+
+new Paragraph("")
+
+);
+
+
+
+noiDung.push(
+
+new Paragraph({
+
+alignment:
+
+AlignmentType.RIGHT,
+
+children:[
+
+new TextRun({
+
+text:
+
+"GIÁO VIÊN CHỦ NHIỆM\nTrần Sáng",
+
+bold:true
+
+})
+
+]
+
+})
+
+);
+
+
+
+
+
+
+let doc =
+
+new Document({
+
+sections:[{
+
+children:noiDung
+
+}]
+
+});
+
+
+
+
+
+
+let file=
+
+await Packer.toBlob(doc);
+
+
+
+saveAs(
+
+file,
+
+tenBaoCao
+
+);
+
+
+
+alert(
+
+"✅ Đã xuất file Word tổng kết thành công!"
+
+);
+
+
+
+}
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+</div>
