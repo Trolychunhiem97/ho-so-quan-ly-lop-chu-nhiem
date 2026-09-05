@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Trang chủ quản lý lớp 97
+</title>
+
+
+
+<style>
+
+
+body{
+
+font-family:"Segoe UI",Arial;
+
+margin:0;
+
+background:#eef5ff;
+
+}
+
+
+
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+
+
+.container{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:30px;
+
+}
+
+
+
+.user{
+
+background:white;
+
+padding:20px;
+
+border-radius:20px;
+
+box-shadow:0 5px 15px #ccc;
+
+margin-bottom:25px;
+
+}
+
+
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(230px,1fr));
+
+gap:20px;
+
+}
+
+
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:0 5px 15px #ddd;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+
+
+.icon{
+
+font-size:45px;
+
+}
+
+
+
+h2{
+
+color:#1565c0;
+
+}
+
+
+
+button{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:12px;
+
+background:#1565c0;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+.hide{
+
+display:none;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="header">
+
+
+<h1>
+🤖 TRỢ LÝ QUẢN LÝ LỚP 97
+</h1>
+
+
+<p>
+GVCN Trần Sáng
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="container">
+
+
+<div class="user">
+
+
+<h2>
+👋 Xin chào
+</h2>
+
+
+<p id="thongTinUser">
+
+</p>
+
+
+<button onclick="dangXuat()">
+
+🚪 Đăng xuất
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="grid">
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('danhsach_hocsinh.html')">
+
+
+<div class="icon">
+👨‍🎓
+</div>
+
+
+<h2>
+Hồ sơ học sinh
+</h2>
+
+
+<p>
+Quản lý 33 học sinh
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card"
+
+onclick="moTrang('thidua_tuan.html')">
+
+
+<div class="icon">
+🏆
+</div>
+
+
+<h2>
+Thi đua tuần
+</h2>
+
+
+<p>
+Theo dõi điểm rèn luyện
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('quanly_thang.html')">
+
+
+<div class="icon">
+📅
+</div>
+
+
+<h2>
+Quản lý tháng
+</h2>
+
+
+<p>
+Xếp loại rèn luyện
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('tonghop_nam.html')">
+
+
+<div class="icon">
+📊
+</div>
+
+
+<h2>
+Tổng hợp năm
+</h2>
+
+
+<p>
+Kết quả cuối năm
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('xuat_baocao.html')">
+
+
+<div class="icon">
+📄
+</div>
+
+
+<h2>
+Báo cáo
+</h2>
+
+
+<p>
+Xuất báo cáo GVCN
+</p>
+
+
+</div>
+
+
+
+</div>
+<script>
+
+
+// ======================================
+// TRANG CHỦ HỆ THỐNG LỚP 97
+// ======================================
+
+
+
+let nguoiDung = JSON.parse(
+
+localStorage.getItem(
+
+"nguoiDung97"
+
+)
+
+);
+
+
+
+
+
+
+
+
+// ======================================
+// KIỂM TRA ĐĂNG NHẬP
+// ======================================
+
+
+function kiemTraDangNhap(){
+
+
+
+if(!nguoiDung){
+
+
+
+alert(
+
+"Bạn chưa đăng nhập hệ thống"
+
+);
+
+
+
+window.location.href=
+
+"index.html";
+
+
+
+return;
+
+
+
+}
+
+
+
+
+
+
+document.getElementById(
+
+"thongTinUser"
+
+).innerHTML =
+
+
+
+`
+
+👤 Người dùng:
+
+<b>${nguoiDung.ten}</b>
+
+
+<br>
+
+
+🔐 Vai trò:
+
+<b>${nguoiDung.vaiTro}</b>
+
+
+<br>
+
+
+Quyền:
+
+<b>${nguoiDung.quyen}</b>
+
+
+`;
+
+
+
+
+
+
+
+phanQuyen();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// PHÂN QUYỀN
+// ======================================
+
+
+function phanQuyen(){
+
+
+
+let cacNutGVCN = document.querySelectorAll(
+
+".gvcn"
+
+);
+
+
+
+
+
+if(nguoiDung.quyen=="all"){
+
+
+
+cacNutGVCN.forEach(
+
+(x)=>{
+
+x.style.display="block";
+
+}
+
+);
+
+
+
+}
+
+else{
+
+
+
+cacNutGVCN.forEach(
+
+(x)=>{
+
+x.style.display="none";
+
+}
+
+);
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// ======================================
+// MỞ TRANG
+// ======================================
+
+
+function moTrang(trang){
+
+
+
+window.location.href=trang;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// ĐĂNG XUẤT
+// ======================================
+
+
+function dangXuat(){
+
+
+
+localStorage.removeItem(
+
+"nguoiDung97"
+
+);
+
+
+
+window.location.href=
+
+"index.html";
+
+
+
+}
+
+
+
+
+
+
+window.onload=function(){
+
+
+
+kiemTraDangNhap();
+
+
+
+};
+
+
+
+</script>
+
+</div>
