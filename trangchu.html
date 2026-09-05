@@ -18,6 +18,7 @@ Trợ lý quản lý lớp 97
 
 <style>
 
+
 *{
 box-sizing:border-box;
 }
@@ -31,9 +32,13 @@ font-family:"Segoe UI",Arial,sans-serif;
 
 background:#eef5ff;
 
+color:#333;
+
 }
 
 
+
+/* HEADER */
 
 .header{
 
@@ -45,7 +50,7 @@ background:linear-gradient(
 
 color:white;
 
-padding:35px;
+padding:35px 20px;
 
 text-align:center;
 
@@ -57,9 +62,9 @@ border-radius:0 0 35px 35px;
 
 .header h1{
 
-font-size:38px;
+margin:5px;
 
-margin:10px;
+font-size:38px;
 
 }
 
@@ -73,29 +78,40 @@ font-size:20px;
 
 
 
+/* CONTAINER */
+
+
 .container{
 
 max-width:1400px;
 
 margin:auto;
 
-padding:30px;
+padding:25px;
 
 }
 
+
+
+
+/* USER */
 
 
 .user-box{
 
 background:white;
 
-padding:25px;
-
 border-radius:25px;
 
-box-shadow:0 8px 25px rgba(0,0,0,.15);
+padding:20px;
 
-text-align:center;
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 8px 20px rgba(0,0,0,.12);
 
 margin-bottom:30px;
 
@@ -103,9 +119,9 @@ margin-bottom:30px;
 
 
 
-.user-box h2{
+.user-info{
 
-color:#1565c0;
+font-size:18px;
 
 }
 
@@ -123,11 +139,44 @@ padding:12px 25px;
 
 border-radius:15px;
 
-font-size:16px;
-
 cursor:pointer;
 
+font-size:16px;
+
 }
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+
+
+/* NHÓM CHỨC NĂNG */
+
+
+.group-title{
+
+margin-top:35px;
+
+background:#1565c0;
+
+color:white;
+
+padding:12px 20px;
+
+border-radius:15px;
+
+font-size:22px;
+
+}
+
+
 
 
 
@@ -137,11 +186,14 @@ display:grid;
 
 grid-template-columns:
 
-repeat(auto-fit,minmax(250px,1fr));
+repeat(4,1fr);
 
-gap:25px;
+gap:20px;
+
+margin-top:20px;
 
 }
+
 
 
 
@@ -149,17 +201,17 @@ gap:25px;
 
 background:white;
 
-padding:30px 20px;
+border-radius:25px;
 
-border-radius:30px;
+padding:25px 15px;
 
 text-align:center;
 
 box-shadow:0 8px 20px rgba(0,0,0,.12);
 
-transition:.3s;
-
 cursor:pointer;
+
+transition:.3s;
 
 }
 
@@ -167,7 +219,9 @@ cursor:pointer;
 
 .card:hover{
 
-transform:translateY(-8px);
+transform:translateY(-6px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.18);
 
 }
 
@@ -175,17 +229,19 @@ transform:translateY(-8px);
 
 .icon{
 
-font-size:55px;
+font-size:45px;
 
 }
 
 
 
-.card h2{
+.card h3{
 
 color:#1565c0;
 
-font-size:24px;
+font-size:20px;
+
+margin:12px;
 
 }
 
@@ -193,9 +249,12 @@ font-size:24px;
 
 .card p{
 
-font-size:17px;
+margin:0;
+
+font-size:15px;
 
 }
+
 
 
 
@@ -207,15 +266,44 @@ display:none;
 
 
 
-.footer{
+
+
+@media(max-width:1000px){
+
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.user-box{
+
+display:block;
 
 text-align:center;
 
-padding:30px;
+}
 
-color:#777;
 
 }
+
 
 
 </style>
@@ -224,8 +312,8 @@ color:#777;
 </head>
 
 
-<body>
 
+<body>
 
 
 <div class="header">
@@ -251,7 +339,6 @@ GVCN Trần Sáng
 
 
 
-
 <div class="container">
 
 
@@ -259,14 +346,18 @@ GVCN Trần Sáng
 <div class="user-box">
 
 
-<h2>
-👋 Xin chào
-</h2>
+<div class="user-info">
 
 
-<p id="thongTinUser">
+👤
 
-</p>
+<span id="thongTinUser">
+
+</span>
+
+
+</div>
+
 
 
 <button onclick="dangXuat()">
@@ -276,9 +367,112 @@ GVCN Trần Sáng
 </button>
 
 
+
 </div>
 
 
+
+
+
+<!-- NHÓM 1 -->
+
+
+<div class="group-title">
+
+👨‍🎓 QUẢN LÝ HỌC SINH
+
+</div>
+
+
+
+<div class="grid">
+
+
+<div class="card gvcn"
+
+onclick="moTrang('danhsach_hocsinh.html')">
+
+
+<div class="icon">👨‍🎓</div>
+
+<h3>
+Hồ sơ học sinh
+</h3>
+
+<p>
+Quản lý 33 học sinh
+</p>
+
+</div>
+
+
+
+
+
+<div class="card"
+
+onclick="moTrang('hoctap.html')">
+
+
+<div class="icon">📚</div>
+
+<h3>
+Học tập
+</h3>
+
+<p>
+Theo dõi kết quả học tập
+</p>
+
+</div>
+
+
+
+
+
+<div class="card"
+
+onclick="moTrang('kiemtra.html')">
+
+
+<div class="icon">📝</div>
+
+<h3>
+Kiểm tra
+</h3>
+
+<p>
+Quản lý điểm kiểm tra
+</p>
+
+</div>
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('hanhkiem.html')">
+
+
+<div class="icon">⭐</div>
+
+<h3>
+Hạnh kiểm
+</h3>
+
+<p>
+Đánh giá rèn luyện
+</p>
+
+</div>
+<!-- NHÓM 2 -->
+
+<div class="group-title">
+
+🏆 THI ĐUA - NỀ NẾP
+
+</div>
 
 
 
@@ -286,184 +480,104 @@ GVCN Trần Sáng
 
 
 
-<!-- HỒ SƠ -->
-
-
-<div class="card gvcn"
-onclick="moTrang('danhsach_hocsinh.html')">
-
-
-<div class="icon">
-👨‍🎓
-</div>
-
-
-<h2>
-Hồ sơ học sinh
-</h2>
-
-
-<p>
-Quản lý danh sách 33 em
-</p>
-
-
-</div>
-
-
-
-
-
-<!-- HỌC TẬP -->
-
-
 <div class="card"
-onclick="moTrang('hoctap.html')">
 
-
-<div class="icon">
-📚
-</div>
-
-
-<h2>
-Học tập
-</h2>
-
-
-<p>
-Theo dõi kết quả học tập
-</p>
-
-
-</div>
-
-
-
-
-<!-- KIỂM TRA -->
-
-
-<div class="card"
-onclick="moTrang('kiemtra.html')">
-
-
-<div class="icon">
-📝
-</div>
-
-
-<h2>
-Kiểm tra
-</h2>
-
-
-<p>
-Quản lý điểm kiểm tra
-</p>
-
-
-</div>
-
-
-
-
-<!-- THI ĐUA TUẦN -->
-
-
-<div class="card"
 onclick="moTrang('thidua_tuan.html')">
 
 
-<div class="icon">
-🏆
-</div>
+<div class="icon">🏆</div>
 
-
-<h2>
+<h3>
 Thi đua tuần
-</h2>
-
+</h3>
 
 <p>
 Theo dõi điểm rèn luyện
 </p>
 
-
 </div>
 
 
-
-
-
-<!-- THI ĐUA THÁNG -->
 
 
 <div class="card"
+
 onclick="moTrang('thidua_thang.html')">
 
 
-<div class="icon">
-🏅
-</div>
+<div class="icon">🏅</div>
 
-
-<h2>
+<h3>
 Thi đua tháng
-</h2>
-
+</h3>
 
 <p>
-Đánh giá kết quả tháng
+Xếp loại tháng
 </p>
-
 
 </div>
 
 
-
-
-<!-- QUẢN LÝ THÁNG -->
 
 
 <div class="card gvcn"
-onclick="moTrang('quanly_thang.html')">
+
+onclick="moTrang('quanly_thidua.html')">
 
 
-<div class="icon">
-📅
+<div class="icon">📋</div>
+
+<h3>
+Quản lý thi đua
+</h3>
+
+<p>
+Điều hành phong trào lớp
+</p>
+
 </div>
 
 
-<h2>
-Quản lý tháng
-</h2>
 
+
+<div class="card gvcn"
+
+onclick="moTrang('quanly_thang.html')">
+
+
+<div class="icon">📅</div>
+
+<h3>
+Quản lý tháng
+</h3>
 
 <p>
 Đánh giá hạnh kiểm
 </p>
 
-<!-- TỔNG HỢP NĂM -->
-
-<div class="card gvcn"
-onclick="moTrang('tonghop_nam.html')">
-
-
-<div class="icon">
-📊
 </div>
 
 
-<h2>
-Tổng hợp năm
-</h2>
 
+
+<div class="card gvcn"
+
+onclick="moTrang('tonghop_nam.html')">
+
+
+<div class="icon">📊</div>
+
+<h3>
+Tổng hợp năm
+</h3>
 
 <p>
 Kết quả cuối năm
 </p>
 
+</div>
+
+
 
 </div>
 
@@ -471,81 +585,60 @@ Kết quả cuối năm
 
 
 
-<!-- BÁO CÁO -->
+
+
+<!-- NHÓM 3 -->
+
+
+<div class="group-title">
+
+👨‍👩‍👧 PHỤ HUYNH
+
+</div>
+
+
+
+<div class="grid">
+
+
 
 <div class="card gvcn"
-onclick="moTrang('baocao_chunhiem.html')">
 
-
-<div class="icon">
-📄
-</div>
-
-
-<h2>
-Báo cáo chủ nhiệm
-</h2>
-
-
-<p>
-Xuất báo cáo
-</p>
-
-
-</div>
-
-
-
-
-
-
-<!-- PHỤ HUYNH -->
-
-<div class="card gvcn"
 onclick="moTrang('quanly_phuhuynh.html')">
 
 
-<div class="icon">
-👨‍👩‍👧
-</div>
+<div class="icon">👨‍👩‍👧</div>
 
-
-<h2>
+<h3>
 Quản lý phụ huynh
-</h2>
-
+</h3>
 
 <p>
-Thông tin liên hệ phụ huynh
+Thông tin phụ huynh
 </p>
-
 
 </div>
 
 
 
 
-
-
-<!-- THÔNG BÁO -->
-
 <div class="card gvcn"
+
 onclick="moTrang('thongbao_phuhuynh.html')">
 
 
-<div class="icon">
-🔔
-</div>
+<div class="icon">🔔</div>
 
-
-<h2>
+<h3>
 Thông báo phụ huynh
-</h2>
-
+</h3>
 
 <p>
-Soạn và quản lý thông báo
+Soạn thông báo lớp
 </p>
+
+</div>
+
 
 
 </div>
@@ -555,157 +648,205 @@ Soạn và quản lý thông báo
 
 
 
-<!-- LAO ĐỘNG -->
+
+<!-- NHÓM 4 -->
+
+
+<div class="group-title">
+
+🤖 TRỢ LÝ - BÁO CÁO
+
+</div>
+
+
+
+<div class="grid">
+
+
 
 <div class="card"
+
+onclick="moTrang('ai_troly.html')">
+
+
+<div class="icon">🤖</div>
+
+<h3>
+Trợ lý AI
+</h3>
+
+<p>
+Hỗ trợ GVCN
+</p>
+
+</div>
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('baocao_chunhiem.html')">
+
+
+<div class="icon">📄</div>
+
+<h3>
+Báo cáo chủ nhiệm
+</h3>
+
+<p>
+Tạo báo cáo tự động
+</p>
+
+</div>
+
+
+
+
+<div class="card gvcn"
+
+onclick="moTrang('xuat_baocao.html')">
+
+
+<div class="icon">📤</div>
+
+<h3>
+Xuất báo cáo
+</h3>
+
+<p>
+In và lưu hồ sơ
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- NHÓM 5 -->
+
+
+<div class="group-title">
+
+⚙️ QUẢN LÝ HỆ THỐNG
+
+</div>
+
+
+
+<div class="grid">
+
+
+
+<div class="card"
+
+onclick="moTrang('kehoach.html')">
+
+
+<div class="icon">📌</div>
+
+<h3>
+Kế hoạch
+</h3>
+
+<p>
+Kế hoạch chủ nhiệm
+</p>
+
+</div>
+
+
+
+
+<div class="card"
+
 onclick="moTrang('laodong.html')">
 
 
-<div class="icon">
-🧹
-</div>
+<div class="icon">🧹</div>
 
-
-<h2>
+<h3>
 Lao động
-</h2>
-
+</h3>
 
 <p>
 Theo dõi vệ sinh lớp
 </p>
 
-
 </div>
 
 
 
 
-
-
-<!-- LỊCH SỬ -->
-
 <div class="card"
+
 onclick="moTrang('lichsu.html')">
 
 
-<div class="icon">
-📖
-</div>
+<div class="icon">📖</div>
 
-
-<h2>
+<h3>
 Sổ sự kiện
-</h2>
-
+</h3>
 
 <p>
-Theo dõi hoạt động lớp
+Hoạt động lớp
 </p>
-
 
 </div>
 
 
 
-
-
-
-
-<!-- TRỢ LÝ AI -->
 
 <div class="card"
-onclick="moTrang('ai_troly.html')">
 
-
-<div class="icon">
-🤖
-</div>
-
-
-<h2>
-Trợ lý AI
-</h2>
-
-
-<p>
-Hỗ trợ nhận xét, báo cáo
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- SAO LƯU -->
-
-<div class="card gvcn"
-onclick="moTrang('backup.html')">
-
-
-<div class="icon">
-💾
-</div>
-
-
-<h2>
-Sao lưu dữ liệu
-</h2>
-
-
-<p>
-Bảo vệ dữ liệu lớp
-</p>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- TỔ TRƯỞNG -->
-
-<div class="card"
 onclick="moTrang('totruong.html')">
 
 
-<div class="icon">
-👥
-</div>
+<div class="icon">👥</div>
 
-
-<h2>
+<h3>
 Tổ trưởng
-</h2>
-
+</h3>
 
 <p>
-Quản lý hoạt động tổ
+Quản lý tổ
 </p>
 
-
 </div>
 
 
 
 
+<div class="card gvcn"
+
+onclick="moTrang('backup.html')">
+
+
+<div class="icon">💾</div>
+
+<h3>
+Sao lưu
+</h3>
+
+<p>
+Bảo vệ dữ liệu
+</p>
+
 </div>
 
 
 
 </div>
-
-
-
-
-
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -721,21 +862,15 @@ GVCN Trần Sáng
 
 
 
-
-
-
 <script>
 
 
-// ===============================
+// ==================================
 // KIỂM TRA ĐĂNG NHẬP
-// ===============================
-
+// ==================================
 
 
 let nguoiDung = layNguoiDung();
-
-
 
 
 
@@ -757,32 +892,27 @@ window.location.href="index.html";
 
 
 
-
+// ==================================
 // HIỂN THỊ NGƯỜI DÙNG
-
+// ==================================
 
 
 document.getElementById(
 
 "thongTinUser"
 
-).innerHTML=
+).innerHTML =
 
 
 `
 
-👤 Người dùng:
-
 <b>${nguoiDung.ten}</b>
 
-
-<br><br>
-
+<br>
 
 🔐 Quyền:
 
 <b>${nguoiDung.quyen}</b>
-
 
 `;
 
@@ -792,23 +922,24 @@ document.getElementById(
 
 
 
-
-// ===============================
+// ==================================
 // PHÂN QUYỀN
-// ===============================
+// ==================================
 
 
 
 function hienThiQuyen(){
 
 
-let chucNangGVCN =
+let chucNangGVCN = 
 
 document.querySelectorAll(".gvcn");
 
 
 
 
+
+// Nếu không phải GVCN
 
 if(
 
@@ -819,7 +950,7 @@ nguoiDung.quyen !== "gvcn"
 
 chucNangGVCN.forEach(
 
-item=>{
+function(item){
 
 
 item.classList.add("hide");
@@ -838,8 +969,6 @@ item.classList.add("hide");
 
 
 
-
-
 hienThiQuyen();
 
 
@@ -849,9 +978,9 @@ hienThiQuyen();
 
 
 
-// ===============================
+// ==================================
 // CHUYỂN TRANG
-// ===============================
+// ==================================
 
 
 function moTrang(url){
@@ -864,12 +993,13 @@ window.location.href=url;
 
 
 
-</script>
 
+</script>
 
 
 
 </body>
 
 </html>
+
 </div>
