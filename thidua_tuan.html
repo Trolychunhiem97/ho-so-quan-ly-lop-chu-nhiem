@@ -14,6 +14,9 @@ Thi đua tuần lớp 97
 </title>
 
 
+<script src="js/danhsach.js"></script>
+
+
 
 <style>
 
@@ -42,45 +45,41 @@ padding:30px;
 
 border-radius:25px;
 
+box-shadow:0 10px 30px #ccc;
+
 }
 
 
 
-h1,h2{
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:25px;
+
+border-radius:20px;
 
 text-align:center;
 
-color:#1565c0;
-
 }
 
 
 
-.form{
+.box{
 
 background:#f8fbff;
 
 padding:20px;
 
+margin-top:20px;
+
 border-radius:20px;
-
-}
-
-
-
-input,select{
-
-width:100%;
-
-padding:12px;
-
-margin:8px 0;
-
-border-radius:10px;
-
-border:1px solid #ccc;
-
-font-size:16px;
 
 }
 
@@ -94,11 +93,31 @@ color:white;
 
 border:none;
 
-padding:12px 25px;
+padding:10px 18px;
 
-border-radius:12px;
+border-radius:10px;
 
 cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+background:#0d47a1;
+
+}
+
+
+
+input,textarea,select{
+
+padding:10px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
 
 }
 
@@ -108,9 +127,9 @@ table{
 
 width:100%;
 
-margin-top:25px;
-
 border-collapse:collapse;
+
+margin-top:20px;
 
 }
 
@@ -140,15 +159,31 @@ text-align:center;
 
 
 
-.top{
+.tot{
+
+background:#e8f5e9;
+
+}
+
+
+
+.tru{
+
+background:#ffebee;
+
+}
+
+
+
+.ai{
 
 background:#fff8e1;
 
 padding:20px;
 
-border-radius:20px;
+border-radius:15px;
 
-margin-top:20px;
+white-space:pre-line;
 
 }
 
@@ -164,15 +199,11 @@ margin-top:20px;
 <body>
 
 
-
 <div class="container">
 
 
 
-<h2>
-🏫 TRƯỜNG THCS TRẦN PHÚ
-</h2>
-
+<div class="header">
 
 
 <h1>
@@ -180,93 +211,14 @@ margin-top:20px;
 </h1>
 
 
-
-<div class="form">
-
-
-<h3>
-➕ Cập nhật điểm thi đua
-</h3>
+<p>
+Mỗi học sinh bắt đầu 100 điểm
+</p>
 
 
-
-<label>
-Tên học sinh
-</label>
-
-
-<input id="tenHocSinh"
-
-placeholder="Nhập tên học sinh">
-
-
-
-
-
-<label>
-Loại hoạt động
-</label>
-
-
-
-<select id="loai">
-
-
-<option value="cong">
-
-⭐ Điểm tốt (+)
-
-</option>
-
-
-<option value="tru">
-
-⚠ Vi phạm (-)
-
-</option>
-
-
-</select>
-
-
-
-
-
-<label>
-Số điểm
-</label>
-
-
-<input id="diem"
-
-type="number"
-
-value="5">
-
-
-
-
-
-<label>
-Nội dung
-</label>
-
-
-<input id="noiDung"
-
-placeholder="Ví dụ: Phát biểu xây dựng bài">
-
-
-
-
-
-
-<button onclick="capNhatDiem()">
-
-💾 Lưu điểm
-
-</button>
-
+<p>
+GVCN Trần Sáng
+</p>
 
 
 </div>
@@ -275,14 +227,49 @@ placeholder="Ví dụ: Phát biểu xây dựng bài">
 
 
 
-<h3>
-📋 Bảng thi đua tuần
-</h3>
+
+
+<div class="box">
+
+
+<h2>
+📅 Tuần hiện tại
+</h2>
+
+
+<input id="tuan"
+
+placeholder="Ví dụ: Tuần 1 - Tháng 9">
+
+
+<button onclick="khoiTaoTuan()">
+
+🔄 Tạo tuần mới
+
+</button>
+
+
+</div>
 
 
 
-<table id="bang">
 
+
+
+
+<div class="box">
+
+
+<h2>
+📊 Bảng thi đua
+</h2>
+
+
+
+<table>
+
+
+<thead>
 
 <tr>
 
@@ -290,116 +277,132 @@ placeholder="Ví dụ: Phát biểu xây dựng bài">
 STT
 </th>
 
+
 <th>
 Học sinh
 </th>
+
 
 <th>
 Điểm
 </th>
 
+
 <th>
-Nhận xét
+Cộng
 </th>
 
+
+<th>
+Trừ
+</th>
+
+
+<th>
+Ghi chú
+</th>
+
+
+<th>
+AI
+</th>
+
+
 </tr>
+
+
+</thead>
+
+
+
+<tbody id="bangThiDua">
+
+
+</tbody>
 
 
 </table>
 
 
+</div>
 
 
-<div class="top" id="xepHang">
+
+
+
+
+
+<div class="box">
+
+
+<h2>
+🤖 Nhận xét AI tuần
+</h2>
+
+
+<div id="nhanXetAI"
+
+class="ai">
+
+Chưa có nhận xét
 
 </div>
+
+
+<br>
+
+
+<button onclick="taoNhanXetAI()">
+
+🤖 Tạo nhận xét
+
+</button>
+
+
+</div>
+
 <script>
 
 
-// ==================================
-// DỮ LIỆU THI ĐUA TUẦN
-// ==================================
+// ======================================
+// THI ĐUA TUẦN LỚP 97
+// DÙNG DỮ LIỆU TỪ DANHSACH.JS
+// ======================================
 
 
-let danhSachThiDua = JSON.parse(
+const KEY_THI_DUA = "thiDuaTuan97";
 
-localStorage.getItem(
 
-"thiDuaTuan97"
-
-)
-
-)
-
-|| [];
+let duLieuThiDua = [];
 
 
 
 
 
 
-
-// ==================================
-// CẬP NHẬT ĐIỂM
-// ==================================
-
-
-function capNhatDiem(){
+// ======================================
+// KHỞI TẠO TUẦN
+// ======================================
 
 
+function khoiTaoTuan(){
 
-let ten =
 
-document.getElementById(
 
-"tenHocSinh"
+let tenTuan = document.getElementById(
+
+"tuan"
 
 ).value;
 
 
 
-let loai =
-
-document.getElementById(
-
-"loai"
-
-).value;
-
-
-
-let diem = Number(
-
-document.getElementById(
-
-"diem"
-
-).value
-
-);
-
-
-
-let noiDung =
-
-document.getElementById(
-
-"noiDung"
-
-).value;
-
-
-
-
-
-
-
-if(!ten){
+if(!tenTuan){
 
 
 alert(
 
-"Vui lòng nhập tên học sinh!"
+"Vui lòng nhập tên tuần"
 
 );
 
@@ -413,123 +416,33 @@ return;
 
 
 
+duLieuThiDua = danhSachHocSinh.map(
+
+(ten,index)=>{
 
 
-let hs = danhSachThiDua.find(
-
-(x)=>
-
-x.ten==ten
-
-);
+return {
 
 
+stt:index+1,
 
 
+hoTen:ten,
 
 
-
-// Nếu học sinh mới
-
-if(!hs){
-
-
-hs={
-
-
-ten:ten,
+tuan:tenTuan,
 
 
 diem:100,
 
 
-nhanXet:[]
+ghiChu:""
 
 
 };
 
 
-danhSachThiDua.push(hs);
-
-
 }
-
-
-
-
-
-
-
-
-// cộng hoặc trừ điểm
-
-
-if(loai=="cong"){
-
-
-hs.diem += diem;
-
-
-}
-
-else{
-
-
-hs.diem -= diem;
-
-
-}
-
-
-
-
-
-
-
-// không cho âm
-
-
-if(hs.diem<0){
-
-
-hs.diem=0;
-
-
-}
-
-
-
-
-
-
-
-
-hs.nhanXet.push(
-
-
-(loai=="cong"
-
-? "+"
-
-:
-
-"-"
-
-)
-
-+
-
-diem
-
-+
-
-" điểm: "
-
-+
-
-noiDung
-
-
 
 );
 
@@ -537,25 +450,7 @@ noiDung
 
 
 
-
-
-
-
-localStorage.setItem(
-
-"thiDuaTuan97",
-
-JSON.stringify(
-
-danhSachThiDua
-
-)
-
-);
-
-
-
-
+luuDuLieu();
 
 
 
@@ -563,7 +458,42 @@ hienThiBang();
 
 
 
-xoaNhap();
+alert(
+
+"✅ Đã tạo tuần mới - Mỗi học sinh 100 điểm"
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+// ======================================
+// LƯU DỮ LIỆU
+// ======================================
+
+
+function luuDuLieu(){
+
+
+
+localStorage.setItem(
+
+KEY_THI_DUA,
+
+JSON.stringify(
+
+duLieuThiDua
+
+)
+
+);
 
 
 
@@ -576,70 +506,63 @@ xoaNhap();
 
 
 
+// ======================================
+// TẢI DỮ LIỆU
+// ======================================
 
-// ==================================
+
+function taiDuLieu(){
+
+
+
+let data = localStorage.getItem(
+
+KEY_THI_DUA
+
+);
+
+
+
+if(data){
+
+
+duLieuThiDua = JSON.parse(data);
+
+
+}
+
+
+
+}
+
+
+
+
+
+// ======================================
 // HIỂN THỊ BẢNG
-// ==================================
-
+// ======================================
 
 
 function hienThiBang(){
 
 
 
-let bang=
+let bang = document.getElementById(
 
-document.getElementById(
-
-"bang"
+"bangThiDua"
 
 );
 
 
 
-bang.innerHTML=
-
-`
-
-<tr>
-
-<th>STT</th>
-
-<th>Học sinh</th>
-
-<th>Điểm</th>
-
-<th>Nhận xét</th>
-
-</tr>
-
-`;
+bang.innerHTML="";
 
 
 
 
 
-
-
-let ds =
-
-[...danhSachThiDua]
-
-.sort(
-
-(a,b)=>
-
-b.diem-a.diem
-
-);
-
-
-
-
-
-
-
-ds.forEach(
+duLieuThiDua.forEach(
 
 (hs,index)=>{
 
@@ -661,21 +584,68 @@ ${index+1}
 
 <td>
 
-${hs.ten}
+${hs.hoTen}
 
 </td>
 
 
 <td>
 
-⭐ ${hs.diem}
+<b>${hs.diem}</b>
 
 </td>
 
 
+<td class="tot">
+
+
+<button onclick="congDiem(${index})">
+
++ Điểm
+
+</button>
+
+</td>
+
+
+
+<td class="tru">
+
+
+<button onclick="truDiem(${index})">
+
+- Điểm
+
+</button>
+
+</td>
+
+
+
 <td>
 
-${hs.nhanXet.join("<br>")}
+
+<input
+
+value="${hs.ghiChu}"
+
+onchange="ghiChu(${index},this.value)"
+
+>
+
+</td>
+
+
+
+<td>
+
+
+<button onclick="nhanXetCaNhan(${index})">
+
+🤖
+
+</button>
+
 
 </td>
 
@@ -691,14 +661,6 @@ ${hs.nhanXet.join("<br>")}
 
 
 
-
-
-
-
-xepHang(ds);
-
-
-
 }
 
 
@@ -708,38 +670,41 @@ xepHang(ds);
 
 
 
-
-// ==================================
-// XẾP HẠNG
-// ==================================
-
+// ======================================
+// CỘNG ĐIỂM
+// ======================================
 
 
-function xepHang(ds){
+function congDiem(index){
 
 
 
-let div=
+let so = prompt(
 
-document.getElementById(
-
-"xepHang"
+"Nhập số điểm cộng"
 
 );
 
 
 
-if(ds.length==0){
-
-
-div.innerHTML=
-
-"Chưa có dữ liệu thi đua";
-
+if(!so)
 
 return;
 
 
+
+duLieuThiDua[index].diem += Number(so);
+
+
+
+luuDuLieu();
+
+
+
+hienThiBang();
+
+
+
 }
 
 
@@ -748,13 +713,182 @@ return;
 
 
 
-let top=
+// ======================================
+// TRỪ ĐIỂM
+// ======================================
 
-ds.slice(
 
-0,
+function truDiem(index){
 
-5
+
+
+let so = prompt(
+
+"Nhập số điểm trừ"
+
+);
+
+
+
+if(!so)
+
+return;
+
+
+
+duLieuThiDua[index].diem -= Number(so);
+
+
+
+luuDuLieu();
+
+
+
+hienThiBang();
+
+
+
+}
+
+
+
+
+
+
+
+
+// ======================================
+// GHI CHÚ
+// ======================================
+
+
+function ghiChu(index,noidung){
+
+
+
+duLieuThiDua[index].ghiChu=noidung;
+
+
+
+luuDuLieu();
+
+
+
+}
+
+
+
+
+
+
+
+
+// ======================================
+// AI NHẬN XÉT CÁ NHÂN
+// ======================================
+
+
+function nhanXetCaNhan(index){
+
+
+
+let hs = duLieuThiDua[index];
+
+
+
+let text =
+
+
+`
+
+🤖 NHẬN XÉT AI
+
+
+Học sinh:
+
+${hs.hoTen}
+
+
+Điểm tuần:
+
+${hs.diem}
+
+
+Nhận xét:
+
+
+${
+hs.diem>=100
+
+?
+
+"Em duy trì tốt nền nếp, có ý thức phấn đấu."
+
+:
+
+"Em cần cố gắng hơn trong việc thực hiện nội quy và nhiệm vụ học tập."
+
+}
+
+
+
+`;
+
+
+
+
+document.getElementById(
+
+"nhanXetAI"
+
+).innerText=text;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ======================================
+// AI NHẬN XÉT CẢ LỚP
+// ======================================
+
+
+function taoNhanXetAI(){
+
+
+
+if(duLieuThiDua.length==0)
+
+return;
+
+
+
+let tong=0;
+
+
+
+duLieuThiDua.forEach(
+
+hs=>{
+
+tong += hs.diem;
+
+}
+
+);
+
+
+
+let tb = Math.round(
+
+tong / duLieuThiDua.length
 
 );
 
@@ -762,159 +896,53 @@ ds.slice(
 
 
 
-
-
-
-let html=
+let text =
 
 `
 
-<h3>
-
-🏆 TOP 5 THI ĐUA TUẦN
-
-</h3>
-
-`;
+🤖 NHẬN XÉT THI ĐUA TUẦN
 
 
+Lớp 97 có điểm trung bình:
+
+${tb} điểm
 
 
+Nhận xét:
 
 
+${
+tb>=100
 
-top.forEach(
+?
 
-(hs,i)=>{
+"Tập thể lớp duy trì tốt phong trào thi đua, nhiều học sinh có ý thức tự giác và tinh thần trách nhiệm."
 
+:
 
-
-html +=
-
-
-`
-
-<p>
-
-${i+1}. 
-
-<b>${hs.ten}</b>
-
-- ${hs.diem} điểm
-
-</p>
-
-`;
-
-
-});
-
-
-
-
-
-
-
-html +=
-
-`
-
-<hr>
-
-🤖 Nhận xét tự động:
-
-<br><br>
-
-`;
-
-
-
-
-
-
-
-
-if(ds[0].diem>=110){
-
-
-html +=
-
-"Lớp có nhiều học sinh tích cực, "
-
-+
-
-tinh thần thi đua tốt. "
-
-;
-
-
-}
-
-else{
-
-
-html +=
-
-"Cần tiếp tục duy trì nền nếp, "
-
-+
-
-tăng cường tinh thần tự giác học tập và rèn luyện."
-
-;
-
+"Lớp cần tiếp tục nâng cao ý thức tự quản, thực hiện tốt nội quy và nhiệm vụ học tập."
 
 }
 
 
 
+GVCN tiếp tục động viên, khích lệ học sinh phát huy ưu điểm và khắc phục hạn chế.
 
 
+`;
 
-
-div.innerHTML=html;
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// ==================================
-// XÓA Ô NHẬP
-// ==================================
-
-
-
-function xoaNhap(){
 
 
 
 document.getElementById(
 
-"tenHocSinh"
+"nhanXetAI"
 
-).value="";
-
-
-
-document.getElementById(
-
-"noiDung"
-
-).value="";
+).innerText=text;
 
 
 
 }
-
-
 
 
 
@@ -925,7 +953,12 @@ document.getElementById(
 window.onload=function(){
 
 
+
+taiDuLieu();
+
+
 hienThiBang();
+
 
 
 };
@@ -934,3 +967,7 @@ hienThiBang();
 
 </script>
 
+
+
+
+</div>
