@@ -5,18 +5,10 @@
 
 <meta charset="UTF-8">
 
-<title>Xuất Word tổng kết lớp 97</title>
+<title>Xuất báo cáo chủ nhiệm</title>
 
 
-<script src="danhsach.js"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js">
-</script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js">
-</script>
+<script src="phanquyen.js"></script>
 
 
 
@@ -25,11 +17,11 @@
 
 body{
 
-font-family:Arial;
+font-family:Arial,sans-serif;
 
 background:#eef5ff;
 
-padding:30px;
+padding:20px;
 
 }
 
@@ -37,7 +29,7 @@ padding:30px;
 
 .container{
 
-max-width:800px;
+max-width:1100px;
 
 margin:auto;
 
@@ -49,14 +41,13 @@ border-radius:25px;
 
 box-shadow:0 10px 30px rgba(0,0,0,.1);
 
-text-align:center;
-
 }
 
 
 
+h1,h2{
 
-h1{
+text-align:center;
 
 color:#1565c0;
 
@@ -64,29 +55,15 @@ color:#1565c0;
 
 
 
-.info{
+.user{
+
+text-align:center;
 
 background:#f2f7ff;
 
-padding:20px;
+padding:15px;
 
 border-radius:15px;
-
-margin:20px;
-
-font-size:18px;
-
-}
-
-
-
-select{
-
-padding:12px;
-
-font-size:18px;
-
-border-radius:8px;
 
 }
 
@@ -100,15 +77,15 @@ color:white;
 
 border:none;
 
-padding:15px 25px;
+padding:15px 30px;
 
-border-radius:10px;
+border-radius:12px;
 
 font-size:18px;
 
-margin:10px;
-
 cursor:pointer;
+
+margin:10px;
 
 }
 
@@ -122,15 +99,63 @@ background:#0d47a1;
 
 
 
-.footer{
+.preview{
 
 margin-top:30px;
 
-color:#555;
+border:1px solid #ddd;
+
+padding:20px;
+
+background:#fff;
+
+}
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+
+color:white;
+
+padding:10px;
+
+}
+
+
+
+td{
+
+border:1px solid #ddd;
+
+padding:10px;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
 
 border-top:1px solid #ddd;
 
 padding-top:20px;
+
+color:#555;
 
 }
 
@@ -141,40 +166,71 @@ padding-top:20px;
 </head>
 
 
-
 <body>
+
 
 
 <div class="container">
 
 
 
+<h2>
+🏫 TRƯỜNG THCS TRẦN PHÚ
+</h2>
+
+
+
 <h1>
-
-📄 XUẤT WORD TỔNG KẾT LỚP 97
-
+📄 BÁO CÁO TỔNG HỢP CHỦ NHIỆM LỚP 97
 </h1>
 
 
 
-<div class="info">
+<p style="text-align:center">
 
+Năm học 2026 - 2027
 
-<h3>
-🏫 TRƯỜNG THCS TRẦN PHÚ
-</h3>
+<br>
 
+GVCN: <b>Trần Sáng</b>
 
-<p>
-👨‍🏫 Giáo viên chủ nhiệm:
-<b>Trần Sáng</b>
 </p>
 
 
-<p>
-📘 Lớp:
-<b>97</b>
-</p>
+
+
+<div class="user" id="nguoiDung">
+
+</div>
+
+
+
+
+
+<div style="text-align:center">
+
+
+<button onclick="xemTruocBaoCao()">
+
+👁 Xem trước báo cáo
+
+</button>
+
+
+
+<button onclick="xuatWord()">
+
+📄 Xuất file Word
+
+</button>
+
+
+
+<button onclick="location.href='tonghop_nam.html'">
+
+📊 Quay lại tổng hợp
+
+</button>
 
 
 
@@ -184,60 +240,15 @@ padding-top:20px;
 
 
 
-<h3>
-Chọn loại báo cáo
-</h3>
+
+<div class="preview" id="baoCao">
 
 
-
-<select id="loai">
-
-
-<option value="HK1">
-
-📘 Tổng kết học kỳ I
-
-</option>
+Chưa có dữ liệu báo cáo.
 
 
-<option value="HK2">
+</div>
 
-📗 Tổng kết học kỳ II
-
-</option>
-
-
-<option value="CANAM">
-
-🏆 Tổng kết cả năm
-
-</option>
-
-
-</select>
-
-
-
-
-
-<br><br>
-
-
-
-<button onclick="xuatWordTongKet()">
-
-📄 Tạo file Word tổng kết
-
-</button>
-
-
-
-
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
-
-</button>
 
 
 
@@ -249,498 +260,91 @@ Chọn loại báo cáo
 Trợ lý quản lý lớp 97 - GVCN Trần Sáng
 
 </div>
+
 <script>
 
 
-async function xuatWordTongKet(){
+// ===============================
+// KIỂM TRA ĐĂNG NHẬP
+// ===============================
 
 
+let nguoiDung =
 
-let loai =
-
-document.getElementById("loai").value;
-
-
-
-let tenBaoCao="";
-
-
-
-if(loai=="HK1"){
-
-tenBaoCao="Tong_ket_HKI_Lop_97_Tran_Sang.docx";
-
-}
-
-
-else if(loai=="HK2"){
-
-tenBaoCao="Tong_ket_HKII_Lop_97_Tran_Sang.docx";
-
-}
-
-
-else{
-
-tenBaoCao="Tong_ket_ca_nam_Lop_97_Tran_Sang.docx";
-
-}
-
-
-
-
-
-
-let bangLuu =
+JSON.parse(
 
 localStorage.getItem(
 
-"tongHopLop97"
+"nguoiDungDangNhap"
 
 )
 
-||"";
+);
+
+
+
+if(!nguoiDung){
+
+
+location.href="dangnhap.html";
+
+
+}
 
 
 
 
 
-let nhanXetChung =
+document.getElementById(
+
+"nguoiDung"
+
+).innerHTML=
+
+
+"👤 Xin chào: <b>"
+
++
+
+nguoiDung.ten
+
++
+
+"</b>";
+
+
+
+
+
+
+
+
+
+// ===============================
+// LẤY DỮ LIỆU TỔNG HỢP
+// ===============================
+
+
+
+function layBaoCao(){
+
+
+
+return JSON.parse(
 
 localStorage.getItem(
 
-"nhanXetTongHop97"
+"tongHopNam97"
 
 )
 
-||"";
-
-
-
-
-
-
-let div = document.createElement("div");
-
-div.innerHTML = bangLuu;
-
-
-
-let dong =
-
-div.querySelectorAll("tr");
-
-
-
-
-
-
-const {
-
-Document,
-
-Packer,
-
-Paragraph,
-
-TextRun,
-
-Table,
-
-TableRow,
-
-TableCell,
-
-AlignmentType,
-
-WidthType
-
-
-}=docx;
-
-
-
-
-
-
-let noiDung=[];
-
-
-
-
-
-
-// ==========================
-// TIÊU ĐỀ
-// ==========================
-
-
-
-noiDung.push(
-
-new Paragraph({
-
-alignment:
-
-AlignmentType.CENTER,
-
-children:[
-
-new TextRun({
-
-text:
-
-"TRƯỜNG THCS TRẦN PHÚ",
-
-bold:true,
-
-size:28
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-
-noiDung.push(
-
-new Paragraph({
-
-alignment:
-
-AlignmentType.CENTER,
-
-children:[
-
-new TextRun({
-
-text:
-
-"BÁO CÁO TỔNG KẾT LỚP 97",
-
-bold:true,
-
-size:30
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-let loaiText="";
-
-
-
-if(loai=="HK1")
-
-loaiText="HỌC KỲ I";
-
-
-if(loai=="HK2")
-
-loaiText="HỌC KỲ II";
-
-
-if(loai=="CANAM")
-
-loaiText="CẢ NĂM";
-
-
-
-
-
-
-noiDung.push(
-
-new Paragraph({
-
-alignment:
-
-AlignmentType.CENTER,
-
-children:[
-
-new TextRun({
-
-text:loaiText,
-
-bold:true,
-
-size:26
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-
-noiDung.push(
-
-new Paragraph(
-
-"Giáo viên chủ nhiệm: Trần Sáng"
-
 )
 
-);
+||{
 
+duLieu:[]
 
-
-
-
-noiDung.push(
-
-new Paragraph(
-
-""
-
-)
-
-);
-
-
-
-
-
-
-// ==========================
-// BẢNG KẾT QUẢ
-// ==========================
-
-
-noiDung.push(
-
-new Paragraph({
-
-children:[
-
-new TextRun({
-
-text:
-
-"I. KẾT QUẢ RÈN LUYỆN HỌC SINH",
-
-bold:true,
-
-size:24
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-
-let rows=[];
-
-
-
-rows.push(
-
-new TableRow({
-
-children:[
-
-
-new TableCell({
-
-children:[
-
-new Paragraph("STT")
-
-]
-
-}),
-
-
-new TableCell({
-
-children:[
-
-new Paragraph("Họ tên")
-
-]
-
-}),
-
-
-new TableCell({
-
-children:[
-
-new Paragraph("Điểm TB")
-
-]
-
-}),
-
-
-new TableCell({
-
-children:[
-
-new Paragraph("Hạnh kiểm")
-
-]
-
-}),
-
-
-new TableCell({
-
-children:[
-
-new Paragraph("Xếp loại")
-
-]
-
-})
-
-
-]
-
-})
-
-);
-
-
-
-
-
-
-
-
-for(let i=1;i<dong.length;i++){
-
-
-
-let o=dong[i].cells;
-
-
-
-if(!o) continue;
-
-
-
-rows.push(
-
-new TableRow({
-
-children:[
-
-
-new TableCell({
-
-children:[
-
-new Paragraph(
-
-String(i)
-
-)
-
-]
-
-}),
-
-
-
-new TableCell({
-
-children:[
-
-new Paragraph(
-
-o[1].innerText
-
-)
-
-]
-
-}),
-
-
-
-new TableCell({
-
-children:[
-
-new Paragraph(
-
-o[2].innerText
-
-)
-
-]
-
-}),
-
-
-
-new TableCell({
-
-children:[
-
-new Paragraph(
-
-o[3].innerText
-
-)
-
-]
-
-}),
-
-
-
-new TableCell({
-
-children:[
-
-new Paragraph(
-
-o[4].innerText
-
-)
-
-]
-
-})
-
-
-
-]
-
-})
-
-);
+};
 
 
 
@@ -752,228 +356,279 @@ o[4].innerText
 
 
 
-noiDung.push(
 
-new Table({
 
-rows:rows,
+// ===============================
+// XEM TRƯỚC BÁO CÁO
+// ===============================
 
-width:{
 
-size:100,
 
-type:WidthType.PERCENTAGE
+function xemTruocBaoCao(){
 
-}
 
-})
 
-);
+let data=
 
+layBaoCao();
 
 
 
 
 
+let html=`
 
+<h2 style="text-align:center">
 
-// ==========================
-// NHẬN XÉT AI
-// ==========================
+BÁO CÁO TỔNG HỢP QUẢN LÝ LỚP 97
 
+</h2>
 
-noiDung.push(
 
-new Paragraph({
+<p>
 
-children:[
+Năm học: 2026 - 2027
 
-new TextRun({
+</p>
 
-text:
 
-"II. NHẬN XÉT CÁ NHÂN HỌC SINH",
+<p>
 
-bold:true,
+Giáo viên chủ nhiệm: Trần Sáng
 
-size:24
+</p>
 
-})
 
-]
 
-})
+<table border="1" width="100%" cellspacing="0">
 
-);
 
+<tr>
 
+<th>STT</th>
 
+<th>Họ tên</th>
 
+<th>Điểm TB năm</th>
 
+<th>Xếp loại</th>
 
+<th>Nhận xét</th>
 
-for(let i=1;i<dong.length;i++){
+</tr>
 
+`;
 
 
-let o=dong[i].cells;
 
 
 
-if(!o) continue;
 
 
+let xuatSac=0;
 
-noiDung.push(
+let tot=0;
 
-new Paragraph({
+let kha=0;
 
-children:[
+let canCoGang=0;
 
-new TextRun({
 
-text:
 
-o[1].innerText,
 
-bold:true
 
-})
 
-]
+data.duLieu.forEach(
 
-})
+(hs,index)=>{
 
-);
 
 
+html+=`
 
-noiDung.push(
+<tr>
 
-new Paragraph(
+<td>${index+1}</td>
 
-o[5]?.innerText || ""
+<td>${hs.ten}</td>
 
-)
+<td>${hs.diem}</td>
 
-);
+<td>${hs.xepLoai}</td>
 
+<td>${hs.nhanXet}</td>
 
+</tr>
 
-}
+`;
 
 
 
 
 
+if(hs.xepLoai.includes("Xuất sắc"))
 
+xuatSac++;
 
-// ==========================
-// NHẬN XÉT CHUNG
-// ==========================
 
+else if(hs.xepLoai.includes("Tốt"))
 
+tot++;
 
-noiDung.push(
 
-new Paragraph({
+else if(hs.xepLoai.includes("Khá"))
 
-children:[
+kha++;
 
-new TextRun({
 
-text:
+else
 
-"III. NHẬN XÉT CHUNG CỦA GVCN",
+canCoGang++;
 
-bold:true,
 
-size:24
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-noiDung.push(
-
-new Paragraph(
-
-nhanXetChung
-
-)
-
-);
-
-
-
-
-
-
-
-
-// ==========================
-// KÝ TÊN
-// ==========================
-
-
-noiDung.push(
-
-new Paragraph("")
-
-);
-
-
-
-noiDung.push(
-
-new Paragraph({
-
-alignment:
-
-AlignmentType.RIGHT,
-
-children:[
-
-new TextRun({
-
-text:
-
-"GIÁO VIÊN CHỦ NHIỆM\nTrần Sáng",
-
-bold:true
-
-})
-
-]
-
-})
-
-);
-
-
-
-
-
-
-let doc =
-
-new Document({
-
-sections:[{
-
-children:noiDung
-
-}]
 
 });
+
+
+
+
+
+html+=`
+
+</table>
+
+
+<br>
+
+
+<h3>
+
+📊 Thống kê lớp
+
+</h3>
+
+
+<p>
+
+🌟 Xuất sắc: ${xuatSac} học sinh
+
+</p>
+
+
+<p>
+
+✅ Tốt: ${tot} học sinh
+
+</p>
+
+
+<p>
+
+👍 Khá: ${kha} học sinh
+
+</p>
+
+
+<p>
+
+⚠ Cần cố gắng: ${canCoGang} học sinh
+
+</p>
+
+
+
+<h3>
+
+🤖 Nhận xét chung
+
+</h3>
+
+
+<p>
+
+Tập thể lớp 97 duy trì tốt nề nếp học tập,
+có tinh thần đoàn kết và tham gia tích cực
+các hoạt động của lớp.
+
+Một số học sinh cần tiếp tục được quan tâm,
+động viên để tiến bộ hơn.
+
+</p>
+
+
+`;
+
+
+
+
+
+
+
+document.getElementById(
+
+"baoCao"
+
+).innerHTML=html;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// XUẤT FILE WORD
+// ===============================
+
+
+
+function xuatWord(){
+
+
+
+let noiDung=
+
+document.getElementById(
+
+"baoCao"
+
+).innerHTML;
+
+
+
+
+
+if(noiDung.includes(
+
+"Chưa có dữ liệu"
+
+)){
+
+
+
+xemTruocBaoCao();
+
+
+
+noiDung=
+
+document.getElementById(
+
+"baoCao"
+
+).innerHTML;
+
+
+
+}
+
 
 
 
@@ -982,25 +637,88 @@ children:noiDung
 
 let file=
 
-await Packer.toBlob(doc);
+`
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+
+Bao cao lop 97
+
+</title>
+
+</head>
+
+
+<body>
+
+
+${noiDung}
+
+
+</body>
+
+
+</html>
+
+`;
 
 
 
-saveAs(
 
-file,
 
-tenBaoCao
+
+
+
+let blob=
+
+new Blob(
+
+[file],
+
+{
+
+type:
+
+"application/msword"
+
+}
 
 );
 
 
 
-alert(
 
-"✅ Đã xuất file Word tổng kết thành công!"
+
+
+
+let link=
+
+document.createElement(
+
+"a"
 
 );
+
+
+
+link.href=
+
+URL.createObjectURL(blob);
+
+
+
+link.download=
+
+"Bao_cao_chu_nhiem_lop97_2026_2027.doc";
+
+
+
+link.click();
 
 
 
@@ -1008,14 +726,22 @@ alert(
 
 
 
+
+
+
+
+window.onload=function(){
+
+
+
+xemTruocBaoCao();
+
+
+
+};
+
+
+
 </script>
-
-
-
-</body>
-
-</html>
-
-
 
 </div>
