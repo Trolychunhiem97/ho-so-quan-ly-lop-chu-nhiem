@@ -1,26 +1,26 @@
 // ======================================
-// HỆ THỐNG DỮ LIỆU QUẢN LÝ LỚP 97
+// DỮ LIỆU QUẢN LÝ LỚP 97
 // GVCN TRẦN SÁNG
 // ======================================
 
 
 
-// ===============================
-// KHỞI TẠO DỮ LIỆU HỌC SINH
-// ===============================
+// ================================
+// KHỞI TẠO HỌC SINH
+// ================================
 
 
-function khoiTaoHocSinh(){
+function khoiTaoDuLieu(){
 
 
-let duLieu =
+let ds =
 localStorage.getItem(
 "danhSachHocSinh"
 );
 
 
 
-if(!duLieu){
+if(!ds){
 
 
 localStorage.setItem(
@@ -42,31 +42,22 @@ JSON.stringify(danhSachHocSinh)
 
 
 
-
-
-// ===============================
-// LẤY DANH SÁCH HỌC SINH
-// ===============================
+// ================================
+// HỌC SINH
+// ================================
 
 
 function layDanhSachHocSinh(){
 
 
-let data = localStorage.getItem(
+return JSON.parse(
 
+localStorage.getItem(
 "danhSachHocSinh"
+)
 
-);
+)||[];
 
-
-
-return data ?
-
-JSON.parse(data)
-
-:
-
-[];
 
 }
 
@@ -74,22 +65,14 @@ JSON.parse(data)
 
 
 
-
-
-// ===============================
-// LƯU DANH SÁCH HỌC SINH
-// ===============================
-
-
-function luuDanhSachHocSinh(data){
-
+function luuDanhSachHocSinh(ds){
 
 
 localStorage.setItem(
 
 "danhSachHocSinh",
 
-JSON.stringify(data)
+JSON.stringify(ds)
 
 );
 
@@ -102,20 +85,22 @@ JSON.stringify(data)
 
 
 
-// ===============================
-// ĐỔI TỔ HỌC SINH
-// ===============================
+// ================================
+// ĐỔI TỔ + LƯU LỊCH SỬ
+// ================================
 
 
-function capNhatToHocSinh(id,toMoi){
-
-
-
-let ds = layDanhSachHocSinh();
+function doiToHocSinh(id,toMoi){
 
 
 
-let hs = ds.find(
+let ds =
+layDanhSachHocSinh();
+
+
+
+let hs =
+ds.find(
 
 x=>x.id===id
 
@@ -123,81 +108,51 @@ x=>x.id===id
 
 
 
+
 if(hs){
 
 
-hs.to=toMoi;
+
+let toCu = hs.to;
 
 
-}
+
+hs.to = toMoi;
 
 
 
 luuDanhSachHocSinh(ds);
 
 
+
+
+let lichSu =
+layLichSuTo();
+
+
+
+lichSu.push({
+
+hocSinhId:id,
+
+toCu:toCu,
+
+toMoi:toMoi,
+
+ngay:new Date()
+.toLocaleDateString()
+
+});
+
+
+
+luuLichSuTo(lichSu);
+
+
+
 }
 
 
-
-
-
-
-
-
-// ===============================
-// LẤY HỌC SINH THEO TỔ
-// ===============================
-
-
-function layHocSinhTheoTo(to){
-
-
-
-let ds = layDanhSachHocSinh();
-
-
-
-return ds.filter(
-
-x=>x.to===to
-
-);
-
-
-}
-
-
-
-
-
-
-
-
-// ===============================
-// ĐIỂM TUẦN
-// ===============================
-
-
-
-function layDiemTuan(){
-
-
-let data = localStorage.getItem(
-
-"diemTuan97"
-
-);
-
-
-
-return data ?
-
-JSON.parse(data)
-
-:
-
-[];
 
 }
 
@@ -207,13 +162,33 @@ JSON.parse(data)
 
 
 
-function luuDiemTuan(data){
+// ================================
+// LỊCH SỬ TỔ
+// ================================
 
+
+function layLichSuTo(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"lichSuTo97"
+)
+
+)||[];
+
+
+}
+
+
+
+function luuLichSuTo(data){
 
 
 localStorage.setItem(
 
-"diemTuan97",
+"lichSuTo97",
 
 JSON.stringify(data)
 
@@ -227,11 +202,74 @@ JSON.stringify(data)
 
 
 
+// ================================
+// LẤY HỌC SINH THEO TỔ
+// ================================
 
 
-// ===============================
-// THÊM ĐIỂM TUẦN
-// ===============================
+function layHocSinhTheoTo(to){
+
+
+
+let ds =
+layDanhSachHocSinh();
+
+
+
+return ds.filter(
+
+hs=>hs.to===to
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+// ================================
+// ĐIỂM TUẦN
+// ================================
+
+
+function layDiemTuan(){
+
+
+return JSON.parse(
+
+localStorage.getItem(
+"diemTuan97"
+)
+
+)||[];
+
+
+}
+
+
+
+
+
+function luuDiemTuan(ds){
+
+
+localStorage.setItem(
+
+"diemTuan97",
+
+JSON.stringify(ds)
+
+);
+
+
+}
+
+
 
 
 
@@ -239,7 +277,8 @@ function themDiemTuan(obj){
 
 
 
-let ds = layDiemTuan();
+let ds =
+layDiemTuan();
 
 
 
@@ -250,6 +289,7 @@ ds.push(obj);
 luuDiemTuan(ds);
 
 
+
 }
 
 
@@ -257,46 +297,36 @@ luuDiemTuan(ds);
 
 
 
-// ===============================
-// NHẬN XÉT
-// ===============================
 
 
-function layNhanXet(){
+// ================================
+// KHÓA TUẦN
+// ================================
 
 
-let data =
+function layTrangThaiTuan(){
+
+
+return JSON.parse(
+
 localStorage.getItem(
+"trangThaiTuan97"
+)
 
-"nhanXet97"
+)||[];
 
-);
-
-
-
-return data ?
-
-JSON.parse(data)
-
-:
-
-[];
 
 }
 
 
 
 
-
-
-
-function luuNhanXet(data){
-
+function luuTrangThaiTuan(data){
 
 
 localStorage.setItem(
 
-"nhanXet97",
+"trangThaiTuan97",
 
 JSON.stringify(data)
 
@@ -304,3 +334,5 @@ JSON.stringify(data)
 
 
 }
+
+
