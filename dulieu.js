@@ -334,5 +334,84 @@ JSON.stringify(data)
 
 
 }
+// ==================================
+// KIỂM TRA ĐIỂM ĐÃ NHẬP
+// ==================================
 
+
+function kiemTraDiemDaCo(
+hocSinhId,
+tuan
+){
+
+
+let ds = layDiemTuan();
+
+
+return ds.find(
+
+x=>
+
+x.hocSinhId===hocSinhId
+&&
+x.tuan===tuan
+
+);
+
+
+}
+
+
+
+
+
+
+
+// ==================================
+// CẬP NHẬT ĐIỂM
+// ==================================
+
+
+function capNhatDiemTuan(obj){
+
+
+let ds = layDiemTuan();
+
+
+
+let cu = ds.find(
+
+x=>
+
+x.hocSinhId===obj.hocSinhId
+&&
+x.tuan===obj.tuan
+
+);
+
+
+
+if(cu){
+
+
+cu.diem=obj.diem;
+
+cu.nhanXet=obj.nhanXet;
+
+
+}else{
+
+
+ds.push(obj);
+
+
+}
+
+
+
+luuDiemTuan(ds);
+
+
+
+}
 
