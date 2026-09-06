@@ -1,50 +1,112 @@
-// =====================================
+// ======================================
 // PHÂN QUYỀN QUẢN LÝ LỚP 97
 // GVCN TRẦN SÁNG
-// =====================================
-
+// ======================================
 
 
 const taiKhoan97 = [
+
+
+
+// =================
+// GIÁO VIÊN CHỦ NHIỆM
+// =================
 
 {
     username:"gvcn",
     password:"123456",
     ten:"GVCN Trần Sáng",
-    quyen:"gvcn"
+    quyen:"gvcn",
+    to:0
 },
 
+
+
+
+
+// =================
+// LỚP TRƯỞNG
+// =================
 
 {
     username:"loptruong",
     password:"123456",
     ten:"Lớp trưởng",
-    quyen:"loptruong"
+    quyen:"loptruong",
+    to:0
 },
 
+
+
+
+
+// =================
+// LỚP PHÓ HỌC TẬP
+// =================
 
 {
     username:"hoctap",
     password:"123456",
     ten:"Lớp phó học tập",
-    quyen:"hoc_tap"
+    quyen:"hoc_tap",
+    to:0
 },
 
+
+
+
+
+// =================
+// LỚP PHÓ LAO ĐỘNG
+// =================
 
 {
     username:"laodong",
     password:"123456",
     ten:"Lớp phó lao động",
-    quyen:"lao_dong"
+    quyen:"lao_dong",
+    to:0
 },
 
 
+
+
+
+
+// =================
+// TỔ TRƯỞNG
+// =================
+
+
 {
-    username:"totruong",
+    username:"to1",
     password:"123456",
-    ten:"Tổ trưởng",
-    quyen:"to_truong"
+    ten:"Tổ trưởng tổ 1",
+    quyen:"to_truong",
+    to:1
+},
+
+
+
+{
+    username:"to2",
+    password:"123456",
+    ten:"Tổ trưởng tổ 2",
+    quyen:"to_truong",
+    to:2
+},
+
+
+
+{
+    username:"to3",
+    password:"123456",
+    ten:"Tổ trưởng tổ 3",
+    quyen:"to_truong",
+    to:3
 }
+
+
 
 
 ];
@@ -52,37 +114,43 @@ const taiKhoan97 = [
 
 
 
-// =====================================
-// HÀM ĐĂNG NHẬP
-// =====================================
 
 
-function dangNhapTaiKhoan(username,password){
+// ======================================
+// ĐĂNG NHẬP
+// ======================================
+
+
+function dangNhapTaiKhoan(user,pass){
 
 
 
-let user = taiKhoan97.find(
+let taiKhoan = taiKhoan97.find(
 
-(item)=>
+x =>
 
-item.username===username
+x.username===user
+
 &&
-item.password===password
+
+x.password===pass
 
 );
 
 
 
-if(user){
+if(taiKhoan){
+
 
 
 localStorage.setItem(
 
 "nguoiDungDangNhap",
 
-JSON.stringify(user)
+JSON.stringify(taiKhoan)
 
 );
+
 
 
 return true;
@@ -95,6 +163,7 @@ return true;
 return false;
 
 
+
 }
 
 
@@ -102,15 +171,17 @@ return false;
 
 
 
-// =====================================
-// LẤY NGƯỜI ĐANG ĐĂNG NHẬP
-// =====================================
+
+// ======================================
+// LẤY NGƯỜI DÙNG HIỆN TẠI
+// ======================================
 
 
 function layNguoiDung(){
 
 
-let data = localStorage.getItem(
+
+let user = localStorage.getItem(
 
 "nguoiDungDangNhap"
 
@@ -118,10 +189,10 @@ let data = localStorage.getItem(
 
 
 
-if(data){
+if(user){
 
 
-return JSON.parse(data);
+return JSON.parse(user);
 
 
 }
@@ -138,54 +209,9 @@ return null;
 
 
 
-// =====================================
-// KIỂM TRA QUYỀN GVCN
-// =====================================
-
-
-function laGVCN(){
-
-
-let user = layNguoiDung();
-
-
-
-return user && user.quyen==="gvcn";
-
-
-}
-
-
-
-
-
-
-// =====================================
-// KIỂM TRA QUYỀN
-// =====================================
-
-
-function coQuyen(quyen){
-
-
-let user = layNguoiDung();
-
-
-
-return user && user.quyen===quyen;
-
-
-}
-
-
-
-
-
-
-
-// =====================================
+// ======================================
 // ĐĂNG XUẤT
-// =====================================
+// ======================================
 
 
 function dangXuat(){
@@ -201,6 +227,67 @@ localStorage.removeItem(
 
 
 window.location.href="index.html";
+
+
+}
+
+
+
+
+
+
+
+// ======================================
+// KIỂM TRA QUYỀN
+// ======================================
+
+
+function laGVCN(){
+
+
+let user=layNguoiDung();
+
+
+return user && user.quyen==="gvcn";
+
+
+}
+
+
+
+
+
+function laToTruong(){
+
+
+let user=layNguoiDung();
+
+
+return user && user.quyen==="to_truong";
+
+
+}
+
+
+
+
+
+function laySoToNguoiDung(){
+
+
+let user=layNguoiDung();
+
+
+if(user){
+
+
+return user.to;
+
+
+}
+
+
+return 0;
 
 
 }
