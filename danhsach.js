@@ -1,247 +1,287 @@
-// =================================================
-// DỮ LIỆU GỐC HỌC SINH LỚP 97
-// TRỢ LÝ QUẢN LÝ LỚP
-// GVCN TRẦN SÁNG
-// =================================================
-
-
+// =====================================
 // DANH SÁCH HỌC SINH LỚP 97
+// TRƯỜNG THCS TRẦN PHÚ
+// GVCN: TRẦN SÁNG
+// =====================================
+
+
+// 0 = Chưa phân tổ
+// 1 = Tổ 1
+// 2 = Tổ 2
+// 3 = Tổ 3
+
 
 const danhSachHocSinh = [
 
-"Vũ Ngọc Ánh",
-"Trần Thị Ngọc Diệp",
-"Nguyễn Anh Duy",
-"Lý Gia Huy",
-"Hứa Bảo Khang",
-"Nguyễn Hoàng Khánh Linh",
-"Nguyễn Hoàng Nhật Linh",
-"Trương Đỗ Thục Linh",
-"Lê Quốc Long",
-"Nguyễn Bùi Hoàng Long",
-"Lâm Thị Trúc Ly",
-"Trần Lê Nhật Minh",
-"Vũ Thị Trà My",
-"Đỗ Phạm Hoàng Nam",
-"Bùi Thị Kim Ngân",
-"Hoàng Nguyễn Tuấn Ngọc",
-"Lô Thị Minh Nhi",
-"Nguyễn Thị Quỳnh Như",
-"Phạm Hoàng Thiên Phú",
-"Ngô Như Quỳnh",
-"Vũ Ngọc Như Quỳnh",
-"Trần Thị Thủy Tiên",
-"Hoàng Duy Thành",
-"Phạm Trường Thành",
-"Hoàng Thị Anh Thư",
-"Vũ Ngọc Anh Thư",
-"Trần Hoàng Bảo Trân",
-"Lô Thanh Trúc",
-"Nguyễn Thị Kiều Vi",
-"Nguyễn Thanh Vũ",
-"Hoàng Thị Thảo Vy",
-"Lâm Huỳnh Thảo Vy",
-"Nguyễn Ngô Hoàng Yến"
+
+{
+    id:1,
+    hoTen:"Vũ Ngọc Ánh",
+    to:0
+},
+
+
+{
+    id:2,
+    hoTen:"Trần Thị Ngọc Diệp",
+    to:0
+},
+
+
+{
+    id:3,
+    hoTen:"Nguyễn Anh Duy",
+    to:0
+},
+
+
+{
+    id:4,
+    hoTen:"Lý Gia Huy",
+    to:0
+},
+
+
+{
+    id:5,
+    hoTen:"Hứa Bảo Khang",
+    to:0
+},
+
+
+{
+    id:6,
+    hoTen:"Nguyễn Hoàng Khánh Linh",
+    to:0
+},
+
+
+{
+    id:7,
+    hoTen:"Nguyễn Hoàng Nhật Linh",
+    to:0
+},
+
+
+{
+    id:8,
+    hoTen:"Trương Đỗ Thục Linh",
+    to:0
+},
+
+
+{
+    id:9,
+    hoTen:"Lê Quốc Long",
+    to:0
+},
+
+
+{
+    id:10,
+    hoTen:"Nguyễn Bùi Hoàng Long",
+    to:0
+},
+
+
+{
+    id:11,
+    hoTen:"Lâm Thị Trúc Ly",
+    to:0
+},
+
+
+{
+    id:12,
+    hoTen:"Trần Lê Nhật Minh",
+    to:0
+},
+
+
+{
+    id:13,
+    hoTen:"Vũ Thị Trà My",
+    to:0
+},
+
+
+{
+    id:14,
+    hoTen:"Đỗ Phạm Hoàng Nam",
+    to:0
+},
+
+
+{
+    id:15,
+    hoTen:"Bùi Thị Kim Ngân",
+    to:0
+},
+
+
+{
+    id:16,
+    hoTen:"Hoàng Nguyễn Tuấn Ngọc",
+    to:0
+},
+
+
+{
+    id:17,
+    hoTen:"Lô Thị Minh Nhi",
+    to:0
+},
+
+
+{
+    id:18,
+    hoTen:"Nguyễn Thị Quỳnh Như",
+    to:0
+},
+
+
+{
+    id:19,
+    hoTen:"Phạm Hoàng Thiên Phú",
+    to:0
+},
+
+
+{
+    id:20,
+    hoTen:"Ngô Như Quỳnh",
+    to:0
+},
+
+
+{
+    id:21,
+    hoTen:"Vũ Ngọc Như Quỳnh",
+    to:0
+},
+
+
+{
+    id:22,
+    hoTen:"Trần Thị Thủy Tiên",
+    to:0
+},
+
+
+{
+    id:23,
+    hoTen:"Hoàng Duy Thành",
+    to:0
+},
+
+
+{
+    id:24,
+    hoTen:"Phạm Trường Thành",
+    to:0
+},
+
+
+{
+    id:25,
+    hoTen:"Hoàng Thị Anh Thư",
+    to:0
+},
+
+
+{
+    id:26,
+    hoTen:"Vũ Ngọc Anh Thư",
+    to:0
+},
+
+
+{
+    id:27,
+    hoTen:"Trần Hoàng Bảo Trân",
+    to:0
+},
+
+
+{
+    id:28,
+    hoTen:"Lô Thanh Trúc",
+    to:0
+},
+
+
+{
+    id:29,
+    hoTen:"Nguyễn Thị Kiều Vi",
+    to:0
+},
+
+
+{
+    id:30,
+    hoTen:"Nguyễn Thanh Vũ",
+    to:0
+},
+
+
+{
+    id:31,
+    hoTen:"Hoàng Thị Thảo Vy",
+    to:0
+},
+
+
+{
+    id:32,
+    hoTen:"Lâm Huỳnh Thảo Vy",
+    to:0
+},
+
+
+{
+    id:33,
+    hoTen:"Nguyễn Ngô Hoàng Yến",
+    to:0
+}
+
+
 
 ];
 
 
 
 
-
-// =================================================
-// TÊN KHO DỮ LIỆU
-// =================================================
-
-
-const KEY_HOSO = "hoSoHocSinh97";
+// ===============================
+// LẤY DANH SÁCH THEO TỔ
+// ===============================
 
 
+function layHocSinhTheoTo(soTo){
 
 
+return danhSachHocSinh.filter(
 
-
-// =================================================
-// KHỞI TẠO HỒ SƠ 33 HỌC SINH
-// =================================================
-
-
-function khoiTaoHoSoHocSinh(){
-
-
-let daCo = localStorage.getItem(KEY_HOSO);
-
-
-
-if(daCo){
-
-return JSON.parse(daCo);
-
-}
-
-
-
-
-
-let danhSach = danhSachHocSinh.map(
-
-(ten,index)=>{
-
-
-return {
-
-stt:index+1,
-
-hoTen:ten,
-
-ngaySinh:"",
-
-gioiTinh:"",
-
-phuHuynh:"",
-
-soDT:"",
-
-diaChi:"",
-
-hoanCanh:"",
-
-uuDiem:"",
-
-hanChe:"",
-
-diemThiDua:100,
-
-xepLoai:"",
-
-lichSu:[]
-
-};
-
-
-}
+hs => hs.to === soTo
 
 );
 
 
-
-
-
-localStorage.setItem(
-
-KEY_HOSO,
-
-JSON.stringify(danhSach)
-
-);
-
-
-
-return danhSach;
-
-
 }
 
 
 
+// ===============================
+// ĐỔI TỔ HỌC SINH
+// (Dành cho GVCN)
+// ===============================
 
 
+function doiToHocSinh(id,soTo){
 
 
+let hs = danhSachHocSinh.find(
 
-// =================================================
-// LẤY DANH SÁCH HỒ SƠ
-// =================================================
-
-
-function layHoSoHocSinh(){
-
-
-return khoiTaoHoSoHocSinh();
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// LƯU HỒ SƠ
-// =================================================
-
-
-function luuHoSoHocSinh(ds){
-
-
-localStorage.setItem(
-
-KEY_HOSO,
-
-JSON.stringify(ds)
-
-);
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// TÌM HỌC SINH
-// =================================================
-
-
-function timHocSinh(ten){
-
-
-let ds = layHoSoHocSinh();
-
-
-
-return ds.find(
-
-hs=>hs.hoTen==ten
-
-);
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// CẬP NHẬT HỌC SINH
-// =================================================
-
-
-function capNhatHocSinh(
-
-ten,
-
-duLieu
-
-){
-
-
-
-let ds = layHoSoHocSinh();
-
-
-
-let hs = ds.find(
-
-x=>x.hoTen==ten
+x=>x.id===id
 
 );
 
@@ -250,157 +290,10 @@ x=>x.hoTen==ten
 if(hs){
 
 
-Object.assign(
-
-hs,
-
-duLieu
-
-);
-
-
-
-luuHoSoHocSinh(ds);
-
-
-
-return true;
+hs.to = soTo;
 
 
 }
-
-
-
-return false;
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// THÊM LỊCH SỬ HỌC SINH
-// =================================================
-
-
-function themLichSu(
-
-ten,
-
-loai,
-
-noiDung
-
-){
-
-
-
-let hs = timHocSinh(ten);
-
-
-
-if(!hs)
-
-return false;
-
-
-
-
-
-hs.lichSu.push({
-
-ngay:
-
-new Date()
-
-.toLocaleDateString(),
-
-
-loai:loai,
-
-
-noiDung:noiDung
-
-
-});
-
-
-
-
-
-luuHoSoHocSinh(
-
-layHoSoHocSinh()
-
-);
-
-
-
-return true;
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// LẤY DANH SÁCH TÊN HỌC SINH
-// =================================================
-
-
-function layDanhSachTen(){
-
-
-return danhSachHocSinh;
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// SỐ LƯỢNG HỌC SINH
-// =================================================
-
-
-function soLuongHocSinh(){
-
-
-return danhSachHocSinh.length;
-
-
-}
-
-
-
-
-
-
-
-// =================================================
-// RESET HỒ SƠ (CHỈ DÙNG KHI CẦN)
-// =================================================
-
-
-function resetHoSoHocSinh(){
-
-
-localStorage.removeItem(KEY_HOSO);
-
-
-khoiTaoHoSoHocSinh();
 
 
 }
