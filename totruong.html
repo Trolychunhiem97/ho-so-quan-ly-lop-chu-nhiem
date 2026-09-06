@@ -5,12 +5,19 @@
 
 <meta charset="UTF-8">
 
-<title>Tổ trưởng đánh giá lớp 97</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Tổ trưởng quản lý tổ
+</title>
 
 
 <script src="phanquyen.js"></script>
 
 <script src="danhsach.js"></script>
+
+<script src="dulieu.js"></script>
 
 
 
@@ -19,11 +26,25 @@
 
 body{
 
-font-family:Arial,sans-serif;
+font-family:"Segoe UI",Arial;
 
-background:#eef5ff;
+background:#f1f6ff;
 
-padding:20px;
+margin:0;
+
+}
+
+
+
+.header{
+
+background:#1565c0;
+
+color:white;
+
+padding:25px;
+
+text-align:center;
 
 }
 
@@ -31,43 +52,23 @@ padding:20px;
 
 .container{
 
-max-width:1100px;
+padding:25px;
 
-margin:auto;
+}
+
+
+
+.box{
 
 background:white;
 
-padding:30px;
+padding:25px;
 
-border-radius:25px;
+border-radius:20px;
 
-box-shadow:0 10px 30px rgba(0,0,0,.1);
+box-shadow:0 5px 15px #ccc;
 
-}
-
-
-
-h1,h2{
-
-text-align:center;
-
-color:#1565c0;
-
-}
-
-
-
-.user{
-
-text-align:center;
-
-background:#f2f7ff;
-
-padding:15px;
-
-border-radius:15px;
-
-font-size:18px;
+margin-bottom:20px;
 
 }
 
@@ -78,8 +79,6 @@ table{
 width:100%;
 
 border-collapse:collapse;
-
-margin-top:20px;
 
 }
 
@@ -99,33 +98,11 @@ padding:12px;
 
 td{
 
-border:1px solid #ddd;
-
 padding:10px;
 
+border-bottom:1px solid #ddd;
+
 text-align:center;
-
-}
-
-
-
-input,select,textarea{
-
-width:95%;
-
-padding:8px;
-
-border-radius:8px;
-
-border:1px solid #ccc;
-
-}
-
-
-
-textarea{
-
-height:60px;
 
 }
 
@@ -139,39 +116,31 @@ color:white;
 
 border:none;
 
-padding:12px 25px;
+padding:10px 20px;
 
 border-radius:10px;
 
-font-size:16px;
-
 cursor:pointer;
 
-margin-top:20px;
+}
+
+
+
+input{
+
+width:70px;
+
+padding:8px;
 
 }
 
 
 
-button:hover{
+textarea{
 
-background:#0d47a1;
+width:100%;
 
-}
-
-
-
-.footer{
-
-text-align:center;
-
-margin-top:30px;
-
-border-top:1px solid #ddd;
-
-padding-top:20px;
-
-color:#555;
+height:80px;
 
 }
 
@@ -183,8 +152,26 @@ color:#555;
 </head>
 
 
-
 <body>
+
+
+
+<div class="header">
+
+
+<h1>
+🏆 TỔ TRƯỞNG - LỚP 97
+</h1>
+
+
+<p id="thongTinTo">
+
+</p>
+
+
+</div>
+
+
 
 
 
@@ -192,192 +179,107 @@ color:#555;
 
 
 
+<div class="box">
+
+
 <h2>
-
-🏫 TRƯỜNG THCS TRẦN PHÚ
-
+👨‍🎓 Thành viên trong tổ
 </h2>
 
 
 
-<h1>
-
-👥 ĐÁNH GIÁ THÀNH VIÊN TỔ
-
-</h1>
+<table>
 
 
-
-<div class="user" id="nguoiDung">
-
-</div>
-
-
-
-
-
-<h3>
-
-📌 Chọn tổ đánh giá:
-
-</h3>
-
-
-
-<select id="chonTo">
-
-<option value="to1">
-
-Tổ 1
-
-</option>
-
-
-<option value="to2">
-
-Tổ 2
-
-</option>
-
-
-<option value="to3">
-
-Tổ 3
-
-</option>
-
-
-<option value="to4">
-
-Tổ 4
-
-</option>
-
-
-</select>
-
-
-
-
-
-<table id="bangDanhGia">
-
+<thead>
 
 <tr>
 
-
 <th>
-
 STT
-
 </th>
 
-
 <th>
-
 Họ tên
-
 </th>
-
 
 <th>
-
-Ý thức
-
+Chấm điểm
 </th>
-
-
-<th>
-
-Chuyên cần
-
-</th>
-
-
-<th>
-
-Điểm cộng/trừ
-
-</th>
-
-
-<th>
-
-Nhận xét
-
-</th>
-
 
 </tr>
+
+
+</thead>
+
+
+<tbody id="danhSachTo">
+
+</tbody>
+
 
 
 </table>
 
 
 
-
-
-
-<button onclick="luuDanhGia()">
-
-💾 Lưu đánh giá tổ
-
-</button>
-
-
-
-
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
-
-</button>
+</div>
 
 
 
 
 
 
-<div class="footer">
 
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+<div class="box">
+
+
+<h2>
+📝 Phiếu đánh giá tuần
+</h2>
+
+
+<div id="phieuCham">
+
+Chọn học sinh để đánh giá
 
 </div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
 
 <script>
 
 
-// ===============================
-// KIỂM TRA NGƯỜI DÙNG
-// ===============================
-
-
-let nguoiDung =
-
-JSON.parse(
-
-localStorage.getItem(
-
-"nguoiDungDangNhap"
-
-)
-
-);
+let nguoiDung = layNguoiDung();
 
 
 
+if(
 
-if(!nguoiDung){
+!nguoiDung ||
+
+nguoiDung.quyen!=="to_truong"
+
+){
 
 
 alert(
-
-"⚠ Vui lòng đăng nhập!"
-
+"Chỉ tổ trưởng được truy cập"
 );
 
 
-location.href="dangnhap.html";
+window.location.href="trangchu.html";
 
 
 }
@@ -387,250 +289,203 @@ location.href="dangnhap.html";
 
 
 
+let toHienTai = nguoiDung.to;
+
+
+
 document.getElementById(
 
-"nguoiDung"
+"thongTinTo"
+
+).innerHTML =
+
+"Tổ trưởng tổ " + toHienTai;
+
+
+
+
+
+
+function hienThiThanhVien(){
+
+
+let ds = layHocSinhTheoTo(toHienTai);
+
+
+
+let html="";
+
+
+
+ds.forEach((hs,index)=>{
+
+
+html+=`
+
+<tr>
+
+<td>
+
+${index+1}
+
+</td>
+
+
+<td>
+
+${hs.hoTen}
+
+</td>
+
+
+<td>
+
+<button onclick="moPhieu(${hs.id})">
+
+📝 Chấm điểm
+
+</button>
+
+</td>
+
+
+</tr>
+
+`;
+
+
+});
+
+
+
+document.getElementById(
+
+"danhSachTo"
+
+).innerHTML=html;
+
+
+
+}
+
+
+
+
+
+hienThiThanhVien();
+
+
+
+
+
+
+
+function moPhieu(id){
+
+
+let hs =
+layDanhSachHocSinh()
+
+.find(
+
+x=>x.id===id
+
+);
+
+
+
+document.getElementById(
+
+"phieuCham"
 
 ).innerHTML=
 
+`
 
-"👤 Xin chào: <b>"
+<h3>
 
-+
+${hs.hoTen}
 
-nguoiDung.ten
+</h3>
 
-+
 
-"</b>";
+<p>
+Học tập (30 điểm)
+</p>
 
 
-
-
-
-
-
-// ===============================
-// DỮ LIỆU HỌC SINH MẪU THEO TỔ
-// ===============================
-//
-// Sau này sẽ thay bằng danh sách từ Excel
-//
-
-
-let danhSachTo={
-
-
-
-to1:[
-
-"Nguyễn Văn A",
-
-"Trần Văn B",
-
-"Lê Thị C",
-
-"Phạm Văn D"
-
-],
-
-
-
-to2:[
-
-"Nguyễn Văn E",
-
-"Trần Văn F",
-
-"Lê Thị G"
-
-],
-
-
-
-to3:[
-
-"Nguyễn Văn H",
-
-"Trần Văn I"
-
-],
-
-
-
-to4:[
-
-"Nguyễn Văn K",
-
-"Trần Văn L"
-
-]
-
-
-
-};
-
-
-
-
-
-
-
-// ===============================
-// HIỂN THỊ BẢNG
-// ===============================
-
-
-
-function hienThiDanhGia(){
-
-
-
-let to =
-
-document.getElementById(
-
-"chonTo"
-
-).value;
-
-
-
-
-
-let ds=
-
-danhSachTo[to];
-
-
-
-
-
-let bang=
-
-document.getElementById(
-
-"bangDanhGia"
-
-);
-
-
-
-
-
-bang.innerHTML=`
-
-<tr>
-
-<th>STT</th>
-
-<th>Họ tên</th>
-
-<th>Ý thức</th>
-
-<th>Chuyên cần</th>
-
-<th>Điểm cộng/trừ</th>
-
-<th>Nhận xét</th>
-
-</tr>
-
-`;
-
-
-
-
-
-
-
-ds.forEach(
-
-(hs,index)=>{
-
-
-
-bang.innerHTML +=`
-
-<tr>
-
-
-<td>${index+1}</td>
-
-
-<td>${hs}</td>
-
-
-<td>
-
-<select class="yThuc">
-
-<option>Tốt</option>
-
-<option>Khá</option>
-
-<option>Cần cố gắng</option>
-
-</select>
-
-</td>
-
-
-
-<td>
-
-<select class="chuyenCan">
-
-<option>Đầy đủ</option>
-
-<option>Đi muộn</option>
-
-<option>Nghỉ học</option>
-
-</select>
-
-</td>
-
-
-
-<td>
-
-<input 
-
-class="diem"
-
+<input id="ht"
 type="number"
+value="30">
 
+
+<p>
+Nề nếp (30 điểm)
+</p>
+
+
+<input id="nn"
+type="number"
+value="30">
+
+
+<p>
+Lao động (20 điểm)
+</p>
+
+
+<input id="ld"
+type="number"
+value="20">
+
+
+<p>
+Điểm cộng
+</p>
+
+
+<input id="cong"
+type="number"
 value="0">
 
-</td>
+
+<p>
+Điểm trừ
+</p>
+
+
+<input id="tru"
+type="number"
+value="0">
 
 
 
-<td>
+<p>
 
-<textarea 
+Nhận xét:
 
-class="nhanXet"
+</p>
 
-placeholder="Nhận xét">
+
+<textarea id="nhanxet">
 
 </textarea>
 
-</td>
 
 
+<br><br>
 
-</tr>
+
+<button onclick="luuDiem(${id})">
+
+💾 Lưu điểm tuần
+
+</button>
 
 `;
 
 
 
-});
-
-
-
 }
 
 
@@ -639,177 +494,55 @@ placeholder="Nhận xét">
 
 
 
+function luuDiem(id){
 
-// Khi đổi tổ
 
-document
 
-.getElementById(
+let diem =
 
-"chonTo"
+Number(ht.value)
 
-)
++
 
-.addEventListener(
+Number(nn.value)
 
-"change",
++
 
-hienThiDanhGia
+Number(ld.value)
 
-);
++
 
+Number(cong.value)
 
+-
 
+Number(tru.value);
 
 
 
 
 
-// ===============================
-// LƯU ĐÁNH GIÁ
-// ===============================
+let obj={
 
 
+hocSinhId:id,
 
-function luuDanhGia(){
 
+tuan:new Date().getWeek,
 
 
-let to =
+namHoc:"2026-2027",
 
-document.getElementById(
 
-"chonTo"
-
-).value;
-
-
-
-
-
-let bang=
-
-document.getElementById(
-
-"bangDanhGia"
-
-);
-
-
-
-
-
-let dong=
-
-bang.querySelectorAll(
-
-"tr"
-
-);
-
-
-
-
-
-let ketQua=[];
-
-
-
-
-
-
-for(let i=1;i<dong.length;i++){
-
-
-
-let o=
-
-dong[i].children;
-
-
-
-ketQua.push({
-
-
-
-ten:
-
-o[1].innerText,
-
-
-
-yThuc:
-
-o[2].querySelector("select").value,
-
-
-
-chuyenCan:
-
-o[3].querySelector("select").value,
-
-
-
-diem:
-
-o[4].querySelector("input").value,
-
+diem:diem,
 
 
 nhanXet:
-
-o[5].querySelector("textarea").value
-
+nhanxet.value,
 
 
-});
-
-
-
-}
-
-
-
-
-
-
-let data=
-
-JSON.parse(
-
-localStorage.getItem(
-
-"danhGiaTo97"
-
-)
-
-)
-
-||{};
-
-
-
-
-
-data[to]={
-
-
-
-nguoiDanhGia:
-
-nguoiDung.ten,
-
-
-
-thoiGian:
-
-new Date().toLocaleString("vi-VN"),
-
-
-
-duLieu:
-
-ketQua
+nguoiNhap:
+nguoiDung.ten
 
 
 
@@ -817,25 +550,13 @@ ketQua
 
 
 
-
-
-
-localStorage.setItem(
-
-"danhGiaTo97",
-
-JSON.stringify(data)
-
-);
-
-
-
+themDiemTuan(obj);
 
 
 
 alert(
 
-"✅ Đã lưu đánh giá tổ!"
+"Đã lưu điểm thành công"
 
 );
 
@@ -844,18 +565,6 @@ alert(
 }
 
 
-
-
-
-
-
-window.onload=function(){
-
-
-hienThiDanhGia();
-
-
-};
 
 
 
@@ -864,8 +573,7 @@ hienThiDanhGia();
 </script>
 
 
+
 </body>
 
 </html>
-
-</div>
