@@ -2,434 +2,97 @@
 <html lang="vi">
 
 <head>
-
 <meta charset="UTF-8">
-
 <title>Theo dõi học tập lớp 97</title>
-
-
-<script src="phanquyen.js"></script>
-
-<script src="danhsach.js"></script>
-
 
 <style>
 
-
 body{
-
-font-family:Arial,sans-serif;
-
-background:#eef5ff;
-
-padding:20px;
-
+    font-family: Arial, sans-serif;
+    margin:20px;
 }
-
-
-
-.container{
-
-max-width:1200px;
-
-margin:auto;
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-
-}
-
-
 
 h1,h2{
-
-text-align:center;
-
-color:#1565c0;
-
+    text-align:center;
+    color:#1565c0;
 }
 
-
-
-.user{
-
-text-align:center;
-
-background:#f2f7ff;
-
-padding:15px;
-
-border-radius:15px;
-
-font-size:18px;
-
+.info{
+    background:#eef5ff;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    font-size:20px;
 }
-
-
 
 table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:20px;
-
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
 }
-
-
 
 th{
-
-background:#1565c0;
-
-color:white;
-
-padding:12px;
-
+    background:#1565c0;
+    color:white;
+    padding:15px;
+    font-size:18px;
 }
-
-
 
 td{
-
-border:1px solid #ddd;
-
-padding:10px;
-
-text-align:center;
-
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
 }
 
+select,textarea{
 
-
-select,input,textarea{
-
-width:95%;
-
-padding:8px;
-
-border-radius:8px;
-
-border:1px solid #ccc;
+    width:95%;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
 
 }
-
-
 
 textarea{
-
-height:60px;
-
+    height:60px;
 }
-
-
-
-button{
-
-background:#1565c0;
-
-color:white;
-
-border:none;
-
-padding:12px 25px;
-
-border-radius:10px;
-
-font-size:16px;
-
-cursor:pointer;
-
-margin-top:20px;
-
-}
-
-
-
-button:hover{
-
-background:#0d47a1;
-
-}
-
-
-
-.footer{
-
-margin-top:30px;
-
-text-align:center;
-
-border-top:1px solid #ddd;
-
-padding-top:20px;
-
-color:#555;
-
-}
-
 
 </style>
 
-
 </head>
-
 
 
 <body>
 
 
-
-<div class="container">
-
-
-
 <h2>
-
 🏫 TRƯỜNG THCS TRẦN PHÚ
-
 </h2>
 
 
-
 <h1>
-
 📚 THEO DÕI HỌC TẬP LỚP 97
-
 </h1>
 
 
+<div class="info">
 
+👤 Xin chào:
+<b>GVCN Trần Sáng</b>
 
-<div class="user" id="nguoiDung">
+<br>
 
-</div>
-
-
-
-
-
-<table id="bangHocTap">
-
-
-<tr>
-
-<th>
-
-STT
-
-</th>
-
-
-<th>
-
-Họ tên
-
-</th>
-
-
-<th>
-
-Chuẩn bị bài
-
-</th>
-
-
-<th>
-
-Bài tập
-
-</th>
-
-
-<th>
-
-Điểm cộng/trừ
-
-</th>
-
-
-<th>
-
-Nhận xét
-
-</th>
-
-
-</tr>
-
-
-
-</table>
-
-
-
-
-
-
-<button onclick="luuHocTap()">
-
-💾 Lưu theo dõi học tập
-
-</button>
-
-
-
-
-<button onclick="location.href='index.html'">
-
-🏠 Trang chủ
-
-</button>
-
-
-
-
-
-
-<div class="footer">
-
-Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+Người phụ trách:
+<b>Lớp phó học tập</b>
 
 </div>
-<script>
 
 
-// =============================
-// KIỂM TRA ĐĂNG NHẬP
-// =============================
 
+<table>
 
-let nguoiDung =
 
-JSON.parse(
-
-localStorage.getItem(
-
-"nguoiDungDangNhap"
-
-)
-
-);
-
-
-
-
-if(!nguoiDung){
-
-
-alert(
-
-"⚠ Vui lòng đăng nhập!"
-
-);
-
-
-location.href="dangnhap.html";
-
-
-}
-
-
-
-
-
-
-document.getElementById(
-
-"nguoiDung"
-
-).innerHTML=
-
-
-"👤 Xin chào: <b>"
-
-+
-
-nguoiDung.ten
-
-+
-
-"</b>";
-
-
-
-
-
-
-
-// =============================
-// DANH SÁCH HỌC SINH
-// =============================
-
-
-let danhSachHocSinhHT = [];
-
-
-
-
-
-if(typeof danhSachHocSinh !== "undefined"){
-
-
-danhSachHocSinhHT = danhSachHocSinh;
-
-
-}
-
-else{
-
-
-danhSachHocSinhHT=[
-
-
-"Nguyễn Văn A",
-
-"Trần Văn B",
-
-"Lê Thị C",
-
-"Phạm Văn D"
-
-
-];
-
-
-}
-
-
-
-
-
-
-
-
-// =============================
-// TẠO BẢNG HỌC TẬP
-// =============================
-
-
-function hienThiHocTap(){
-
-
-
-let bang=
-
-document.getElementById(
-
-"bangHocTap"
-
-);
-
-
-
-bang.innerHTML=`
+<thead>
 
 <tr>
 
@@ -441,33 +104,73 @@ bang.innerHTML=`
 
 <th>Bài tập</th>
 
-<th>Điểm cộng/trừ</th>
+<th>Hăng hái xây dựng bài</th>
 
 <th>Nhận xét</th>
 
+
 </tr>
 
-`;
+
+</thead>
 
 
 
+<tbody id="bangHocTap">
+
+
+</tbody>
 
 
 
-danhSachHocSinhHT.forEach(
-
-(hs,index)=>{
+</table>
 
 
 
-bang.innerHTML +=`
+<script>
+
+
+// dữ liệu học sinh lấy từ localStorage
+
+let danhSach =
+JSON.parse(
+localStorage.getItem("danhSachHocSinh")
+) || [];
+
+
+
+function hienThi(){
+
+
+let html="";
+
+
+danhSach.forEach((hs,index)=>{
+
+
+html += `
+
 
 <tr>
 
 
+<td>${index+1}</td>
+
+
+<td>
+${hs.hoTen || hs.ten || hs.name}
+</td>
+
+
 <td>
 
-${index+1}
+<select>
+
+<option>Đầy đủ</option>
+
+<option>Chưa đầy đủ</option>
+
+</select>
 
 </td>
 
@@ -475,7 +178,13 @@ ${index+1}
 
 <td>
 
-${hs}
+<select>
+
+<option>Hoàn thành</option>
+
+<option>Chưa hoàn thành</option>
+
+</select>
 
 </td>
 
@@ -484,30 +193,11 @@ ${hs}
 
 <td>
 
+<select>
 
-<select class="chuanBi">
+<option>Có</option>
 
-
-<option>
-
-Đầy đủ
-
-</option>
-
-
-<option>
-
-Chưa đầy đủ
-
-</option>
-
-
-<option>
-
-Không chuẩn bị
-
-</option>
-
+<option>Chưa</option>
 
 </select>
 
@@ -517,72 +207,11 @@ Không chuẩn bị
 
 
 
-
 <td>
-
-
-<select class="baiTap">
-
-
-<option>
-
-Hoàn thành
-
-</option>
-
-
-<option>
-
-Thiếu
-
-</option>
-
-
-<option>
-
-Chưa làm
-
-</option>
-
-
-</select>
-
-
-</td>
-
-
-
-
-
-<td>
-
-
-<input
-
-class="diemHT"
-
-type="number"
-
-value="0">
-
-
-</td>
-
-
-
-
-
-
-<td>
-
 
 <textarea
-
-class="nhanXetHT"
-
-placeholder="Nhận xét">
-
-</textarea>
+placeholder="Nhập nhận xét..."
+></textarea>
 
 
 </td>
@@ -591,191 +220,29 @@ placeholder="Nhận xét">
 
 </tr>
 
+
 `;
 
 
-
 });
 
-
-
-}
-
-
-
-
-
-
-
-
-// =============================
-// LƯU DỮ LIỆU HỌC TẬP
-// =============================
-
-
-function luuHocTap(){
-
-
-
-let bang=
 
 document.getElementById(
-
 "bangHocTap"
-
-);
-
-
-
-let dong=
-
-bang.querySelectorAll(
-
-"tr"
-
-);
-
-
-
-let ketQua=[];
-
-
-
-
-for(let i=1;i<dong.length;i++){
-
-
-
-let o=
-
-dong[i].children;
-
-
-
-ketQua.push({
-
-
-
-ten:
-
-o[1].innerText,
-
-
-
-chuanBi:
-
-o[2].querySelector("select").value,
-
-
-
-baiTap:
-
-o[3].querySelector("select").value,
-
-
-
-diem:
-
-o[4].querySelector("input").value,
-
-
-
-nhanXet:
-
-o[5].querySelector("textarea").value
-
-
-
-});
-
+).innerHTML = html;
 
 
 }
 
 
 
-
-
-
-
-let data={
-
-
-
-nguoiNhap:
-
-nguoiDung.ten,
-
-
-
-thoiGian:
-
-new Date().toLocaleString("vi-VN"),
-
-
-
-duLieu:
-
-ketQua
-
-
-
-};
-
-
-
-
-
-
-localStorage.setItem(
-
-"hocTapLop97",
-
-JSON.stringify(data)
-
-);
-
-
-
-
-
-
-alert(
-
-"✅ Đã lưu theo dõi học tập!"
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-window.onload=function(){
-
-
-
-hienThiHocTap();
-
-
-};
-
-
-
+hienThi();
 
 
 </script>
 
 
+
 </body>
 
 </html>
-
-
-</div>
