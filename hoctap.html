@@ -4,9 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
 <title>
 Theo dõi học tập lớp 97
@@ -25,6 +23,7 @@ box-sizing:border-box;
 }
 
 
+
 body{
 
 margin:0;
@@ -35,6 +34,8 @@ background:#eef5ff;
 
 }
 
+
+/* HEADER GIỐNG TRANG CHỦ */
 
 
 .header{
@@ -47,7 +48,17 @@ background:linear-gradient(
 
 color:white;
 
-padding:30px 40px;
+padding:35px 60px;
+
+}
+
+
+
+.header-content{
+
+max-width:1400px;
+
+margin:auto;
 
 }
 
@@ -59,15 +70,58 @@ margin:0;
 
 font-size:38px;
 
+font-weight:700;
+
 }
+
+
+
+.header p{
+
+font-size:20px;
+
+margin:10px 0 0;
+
+}
+
 
 
 
 .container{
 
-padding:25px;
+max-width:1500px;
+
+margin:auto;
+
+padding:30px;
 
 }
+
+
+
+
+.btn-home{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:15px 30px;
+
+border-radius:15px;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin-bottom:25px;
+
+}
+
 
 
 
@@ -75,69 +129,26 @@ padding:25px;
 
 background:white;
 
-border-radius:25px;
-
 padding:25px;
 
-margin-bottom:25px;
+border-radius:25px;
 
 box-shadow:0 8px 20px #ddd;
 
-}
-
-
-
-button{
-
-border:none;
-
-padding:14px 25px;
-
-border-radius:15px;
-
-cursor:pointer;
-
-font-weight:bold;
-
-font-size:16px;
+margin-bottom:25px;
 
 }
 
 
 
-.home{
 
-background:#1565c0;
+select{
 
-color:white;
-
-}
-
-
-
-.save{
-
-background:#00897b;
-
-color:white;
-
-display:block;
-
-margin:25px auto;
-
-}
-
-
-
-select,textarea{
-
-padding:10px;
+padding:12px;
 
 border-radius:10px;
 
-font-size:15px;
-
-width:100%;
+font-size:16px;
 
 }
 
@@ -161,6 +172,8 @@ color:white;
 
 padding:15px;
 
+font-size:17px;
+
 }
 
 
@@ -179,16 +192,45 @@ text-align:center;
 
 textarea{
 
+width:100%;
+
 height:70px;
 
-resize:none;
+border-radius:10px;
+
+padding:10px;
+
+}
+
+
+
+.btn-save{
+
+display:block;
+
+margin:25px auto 0;
+
+background:#00897b;
+
+color:white;
+
+border:none;
+
+padding:15px 35px;
+
+border-radius:15px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
 
 }
 
 
 
 </style>
-
 
 </head>
 
@@ -198,6 +240,9 @@ resize:none;
 
 
 <div class="header">
+
+
+<div class="header-content">
 
 
 <h1>
@@ -213,13 +258,16 @@ resize:none;
 </div>
 
 
+</div>
+
+
 
 
 
 <div class="container">
 
 
-<button class="home"
+<button class="btn-home"
 onclick="veTrangChu()">
 
 🏠 Về trang chủ quản lý lớp 97
@@ -229,7 +277,13 @@ onclick="veTrangChu()">
 
 
 
+
 <div class="box">
+
+
+<h2>
+👤 Người nhập: Lớp phó học tập
+</h2>
 
 
 <h2>
@@ -243,6 +297,7 @@ onchange="hienThi()">
 </select>
 
 
+
 </div>
 
 
@@ -251,6 +306,12 @@ onchange="hienThi()">
 
 
 <div class="box">
+
+
+<h2>
+📚 Bảng theo dõi học tập
+</h2>
+
 
 
 <table>
@@ -292,6 +353,7 @@ Nhận xét
 
 </tr>
 
+
 </thead>
 
 
@@ -301,16 +363,18 @@ Nhận xét
 </tbody>
 
 
+
 </table>
 
 
 
-<button class="save"
+<button class="btn-save"
 onclick="luuHocTap()">
 
 💾 Lưu đánh giá tuần
 
 </button>
+
 
 
 </div>
@@ -328,9 +392,7 @@ onclick="luuHocTap()">
 <script>
 
 
-// ============================
-// TẠO 35 TUẦN
-// ============================
+// tạo 35 tuần
 
 
 function taoTuan(){
@@ -342,7 +404,7 @@ let html="";
 for(let i=1;i<=35;i++){
 
 
-html +=`
+html+=`
 
 <option value="${i}">
 Tuần ${i}
@@ -360,7 +422,6 @@ document.getElementById(
 ).innerHTML=html;
 
 
-
 }
 
 
@@ -368,10 +429,7 @@ document.getElementById(
 
 
 
-
-// ============================
-// HIỂN THỊ HỌC SINH
-// ============================
+// hiển thị
 
 
 function hienThi(){
@@ -402,9 +460,7 @@ ds.forEach((hs,index)=>{
 
 
 
-let old =
-
-data.find(
+let old=data.find(
 
 x=>
 
@@ -419,6 +475,7 @@ x.tuan==tuan
 
 
 
+
 html+=`
 
 <tr data-id="${hs.id}">
@@ -429,23 +486,19 @@ ${index+1}
 </td>
 
 
-
 <td>
 <b>${hs.hoTen}</b>
 </td>
 
 
-
 <td>
 
-
-<select class="chuanbi">
+<select class="cb">
 
 
 <option ${old?.chuanBi=="Đầy đủ"?"selected":""}>
 Đầy đủ
 </option>
-
 
 <option ${old?.chuanBi=="Chưa đầy đủ"?"selected":""}>
 Chưa đầy đủ
@@ -455,22 +508,17 @@ Chưa đầy đủ
 </select>
 
 
-
 </td>
-
-
 
 
 <td>
 
-
-<select class="baitap">
+<select class="bt">
 
 
 <option ${old?.baiTap=="Hoàn thành"?"selected":""}>
 Hoàn thành
 </option>
-
 
 <option ${old?.baiTap=="Chưa hoàn thành"?"selected":""}>
 Chưa hoàn thành
@@ -479,18 +527,14 @@ Chưa hoàn thành
 
 </select>
 
-
-
 </td>
-
-
 
 
 
 <td>
 
 
-<select class="hanghai">
+<select class="hh">
 
 
 <option ${old?.hangHai=="Hăng hái"?"selected":""}>
@@ -506,17 +550,14 @@ Chưa tích cực
 </select>
 
 
-
 </td>
-
-
 
 
 
 <td>
 
 
-<textarea class="nhanxet">
+<textarea class="nx">
 
 ${old?.nhanXet || ""}
 
@@ -529,7 +570,6 @@ ${old?.nhanXet || ""}
 
 </tr>
 
-
 `;
 
 
@@ -538,10 +578,10 @@ ${old?.nhanXet || ""}
 
 
 
+
 document.getElementById(
 "bangHocSinh"
 ).innerHTML=html;
-
 
 
 }
@@ -552,25 +592,25 @@ document.getElementById(
 
 
 
-
-// ============================
-// LƯU THEO TUẦN
-// ============================
+// lưu
 
 
 function luuHocTap(){
 
 
 
-let tuan =
+let tuan=
+
 Number(
 document.getElementById("tuan").value
 );
 
 
 
-let ds =
+let data=
 layHocTap();
+
+
 
 
 
@@ -579,10 +619,8 @@ document
 .forEach(row=>{
 
 
-let id =
-Number(
-row.dataset.id
-);
+let id=
+Number(row.dataset.id);
 
 
 
@@ -591,38 +629,31 @@ let obj={
 
 hocSinhId:id,
 
-
 tuan:tuan,
 
 
 chuanBi:
-
-row.querySelector(".chuanbi").value,
+row.querySelector(".cb").value,
 
 
 baiTap:
-
-row.querySelector(".baitap").value,
+row.querySelector(".bt").value,
 
 
 hangHai:
-
-row.querySelector(".hanghai").value,
+row.querySelector(".hh").value,
 
 
 nhanXet:
-
-row.querySelector(".nhanxet").value
-
+row.querySelector(".nx").value
 
 
 };
 
 
 
-let cu =
 
-ds.find(
+let cu=data.find(
 
 x=>
 
@@ -638,15 +669,14 @@ x.tuan==tuan
 
 if(cu){
 
-
 Object.assign(cu,obj);
 
-
 }
+
 else{
 
 
-ds.push(obj);
+data.push(obj);
 
 
 }
@@ -658,7 +688,13 @@ ds.push(obj);
 
 
 
-luuHocTapMoi(ds);
+localStorage.setItem(
+
+"hocTap97",
+
+JSON.stringify(data)
+
+);
 
 
 
@@ -676,16 +712,10 @@ alert(
 
 
 
-
-// ============================
-// DỮ LIỆU HỌC TẬP
-// ============================
-
-
 function layHocTap(){
 
 
-let data =
+let data=
 
 localStorage.getItem(
 "hocTap97"
@@ -701,27 +731,7 @@ JSON.parse(data)
 
 [];
 
-
 }
-
-
-
-function luuHocTapMoi(data){
-
-
-localStorage.setItem(
-
-"hocTap97",
-
-JSON.stringify(data)
-
-);
-
-
-}
-
-
-
 
 
 
@@ -739,13 +749,11 @@ window.location.href=
 
 
 
-
 khoiTaoDuLieu();
 
 taoTuan();
 
 hienThi();
-
 
 
 </script>
