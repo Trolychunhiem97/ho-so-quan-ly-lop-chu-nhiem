@@ -569,7 +569,593 @@ onclick="luuHocTap()">
 
 
 </div>
+<script>
 
+
+// =====================================
+// TẠO 35 TUẦN
+// =====================================
+
+
+function taoDanhSachTuan(){
+
+
+let html="";
+
+
+for(let i=1;i<=35;i++){
+
+
+html += `
+
+<option value="${i}">
+Tuần ${i}
+</option>
+
+`;
+
+}
+
+
+document.getElementById(
+
+"chonTuan"
+
+).innerHTML = html;
+
+
+
+}
+
+
+
+
+
+
+// =====================================
+// LẤY DỮ LIỆU HỌC TẬP
+// =====================================
+
+
+function layDuLieuHocTap(){
+
+
+let data =
+
+localStorage.getItem(
+
+"hocTap97"
+
+);
+
+
+
+return data ?
+
+JSON.parse(data)
+
+:
+
+[];
+
+
+
+
+}
+
+
+
+
+
+// =====================================
+// LƯU DỮ LIỆU HỌC TẬP
+// =====================================
+
+
+function luuDuLieuHocTap(data){
+
+
+localStorage.setItem(
+
+"hocTap97",
+
+JSON.stringify(data)
+
+);
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// HIỂN THỊ DANH SÁCH HỌC SINH
+// =====================================
+
+
+function hienThiHocSinh(){
+
+
+
+let ds =
+
+layDanhSachHocSinh();
+
+
+
+
+let tuan =
+
+Number(
+
+document.getElementById(
+
+"chonTuan"
+
+).value
+
+);
+
+
+
+
+let data =
+
+layDuLieuHocTap();
+
+
+
+
+let html="";
+
+
+
+
+
+ds.forEach((hs,index)=>{
+
+
+
+let old =
+
+data.find(
+
+x =>
+
+x.hocSinhId == hs.id
+
+&&
+
+x.tuan == tuan
+
+);
+
+
+
+
+
+html += `
+
+
+<tr data-id="${hs.id}">
+
+
+<td>
+${index+1}
+</td>
+
+
+
+<td>
+<b>
+${hs.hoTen}
+</b>
+</td>
+
+
+
+
+<td>
+
+
+<select class="chuanBi">
+
+
+<option value="Đầy đủ"
+
+${old?.chuanBi=="Đầy đủ"?"selected":""}>
+
+Đầy đủ
+
+</option>
+
+
+<option value="Chưa đầy đủ"
+
+${old?.chuanBi=="Chưa đầy đủ"?"selected":""}>
+
+Chưa đầy đủ
+
+</option>
+
+
+</select>
+
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<select class="baiTap">
+
+
+<option value="Hoàn thành"
+
+${old?.baiTap=="Hoàn thành"?"selected":""}>
+
+Hoàn thành
+
+</option>
+
+
+<option value="Chưa hoàn thành"
+
+${old?.baiTap=="Chưa hoàn thành"?"selected":""}>
+
+Chưa hoàn thành
+
+</option>
+
+
+</select>
+
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<select class="hangHai">
+
+
+<option value="Hăng hái"
+
+${old?.hangHai=="Hăng hái"?"selected":""}>
+
+Hăng hái
+
+</option>
+
+
+
+<option value="Chưa tích cực"
+
+${old?.hangHai=="Chưa tích cực"?"selected":""}>
+
+Chưa tích cực
+
+</option>
+
+
+</select>
+
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+<textarea class="nhanXet">
+
+${old?.nhanXet || ""}
+
+</textarea>
+
+
+
+</td>
+
+
+
+
+</tr>
+
+
+`;
+
+
+
+});
+
+
+
+
+
+document.getElementById(
+
+"bangHocTap"
+
+).innerHTML = html;
+
+
+
+
+document.getElementById(
+
+"thongBao"
+
+).innerHTML =
+
+"Đang đánh giá tuần " + tuan;
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// LƯU ĐÁNH GIÁ TUẦN
+// =====================================
+
+
+function luuHocTap(){
+
+
+
+let tuan =
+
+Number(
+
+document.getElementById(
+
+"chonTuan"
+
+).value
+
+);
+
+
+
+
+
+let data =
+
+layDuLieuHocTap();
+
+
+
+
+
+document
+
+.querySelectorAll(
+
+"#bangHocTap tr"
+
+)
+
+.forEach(row=>{
+
+
+
+let id =
+
+Number(
+
+row.dataset.id
+
+);
+
+
+
+
+let obj = {
+
+
+
+hocSinhId:id,
+
+
+
+tuan:tuan,
+
+
+
+chuanBi:
+
+row.querySelector(
+
+".chuanBi"
+
+).value,
+
+
+
+
+baiTap:
+
+row.querySelector(
+
+".baiTap"
+
+).value,
+
+
+
+
+hangHai:
+
+row.querySelector(
+
+".hangHai"
+
+).value,
+
+
+
+
+nhanXet:
+
+row.querySelector(
+
+".nhanXet"
+
+).value
+
+
+
+};
+
+
+
+
+
+
+let old =
+
+data.find(
+
+x =>
+
+x.hocSinhId == id
+
+&&
+
+x.tuan == tuan
+
+);
+
+
+
+
+
+if(old){
+
+
+
+Object.assign(
+
+old,
+
+obj
+
+);
+
+
+
+}
+
+else{
+
+
+
+data.push(obj);
+
+
+
+}
+
+
+
+});
+
+
+
+
+
+luuDuLieuHocTap(data);
+
+
+
+
+
+document.getElementById(
+
+"thongBao"
+
+).innerHTML =
+
+"✅ Đã lưu đánh giá tuần " + tuan;
+
+
+
+}
+
+
+
+
+
+
+
+
+// =====================================
+// VỀ TRANG CHỦ DASHBOARD
+// =====================================
+
+
+function veTrangChu(){
+
+
+
+window.location.href =
+
+"trangchu.html";
+
+
+
+}
+
+
+
+
+
+
+
+// =====================================
+// KHỞI ĐỘNG TRANG
+// =====================================
+
+
+
+khoiTaoDuLieu();
+
+
+taoDanhSachTuan();
+
+
+hienThiHocSinh();
+
+
+
+</script>
 
 
 
