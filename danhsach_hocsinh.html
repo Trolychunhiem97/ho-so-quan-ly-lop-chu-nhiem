@@ -13,8 +13,10 @@ Hồ sơ học sinh lớp 97
 </title>
 
 
-<script src="danhsach.js"></script>
 <script src="phanquyen.js"></script>
+<script src="danhsach.js"></script>
+<script src="dulieu.js"></script>
+
 
 
 <style>
@@ -22,11 +24,11 @@ Hồ sơ học sinh lớp 97
 
 body{
 
+margin:0;
+
 font-family:"Segoe UI",Arial;
 
-background:#f1f6ff;
-
-margin:0;
+background:#eef5ff;
 
 }
 
@@ -42,9 +44,18 @@ background:linear-gradient(
 
 color:white;
 
-padding:25px;
+padding:35px;
 
 text-align:center;
+
+}
+
+
+.header h1{
+
+margin:0;
+
+font-size:36px;
 
 }
 
@@ -52,21 +63,69 @@ text-align:center;
 
 .container{
 
-padding:25px;
+padding:30px;
+
+max-width:1400px;
+
+margin:auto;
 
 }
 
 
 
-.box{
+.card{
 
 background:white;
 
-border-radius:20px;
+padding:25px;
 
-padding:20px;
+border-radius:25px;
 
-box-shadow:0 5px 15px #ccc;
+box-shadow:0 8px 20px #ddd;
+
+}
+
+
+
+button{
+
+border:none;
+
+padding:14px 25px;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+}
+
+
+
+.btn-home{
+
+background:#1565c0;
+
+color:white;
+
+margin-bottom:25px;
+
+}
+
+
+
+.btn-save{
+
+background:#00897b;
+
+color:white;
+
+display:block;
+
+margin:30px auto;
 
 }
 
@@ -78,8 +137,6 @@ width:100%;
 
 border-collapse:collapse;
 
-margin-top:20px;
-
 }
 
 
@@ -90,7 +147,7 @@ background:#1565c0;
 
 color:white;
 
-padding:12px;
+padding:15px;
 
 }
 
@@ -110,27 +167,9 @@ text-align:center;
 
 select{
 
-padding:8px;
+padding:8px 15px;
 
-border-radius:8px;
-
-}
-
-
-
-button{
-
-background:#1565c0;
-
-color:white;
-
-border:none;
-
-padding:12px 25px;
-
-border-radius:12px;
-
-cursor:pointer;
+border-radius:10px;
 
 font-size:16px;
 
@@ -138,17 +177,9 @@ font-size:16px;
 
 
 
-button:hover{
+tr:hover{
 
-background:#0d47a1;
-
-}
-
-
-
-.back{
-
-margin-bottom:20px;
+background:#f5f9ff;
 
 }
 
@@ -156,11 +187,12 @@ margin-bottom:20px;
 
 </style>
 
+
 </head>
 
 
-
 <body>
+
 
 
 <div class="header">
@@ -182,19 +214,24 @@ GVCN Trần Sáng
 
 
 
+
 <div class="container">
 
 
-<div class="box">
 
+<button class="btn-home"
+onclick="veTrangChu()">
 
-<button class="back"
-onclick="quayLai()">
-
-⬅ Về trang chủ
+← Về trang chủ
 
 </button>
 
+
+
+
+
+
+<div class="card">
 
 
 <h2>
@@ -207,7 +244,6 @@ onclick="quayLai()">
 
 
 <thead>
-
 
 <tr>
 
@@ -240,7 +276,6 @@ Phân tổ
 
 <tbody id="bangHocSinh">
 
-
 </tbody>
 
 
@@ -249,10 +284,10 @@ Phân tổ
 
 
 
-<br>
 
 
-<button onclick="luuPhanTo()">
+<button class="btn-save"
+onclick="luuPhanTo()">
 
 💾 Lưu phân tổ
 
@@ -269,28 +304,14 @@ Phân tổ
 
 
 
+
+
 <script>
 
 
-let nguoiDung = layNguoiDung();
-
-
-
-if(!nguoiDung ||
-nguoiDung.quyen!=="gvcn"){
-
-
-alert(
-"Chỉ GVCN được phân tổ"
-);
-
-
-window.location.href="trangchu.html";
-
-
-}
-
-
+// =================================
+// HIỂN THỊ DANH SÁCH
+// =================================
 
 
 
@@ -298,36 +319,22 @@ function hienThiDanhSach(){
 
 
 
+let ds =
+layDanhSachHocSinh();
+
+
+
 let html="";
 
 
 
-danhSachHocSinh.forEach(
-
-(hs,index)=>{
-
-
-let tenTo="Chưa phân";
-
-
-
-if(hs.to===1)
-tenTo="Tổ 1";
-
-
-if(hs.to===2)
-tenTo="Tổ 2";
-
-
-if(hs.to===3)
-tenTo="Tổ 3";
-
-
+ds.forEach((hs,index)=>{
 
 
 html+=`
 
-<tr>
+<tr data-id="${hs.id}">
+
 
 <td>
 ${index+1}
@@ -340,17 +347,31 @@ ${hs.hoTen}
 
 
 <td>
-${tenTo}
+
+${
+hs.to
+
+?
+
+"Tổ "+hs.to
+
+:
+
+"Chưa phân"
+
+}
+
 </td>
 
 
 <td>
 
-<select id="to_${hs.id}">
+
+<select>
 
 
 <option value="0"
-${hs.to===0?"selected":""}>
+${!hs.to?"selected":""}>
 
 Chưa phân
 
@@ -358,7 +379,7 @@ Chưa phân
 
 
 <option value="1"
-${hs.to===1?"selected":""}>
+${hs.to==1?"selected":""}>
 
 Tổ 1
 
@@ -366,7 +387,7 @@ Tổ 1
 
 
 <option value="2"
-${hs.to===2?"selected":""}>
+${hs.to==2?"selected":""}>
 
 Tổ 2
 
@@ -374,7 +395,7 @@ Tổ 2
 
 
 <option value="3"
-${hs.to===3?"selected":""}>
+${hs.to==3?"selected":""}>
 
 Tổ 3
 
@@ -387,22 +408,20 @@ Tổ 3
 </td>
 
 
+
 </tr>
+
 
 `;
 
 
 
-}
-
-);
+});
 
 
 
 document.getElementById(
-
 "bangHocSinh"
-
 ).innerHTML=html;
 
 
@@ -411,32 +430,58 @@ document.getElementById(
 
 
 
-hienThiDanhSach();
 
 
 
 
-
+// =================================
+// LƯU PHÂN TỔ
+// =================================
 
 
 function luuPhanTo(){
 
 
 
-danhSachHocSinh.forEach(
+let ds =
+layDanhSachHocSinh();
 
-hs=>{
 
 
-let chon = document.getElementById(
 
-"to_"+hs.id
+document
+.querySelectorAll(
+"#bangHocSinh tr"
+)
+.forEach(row=>{
 
+
+let id =
+row.dataset.id;
+
+
+
+let to =
+Number(
+row.querySelector("select").value
 );
 
 
 
-hs.to = Number(chon.value);
+let hs =
+ds.find(
+x=>x.id==id
+);
+
+
+
+if(hs){
+
+
+hs.to = to;
+
+
+}
 
 
 
@@ -444,41 +489,53 @@ hs.to = Number(chon.value);
 
 
 
-localStorage.setItem(
 
-"danhSachHocSinh",
 
-JSON.stringify(danhSachHocSinh)
-
-);
+luuDanhSachHocSinh(ds);
 
 
 
 alert(
-
-"Đã lưu phân tổ thành công"
-
+"✅ Đã lưu phân tổ thành công!"
 );
 
 
+
+hienThiDanhSach();
+
+
+
 }
 
 
 
 
 
-function quayLai(){
 
 
-window.location.href="trangchu.html";
+function veTrangChu(){
+
+
+window.location.href=
+"trangchu.html";
 
 
 }
+
+
+
+
+
+
+
+khoiTaoDuLieu();
+
+
+hienThiDanhSach();
 
 
 
 </script>
-
 
 
 </body>
