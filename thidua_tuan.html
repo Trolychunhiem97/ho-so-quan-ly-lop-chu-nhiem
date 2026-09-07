@@ -22,6 +22,11 @@ Thi đua tuần lớp 97
 <style>
 
 
+*{
+box-sizing:border-box;
+}
+
+
 body{
 
 margin:0;
@@ -44,7 +49,7 @@ background:linear-gradient(
 
 color:white;
 
-padding:30px;
+padding:35px;
 
 text-align:center;
 
@@ -52,9 +57,19 @@ text-align:center;
 
 
 
+.header h1{
+
+margin:0;
+
+font-size:32px;
+
+}
+
+
+
 .container{
 
-max-width:1200px;
+max-width:1300px;
 
 margin:auto;
 
@@ -68,25 +83,26 @@ padding:25px;
 
 background:white;
 
-border-radius:20px;
-
 padding:25px;
 
-margin-bottom:20px;
+border-radius:22px;
 
-box-shadow:0 5px 15px #ddd;
+margin-bottom:25px;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,.12);
 
 }
 
 
 
-.select-box{
+.control{
 
 display:flex;
 
 gap:20px;
 
-align-items:center;
+flex-wrap:wrap;
 
 }
 
@@ -94,11 +110,50 @@ align-items:center;
 
 select{
 
-padding:10px;
-
-border-radius:10px;
+padding:12px 20px;
 
 font-size:16px;
+
+border-radius:12px;
+
+border:1px solid #ccc;
+
+}
+
+
+
+.stat{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+}
+
+
+
+.stat-box{
+
+padding:20px;
+
+border-radius:18px;
+
+background:#f5f9ff;
+
+text-align:center;
+
+}
+
+
+
+.stat-box h2{
+
+color:#1565c0;
+
+margin:5px;
 
 }
 
@@ -120,7 +175,7 @@ background:#1565c0;
 
 color:white;
 
-padding:12px;
+padding:14px;
 
 }
 
@@ -138,9 +193,17 @@ text-align:center;
 
 
 
-.xuat-sac{
+tr:hover{
 
-color:#008000;
+background:#f5f9ff;
+
+}
+
+
+
+.xs{
+
+color:green;
 
 font-weight:bold;
 
@@ -156,14 +219,51 @@ font-weight:bold;
 }
 
 
-.can-co-gang{
+.dat{
 
-color:#d35400;
+color:#e67e22;
 
 font-weight:bold;
 
 }
 
+
+.yeu{
+
+color:red;
+
+font-weight:bold;
+
+}
+
+
+
+.top{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
+}
+
+
+
+.medal{
+
+background:#f7f7f7;
+
+padding:15px;
+
+border-radius:15px;
+
+text-align:center;
+
+font-size:18px;
+
+}
 
 
 
@@ -173,8 +273,9 @@ font-weight:bold;
 </head>
 
 
-<body>
 
+
+<body>
 
 
 <div class="header">
@@ -195,8 +296,6 @@ Trợ lý quản lý lớp - GVCN Trần Sáng
 
 
 
-
-
 <div class="container">
 
 
@@ -205,59 +304,34 @@ Trợ lý quản lý lớp - GVCN Trần Sáng
 
 
 <h2>
-📅 Chọn tuần đánh giá
+📅 Chọn tuần và tổ
 </h2>
 
 
-<div class="select-box">
+<div class="control">
 
 
 <select id="chonTuan"
-onchange="hienThiBang()">
-
-
-<option value="1">
-Tuần 1
-</option>
-
-
-<option value="2">
-Tuần 2
-</option>
-
-
-<option value="3">
-Tuần 3
-</option>
-
-
-<option value="4">
-Tuần 4
-</option>
-
+onchange="hienThi()">
 
 </select>
 
 
 
-<select id="locTo"
-onchange="hienThiBang()">
-
+<select id="chonTo"
+onchange="hienThi()">
 
 <option value="0">
 Tất cả tổ
 </option>
 
-
 <option value="1">
 Tổ 1
 </option>
 
-
 <option value="2">
 Tổ 2
 </option>
-
 
 <option value="3">
 Tổ 3
@@ -270,10 +344,88 @@ Tổ 3
 </div>
 
 
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+📊 Tổng quan
+</h2>
+
+
+<div class="stat">
+
+
+<div class="stat-box">
+
+<h2 id="tongHS">
+0
+</h2>
+
+<p>
+👨‍🎓 Tổng học sinh
+</p>
 
 </div>
 
 
+
+
+<div class="stat-box">
+
+<h2 id="daDanhGia">
+0
+</h2>
+
+<p>
+✅ Đã đánh giá
+</p>
+
+</div>
+
+
+
+
+
+<div class="stat-box">
+
+<h2 id="chuaDanhGia">
+0
+</h2>
+
+<p>
+⏳ Chưa đánh giá
+</p>
+
+</div>
+
+
+
+
+
+<div class="stat-box">
+
+<h2 id="diemTB">
+0
+</h2>
+
+<p>
+⭐ Điểm trung bình
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
 
 
 
@@ -284,16 +436,14 @@ Tổ 3
 
 
 <h2>
-📊 Bảng thi đua
+📋 Bảng thi đua
 </h2>
-
 
 
 <table>
 
 
 <thead>
-
 
 <tr>
 
@@ -333,9 +483,7 @@ Nhận xét
 </thead>
 
 
-
-<tbody id="bangThiDua">
-
+<tbody id="bang">
 
 </tbody>
 
@@ -351,8 +499,6 @@ Nhận xét
 
 
 
-
-
 <div class="card">
 
 
@@ -361,17 +507,18 @@ Nhận xét
 </h2>
 
 
-<div id="top5">
+<div class="top"
+id="top5">
+
+</div>
 
 
 </div>
 
 
-</div>
-
-
 
 </div>
+
 
 
 
@@ -381,23 +528,39 @@ Nhận xét
 <script>
 
 
-let nguoiDung =
-layNguoiDung();
+// tạo 35 tuần
 
 
-
-if(!nguoiDung){
-
-
-alert(
-"Bạn chưa đăng nhập"
-);
+function taoTuan(){
 
 
-window.location.href="index.html";
+let html="";
+
+
+for(let i=1;i<=35;i++){
+
+
+html+=`
+
+<option value="${i}">
+Tuần ${i}
+</option>
+
+`;
+
+}
+
+
+document.getElementById(
+"chonTuan"
+).innerHTML=html;
 
 
 }
+
+
+
+taoTuan();
 
 
 
@@ -408,112 +571,89 @@ function xepLoai(diem){
 
 
 if(diem>=90)
-
-return "Xuất sắc";
+return "<span class='xs'>Xuất sắc</span>";
 
 
 if(diem>=75)
-
-return "Khá";
+return "<span class='kha'>Khá</span>";
 
 
 if(diem>=50)
+return "<span class='dat'>Đạt</span>";
 
-return "Đạt";
 
-
-return "Cần cố gắng";
-
+return "<span class='yeu'>Cần cố gắng</span>";
 
 }
 
 
 
 
+function hienThi(){
 
 
 
-function hienThiBang(){
-
-
-
-let tuan =
+let tuan=
 Number(
-
-document.getElementById(
-"chonTuan"
-).value
-
+document.getElementById("chonTuan").value
 );
 
 
 
-let to =
+let to=
 Number(
-
-document.getElementById(
-"locTo"
-).value
-
+document.getElementById("chonTo").value
 );
 
 
 
-
-let hs =
+let ds=
 layDanhSachHocSinh();
 
 
 
-let diem =
+let diem=
 layDiemTuan();
 
 
 
-
-let html="";
-
-
+let bang="";
 
 let danhSach=[];
 
 
 
 
-hs.forEach(
-
-x=>{
+ds.forEach(hs=>{
 
 
-let d =
-diem.find(
+if(
+to===0 ||
+hs.to===to
+){
 
-y=>
 
-y.hocSinhId===x.id
+
+let d=
+diem.find(x=>
+
+x.hocSinhId===hs.id
 &&
-y.tuan===tuan
+x.tuan===tuan
 
 );
-
-
-
-if(d){
-
-
-if(to===0 || x.to===to){
 
 
 
 danhSach.push({
 
-ten:x.hoTen,
+ten:hs.hoTen,
 
-to:x.to,
+to:hs.to,
 
-diem:d.diem,
+diem:d?d.diem:null,
 
-nhanxet:d.nhanXet
+nhanxet:d?d.nhanXet:"Chưa đánh giá"
 
 });
 
@@ -522,7 +662,24 @@ nhanxet:d.nhanXet
 
 
 
-}
+});
+
+
+
+
+
+danhSach.sort((a,b)=>{
+
+
+if(!a.diem)
+return 1;
+
+
+if(!b.diem)
+return -1;
+
+
+return b.diem-a.diem;
 
 
 });
@@ -531,58 +688,50 @@ nhanxet:d.nhanXet
 
 
 
-danhSach.sort(
 
-(a,b)=>
+let tong=0;
 
-b.diem-a.diem
-
-);
+let soDanhGia=0;
 
 
 
 
-
-danhSach.forEach(
-
-(hs,index)=>{
+danhSach.forEach((hs,i)=>{
 
 
-html+=`
+if(hs.diem){
+
+tong+=Number(hs.diem);
+
+soDanhGia++;
+
+}
+
+
+
+bang+=`
 
 <tr>
 
+<td>${i+1}</td>
+
+<td>${hs.ten}</td>
+
+<td>Tổ ${hs.to}</td>
+
 <td>
-${index+1}
+${hs.diem ?? "-"}
 </td>
 
-
 <td>
-${hs.ten}
+${hs.diem?
+xepLoai(hs.diem)
+:
+"Chưa đánh giá"}
 </td>
 
-
 <td>
-Tổ ${hs.to}
-</td>
-
-
-<td>
-${hs.diem}
-</td>
-
-
-<td>
-
-${xepLoai(hs.diem)}
-
-</td>
-
-
-<td>
-
-${hs.nhanxet || ""}
-
+${hs.nhanxet}
 </td>
 
 
@@ -598,11 +747,38 @@ ${hs.nhanxet || ""}
 
 
 
+document.getElementById("bang").innerHTML=bang;
+
+
+
+
 document.getElementById(
+"tongHS"
+).innerHTML=danhSach.length;
 
-"bangThiDua"
 
-).innerHTML=html;
+
+document.getElementById(
+"daDanhGia"
+).innerHTML=soDanhGia;
+
+
+
+document.getElementById(
+"chuaDanhGia"
+).innerHTML=
+danhSach.length-soDanhGia;
+
+
+
+document.getElementById(
+"diemTB"
+).innerHTML=
+
+soDanhGia?
+(tong/soDanhGia).toFixed(1)
+:
+0;
 
 
 
@@ -612,35 +788,38 @@ document.getElementById(
 let top="";
 
 
-
-danhSach.slice(0,5)
-
-.forEach(
-
-(x,i)=>{
+danhSach
+.filter(x=>x.diem)
+.slice(0,5)
+.forEach((x,i)=>{
 
 
 top+=`
 
-<p>
-🏅 ${i+1}.
-${x.ten}
--
-<b>${x.diem}</b> điểm
-</p>
+<div class="medal">
+
+🏅 Hạng ${i+1}
+
+<br>
+
+<b>${x.ten}</b>
+
+<br>
+
+${x.diem} điểm
+
+</div>
 
 `;
+
 
 
 });
 
 
 
-
 document.getElementById(
-
 "top5"
-
 ).innerHTML=top;
 
 
@@ -649,7 +828,9 @@ document.getElementById(
 
 
 
-hienThiBang();
+
+
+hienThi();
 
 
 
