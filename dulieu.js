@@ -5,76 +5,114 @@
 
 
 
-// ================================
-// KHỞI TẠO HỌC SINH
-// ================================
+// ======================================
+// KHỞI TẠO DỮ LIỆU BAN ĐẦU
+// ======================================
 
 
 function khoiTaoDuLieu(){
 
 
-let ds =
-localStorage.getItem(
-"danhSachHocSinh"
-);
+    let ds = localStorage.getItem(
+        "danhSachHocSinh"
+    );
 
 
+    // Nếu chưa có dữ liệu
+    // lấy từ danhsach.js
 
-if(!ds){
+
+    if(!ds){
 
 
-localStorage.setItem(
+        if(typeof danhSachHocSinh !== "undefined"){
 
-"danhSachHocSinh",
 
-JSON.stringify(danhSachHocSinh)
+            localStorage.setItem(
 
-);
+                "danhSachHocSinh",
+
+                JSON.stringify(danhSachHocSinh)
+
+            );
+
+
+        }
+
+
+    }
+
 
 
 }
 
 
 
-}
 
 
-
-
-
-// ================================
-// HỌC SINH
-// ================================
+// ======================================
+// LẤY DANH SÁCH HỌC SINH
+// ======================================
 
 
 function layDanhSachHocSinh(){
 
 
-return JSON.parse(
+    let ds = localStorage.getItem(
+        "danhSachHocSinh"
+    );
 
-localStorage.getItem(
-"danhSachHocSinh"
-)
 
-)||[];
+
+    if(ds){
+
+
+        return JSON.parse(ds);
+
+
+    }
+
+
+
+
+    // fallback lấy từ danhsach.js
+
+
+    if(typeof danhSachHocSinh !== "undefined"){
+
+
+        return danhSachHocSinh;
+
+
+    }
+
+
+
+    return [];
+
 
 
 }
 
 
 
+
+
+// ======================================
+// LƯU DANH SÁCH HỌC SINH
+// ======================================
 
 
 function luuDanhSachHocSinh(ds){
 
 
-localStorage.setItem(
+    localStorage.setItem(
 
-"danhSachHocSinh",
+        "danhSachHocSinh",
 
-JSON.stringify(ds)
+        JSON.stringify(ds)
 
-);
+    );
 
 
 }
@@ -83,74 +121,38 @@ JSON.stringify(ds)
 
 
 
-
-
-// ================================
-// ĐỔI TỔ + LƯU LỊCH SỬ
-// ================================
+// ======================================
+// ĐỔI TỔ HỌC SINH
+// ======================================
 
 
 function doiToHocSinh(id,toMoi){
 
 
 
-let ds =
-layDanhSachHocSinh();
+    let ds = layDanhSachHocSinh();
 
 
 
-let hs =
-ds.find(
+    let hs = ds.find(
 
-x=>x.id===id
+        x=>x.id===id
 
-);
-
+    );
 
 
 
-if(hs){
+    if(hs){
+
+
+        hs.to = toMoi;
+
+
+    }
 
 
 
-let toCu = hs.to;
-
-
-
-hs.to = toMoi;
-
-
-
-luuDanhSachHocSinh(ds);
-
-
-
-
-let lichSu =
-layLichSuTo();
-
-
-
-lichSu.push({
-
-hocSinhId:id,
-
-toCu:toCu,
-
-toMoi:toMoi,
-
-ngay:new Date()
-.toLocaleDateString()
-
-});
-
-
-
-luuLichSuTo(lichSu);
-
-
-
-}
+    luuDanhSachHocSinh(ds);
 
 
 
@@ -162,65 +164,25 @@ luuLichSuTo(lichSu);
 
 
 
-// ================================
-// LỊCH SỬ TỔ
-// ================================
-
-
-function layLichSuTo(){
-
-
-return JSON.parse(
-
-localStorage.getItem(
-"lichSuTo97"
-)
-
-)||[];
-
-
-}
-
-
-
-function luuLichSuTo(data){
-
-
-localStorage.setItem(
-
-"lichSuTo97",
-
-JSON.stringify(data)
-
-);
-
-
-}
-
-
-
-
-
-
-// ================================
+// ======================================
 // LẤY HỌC SINH THEO TỔ
-// ================================
+// ======================================
 
 
 function layHocSinhTheoTo(to){
 
 
 
-let ds =
-layDanhSachHocSinh();
+    let ds = layDanhSachHocSinh();
 
 
 
-return ds.filter(
+    return ds.filter(
 
-hs=>hs.to===to
+        hs=>hs.to===to
 
-);
+    );
+
 
 
 }
@@ -231,25 +193,36 @@ hs=>hs.to===to
 
 
 
-
-// ================================
-// ĐIỂM TUẦN
-// ================================
+// ======================================
+// DỮ LIỆU ĐIỂM TUẦN
+// ======================================
 
 
 function layDiemTuan(){
 
 
-return JSON.parse(
 
-localStorage.getItem(
-"diemTuan97"
-)
+    let ds = localStorage.getItem(
 
-)||[];
+        "diemTuan97"
+
+    );
+
+
+
+    return ds ?
+
+    JSON.parse(ds)
+
+    :
+
+    [];
+
 
 
 }
+
+
 
 
 
@@ -258,202 +231,73 @@ localStorage.getItem(
 function luuDiemTuan(ds){
 
 
-localStorage.setItem(
+    localStorage.setItem(
 
-"diemTuan97",
+        "diemTuan97",
 
-JSON.stringify(ds)
+        JSON.stringify(ds)
 
-);
-
-
-}
-
-
-
-
-
-function themDiemTuan(obj){
-
-
-
-let ds =
-layDiemTuan();
-
-
-
-ds.push(obj);
-
-
-
-luuDiemTuan(ds);
-
+    );
 
 
 }
 
 
 
-
-
-
-
-
-// ================================
-// KHÓA TUẦN
-// ================================
-
-
-function layTrangThaiTuan(){
-
-
-return JSON.parse(
-
-localStorage.getItem(
-"trangThaiTuan97"
-)
-
-)||[];
-
-
-}
-
-
-
-
-function luuTrangThaiTuan(data){
-
-
-localStorage.setItem(
-
-"trangThaiTuan97",
-
-JSON.stringify(data)
-
-);
-
-
-}
-// ==================================
-// KIỂM TRA ĐIỂM ĐÃ NHẬP
-// ==================================
-
-
-function kiemTraDiemDaCo(
-hocSinhId,
-tuan
-){
-
-
-let ds = layDiemTuan();
-
-
-return ds.find(
-
-x=>
-
-x.hocSinhId===hocSinhId
-&&
-x.tuan===tuan
-
-);
-
-
-}
-
-
-
-
-
-
-
-// ==================================
-// CẬP NHẬT ĐIỂM
-// ==================================
-
-
-function capNhatDiemTuan(obj){
-
-
-let ds = layDiemTuan();
-
-
-
-let cu = ds.find(
-
-x=>
-
-x.hocSinhId===obj.hocSinhId
-&&
-x.tuan===obj.tuan
-
-);
-
-
-
-if(cu){
-
-
-cu.diem=obj.diem;
-
-cu.nhanXet=obj.nhanXet;
-
-
-}else{
-
-
-ds.push(obj);
-
-
-}
-
-
-
-luuDiemTuan(ds);
-
-
-
-}
-// ======================================
-// TẠO MÃ ĐIỂM DUY NHẤT
-// ======================================
-
-
-function taoMaDiem(hocSinhId, tuan){
-
-
-return hocSinhId + "_" + tuan;
-
-
-}
 
 
 
 
 // ======================================
-// KIỂM TRA ĐIỂM ĐÃ TỒN TẠI CHƯA
+// THÊM HOẶC CẬP NHẬT ĐIỂM
 // ======================================
 
 
-function timDiemHocSinh(hocSinhId,tuan){
-
-
-let ds = layDiemTuan();
+function luuDiem(obj){
 
 
 
-let ma = taoMaDiem(
-hocSinhId,
-tuan
-);
+    let ds = layDiemTuan();
 
 
 
-return ds.find(
+    let old = ds.find(
 
-x=>x.maDiem===ma
+        x=>
 
-);
+        x.hocSinhId===obj.hocSinhId
+
+        &&
+
+        x.tuan===obj.tuan
+
+    );
+
+
+
+
+    if(old){
+
+
+        old.diem=obj.diem;
+
+        old.nhanXet=obj.nhanXet;
+
+
+    }
+
+    else{
+
+
+        ds.push(obj);
+
+
+    }
+
+
+
+    luuDiemTuan(ds);
+
 
 
 }
@@ -463,72 +307,32 @@ x=>x.maDiem===ma
 
 
 // ======================================
-// LƯU HOẶC CẬP NHẬT ĐIỂM
+// XÓA DỮ LIỆU CŨ (KHI CẦN RESET)
 // ======================================
 
 
-function luuHoacCapNhatDiem(obj){
+function resetDuLieu(){
 
 
 
-let ds = layDiemTuan();
+    localStorage.removeItem(
+
+        "danhSachHocSinh"
+
+    );
 
 
+    localStorage.removeItem(
 
-let ma = taoMaDiem(
+        "diemTuan97"
 
-obj.hocSinhId,
-
-obj.tuan
-
-);
+    );
 
 
+    alert(
 
+        "Đã reset dữ liệu"
 
-let cu = ds.find(
-
-x=>x.maDiem===ma
-
-);
-
-
-
-
-// Nếu đã có thì cập nhật
-
-if(cu){
-
-
-cu.diem=obj.diem;
-
-cu.nhanXet=obj.nhanXet;
-
-cu.nguoiNhap=obj.nguoiNhap;
-
+    );
 
 }
-
-
-// Nếu chưa có thì thêm mới
-
-else{
-
-
-obj.maDiem=ma;
-
-
-ds.push(obj);
-
-
-}
-
-
-
-
-luuDiemTuan(ds);
-
-
-
-}
-
