@@ -1,91 +1,149 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bảng theo dõi học tập - Lớp 97</title>
+<title>
+Theo dõi học tập lớp 97
+</title>
+
 
 <style>
 
+
 *{
     box-sizing:border-box;
-    font-family:"Segoe UI", Arial, sans-serif;
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
+
+
 body{
+
     margin:0;
-    background:#f4f7fb;
+
+    background:#f1f5f9;
+
 }
+
 
 
 /* HEADER */
 
 .header{
-    background:white;
-    padding:20px;
-    text-align:center;
-}
 
-.header h1{
-    margin:0;
-    color:#1565c0;
-    font-size:32px;
-    font-weight:700;
-}
+    background:
+    linear-gradient(
+    135deg,
+    #1976d2,
+    #42a5f5
+    );
 
-
-/* NÚT VỀ TRANG CHỦ */
-
-.home-btn{
-
-    display:inline-block;
-    margin:15px;
-    padding:10px 20px;
-
-    background:#1565c0;
     color:white;
 
-    border-radius:12px;
+    text-align:center;
+
+    padding:25px 10px;
+
+}
+
+
+
+.header h1{
+
+    margin:0;
+
+    font-size:30px;
+
+}
+
+
+
+.header p{
+
+    margin:8px;
+
+    font-size:16px;
+
+}
+
+
+
+/* NÚT DASHBOARD */
+
+
+.home{
+
+    display:inline-block;
+
+    margin:15px;
+
+    padding:12px 22px;
+
+    background:#1565c0;
+
+    color:white;
 
     text-decoration:none;
 
-    font-size:16px;
+    border-radius:12px;
+
     font-weight:bold;
+
 }
 
 
-/* THANH CHỌN TUẦN */
 
-.control{
+.home:hover{
+
+    background:#0d47a1;
+
+}
+
+
+
+/* KHUNG ĐIỀU KHIỂN */
+
+
+.box{
 
     background:white;
 
+    margin:15px;
+
     padding:15px;
 
-    margin:10px 20px;
-
     border-radius:15px;
+
+    box-shadow:
+    0 3px 8px #ddd;
 
 }
 
 
-.control label{
+
+label{
 
     font-weight:bold;
 
 }
+
 
 
 select{
 
-    padding:10px;
+    padding:8px;
 
-    border-radius:10px;
+    border-radius:8px;
 
-    border:1px solid #aaa;
-
-    font-size:15px;
+    margin-left:10px;
 
 }
 
@@ -93,9 +151,10 @@ select{
 
 /* BẢNG */
 
-.container{
 
-    margin:20px;
+.table-box{
+
+    margin:15px;
 
     background:white;
 
@@ -106,13 +165,14 @@ select{
 }
 
 
+
 table{
 
     width:100%;
 
-    border-collapse:collapse;
-
     min-width:1200px;
+
+    border-collapse:collapse;
 
 }
 
@@ -120,24 +180,25 @@ table{
 
 th{
 
-    background:#1565c0;
+    background:#1976d2;
 
     color:white;
 
-    padding:15px;
-
-    font-size:17px;
+    padding:12px;
 
     text-align:center;
 
 }
+
 
 
 td{
 
     padding:10px;
 
-    border-bottom:1px solid #ddd;
+    border-bottom:
+
+    1px solid #ddd;
 
     text-align:center;
 
@@ -145,41 +206,39 @@ td{
 
 
 
-/* TÊN HỌC SINH */
-
-.name{
-
-    font-weight:bold;
+.ten{
 
     text-align:left;
+
+    font-weight:bold;
 
 }
 
 
+
 /* Ô CHỌN */
+
 
 td select{
 
     width:95%;
 
-    background:white;
-
 }
 
 
+
 /* NHẬN XÉT */
+
 
 textarea{
 
     width:100%;
 
-    min-height:60px;
+    height:60px;
 
-    border-radius:10px;
+    border-radius:8px;
 
     padding:8px;
-
-    resize:none;
 
 }
 
@@ -187,11 +246,12 @@ textarea{
 
 /* NÚT LƯU */
 
-.save-btn{
+
+.save{
 
     display:block;
 
-    margin:20px auto;
+    margin:25px auto;
 
     padding:14px 35px;
 
@@ -201,16 +261,17 @@ textarea{
 
     border:none;
 
-    border-radius:15px;
+    border-radius:12px;
 
-    font-size:18px;
+    font-size:17px;
 
     cursor:pointer;
 
 }
 
 
-.save-btn:hover{
+
+.save:hover{
 
     background:#1b5e20;
 
@@ -220,15 +281,14 @@ textarea{
 
 /* FOOTER */
 
+
 .footer{
 
     text-align:center;
 
-    padding:15px;
+    padding:20px;
 
     color:#555;
-
-    font-size:15px;
 
 }
 
@@ -236,86 +296,236 @@ textarea{
 
 </style>
 
+
 </head>
 
 
 <body>
 
 
+
 <div class="header">
 
-<h1>📚 BẢNG THEO DÕI HỌC TẬP</h1>
+<h1>
+📚 THEO DÕI HỌC TẬP LỚP 97
+</h1>
+
+<p>
+Trường THCS Trần Phú
+</p>
 
 </div>
 
 
 
-<a class="home-btn" href="index.html">
-🏠 Về trang chủ
+<!-- QUAN TRỌNG:
+     QUAY VỀ DASHBOARD
+     KHÔNG VÀO ĐĂNG NHẬP
+-->
+
+<a class="home"
+href="index.html">
+
+🏠 Dashboard quản lý lớp 97
+
 </a>
 
 
 
-<div class="control">
+
+<div class="box">
+
 
 <label>
-Chọn tuần:
+📅 Chọn tuần:
 </label>
 
 
-<select id="tuan">
+<select id="chonTuan">
 
-<option value="1">Tuần 1</option>
-<option value="2">Tuần 2</option>
-<option value="3">Tuần 3</option>
-<option value="4">Tuần 4</option>
-<option value="5">Tuần 5</option>
 
-<option value="6">Tuần 6</option>
-<option value="7">Tuần 7</option>
-<option value="8">Tuần 8</option>
-<option value="9">Tuần 9</option>
-<option value="10">Tuần 10</option>
+<option value="1">
+Tuần 1
+</option>
 
-<option value="11">Tuần 11</option>
-<option value="12">Tuần 12</option>
-<option value="13">Tuần 13</option>
-<option value="14">Tuần 14</option>
-<option value="15">Tuần 15</option>
+<option value="2">
+Tuần 2
+</option>
 
-<option value="16">Tuần 16</option>
-<option value="17">Tuần 17</option>
-<option value="18">Tuần 18</option>
-<option value="19">Tuần 19</option>
-<option value="20">Tuần 20</option>
+<option value="3">
+Tuần 3
+</option>
 
-<option value="21">Tuần 21</option>
-<option value="22">Tuần 22</option>
-<option value="23">Tuần 23</option>
-<option value="24">Tuần 24</option>
-<option value="25">Tuần 25</option>
 
-<option value="26">Tuần 26</option>
-<option value="27">Tuần 27</option>
-<option value="28">Tuần 28</option>
-<option value="29">Tuần 29</option>
-<option value="30">Tuần 30</option>
+<option value="4">
+Tuần 4
+</option>
 
-<option value="31">Tuần 31</option>
-<option value="32">Tuần 32</option>
-<option value="33">Tuần 33</option>
-<option value="34">Tuần 34</option>
-<option value="35">Tuần 35</option>
+
+<option value="5">
+Tuần 5
+</option>
+
+
+<option value="6">
+Tuần 6
+</option>
+
+
+<option value="7">
+Tuần 7
+</option>
+
+
+<option value="8">
+Tuần 8
+</option>
+
+
+<option value="9">
+Tuần 9
+</option>
+
+
+<option value="10">
+Tuần 10
+</option>
+
+
+<option value="11">
+Tuần 11
+</option>
+
+
+<option value="12">
+Tuần 12
+</option>
+
+
+<option value="13">
+Tuần 13
+</option>
+
+
+<option value="14">
+Tuần 14
+</option>
+
+
+<option value="15">
+Tuần 15
+</option>
+
+
+<option value="16">
+Tuần 16
+</option>
+
+
+<option value="17">
+Tuần 17
+</option>
+
+
+<option value="18">
+Tuần 18
+</option>
+
+
+<option value="19">
+Tuần 19
+</option>
+
+
+<option value="20">
+Tuần 20
+</option>
+
+
+<option value="21">
+Tuần 21
+</option>
+
+
+<option value="22">
+Tuần 22
+</option>
+
+
+<option value="23">
+Tuần 23
+</option>
+
+
+<option value="24">
+Tuần 24
+</option>
+
+
+<option value="25">
+Tuần 25
+</option>
+
+
+<option value="26">
+Tuần 26
+</option>
+
+
+<option value="27">
+Tuần 27
+</option>
+
+
+<option value="28">
+Tuần 28
+</option>
+
+
+<option value="29">
+Tuần 29
+</option>
+
+
+<option value="30">
+Tuần 30
+</option>
+
+
+<option value="31">
+Tuần 31
+</option>
+
+
+<option value="32">
+Tuần 32
+</option>
+
+
+<option value="33">
+Tuần 33
+</option>
+
+
+<option value="34">
+Tuần 34
+</option>
+
+
+<option value="35">
+Tuần 35
+</option>
 
 
 </select>
+
 
 </div>
 
 
 
 
-<div class="container">
+<div class="table-box">
 
 
 <table>
@@ -323,27 +533,47 @@ Chọn tuần:
 
 <thead>
 
+
 <tr>
 
-<th>STT</th>
+<th>
+STT
+</th>
 
-<th>Họ tên</th>
 
-<th>Chuẩn bị bài</th>
+<th>
+Họ và tên
+</th>
 
-<th>Bài tập</th>
 
-<th>Hăng hái xây dựng bài</th>
+<th>
+Chuẩn bị bài
+</th>
 
-<th>Nhận xét</th>
+
+<th>
+Bài tập
+</th>
+
+
+<th>
+Hăng hái xây dựng bài
+</th>
+
+
+<th>
+Nhận xét
+</th>
 
 
 </tr>
 
+
 </thead>
 
 
-<tbody id="bangHocTap">
+
+<tbody id="dsHocTap">
 
 
 </tbody>
@@ -357,10 +587,10 @@ Chọn tuần:
 
 
 
+<button class="save"
+onclick="luuHocTap()">
 
-<button class="save-btn" onclick="luuHocTap()">
-
-💾 Lưu theo dõi học tập
+💾 Lưu dữ liệu tuần
 
 </button>
 
@@ -377,94 +607,165 @@ Trợ lý quản lý lớp 97 – GVCN Trần Sáng
 
 <script>
 
-// ===============================
-// DỮ LIỆU HỌC SINH LỚP 97
-// ===============================
+
+// =====================================
+// PHẦN 2
+// TẠO BẢNG HỌC TẬP
+// =====================================
 
 
-let danhSach = [];
+// Lấy danh sách học sinh
+
+let danhSachHocSinhLop97 = [];
 
 
-// lấy danh sách từ file danhsach.js
 
 if(typeof danhSachHocSinh !== "undefined"){
 
-    danhSach = danhSachHocSinh;
+
+    danhSachHocSinhLop97 = danhSachHocSinh;
+
 
 }
 
 else{
 
-    danhSach = JSON.parse(
-        localStorage.getItem("danhSachHocSinh")
+
+    danhSachHocSinhLop97 = JSON.parse(
+
+        localStorage.getItem(
+            "danhSachHocSinh"
+        )
+
     ) || [];
+
 
 }
 
 
 
 
-// ===============================
-// TẠO BẢNG HỌC TẬP
-// ===============================
+
+// =====================================
+// HIỂN THỊ DANH SÁCH
+// =====================================
 
 
-function taoBang(){
+function hienThiBangHocTap(){
 
 
-let tbody = document.getElementById(
-    "bangHocTap"
-);
+    let bang =
+    document.getElementById(
+        "dsHocTap"
+    );
 
 
-tbody.innerHTML="";
-
-
-
-danhSach.forEach((hs,index)=>{
-
-
-let dong = document.createElement("tr");
+    bang.innerHTML="";
 
 
 
-dong.innerHTML = `
+    danhSachHocSinhLop97.forEach(
+        (hs,index)=>{
 
 
-<td>${index+1}</td>
+        let tenHocSinh="";
 
 
-<td class="name">
-${hs.hoTen || hs.ten || hs}
+        if(typeof hs === "string"){
+
+            tenHocSinh = hs;
+
+        }
+
+        else{
+
+            tenHocSinh =
+            hs.hoTen ||
+            hs.ten ||
+            hs.hoten ||
+            "";
+
+        }
+
+
+
+
+        let dong =
+        document.createElement(
+            "tr"
+        );
+
+
+
+        dong.innerHTML = `
+
+
+<td>
+
+${index+1}
+
+</td>
+
+
+<td class="ten">
+
+${tenHocSinh}
+
 </td>
 
 
 
+
 <td>
+
 
 <select class="chuanBi">
 
-<option>Không chuẩn bị</option>
 
-<option>Chưa đầy đủ</option>
+<option>
+Không chuẩn bị
+</option>
 
-<option>Đầy đủ</option>
+
+<option>
+Chưa đầy đủ
+</option>
+
+
+<option>
+Đầy đủ
+</option>
+
 
 </select>
+
 
 </td>
 
 
 
+
+
 <td>
+
 
 <select class="baiTap">
 
-<option>Chưa làm</option>
 
-<option>Hoàn thành một ít</option>
+<option>
+Chưa làm
+</option>
 
-<option>Hoàn thành đầy đủ</option>
+
+<option>
+Hoàn thành một ít
+</option>
+
+
+<option>
+Hoàn thành đầy đủ
+</option>
+
 
 </select>
 
@@ -474,15 +775,26 @@ ${hs.hoTen || hs.ten || hs}
 
 
 
+
 <td>
+
 
 <select class="xayDung">
 
-<option>Không phát biểu</option>
 
-<option>Chưa tích cực</option>
+<option>
+Không phát biểu
+</option>
 
-<option>Tích cực phát biểu</option>
+
+<option>
+Chưa tích cực
+</option>
+
+
+<option>
+Tích cực phát biểu
+</option>
 
 
 </select>
@@ -493,130 +805,62 @@ ${hs.hoTen || hs.ten || hs}
 
 
 
+
 <td>
 
-<textarea class="nhanXet"
+
+<textarea 
+class="nhanXet"
 placeholder="Nhận xét học sinh..."
-></textarea>
+>
+
+</textarea>
 
 
 </td>
 
 
-`;
+
+        `;
 
 
 
-tbody.appendChild(dong);
+        bang.appendChild(
+            dong
+        );
 
 
 
-});
+    });
 
 
 
-napDuLieu();
+    taiDuLieuTuan();
+
+
 
 }
 
 
 
-// ===============================
-// LẤY KHÓA LƯU THEO TUẦN
-// ===============================
 
 
-function khoaDuLieu(){
+// =====================================
+// TẠO KHÓA LƯU THEO TUẦN
+// =====================================
+
+
+function khoaLuu(){
 
 
 let tuan =
-document.getElementById("tuan").value;
-
-
-return "hocTap_Tuan_"+tuan;
-
-
-}
+document.getElementById(
+"chonTuan"
+).value;
 
 
 
-
-// ===============================
-// LƯU HỌC TẬP
-// ===============================
-
-
-function luuHocTap(){
-
-
-let ds=[];
-
-
-let rows =
-document.querySelectorAll(
-"#bangHocTap tr"
-);
-
-
-
-rows.forEach(row=>{
-
-
-let ten =
-row.children[1].innerText;
-
-
-
-let item={
-
-
-ten:ten,
-
-
-chuanBi:
-row.querySelector(".chuanBi").value,
-
-
-baiTap:
-row.querySelector(".baiTap").value,
-
-
-xayDung:
-row.querySelector(".xayDung").value,
-
-
-nhanXet:
-row.querySelector(".nhanXet").value
-
-
-
-};
-
-
-ds.push(item);
-
-
-
-});
-
-
-
-
-localStorage.setItem(
-
-khoaDuLieu(),
-
-JSON.stringify(ds)
-
-);
-
-
-
-alert(
-"✅ Đã lưu theo dõi học tập tuần "
-+
-document.getElementById("tuan").value
-);
+return "HocTap_Lop97_Tuan_" + tuan;
 
 
 
@@ -625,68 +869,82 @@ document.getElementById("tuan").value
 
 
 
-// ===============================
-// TẢI DỮ LIỆU TUẦN
-// ===============================
+
+// =====================================
+// TẢI DỮ LIỆU CŨ
+// =====================================
 
 
-function napDuLieu(){
+function taiDuLieuTuan(){
 
 
-let data =
+let duLieu =
+
 JSON.parse(
 
 localStorage.getItem(
-khoaDuLieu()
+khoaLuu()
 )
 
 );
 
 
 
-if(!data)
+if(!duLieu)
 return;
 
 
 
-let rows =
+
+let dong =
+
 document.querySelectorAll(
-"#bangHocTap tr"
+
+"#dsHocTap tr"
+
 );
 
 
 
-rows.forEach((row,index)=>{
 
 
-let hs=data[index];
+dong.forEach(
+
+(row,index)=>{
+
+
+let hs =
+duLieu[index];
+
+
 
 if(!hs)
 return;
 
 
 
-row.querySelector(".chuanBi").value =
-hs.chuanBi;
+
+row.querySelector(
+".chuanBi"
+).value = hs.chuanBi;
 
 
 
-row.querySelector(".baiTap").value =
-hs.baiTap;
+row.querySelector(
+".baiTap"
+).value = hs.baiTap;
 
 
 
-row.querySelector(".xayDung").value =
-hs.xayDung;
+row.querySelector(
+".xayDung"
+).value = hs.xayDung;
 
 
 
-row.querySelector(".nhanXet").value =
-hs.nhanXet;
-
-
-
-});
+row.querySelector(
+".nhanXet"
+).value = hs.nhanXet;
 
 
 
@@ -694,19 +952,136 @@ hs.nhanXet;
 
 
 
-// ===============================
+);
+
+
+
+}
+
+
+
+
+
+// =====================================
 // ĐỔI TUẦN
-// ===============================
+// =====================================
 
 
 document
-.getElementById("tuan")
+
+.getElementById(
+"chonTuan"
+)
+
 .addEventListener(
+
 "change",
+
 function(){
 
 
-napDuLieu();
+taiDuLieuTuan();
+
+
+}
+
+);
+
+
+
+
+
+// Khởi động tạo bảng
+
+
+hienThiBangHocTap();
+
+
+</script>
+
+
+</body>
+// =====================================
+// PHẦN 3
+// LƯU DỮ LIỆU HỌC TẬP THEO TUẦN
+// =====================================
+
+
+
+function luuHocTap(){
+
+
+
+let danhSachLuu = [];
+
+
+
+let cacDong =
+
+document.querySelectorAll(
+
+"#dsHocTap tr"
+
+);
+
+
+
+
+
+cacDong.forEach(function(row){
+
+
+
+let ten =
+
+row.querySelector(".ten")
+.innerText;
+
+
+
+
+let duLieu = {
+
+
+hoTen: ten,
+
+
+chuanBi:
+
+row.querySelector(".chuanBi")
+.value,
+
+
+
+baiTap:
+
+row.querySelector(".baiTap")
+.value,
+
+
+
+xayDung:
+
+row.querySelector(".xayDung")
+.value,
+
+
+
+nhanXet:
+
+row.querySelector(".nhanXet")
+.value
+
+
+
+};
+
+
+
+danhSachLuu.push(
+duLieu
+);
+
 
 
 });
@@ -714,17 +1089,178 @@ napDuLieu();
 
 
 
-// ===============================
-// KHỞI ĐỘNG
-// ===============================
+
+localStorage.setItem(
 
 
-taoBang();
+khoaLuu(),
 
 
-</script>
+JSON.stringify(
+danhSachLuu
+)
 
 
-</body>
+);
+
+
+
+
+
+alert(
+
+"✅ Đã lưu học tập " +
+
+document.getElementById(
+"chonTuan"
+).value
+
++
+"\n\nDữ liệu đã được lưu riêng theo tuần."
+
+);
+
+
+
+}
+
+
+
+
+// =====================================
+// KIỂM TRA QUYỀN NHẬP LIỆU
+// =====================================
+
+
+// Chuẩn bị tích hợp với phanquyen.js
+
+
+function kiemTraQuyenHocTap(){
+
+
+
+let vaiTro =
+
+localStorage.getItem(
+"vaiTro"
+);
+
+
+
+
+
+// GVCN hoặc lớp phó học tập được nhập
+
+
+if(
+
+vaiTro==="GVCN"
+
+||
+
+vaiTro==="LopPhoHocTap"
+
+||
+
+vaiTro===null
+
+){
+
+
+return true;
+
+
+}
+
+
+
+
+else{
+
+
+document.querySelector(
+".save"
+).style.display="none";
+
+
+
+return false;
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+// =====================================
+// KHỞI ĐỘNG KIỂM TRA
+// =====================================
+
+
+
+kiemTraQuyenHocTap();
+
+
+
+
+// =====================================
+// HÀM CHUẨN BỊ NHẬN XÉT AI
+// =====================================
+
+
+function taoDuLieuAI(){
+
+
+let duLieu =
+
+JSON.parse(
+
+localStorage.getItem(
+khoaLuu()
+)
+
+);
+
+
+
+if(!duLieu){
+
+alert(
+"Chưa có dữ liệu để phân tích"
+);
+
+return;
+
+}
+
+
+
+
+
+console.log(
+
+"Dữ liệu gửi AI:",
+
+duLieu
+
+);
+
+
+
+// Phần này sẽ kết nối ai_nhanxet.js sau
+
+
+
+}
+
+
+
+
 
 </html>
