@@ -414,4 +414,121 @@ luuDiemTuan(ds);
 
 
 }
+// ======================================
+// TẠO MÃ ĐIỂM DUY NHẤT
+// ======================================
+
+
+function taoMaDiem(hocSinhId, tuan){
+
+
+return hocSinhId + "_" + tuan;
+
+
+}
+
+
+
+
+// ======================================
+// KIỂM TRA ĐIỂM ĐÃ TỒN TẠI CHƯA
+// ======================================
+
+
+function timDiemHocSinh(hocSinhId,tuan){
+
+
+let ds = layDiemTuan();
+
+
+
+let ma = taoMaDiem(
+hocSinhId,
+tuan
+);
+
+
+
+return ds.find(
+
+x=>x.maDiem===ma
+
+);
+
+
+}
+
+
+
+
+
+// ======================================
+// LƯU HOẶC CẬP NHẬT ĐIỂM
+// ======================================
+
+
+function luuHoacCapNhatDiem(obj){
+
+
+
+let ds = layDiemTuan();
+
+
+
+let ma = taoMaDiem(
+
+obj.hocSinhId,
+
+obj.tuan
+
+);
+
+
+
+
+let cu = ds.find(
+
+x=>x.maDiem===ma
+
+);
+
+
+
+
+// Nếu đã có thì cập nhật
+
+if(cu){
+
+
+cu.diem=obj.diem;
+
+cu.nhanXet=obj.nhanXet;
+
+cu.nguoiNhap=obj.nguoiNhap;
+
+
+}
+
+
+// Nếu chưa có thì thêm mới
+
+else{
+
+
+obj.maDiem=ma;
+
+
+ds.push(obj);
+
+
+}
+
+
+
+
+luuDiemTuan(ds);
+
+
+
+}
 
