@@ -1,409 +1,234 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>
-Theo dõi học tập lớp 97
-</title>
-
-
-<script src="danhsach.js"></script>
-<script src="dulieu.js"></script>
-
-
+<title>Bảng theo dõi học tập - Lớp 97</title>
 
 <style>
 
-
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
 }
-
-
 
 body{
-
-margin:0;
-
-font-family:
-"Segoe UI",
-Arial,
-sans-serif;
-
-background:#eef5ff;
-
+    margin:0;
+    background:#f4f7fb;
 }
-
 
 
 /* HEADER */
 
 .header{
-
-
-background:
-linear-gradient(
-135deg,
-#1565c0,
-#42a5f5
-);
-
-
-color:white;
-
-padding:35px 20px;
-
-text-align:center;
-
+    background:white;
+    padding:20px;
+    text-align:center;
 }
-
-
 
 .header h1{
-
-
-margin:0;
-
-font-size:40px;
-
-font-weight:800;
-
+    margin:0;
+    color:#1565c0;
+    font-size:32px;
+    font-weight:700;
 }
-
-
-
-.header p{
-
-
-margin-top:15px;
-
-font-size:22px;
-
-}
-
-
-
-
-/* KHUNG CHUNG */
-
-
-.container{
-
-
-max-width:1500px;
-
-margin:auto;
-
-padding:35px;
-
-}
-
-
-
 
 
 /* NÚT VỀ TRANG CHỦ */
 
+.home-btn{
 
-.btn-home{
+    display:inline-block;
+    margin:15px;
+    padding:10px 20px;
 
+    background:#1565c0;
+    color:white;
 
-display:block;
+    border-radius:12px;
 
-margin:0 auto 30px auto;
+    text-decoration:none;
 
-
-background:#1565c0;
-
-color:white;
-
-
-border:none;
-
-
-padding:15px 35px;
+    font-size:16px;
+    font-weight:bold;
+}
 
 
-border-radius:15px;
+/* THANH CHỌN TUẦN */
 
+.control{
 
-font-size:18px;
+    background:white;
 
+    padding:15px;
 
-font-weight:bold;
+    margin:10px 20px;
 
-
-cursor:pointer;
-
+    border-radius:15px;
 
 }
 
 
+.control label{
 
-.btn-home:hover{
-
-
-background:#0d47a1;
-
+    font-weight:bold;
 
 }
-
-
-
-
-
-/* BOX */
-
-
-.box{
-
-
-background:white;
-
-
-border-radius:25px;
-
-
-padding:30px;
-
-
-margin-bottom:30px;
-
-
-box-shadow:
-
-0 8px 25px rgba(0,0,0,0.12);
-
-
-}
-
-
-
-
-.box h2{
-
-
-text-align:center;
-
-
-color:#1565c0;
-
-
-font-size:28px;
-
-
-}
-
-
-
-
-/* CHỌN TUẦN */
-
-
-.week-box{
-
-
-text-align:center;
-
-
-}
-
 
 
 select{
 
+    padding:10px;
 
-padding:12px 25px;
+    border-radius:10px;
 
+    border:1px solid #aaa;
 
-font-size:17px;
-
-
-border-radius:12px;
-
-
-border:1px solid #aaa;
-
-
-min-width:250px;
-
+    font-size:15px;
 
 }
-
-
 
 
 
 /* BẢNG */
 
+.container{
+
+    margin:20px;
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:auto;
+
+}
+
 
 table{
 
+    width:100%;
 
-width:100%;
+    border-collapse:collapse;
 
-
-border-collapse:collapse;
-
-
-margin-top:25px;
-
+    min-width:1200px;
 
 }
 
 
 
-thead th{
+th{
+
+    background:#1565c0;
+
+    color:white;
+
+    padding:15px;
+
+    font-size:17px;
+
+    text-align:center;
+
+}
 
 
-background:#1565c0;
+td{
 
+    padding:10px;
 
-color:white;
+    border-bottom:1px solid #ddd;
 
-
-padding:16px;
-
-
-font-size:18px;
-
+    text-align:center;
 
 }
 
 
 
-tbody td{
+/* TÊN HỌC SINH */
 
+.name{
 
-padding:12px;
+    font-weight:bold;
 
-
-border-bottom:
-
-1px solid #ddd;
-
-
-text-align:center;
-
-
-font-size:16px;
-
+    text-align:left;
 
 }
 
 
+/* Ô CHỌN */
 
-tbody tr:hover{
+td select{
 
+    width:95%;
 
-background:#f4f9ff;
-
+    background:white;
 
 }
 
 
-
-
+/* NHẬN XÉT */
 
 textarea{
 
+    width:100%;
 
-width:100%;
+    min-height:60px;
 
+    border-radius:10px;
 
-height:70px;
+    padding:8px;
 
-
-border-radius:10px;
-
-
-padding:10px;
-
-
-font-size:15px;
-
+    resize:none;
 
 }
-
-
 
 
 
 /* NÚT LƯU */
 
+.save-btn{
 
-.btn-save{
+    display:block;
 
+    margin:20px auto;
 
-display:block;
+    padding:14px 35px;
 
+    background:#2e7d32;
 
-margin:30px auto 0;
+    color:white;
 
+    border:none;
 
-background:#00897b;
+    border-radius:15px;
 
+    font-size:18px;
 
-color:white;
+    cursor:pointer;
 
-
-border:none;
-
-
-padding:16px 45px;
-
-
-border-radius:15px;
+}
 
 
-font-size:18px;
+.save-btn:hover{
 
-
-font-weight:bold;
-
-
-cursor:pointer;
-
+    background:#1b5e20;
 
 }
 
 
 
-.btn-save:hover{
+/* FOOTER */
 
+.footer{
 
-background:#00695c;
+    text-align:center;
 
+    padding:15px;
 
-}
+    color:#555;
 
-
-
-
-
-.thongbao{
-
-
-text-align:center;
-
-
-font-weight:bold;
-
-
-color:#00897b;
-
-
-font-size:18px;
-
-
-margin-top:15px;
-
+    font-size:15px;
 
 }
 
@@ -411,96 +236,86 @@ margin-top:15px;
 
 </style>
 
-
 </head>
-
 
 
 <body>
 
 
-
 <div class="header">
 
-
-<h1>
-📚 THEO DÕI HỌC TẬP LỚP 97
-</h1>
-
-
-<p>
-🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
-</p>
-
+<h1>📚 BẢNG THEO DÕI HỌC TẬP</h1>
 
 </div>
 
+
+
+<a class="home-btn" href="index.html">
+🏠 Về trang chủ
+</a>
+
+
+
+<div class="control">
+
+<label>
+Chọn tuần:
+</label>
+
+
+<select id="tuan">
+
+<option value="1">Tuần 1</option>
+<option value="2">Tuần 2</option>
+<option value="3">Tuần 3</option>
+<option value="4">Tuần 4</option>
+<option value="5">Tuần 5</option>
+
+<option value="6">Tuần 6</option>
+<option value="7">Tuần 7</option>
+<option value="8">Tuần 8</option>
+<option value="9">Tuần 9</option>
+<option value="10">Tuần 10</option>
+
+<option value="11">Tuần 11</option>
+<option value="12">Tuần 12</option>
+<option value="13">Tuần 13</option>
+<option value="14">Tuần 14</option>
+<option value="15">Tuần 15</option>
+
+<option value="16">Tuần 16</option>
+<option value="17">Tuần 17</option>
+<option value="18">Tuần 18</option>
+<option value="19">Tuần 19</option>
+<option value="20">Tuần 20</option>
+
+<option value="21">Tuần 21</option>
+<option value="22">Tuần 22</option>
+<option value="23">Tuần 23</option>
+<option value="24">Tuần 24</option>
+<option value="25">Tuần 25</option>
+
+<option value="26">Tuần 26</option>
+<option value="27">Tuần 27</option>
+<option value="28">Tuần 28</option>
+<option value="29">Tuần 29</option>
+<option value="30">Tuần 30</option>
+
+<option value="31">Tuần 31</option>
+<option value="32">Tuần 32</option>
+<option value="33">Tuần 33</option>
+<option value="34">Tuần 34</option>
+<option value="35">Tuần 35</option>
+
+
+</select>
+
+</div>
 
 
 
 
 <div class="container">
-
-
-
-<button 
-class="btn-home"
-onclick="veTrangChu()">
-
-🏠 Về trang chủ quản lý lớp 97
-
-</button>
-
-
-
-
-
-<div class="box week-box">
-
-
-<h2>
-👤 Người nhập: Lớp phó học tập
-</h2>
-
-
-
-<h2>
-📅 Chọn tuần đánh giá
-</h2>
-
-
-
-<select 
-id="chonTuan"
-onchange="hienThiHocSinh()">
-
-</select>
-
-
-
-<div 
-id="thongBao"
-class="thongbao">
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="box">
-
-
-<h2>
-📚 BẢNG THEO DÕI HỌC TẬP
-</h2>
-
 
 
 <table>
@@ -510,41 +325,22 @@ class="thongbao">
 
 <tr>
 
-<th>
-STT
-</th>
+<th>STT</th>
 
+<th>Họ tên</th>
 
-<th>
-Họ tên
-</th>
+<th>Chuẩn bị bài</th>
 
+<th>Bài tập</th>
 
-<th>
-Chuẩn bị bài
-</th>
+<th>Hăng hái xây dựng bài</th>
 
-
-<th>
-Bài tập
-</th>
-
-
-<th>
-Hăng hái xây dựng bài
-</th>
-
-
-<th>
-Nhận xét
-</th>
+<th>Nhận xét</th>
 
 
 </tr>
 
-
 </thead>
-
 
 
 <tbody id="bangHocTap">
@@ -557,334 +353,161 @@ Nhận xét
 </table>
 
 
+</div>
 
-<button
-class="btn-save"
-onclick="luuHocTap()">
 
-💾 Lưu đánh giá tuần
+
+
+<button class="save-btn" onclick="luuHocTap()">
+
+💾 Lưu theo dõi học tập
 
 </button>
 
 
 
+
+<div class="footer">
+
+Trợ lý quản lý lớp 97 – GVCN Trần Sáng
+
 </div>
+
+
+
 <script>
 
-
-// =====================================
-// TẠO 35 TUẦN
-// =====================================
-
-
-function taoDanhSachTuan(){
+// ===============================
+// DỮ LIỆU HỌC SINH LỚP 97
+// ===============================
 
 
-let html="";
+let danhSach = [];
 
 
-for(let i=1;i<=35;i++){
+// lấy danh sách từ file danhsach.js
 
+if(typeof danhSachHocSinh !== "undefined"){
 
-html += `
-
-<option value="${i}">
-Tuần ${i}
-</option>
-
-`;
+    danhSach = danhSachHocSinh;
 
 }
 
+else{
 
-document.getElementById(
-
-"chonTuan"
-
-).innerHTML = html;
-
-
+    danhSach = JSON.parse(
+        localStorage.getItem("danhSachHocSinh")
+    ) || [];
 
 }
 
 
 
 
+// ===============================
+// TẠO BẢNG HỌC TẬP
+// ===============================
 
 
-// =====================================
-// LẤY DỮ LIỆU HỌC TẬP
-// =====================================
+function taoBang(){
 
 
-function layDuLieuHocTap(){
-
-
-let data =
-
-localStorage.getItem(
-
-"hocTap97"
-
+let tbody = document.getElementById(
+    "bangHocTap"
 );
 
 
+tbody.innerHTML="";
 
-return data ?
 
-JSON.parse(data)
 
-:
+danhSach.forEach((hs,index)=>{
 
-[];
 
+let dong = document.createElement("tr");
 
 
 
-}
+dong.innerHTML = `
 
 
+<td>${index+1}</td>
 
 
-
-// =====================================
-// LƯU DỮ LIỆU HỌC TẬP
-// =====================================
-
-
-function luuDuLieuHocTap(data){
-
-
-localStorage.setItem(
-
-"hocTap97",
-
-JSON.stringify(data)
-
-);
-
-
-}
-
-
-
-
-
-
-
-// =====================================
-// HIỂN THỊ DANH SÁCH HỌC SINH
-// =====================================
-
-
-function hienThiHocSinh(){
-
-
-
-let ds =
-
-layDanhSachHocSinh();
-
-
-
-
-let tuan =
-
-Number(
-
-document.getElementById(
-
-"chonTuan"
-
-).value
-
-);
-
-
-
-
-let data =
-
-layDuLieuHocTap();
-
-
-
-
-let html="";
-
-
-
-
-
-ds.forEach((hs,index)=>{
-
-
-
-let old =
-
-data.find(
-
-x =>
-
-x.hocSinhId == hs.id
-
-&&
-
-x.tuan == tuan
-
-);
-
-
-
-
-
-html += `
-
-
-<tr data-id="${hs.id}">
-
-
-<td>
-${index+1}
+<td class="name">
+${hs.hoTen || hs.ten || hs}
 </td>
 
 
 
 <td>
-<b>
-${hs.hoTen}
-</b>
-</td>
-
-
-
-
-<td>
-
 
 <select class="chuanBi">
 
+<option>Không chuẩn bị</option>
 
-<option value="Đầy đủ"
+<option>Chưa đầy đủ</option>
 
-${old?.chuanBi=="Đầy đủ"?"selected":""}>
-
-Đầy đủ
-
-</option>
-
-
-<option value="Chưa đầy đủ"
-
-${old?.chuanBi=="Chưa đầy đủ"?"selected":""}>
-
-Chưa đầy đủ
-
-</option>
-
+<option>Đầy đủ</option>
 
 </select>
-
-
 
 </td>
 
 
 
-
-
-
 <td>
-
 
 <select class="baiTap">
 
+<option>Chưa làm</option>
 
-<option value="Hoàn thành"
+<option>Hoàn thành một ít</option>
 
-${old?.baiTap=="Hoàn thành"?"selected":""}>
-
-Hoàn thành
-
-</option>
-
-
-<option value="Chưa hoàn thành"
-
-${old?.baiTap=="Chưa hoàn thành"?"selected":""}>
-
-Chưa hoàn thành
-
-</option>
-
+<option>Hoàn thành đầy đủ</option>
 
 </select>
 
 
-
 </td>
-
-
 
 
 
 
 <td>
 
+<select class="xayDung">
 
-<select class="hangHai">
+<option>Không phát biểu</option>
 
+<option>Chưa tích cực</option>
 
-<option value="Hăng hái"
-
-${old?.hangHai=="Hăng hái"?"selected":""}>
-
-Hăng hái
-
-</option>
-
-
-
-<option value="Chưa tích cực"
-
-${old?.hangHai=="Chưa tích cực"?"selected":""}>
-
-Chưa tích cực
-
-</option>
+<option>Tích cực phát biểu</option>
 
 
 </select>
 
 
-
 </td>
-
-
 
 
 
 
 <td>
 
-
-<textarea class="nhanXet">
-
-${old?.nhanXet || ""}
-
-</textarea>
-
+<textarea class="nhanXet"
+placeholder="Nhận xét học sinh..."
+></textarea>
 
 
 </td>
-
-
-
-
-</tr>
 
 
 `;
+
+
+
+tbody.appendChild(dong);
 
 
 
@@ -892,25 +515,25 @@ ${old?.nhanXet || ""}
 
 
 
+napDuLieu();
 
-
-document.getElementById(
-
-"bangHocTap"
-
-).innerHTML = html;
+}
 
 
 
+// ===============================
+// LẤY KHÓA LƯU THEO TUẦN
+// ===============================
 
-document.getElementById(
 
-"thongBao"
+function khoaDuLieu(){
 
-).innerHTML =
 
-"Đang đánh giá tuần " + tuan;
+let tuan =
+document.getElementById("tuan").value;
 
+
+return "hocTap_Tuan_"+tuan;
 
 
 }
@@ -918,170 +541,59 @@ document.getElementById(
 
 
 
-
-
-
-// =====================================
-// LƯU ĐÁNH GIÁ TUẦN
-// =====================================
+// ===============================
+// LƯU HỌC TẬP
+// ===============================
 
 
 function luuHocTap(){
 
 
-
-let tuan =
-
-Number(
-
-document.getElementById(
-
-"chonTuan"
-
-).value
-
-);
+let ds=[];
 
 
-
-
-
-let data =
-
-layDuLieuHocTap();
-
-
-
-
-
-document
-
-.querySelectorAll(
-
+let rows =
+document.querySelectorAll(
 "#bangHocTap tr"
-
-)
-
-.forEach(row=>{
-
-
-
-let id =
-
-Number(
-
-row.dataset.id
-
 );
 
 
 
-
-let obj = {
-
+rows.forEach(row=>{
 
 
-hocSinhId:id,
+let ten =
+row.children[1].innerText;
 
 
 
-tuan:tuan,
+let item={
 
+
+ten:ten,
 
 
 chuanBi:
-
-row.querySelector(
-
-".chuanBi"
-
-).value,
-
-
+row.querySelector(".chuanBi").value,
 
 
 baiTap:
-
-row.querySelector(
-
-".baiTap"
-
-).value,
+row.querySelector(".baiTap").value,
 
 
-
-
-hangHai:
-
-row.querySelector(
-
-".hangHai"
-
-).value,
-
-
+xayDung:
+row.querySelector(".xayDung").value,
 
 
 nhanXet:
-
-row.querySelector(
-
-".nhanXet"
-
-).value
+row.querySelector(".nhanXet").value
 
 
 
 };
 
 
-
-
-
-
-let old =
-
-data.find(
-
-x =>
-
-x.hocSinhId == id
-
-&&
-
-x.tuan == tuan
-
-);
-
-
-
-
-
-if(old){
-
-
-
-Object.assign(
-
-old,
-
-obj
-
-);
-
-
-
-}
-
-else{
-
-
-
-data.push(obj);
-
-
-
-}
+ds.push(item);
 
 
 
@@ -1090,44 +602,21 @@ data.push(obj);
 
 
 
+localStorage.setItem(
 
-luuDuLieuHocTap(data);
+khoaDuLieu(),
 
+JSON.stringify(ds)
 
-
-
-
-document.getElementById(
-
-"thongBao"
-
-).innerHTML =
-
-"✅ Đã lưu đánh giá tuần " + tuan;
+);
 
 
 
-}
-
-
-
-
-
-
-
-
-// =====================================
-// VỀ TRANG CHỦ DASHBOARD
-// =====================================
-
-
-function veTrangChu(){
-
-
-
-window.location.href =
-
-"trangchu.html";
+alert(
+"✅ Đã lưu theo dõi học tập tuần "
++
+document.getElementById("tuan").value
+);
 
 
 
@@ -1136,27 +625,106 @@ window.location.href =
 
 
 
+// ===============================
+// TẢI DỮ LIỆU TUẦN
+// ===============================
+
+
+function napDuLieu(){
+
+
+let data =
+JSON.parse(
+
+localStorage.getItem(
+khoaDuLieu()
+)
+
+);
 
 
 
-// =====================================
-// KHỞI ĐỘNG TRANG
-// =====================================
+if(!data)
+return;
 
 
 
-khoiTaoDuLieu();
+let rows =
+document.querySelectorAll(
+"#bangHocTap tr"
+);
 
 
-taoDanhSachTuan();
+
+rows.forEach((row,index)=>{
 
 
-hienThiHocSinh();
+let hs=data[index];
 
+if(!hs)
+return;
+
+
+
+row.querySelector(".chuanBi").value =
+hs.chuanBi;
+
+
+
+row.querySelector(".baiTap").value =
+hs.baiTap;
+
+
+
+row.querySelector(".xayDung").value =
+hs.xayDung;
+
+
+
+row.querySelector(".nhanXet").value =
+hs.nhanXet;
+
+
+
+});
+
+
+
+}
+
+
+
+// ===============================
+// ĐỔI TUẦN
+// ===============================
+
+
+document
+.getElementById("tuan")
+.addEventListener(
+"change",
+function(){
+
+
+napDuLieu();
+
+
+});
+
+
+
+
+// ===============================
+// KHỞI ĐỘNG
+// ===============================
+
+
+taoBang();
 
 
 </script>
 
 
+</body>
 
-</div>
+</html>
