@@ -5,79 +5,72 @@
 
 <meta charset="UTF-8">
 
-<title>Học tập lớp 97</title>
+<title>Theo dõi học tập lớp 97</title>
 
 
 <style>
 
 *{
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 
 body{
-
-margin:0;
-background:#f2f6fc;
-
+    margin:0;
+    background:#f3f7fc;
 }
-
 
 
 /* HEADER */
 
 .header{
 
-background:linear-gradient(
-135deg,#1976d2,#42a5f5
-);
+    background:linear-gradient(
+    135deg,#1976d2,#42a5f5);
 
-color:white;
-
-padding:25px;
+    color:white;
+    padding:25px;
 
 }
 
 
-
 .header h1{
 
-margin:0;
-
-font-size:32px;
+    margin:0;
+    font-size:34px;
 
 }
 
 
 .header p{
 
-font-size:18px;
+    font-size:18px;
 
 }
-
 
 
 /* MENU */
 
 .menu{
 
-width:260px;
-
-background:white;
-
 position:fixed;
 
 top:0;
 
+left:0;
+
 bottom:0;
+
+width:260px;
+
+background:white;
 
 padding-top:220px;
 
 box-shadow:2px 0 10px #ddd;
 
 }
-
 
 
 .menu a{
@@ -88,12 +81,11 @@ padding:18px;
 
 text-decoration:none;
 
-color:#333;
-
 font-size:18px;
 
-}
+color:#333;
 
+}
 
 
 .menu a:hover{
@@ -106,10 +98,9 @@ color:#1565c0;
 
 
 
-/* CONTENT */
+/* MAIN */
 
-
-.content{
+.main{
 
 margin-left:280px;
 
@@ -119,12 +110,11 @@ padding:30px;
 
 
 
-
-.card{
+.box{
 
 background:white;
 
-padding:20px;
+padding:25px;
 
 border-radius:15px;
 
@@ -134,35 +124,23 @@ box-shadow:0 4px 15px #ddd;
 
 
 
-.title{
-
-font-size:28px;
-
-color:#1565c0;
-
-font-weight:bold;
-
-}
-
-
-
+/* BUTTON */
 
 button{
 
-border:none;
-
 padding:12px 25px;
 
-border-radius:10px;
+border:none;
 
-cursor:pointer;
+border-radius:10px;
 
 font-size:16px;
 
 font-weight:bold;
 
-}
+cursor:pointer;
 
+}
 
 
 .home{
@@ -184,6 +162,7 @@ color:white;
 
 
 
+
 select,textarea{
 
 width:95%;
@@ -197,7 +176,6 @@ border:1px solid #ccc;
 }
 
 
-
 textarea{
 
 height:60px;
@@ -207,7 +185,6 @@ height:60px;
 
 
 /* TABLE */
-
 
 table{
 
@@ -230,7 +207,6 @@ color:white;
 padding:15px;
 
 }
-
 
 
 td{
@@ -260,27 +236,38 @@ color:#666;
 
 </style>
 
+
 </head>
+
 
 
 <body>
 
 
 
+<!-- HEADER -->
+
 <div class="header">
 
+
 <h1>
+
 🤖 TRỢ LÝ QUẢN LÝ LỚP 97
+
 </h1>
 
 
 <p>
+
 🏫 Trường THCS Trần Phú
+
 </p>
 
 
 <p>
+
 👨‍🏫 GVCN: Trần Sáng
+
 </p>
 
 
@@ -289,37 +276,50 @@ color:#666;
 
 
 
+<!-- MENU -->
 
 <div class="menu">
 
 
 <a href="index.html">
+
 🏠 Trang chủ
+
 </a>
 
 
 <a href="hoso.html">
+
 👨‍🎓 Hồ sơ học sinh
+
 </a>
 
 
 <a href="hoctap.html">
+
 📚 Học tập
+
 </a>
 
 
 <a href="kiemtra.html">
+
 📝 Kiểm tra
+
 </a>
 
 
 <a href="hanhkiem.html">
+
 ⭐ Hạnh kiểm
+
 </a>
 
 
 <a href="thidua_tuan.html">
+
 🏆 Thi đua tuần
+
 </a>
 
 
@@ -331,15 +331,18 @@ color:#666;
 
 
 
-<div class="content">
+<!-- CONTENT -->
+
+<div class="main">
 
 
-<div class="card">
+<div class="box">
 
 
 
-<button class="home"
-onclick="location.href='index.html'">
+<button 
+class="home"
+onclick="window.location.href='index.html'">
 
 🏠 Về trang chủ
 
@@ -347,11 +350,13 @@ onclick="location.href='index.html'">
 
 
 
-<h2 class="title">
+
+<h2 style="color:#1565c0">
 
 📚 THEO DÕI HỌC TẬP LỚP 97
 
 </h2>
+
 
 
 
@@ -364,7 +369,6 @@ onclick="location.href='index.html'">
 
 
 
-
 <label>
 
 📅 Chọn tuần đánh giá:
@@ -372,35 +376,45 @@ onclick="location.href='index.html'">
 </label>
 
 
-<select id="chonTuan"
+
+<select id="tuan"
 onchange="hienThi()">
 
 
+
 <option value="Tuan1">
+
 Tuần 1
+
 </option>
 
 
 <option value="Tuan2">
+
 Tuần 2
+
 </option>
+
 
 
 <option value="Tuan3">
+
 Tuần 3
+
 </option>
 
 
+
 <option value="Tuan4">
+
 Tuần 4
+
 </option>
 
 
 </select>
 
 
-
-<br><br>
 
 
 
@@ -432,31 +446,33 @@ Tuần 4
 </thead>
 
 
+
 <tbody id="bang">
 
 
 </tbody>
 
 
+
 </table>
+
 
 
 
 <br>
 
 
-<button class="save"
-onclick="luuDuLieu()">
+<button 
+class="save"
+onclick="luu()">
 
-💾 Lưu đánh giá tuần
+💾 Lưu dữ liệu tuần
 
 </button>
 
 
 
-
 </div>
-
 
 
 
@@ -468,8 +484,8 @@ Trợ lý quản lý lớp 97 – GVCN Trần Sáng
 </div>
 
 
-
 </div>
+
 
 
 
@@ -480,11 +496,7 @@ Trợ lý quản lý lớp 97 – GVCN Trần Sáng
 
 
 
-
-// DANH SÁCH HỌC SINH
-
-
-let danhSach = 
+let danhSach =
 
 JSON.parse(
 
@@ -498,11 +510,7 @@ localStorage.getItem(
 
 
 
-
-// DỮ LIỆU THEO TUẦN
-
-
-let hocTap =
+let duLieu =
 
 JSON.parse(
 
@@ -518,20 +526,17 @@ localStorage.getItem(
 
 
 
-function layTen(hs){
+
+function tenHocSinh(hs){
 
 
-return (
-
-hs.hoTen ||
+return hs.hoTen ||
 
 hs.ten ||
 
 hs.name ||
 
-"Chưa có tên"
-
-);
+"Chưa có tên";
 
 
 }
@@ -547,14 +552,14 @@ function hienThi(){
 
 let tuan =
 document.getElementById(
-"chonTuan"
+"tuan"
 ).value;
 
 
 
-if(!hocTap[tuan])
+if(!duLieu[tuan])
 
-hocTap[tuan]={};
+duLieu[tuan]={};
 
 
 
@@ -570,8 +575,9 @@ danhSach.forEach(
 let id=hs.id || i;
 
 
+
 let data =
-hocTap[tuan][id] || {};
+duLieu[tuan][id] || {};
 
 
 
@@ -581,17 +587,13 @@ html += `
 
 <tr>
 
+<td>${i+1}</td>
+
+
 
 <td>
-${i+1}
-</td>
 
-
-<td>
-
-<b>
-${layTen(hs)}
-</b>
+<b>${tenHocSinh(hs)}</b>
 
 </td>
 
@@ -600,16 +602,20 @@ ${layTen(hs)}
 <td>
 
 
-<select id="cb_${id}">
+<select id="cb${id}">
 
 
 <option>
+
 Đầy đủ
+
 </option>
 
 
 <option>
+
 Chưa đầy đủ
+
 </option>
 
 
@@ -624,16 +630,20 @@ Chưa đầy đủ
 <td>
 
 
-<select id="bt_${id}">
+<select id="bt${id}">
 
 
 <option>
+
 Hoàn thành
+
 </option>
 
 
 <option>
+
 Chưa hoàn thành
+
 </option>
 
 
@@ -648,16 +658,20 @@ Chưa hoàn thành
 <td>
 
 
-<select id="xd_${id}">
+<select id="xd${id}">
 
 
 <option>
+
 Hăng hái
+
 </option>
 
 
 <option>
+
 Chưa tích cực
+
 </option>
 
 
@@ -673,10 +687,9 @@ Chưa tích cực
 <td>
 
 
-<textarea
-id="nx_${id}">
+<textarea id="nx${id}">
 
-${data.nhanXet||""}
+${data.nhanXet || ""}
 
 </textarea>
 
@@ -688,11 +701,13 @@ ${data.nhanXet||""}
 </tr>
 
 
+
 `;
 
 
 
 });
+
 
 
 document.getElementById(
@@ -707,20 +722,21 @@ document.getElementById(
 
 
 
-function luuDuLieu(){
 
 
-let tuan=
+function luu(){
 
+
+
+let tuan =
 document.getElementById(
-"chonTuan"
+"tuan"
 ).value;
 
 
 
-if(!hocTap[tuan])
 
-hocTap[tuan]={};
+duLieu[tuan]={};
 
 
 
@@ -729,17 +745,17 @@ danhSach.forEach(
 (hs,i)=>{
 
 
-let id=hs.id||i;
+let id=hs.id || i;
 
 
 
-hocTap[tuan][id]={
+duLieu[tuan][id]={
 
 
 chuanBi:
 
 document.getElementById(
-"cb_"+id
+"cb"+id
 ).value,
 
 
@@ -747,7 +763,7 @@ document.getElementById(
 baiTap:
 
 document.getElementById(
-"bt_"+id
+"bt"+id
 ).value,
 
 
@@ -755,7 +771,7 @@ document.getElementById(
 xayDung:
 
 document.getElementById(
-"xd_"+id
+"xd"+id
 ).value,
 
 
@@ -763,7 +779,7 @@ document.getElementById(
 nhanXet:
 
 document.getElementById(
-"nx_"+id
+"nx"+id
 ).value
 
 
@@ -777,14 +793,14 @@ document.getElementById(
 
 
 
-
 localStorage.setItem(
 
 "theoDoiHocTapTuan",
 
-JSON.stringify(hocTap)
+JSON.stringify(duLieu)
 
 );
+
 
 
 
@@ -799,12 +815,12 @@ alert(
 
 
 
+
 hienThi();
 
 
 
 </script>
-
 
 
 </body>
