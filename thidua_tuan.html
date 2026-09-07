@@ -9,7 +9,7 @@
 
 
 <title>
-Thi đua tuần lớp 97
+Thi đua tuần - Lớp 97
 </title>
 
 
@@ -21,6 +21,12 @@ Thi đua tuần lớp 97
 
 <style>
 
+
+*{
+box-sizing:border-box;
+}
+
+
 body{
 
 margin:0;
@@ -30,6 +36,7 @@ font-family:"Segoe UI",Arial;
 background:#eef5ff;
 
 }
+
 
 
 .header{
@@ -50,6 +57,47 @@ text-align:center;
 
 
 
+.header h1{
+
+margin:0;
+
+font-size:32px;
+
+}
+
+
+
+.btn-home{
+
+margin-top:20px;
+
+background:white;
+
+color:#1565c0;
+
+border:none;
+
+padding:12px 25px;
+
+border-radius:20px;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+
+.btn-home:hover{
+
+background:#e3f2fd;
+
+}
+
+
+
 .container{
 
 max-width:1300px;
@@ -62,23 +110,23 @@ padding:25px;
 
 
 
-.box{
+.card{
 
 background:white;
 
-border-radius:20px;
-
 padding:25px;
+
+border-radius:25px;
 
 margin-bottom:25px;
 
-box-shadow:0 8px 20px #ddd;
+box-shadow:0 8px 20px rgba(0,0,0,.12);
 
 }
 
 
 
-.controls{
+.control{
 
 display:flex;
 
@@ -94,20 +142,22 @@ select{
 
 padding:12px 20px;
 
+border-radius:12px;
+
 font-size:16px;
 
-border-radius:12px;
+border:1px solid #ccc;
 
 }
 
 
 
-.thongke{
+.stat{
 
 display:grid;
 
 grid-template-columns:
-repeat(4,1fr);
+repeat(auto-fit,minmax(220px,1fr));
 
 gap:20px;
 
@@ -115,9 +165,9 @@ gap:20px;
 
 
 
-.item{
+.stat-box{
 
-background:#f3f8ff;
+background:#f4f8ff;
 
 padding:20px;
 
@@ -129,9 +179,11 @@ text-align:center;
 
 
 
-.item h2{
+.stat-box h2{
 
 color:#1565c0;
+
+margin:0;
 
 }
 
@@ -179,6 +231,17 @@ background:#f5f9ff;
 
 
 
+footer{
+
+text-align:center;
+
+padding:20px;
+
+color:#666;
+
+}
+
+
 </style>
 
 
@@ -191,14 +254,24 @@ background:#f5f9ff;
 
 <div class="header">
 
+
 <h1>
 🏆 THI ĐUA TUẦN LỚP 97
 </h1>
 
 
 <p>
-Trợ lý quản lý lớp - GVCN Trần Sáng
+🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
 </p>
+
+
+
+<button class="btn-home"
+onclick="veTrangChu()">
+
+🏠 Quay lại trang chủ
+
+</button>
 
 
 </div>
@@ -211,25 +284,28 @@ Trợ lý quản lý lớp - GVCN Trần Sáng
 
 
 
-<div class="box">
+
+
+<div class="card">
 
 
 <h2>
-📅 Chọn tuần và tổ
+📅 Chọn tuần đánh giá
 </h2>
 
 
-<div class="controls">
+<div class="control">
 
 
-<select id="tuan"
+<select id="chonTuan"
 onchange="hienThi()">
 
 </select>
 
 
 
-<select id="to"
+
+<select id="chonTo"
 onchange="hienThi()">
 
 
@@ -266,21 +342,21 @@ Tổ 3
 
 
 
-<div class="box">
+
+<div class="card">
 
 
 <h2>
-📊 Tổng quan
+📊 Tổng hợp tuần
 </h2>
 
 
+<div class="stat">
 
-<div class="thongke">
 
+<div class="stat-box">
 
-<div class="item">
-
-<h2 id="tong">
+<h2 id="tongHS">
 0
 </h2>
 
@@ -292,9 +368,9 @@ Tổ 3
 
 
 
-<div class="item">
+<div class="stat-box">
 
-<h2 id="dadanhgia">
+<h2 id="daDG">
 0
 </h2>
 
@@ -306,9 +382,9 @@ Tổ 3
 
 
 
-<div class="item">
+<div class="stat-box">
 
-<h2 id="chuadanhgia">
+<h2 id="chuaDG">
 0
 </h2>
 
@@ -320,36 +396,40 @@ Tổ 3
 
 
 
-<div class="item">
 
-<h2 id="trungbinh">
+<div class="stat-box">
+
+<h2 id="diemTB">
 0
 </h2>
 
 <p>
-⭐ Điểm TB
+⭐ Điểm trung bình
 </p>
 
 </div>
 
 
-</div>
-
 
 </div>
 
 
+</div>
 
 
 
 
 
-<div class="box">
+
+
+
+<div class="card">
 
 
 <h2>
-📋 Bảng thi đua tuần
+📋 Bảng thi đua
 </h2>
+
 
 
 <table>
@@ -396,24 +476,33 @@ Nhận xét
 
 
 
-<tbody id="bang">
+<tbody id="bangThiDua">
 
 </tbody>
-
 
 
 </table>
 
 
+</div>
+
+
+
 
 </div>
 
 
 
 
+<footer>
 
-</div>
+Trường THCS Trần Phú
 
+<br>
+
+Trợ lý quản lý lớp 97 - GVCN Trần Sáng
+
+</footer>
 
 
 
@@ -423,12 +512,10 @@ Nhận xét
 <script>
 
 
-// ========================
-// TẠO 35 TUẦN
-// ========================
+// tạo 35 tuần
 
 
-function tao35Tuan(){
+function taoTuan(){
 
 
 let html="";
@@ -448,43 +535,35 @@ Tuần ${i}
 }
 
 
-
 document.getElementById(
-"tuan"
+"chonTuan"
 ).innerHTML=html;
-
 
 
 }
 
 
 
-tao35Tuan();
+taoTuan();
 
 
 
 
 
-// ========================
-// XẾP LOẠI
-// ========================
 
 
-function xepLoai(diem){
+function xepLoai(d){
 
 
-if(diem>=90)
-
+if(d>=90)
 return "Xuất sắc";
 
 
-if(diem>=75)
-
+if(d>=75)
 return "Khá";
 
 
-if(diem>=50)
-
+if(d>=50)
 return "Đạt";
 
 
@@ -499,26 +578,21 @@ return "Cần cố gắng";
 
 
 
-// ========================
-// HIỂN THỊ
-// ========================
-
-
 function hienThi(){
+
 
 
 let tuan =
 Number(
-document.getElementById("tuan").value
+document.getElementById("chonTuan").value
 );
 
 
 
 let to =
 Number(
-document.getElementById("to").value
+document.getElementById("chonTo").value
 );
-
 
 
 
@@ -528,38 +602,37 @@ layDanhSachHocSinh();
 
 
 
+
 let diem =
 layDiemTuan();
-
-
-
-console.log(
-"DS HỌC SINH:",
-ds
-);
 
 
 
 
 let html="";
 
+let tong=0;
 
-
-let soDanhGia=0;
-
-let tongDiem=0;
-
+let soDG=0;
 
 
 
-ds.forEach((hs,index)=>{
 
+
+let dem=0;
+
+
+
+ds.forEach(hs=>{
 
 
 if(
 to==0 ||
 Number(hs.to)==to
 ){
+
+
+dem++;
 
 
 
@@ -579,14 +652,11 @@ x.tuan==tuan
 
 if(d){
 
+soDG++;
 
-soDanhGia++;
-
-tongDiem+=Number(d.diem);
-
+tong+=Number(d.diem);
 
 }
-
 
 
 
@@ -594,14 +664,10 @@ html+=`
 
 <tr>
 
-<td>
-${index+1}
-</td>
+<td>${dem}</td>
 
 
-<td>
-${hs.hoTen}
-</td>
+<td>${hs.hoTen}</td>
 
 
 <td>
@@ -610,17 +676,17 @@ Tổ ${hs.to || "chưa xếp"}
 
 
 <td>
-${d ? d.diem : "-"}
+${d?d.diem:"-"}
 </td>
 
 
 <td>
-${d ? xepLoai(d.diem) : "Chưa đánh giá"}
+${d?xepLoai(d.diem):"Chưa đánh giá"}
 </td>
 
 
 <td>
-${d ? d.nhanXet : ""}
+${d?d.nhanXet:""}
 </td>
 
 
@@ -633,53 +699,43 @@ ${d ? d.nhanXet : ""}
 }
 
 
+
 });
 
 
 
 
-
-
 document.getElementById(
-"bang"
+"bangThiDua"
 ).innerHTML=html;
 
 
 
-let hienTai =
-document.querySelectorAll(
-"#bang tr"
-).length;
+document.getElementById(
+"tongHS"
+).innerHTML=dem;
 
+
+document.getElementById(
+"daDG"
+).innerHTML=soDG;
 
 
 
 document.getElementById(
-"tong"
-).innerHTML=hienTai;
-
-
-
-document.getElementById(
-"dadanhgia"
-).innerHTML=soDanhGia;
-
-
-
-document.getElementById(
-"chuadanhgia"
+"chuaDG"
 ).innerHTML=
-hienTai-soDanhGia;
+dem-soDG;
 
 
 
 document.getElementById(
-"trungbinh"
+"diemTB"
 ).innerHTML=
 
-soDanhGia ?
+soDG?
 
-(tongDiem/soDanhGia).toFixed(1)
+(tong/soDG).toFixed(1)
 
 :
 
@@ -692,15 +748,26 @@ soDanhGia ?
 
 
 
-// khởi chạy
+
+function veTrangChu(){
+
+window.location.href="trangchu.html";
+
+}
+
+
+
+
 
 khoiTaoDuLieu();
+
 
 hienThi();
 
 
 
 </script>
+
 
 
 </body>
