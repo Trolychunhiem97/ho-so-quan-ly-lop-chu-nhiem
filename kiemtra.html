@@ -5,42 +5,128 @@
 
 <meta charset="UTF-8">
 
-<title>Kiểm tra tổng hợp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Kiểm tra tổng hợp học sinh lớp 97
+</title>
+
+
+<script src="danhsach.js"></script>
+<script src="dulieu.js"></script>
+
 
 
 <style>
 
+
 body{
 
-font-family:Arial;
+margin:0;
 
-background:#f2f7ff;
+font-family:"Segoe UI",Arial;
+
+background:#eef5ff;
+
+}
+
+
+
+.header{
+
+background:linear-gradient(
+135deg,
+#1565c0,
+#42a5f5
+);
+
+color:white;
+
+padding:35px;
+
+text-align:center;
+
+}
+
+
+
+.header h1{
+
+margin:0;
+
+font-size:38px;
+
+}
+
+
+
+
+.container{
 
 padding:30px;
 
 }
 
 
-h1{
 
-text-align:center;
-
-color:#1565c0;
-
-}
 
 
 .box{
 
 background:white;
 
+border-radius:25px;
+
 padding:25px;
 
-border-radius:20px;
+margin-bottom:25px;
 
-box-shadow:0 5px 20px #ccc;
+box-shadow:0 8px 20px #ddd;
 
 }
+
+
+
+
+.btn{
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+padding:14px 30px;
+
+border-radius:15px;
+
+font-size:17px;
+
+cursor:pointer;
+
+}
+
+
+
+.center{
+
+text-align:center;
+
+}
+
+
+
+select{
+
+padding:12px;
+
+font-size:16px;
+
+border-radius:10px;
+
+}
+
 
 
 table{
@@ -52,48 +138,65 @@ border-collapse:collapse;
 }
 
 
+
 th{
 
 background:#1565c0;
 
 color:white;
 
-padding:12px;
+padding:15px;
+
+white-space:nowrap;
 
 }
 
 
+
 td{
 
-border:1px solid #ddd;
-
 padding:10px;
+
+border-bottom:1px solid #ddd;
 
 text-align:center;
 
 }
 
 
+
+input{
+
+width:70px;
+
+padding:8px;
+
+border-radius:8px;
+
+border:1px solid #aaa;
+
+text-align:center;
+
+}
+
+
+
 .note{
 
-width:200px;
+width:70px;
 
 }
 
 
-.button{
 
-background:#1565c0;
+.save{
 
-color:white;
+background:#00897b;
 
-padding:12px 20px;
-
-border-radius:10px;
-
-text-decoration:none;
+margin-top:20px;
 
 }
+
 
 
 </style>
@@ -102,131 +205,609 @@ text-decoration:none;
 </head>
 
 
+
 <body>
 
 
+<div class="header">
+
+
 <h1>
-📊 KIỂM TRA TỔNG HỢP HỌC SINH
+📊 KIỂM TRA TỔNG HỢP HỌC SINH LỚP 97
 </h1>
 
 
-<div class="box">
-
-
-<h2>
-Lớp chủ nhiệm: 6A6
-</h2>
-
-
-<table>
-
-
-<tr>
-
-<th>STT</th>
-
-<th>Họ và tên</th>
-
-<th>Toán</th>
-
-<th>Ngữ văn</th>
-
-<th>Anh</th>
-
-<th>TB</th>
-
-<th>Rèn luyện</th>
-
-<th>Ghi chú</th>
-
-</tr>
-
-
-<tr>
-
-<td>1</td>
-
-<td>Nguyễn Văn A</td>
-
-<td>8.5</td>
-
-<td>8</td>
-
-<td>9</td>
-
-<td>8.5</td>
-
-<td>Tốt</td>
-
-<td class="note">
-Chăm ngoan
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>2</td>
-
-<td>Nguyễn Văn B</td>
-
-<td>7</td>
-
-<td>7.5</td>
-
-<td>8</td>
-
-<td>7.5</td>
-
-<td>Tốt</td>
-
-<td>
-Cần phát huy
-</td>
-
-</tr>
-
-
-<tr>
-
-<td>3</td>
-
-<td>Nguyễn Văn C</td>
-
-<td>5</td>
-
-<td>6</td>
-
-<td>5.5</td>
-
-<td>5.5</td>
-
-<td>Khá</td>
-
-<td>
-Cần hỗ trợ
-</td>
-
-</tr>
-
-
-</table>
-
-
-<br>
-
-
-<a class="button" href="index.html">
-
-⬅ Về trang chủ
-
-</a>
+<p>
+🤖 Trợ lý quản lý lớp - GVCN Trần Sáng
+</p>
 
 
 </div>
 
 
+
+
+
+<div class="container">
+
+
+<div class="box center">
+
+
+<button class="btn"
+onclick="veTrangChu()">
+
+🏠 Về trang chủ quản lý lớp 97
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="box center">
+
+
+<h2>
+📅 Chọn đợt kiểm tra
+</h2>
+
+
+<select id="dotKiemTra"
+onchange="hienThiBang()">
+
+
+<option>
+Giữa kỳ 1
+</option>
+
+
+<option>
+Cuối kỳ 1
+</option>
+
+
+<option>
+Giữa kỳ 2
+</option>
+
+
+<option>
+Cuối kỳ 2
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<div class="box">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+
+<th>
+STT
+</th>
+
+
+<th>
+Họ tên
+</th>
+
+
+<th>
+Toán
+</th>
+
+
+<th>
+Ngữ văn
+</th>
+
+
+<th>
+Ngoại ngữ 1
+</th>
+
+
+<th>
+GDCD
+</th>
+
+
+<th>
+KHTN
+</th>
+
+
+<th>
+Lịch sử và Địa lí
+</th>
+
+
+<th>
+Công nghệ
+</th>
+
+
+<th>
+Tin học
+</th>
+
+
+<th>
+GDTC
+</th>
+
+
+<th>
+Nghệ thuật
+</th>
+
+
+<th>
+HĐTN-HN
+</th>
+
+
+<th>
+GD địa phương
+</th>
+
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="bangDiem">
+
+
+</tbody>
+
+
+</table>
+
+
+
+<div class="center">
+
+
+<button 
+class="btn save"
+onclick="luuDiem()">
+
+💾 Lưu điểm
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+// =============================
+// DANH SÁCH MÔN
+// =============================
+
+
+const monHoc=[
+
+
+"Toán",
+
+"Ngữ văn",
+
+"Ngoại ngữ 1",
+
+"GDCD",
+
+"KHTN",
+
+"Lịch sử và Địa lí",
+
+"Công nghệ",
+
+"Tin học",
+
+"GDTC",
+
+"Nghệ thuật",
+
+"HĐTN-HN",
+
+"GD địa phương"
+
+
+];
+
+
+
+
+
+// =============================
+// MÔN NHẬN XÉT
+// =============================
+
+
+const monNhanXet=[
+
+
+"GDTC",
+
+"Nghệ thuật",
+
+"HĐTN-HN",
+
+"GD địa phương"
+
+
+];
+
+
+
+
+
+
+function layDiem(){
+
+
+let data=
+
+localStorage.getItem(
+"diemKiemTra97"
+);
+
+
+
+return data?
+
+JSON.parse(data)
+
+:
+
+[];
+
+}
+
+
+
+
+function luuDiemMoi(data){
+
+
+localStorage.setItem(
+
+"diemKiemTra97",
+
+JSON.stringify(data)
+
+);
+
+
+}
+
+
+
+
+
+
+function hienThiBang(){
+
+
+let ds=
+
+layDanhSachHocSinh();
+
+
+
+let dot=
+
+document.getElementById(
+"dotKiemTra"
+).value;
+
+
+
+let data=
+
+layDiem();
+
+
+
+let html="";
+
+
+
+ds.forEach((hs,index)=>{
+
+
+
+let old=data.find(
+
+x=>
+
+x.id==hs.id
+
+&&
+
+x.dot==dot
+
+);
+
+
+
+html+=`
+
+<tr data-id="${hs.id}">
+
+
+<td>${index+1}</td>
+
+
+<td>
+<b>${hs.hoTen}</b>
+</td>
+
+
+
+
+${monHoc.map(mon=>{
+
+
+let value=
+
+old?.diem?.[mon] || "";
+
+
+
+if(monNhanXet.includes(mon)){
+
+
+return `
+
+<td>
+
+<select class="${mon}">
+
+<option ${value=="Đ"?"selected":""}>
+Đ
+</option>
+
+<option ${value=="KĐ"?"selected":""}>
+KĐ
+</option>
+
+</select>
+
+</td>
+
+`;
+
+}
+
+
+return `
+
+<td>
+
+<input 
+class="${mon}"
+value="${value}">
+
+</td>
+
+`;
+
+
+}).join("")}
+
+
+
+</tr>
+
+
+`;
+
+
+
+});
+
+
+
+
+document.getElementById(
+
+"bangDiem"
+
+).innerHTML=html;
+
+
+
+}
+
+
+
+
+
+
+
+function luuDiem(){
+
+
+let dot=
+
+document.getElementById(
+"dotKiemTra"
+).value;
+
+
+
+let data=
+
+layDiem();
+
+
+
+
+
+document.querySelectorAll(
+
+"#bangDiem tr"
+
+)
+
+.forEach(row=>{
+
+
+
+let id=
+
+Number(
+row.dataset.id
+);
+
+
+
+let obj={
+
+id:id,
+
+dot:dot,
+
+diem:{}
+
+};
+
+
+
+
+
+monHoc.forEach(mon=>{
+
+
+obj.diem[mon]=
+
+row.querySelector("."+mon).value;
+
+
+});
+
+
+
+
+
+let old=data.find(
+
+x=>
+
+x.id==id
+
+&&
+
+x.dot==dot
+
+);
+
+
+
+if(old){
+
+Object.assign(old,obj);
+
+}
+
+else{
+
+
+data.push(obj);
+
+
+}
+
+
+});
+
+
+
+
+
+luuDiemMoi(data);
+
+
+
+alert(
+
+"Đã lưu "+dot
+
+);
+
+
+
+}
+
+
+
+
+
+
+
+function veTrangChu(){
+
+
+window.location.href=
+
+"trangchu.html";
+
+
+}
+
+
+
+
+khoiTaoDuLieu();
+
+
+hienThiBang();
+
+
+
+</script>
+
+
 </body>
+
 
 </html>
