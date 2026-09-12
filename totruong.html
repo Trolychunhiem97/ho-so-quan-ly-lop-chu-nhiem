@@ -7,21 +7,25 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nhập thi đua tổ</title>
+
+<title>
+Nhập thi đua tổ - Lớp 97
+</title>
 
 
 <style>
 
+
 body{
 
 font-family:Arial;
-background:#f1f5f9;
+background:#f2f6fc;
 margin:0;
 
 }
 
 
-header{
+.header{
 
 background:#1976d2;
 color:white;
@@ -38,106 +42,216 @@ padding:15px;
 }
 
 
-.card{
 
-background:white;
-border-radius:15px;
-padding:15px;
-margin-bottom:15px;
-box-shadow:0 3px 8px #ccc;
+h2{
+
+color:#1565c0;
+text-align:center;
 
 }
 
 
-input,select,textarea{
+
+select,
+button,
+input{
+
+font-size:16px;
+padding:8px;
+
+}
+
+
+
+table{
 
 width:100%;
+border-collapse:collapse;
+background:white;
+
+}
+
+
+
+th{
+
+background:#1565c0;
+color:white;
 padding:10px;
-margin-top:5px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
+
+}
+
+
+td{
+
+border:1px solid #ddd;
+padding:5px;
+text-align:center;
+
+}
+
+
+
+input{
+
+width:60px;
+
+}
+
+
+textarea{
+
+width:120px;
 
 }
 
 
 button{
 
-background:#1976d2;
+background:#1565c0;
 color:white;
 border:none;
-padding:12px;
-border-radius:10px;
-width:100%;
-font-size:17px;
+border-radius:8px;
+padding:12px 20px;
 
 }
 
 
-h2{
+@media(max-width:600px){
 
-color:#1565c0;
+
+table{
+
+font-size:12px;
 
 }
+
+
+input{
+
+width:45px;
+
+}
+
+
+
+}
+
 
 
 </style>
 
-
 </head>
-
 
 
 <body>
 
 
-<header>
+<div class="header">
 
-<h1>📋 NHẬP THI ĐUA TUẦN</h1>
+<h2>
+🏆 NHẬP THI ĐUA TỔ
+</h2>
 
-<div id="nguoiNhap"></div>
 
-</header>
+<div id="nguoiDung"></div>
+
+
+</div>
 
 
 
 <div class="container">
 
 
-<div class="card">
-
 <label>
-📅 Chọn tuần
+Chọn tuần:
 </label>
 
 
-<select id="chonTuan">
+<select id="tuan">
 
 
 </select>
 
 
+
+<br><br>
+
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>STT</th>
+
+<th>Họ tên</th>
+
+<th>Phát biểu</th>
+
+<th>Điểm tốt</th>
+
+<th>Học bài</th>
+
+<th>Không học</th>
+
+<th>Nói chuyện</th>
+
+<th>Chuyên cần</th>
+
+<th>Tác phong</th>
+
+<th>Vệ sinh</th>
+
+<th>Nhận xét</th>
+
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="bangNhap">
+
+
+</tbody>
+
+
+</table>
+
+
+<br>
+
+
+<button onclick="luuDuLieu()">
+
+💾 Lưu dữ liệu
+
+</button>
+
+
+
+<button onclick="dangXuat()">
+
+🚪 Đăng xuất
+
+</button>
+
+
+
 </div>
 
 
 
-<div id="dsHocSinh">
 
-
-</div>
-
-
-</div>
-
-
-
-
-
-<script src="danhsach.js"></script>
+<script src="phanquyen.js"></script>
 
 <script src="dulieu.js"></script>
-
-<script src="phiquyen.js"></script>
 
 <script src="totruong.js"></script>
 
