@@ -7,215 +7,78 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<title>Thi đua tổ trưởng lớp 97</title>
+<title>Nhập thi đua tổ</title>
 
 
 <style>
 
-
-*{
-box-sizing:border-box;
-}
-
-
 body{
 
+font-family:Arial;
+background:#f1f5f9;
 margin:0;
 
-font-family:
-
-Arial, sans-serif;
-
-background:#f1f5ff;
-
 }
-
 
 
 header{
 
-background:
-
-linear-gradient(135deg,#1565c0,#42a5f5);
-
+background:#1976d2;
 color:white;
-
-padding:25px 15px;
-
+padding:20px;
 text-align:center;
 
 }
 
 
-
-header h1{
-
-font-size:24px;
-
-margin:0 0 10px;
-
-}
-
-
-
 .container{
 
-width:95%;
-
-max-width:600px;
-
-margin:20px auto;
+padding:15px;
 
 }
-
 
 
 .card{
 
 background:white;
-
-border-radius:18px;
-
-padding:18px;
-
-margin-bottom:20px;
-
-box-shadow:
-
-0 4px 15px rgba(0,0,0,.12);
+border-radius:15px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 3px 8px #ccc;
 
 }
 
 
-
-.title{
-
-font-size:20px;
-
-font-weight:bold;
-
-color:#1565c0;
-
-}
-
-
-
-select,
-input,
-textarea{
-
+input,select,textarea{
 
 width:100%;
-
-padding:12px;
-
-margin-top:8px;
-
-border-radius:10px;
-
+padding:10px;
+margin-top:5px;
+border-radius:8px;
 border:1px solid #ccc;
-
 font-size:16px;
 
 }
 
 
+button{
 
-.student{
-
-
-background:#fff;
-
-border-radius:18px;
-
-padding:18px;
-
-margin-bottom:18px;
-
-box-shadow:
-
-0 3px 12px #ddd;
-
+background:#1976d2;
+color:white;
+border:none;
+padding:12px;
+border-radius:10px;
+width:100%;
+font-size:17px;
 
 }
 
 
-
-.student h3{
-
-margin-top:0;
+h2{
 
 color:#1565c0;
 
 }
-
-
-
-.row{
-
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:12px;
-
-
-}
-
-
-
-label{
-
-font-weight:bold;
-
-display:block;
-
-margin-top:12px;
-
-}
-
-
-
-button{
-
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:15px;
-
-background:#1565c0;
-
-color:white;
-
-font-size:18px;
-
-font-weight:bold;
-
-}
-
-
-
-.score{
-
-
-font-size:22px;
-
-font-weight:bold;
-
-color:#e65100;
-
-text-align:center;
-
-margin-top:10px;
-
-}
-
 
 
 </style>
@@ -230,35 +93,22 @@ margin-top:10px;
 
 <header>
 
+<h1>📋 NHẬP THI ĐUA TUẦN</h1>
 
-<h1>
-🏆 THI ĐUA TUẦN LỚP 97
-</h1>
-
-
-<div id="thongTinTo">
-
-</div>
-
+<div id="nguoiNhap"></div>
 
 </header>
-
-
 
 
 
 <div class="container">
 
 
-
 <div class="card">
 
-
-<div class="title">
-
-📅 Chọn tuần đánh giá
-
-</div>
+<label>
+📅 Chọn tuần
+</label>
 
 
 <select id="chonTuan">
@@ -271,35 +121,10 @@ margin-top:10px;
 
 
 
+<div id="dsHocSinh">
 
-
-
-<div id="danhSach">
 
 </div>
-
-
-
-
-
-<button onclick="luuThiDua()">
-
-💾 LƯU KẾT QUẢ TUẦN
-
-</button>
-
-
-
-<br><br>
-
-
-
-<button onclick="veTrangChu()">
-
-🏠 Về trang chủ
-
-</button>
-
 
 
 </div>
@@ -312,11 +137,12 @@ margin-top:10px;
 
 <script src="dulieu.js"></script>
 
-<script src="phanquyen.js"></script>
+<script src="phiquyen.js"></script>
 
 <script src="totruong.js"></script>
 
 
 </body>
+
 
 </html>
