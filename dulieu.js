@@ -262,3 +262,100 @@ alert(
 
 
 }
+// =====================================
+// LƯU ĐÁNH GIÁ THI ĐUA TUẦN
+// =====================================
+
+
+function luuDanhGiaTuan(obj){
+
+
+let ds =
+JSON.parse(
+
+localStorage.getItem(
+"danhGiaTuan97"
+)
+
+|| "[]"
+
+);
+
+
+
+let old = ds.find(x=>
+
+x.hocSinhId==obj.hocSinhId
+
+&&
+
+x.tuan==obj.tuan
+
+);
+
+
+
+if(old){
+
+
+Object.assign(old,obj);
+
+
+}
+
+else{
+
+
+ds.push(obj);
+
+
+}
+
+
+
+localStorage.setItem(
+
+"danhGiaTuan97",
+
+JSON.stringify(ds)
+
+);
+
+
+
+}
+
+
+
+
+
+// LẤY DỮ LIỆU TUẦN
+
+
+function layDanhGiaTuan(tuan){
+
+
+let ds=
+
+JSON.parse(
+
+localStorage.getItem(
+"danhGiaTuan97"
+
+)
+
+||"[]"
+
+);
+
+
+
+return ds.filter(x=>
+
+x.tuan==tuan
+
+);
+
+
+}
+
