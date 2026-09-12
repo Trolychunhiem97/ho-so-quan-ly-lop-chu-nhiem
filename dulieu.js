@@ -1,110 +1,155 @@
-// ======================================
-// DỮ LIỆU LỚP 97
-// ======================================
+// ==========================================
+// DỮ LIỆU QUẢN LÝ LỚP 97
+// GVCN TRẦN SÁNG
+// ==========================================
+
+
+// ================================
+// KHỞI TẠO HỌC SINH
+// ================================
+
+function khoiTaoHocSinh(){
+
+    let ds = localStorage.getItem("danhSachHocSinh");
+
+
+    if(!ds){
+
+        if(typeof danhSachHocSinh !== "undefined"){
+
+            localStorage.setItem(
+                "danhSachHocSinh",
+                JSON.stringify(danhSachHocSinh)
+            );
+
+        }
+
+    }
+
+}
 
 
 
-// Lấy danh sách
+// ================================
+// LẤY DANH SÁCH HỌC SINH
+// ================================
 
 function layDanhSachHocSinh(){
 
-
-let ds=localStorage.getItem(
-"danhSachHocSinh97"
-);
+    let ds =
+    localStorage.getItem("danhSachHocSinh");
 
 
-
-if(ds){
-
-return JSON.parse(ds);
+    return ds ?
+    JSON.parse(ds)
+    :
+    [];
 
 }
 
 
 
-return danhSachHocSinh;
-
-
-}
-
-
-
-
-// Lưu danh sách
+// ================================
+// LƯU DANH SÁCH HỌC SINH
+// ================================
 
 function luuDanhSachHocSinh(ds){
 
 
-localStorage.setItem(
-
-"danhSachHocSinh97",
-
-JSON.stringify(ds)
-
-);
+    localStorage.setItem(
+        "danhSachHocSinh",
+        JSON.stringify(ds)
+    );
 
 
 }
 
 
 
-
-
-
-
-// ======================================
+// ================================
 // PHÂN TỔ
-// ======================================
+// ================================
 
 
-function capNhatToHocSinh(id,to){
+function capNhatTo(id,toMoi){
 
 
-
-let ds=layDanhSachHocSinh();
-
+    let ds = layDanhSachHocSinh();
 
 
-let hs=ds.find(
-
-x=>x.id===id
-
-);
+    let hs = ds.find(
+        x=>x.id==id
+    );
 
 
+    if(hs){
 
-if(hs){
+        hs.to = Number(toMoi);
 
-
-hs.to=Number(to);
-
-
-}
+    }
 
 
-
-luuDanhSachHocSinh(ds);
+    luuDanhSachHocSinh(ds);
 
 
 }
 
 
 
-
-
-
+// ================================
 // LẤY HỌC SINH THEO TỔ
+// ================================
+
 
 function layHocSinhTheoTo(to){
 
 
-let ds=layDanhSachHocSinh();
+    let ds = layDanhSachHocSinh();
 
 
-return ds.filter(
+    return ds.filter(
+        hs=>Number(hs.to)===Number(to)
+    );
 
-x=>x.to==to
+
+}
+
+
+
+
+// =====================================
+// DỮ LIỆU THI ĐUA TUẦN
+// =====================================
+
+
+function layThiDua(){
+
+
+let data =
+localStorage.getItem(
+"thiDuaTuan97"
+);
+
+
+return data ?
+JSON.parse(data)
+:
+[];
+
+
+}
+
+
+
+
+function luuThiDua(data){
+
+
+localStorage.setItem(
+
+"thiDuaTuan97",
+
+JSON.stringify(data)
 
 );
 
@@ -114,46 +159,37 @@ x=>x.to==to
 
 
 
+// =====================================
+// LƯU ĐÁNH GIÁ CỦA TỔ TRƯỞNG
+// =====================================
+
+
+function luuDanhGiaTuan(obj){
 
 
 
-
-// ======================================
-// THI ĐUA TUẦN
-// ======================================
+let ds = layThiDua();
 
 
 
-function luuThiDua(obj){
+let cu = ds.find(
 
+x=>
 
+x.hocSinhId==obj.hocSinhId
 
-let ds=JSON.parse(
+&&
 
-localStorage.getItem(
-
-"thiDua97"
-
-)
-
-)||[];
-
-
-
-let vt=ds.findIndex(x=>
-
-x.id===obj.id &&
-
-x.tuan===obj.tuan
+x.tuan==obj.tuan
 
 );
 
 
 
-if(vt>=0){
+if(cu){
 
 
-ds[vt]=obj;
+Object.assign(cu,obj);
 
 
 }
@@ -168,56 +204,61 @@ ds.push(obj);
 
 
 
-localStorage.setItem(
+luuThiDua(ds);
 
-"thiDua97",
 
-JSON.stringify(ds)
+
+}
+
+
+
+
+// =====================================
+// LẤY ĐIỂM THEO TUẦN
+// =====================================
+
+
+function layDanhGiaTheoTuan(tuan,to){
+
+
+
+let ds = layThiDua();
+
+
+
+return ds.filter(
+
+x=>
+
+x.tuan==tuan
+
+&&
+
+x.to==to
 
 );
 
 
-}
-
-
-
-
-
-
-function layThiDua(){
-
-
-return JSON.parse(
-
-localStorage.getItem(
-
-"thiDua97"
-
-)
-
-)||[];
-
 
 }
 
 
 
 
+// =====================================
+// RESET
+// =====================================
 
 
+function resetDuLieu(){
 
 
-// ======================================
-// ĐIỂM KIỂM TRA
-// ======================================
+localStorage.clear();
 
 
-function luuDiem(){
-
+alert(
+"Đã xóa toàn bộ dữ liệu"
+);
 
 
 }
-
-
-
-
