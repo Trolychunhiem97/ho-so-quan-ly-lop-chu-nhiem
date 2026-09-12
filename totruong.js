@@ -1,42 +1,55 @@
-// =====================================================
-// TỔ TRƯỞNG QUẢN LÝ THI ĐUA LỚP 97
-// GVCN: TRẦN SÁNG
-// =====================================================
+// ==========================================
+// TỔ TRƯỞNG THI ĐUA LỚP 97
+// GVCN TRẦN SÁNG
+// Giao diện điện thoại
+// ==========================================
 
 
 
-// ===============================
-// THÔNG TIN TỔ TRƯỞNG
-// SAU NÀY LẤY TỪ PHÂN QUYỀN
-// ===============================
+// ================================
+// LẤY NGƯỜI ĐĂNG NHẬP
+// ================================
 
 
-let taiKhoanToTruong = {
+let nguoiDung = JSON.parse(
 
+localStorage.getItem(
+"nguoiDungDangNhap"
+)
 
-    ten:"Tổ trưởng Tổ 1",
-
-
-    to:1
-
-
-};
+);
 
 
 
+if(!nguoiDung){
+
+alert(
+"Chưa đăng nhập!"
+);
+
+window.location.href="index.html";
+
+}
 
 
 
-// ===============================
-// KHỞI TẠO 35 TUẦN
-// ===============================
+
+let soTo = nguoiDung.to;
 
 
-function taoDanhSachTuan(){
 
 
-let select =
 
+
+// ================================
+// KHỞI TẠO TUẦN 1 - 35
+// ================================
+
+
+function taoTuan(){
+
+
+let select = 
 document.getElementById(
 "chonTuan"
 );
@@ -46,27 +59,18 @@ document.getElementById(
 for(let i=1;i<=35;i++){
 
 
-let option=
-
-document.createElement(
+let op=document.createElement(
 "option"
 );
 
 
+op.value=i;
 
-option.value=i;
-
-
-option.textContent=
-
+op.textContent=
 "Tuần "+i;
 
 
-
-select.appendChild(option);
-
-
-}
+select.appendChild(op);
 
 
 
@@ -74,35 +78,34 @@ select.appendChild(option);
 
 
 
+}
 
 
 
-// ===============================
-// HIỂN THỊ THÔNG TIN
-// ===============================
 
 
-function hienThiThongTin(){
+
+// ================================
+// HIỂN THỊ THÔNG TIN TỔ
+// ================================
+
+
+function hienThiTo(){
 
 
 document.getElementById(
 
-"tenToTruong"
+"thongTinTo"
 
 ).innerHTML=
 
-taiKhoanToTruong.ten;
 
+`
+👤 ${nguoiDung.ten}
+<br>
+📚 Quản lý: Tổ ${soTo}
+`;
 
-
-
-document.getElementById(
-
-"hienThiTo"
-
-).innerHTML=
-
-"Tổ "+taiKhoanToTruong.to;
 
 
 }
@@ -113,29 +116,25 @@ document.getElementById(
 
 
 
-// ===============================
+
+// ================================
 // LẤY HỌC SINH TRONG TỔ
-// ===============================
+// ================================
 
 
-function layDanhSachTo(){
+function danhSachTo(){
 
 
-let ds=
-
+let ds =
 layDanhSachHocSinh();
-
 
 
 
 return ds.filter(
 
-hs=>
-
-hs.to==taiKhoanToTruong.to
+hs=>Number(hs.to)===Number(soTo)
 
 );
-
 
 
 }
@@ -147,50 +146,39 @@ hs.to==taiKhoanToTruong.to
 
 
 
-// ===============================
-// HIỂN THỊ BẢNG
-// ===============================
+
+// ================================
+// HIỂN THỊ DANH SÁCH
+// ================================
 
 
-function taiDuLieu(){
-
-
-
-let ds=
-
-layDanhSachTo();
+function hienThiDanhSach(){
 
 
 
-let tuan=
+let ds=danhSachTo();
 
+
+
+let tuan =
 Number(
 
 document.getElementById(
-
 "chonTuan"
-
 ).value
 
 );
 
 
 
-let data=
-
+let data =
 JSON.parse(
 
 localStorage.getItem(
-
-"thiDuaTuan97"
-
+"thiDua97"
 )
 
-||
-
-"[]"
-
-);
+)||[];
 
 
 
@@ -202,196 +190,238 @@ let html="";
 
 ds.forEach(
 
-(hs,index)=>{
+(hs,i)=>{
 
 
-let old=
 
-data.find(
+let old=data.find(
 
 x=>
 
-x.hocSinhId==hs.id
+x.hocSinhId===hs.id
 
 &&
 
-x.tuan==tuan
+x.tuan===tuan
 
 );
 
 
 
-html+=`
 
-<tr data-id="${hs.id}">
-
-
-<td>${index+1}</td>
+html +=`
 
 
-<td>
-<b>${hs.hoTen}</b>
-</td>
+<div class="student">
+
+
+<h3>
+👨‍🎓 ${i+1}. ${hs.hoTen}
+</h3>
 
 
 
-<td>
+<label>
+🗣 Phát biểu
+</label>
 
-<input 
+<input
+
 type="number"
-data-field="phatBieu"
-value="${old?.phatBieu||0}">
 
-</td>
+class="phatBieu"
+
+value="${old?.phatBieu||0}"
+
+>
 
 
 
-<td>
+<label>
+⭐ Điểm tốt
+</label>
 
-<input 
+<input
+
 type="number"
-data-field="diemTot"
-value="${old?.diemTot||0}">
 
-</td>
+class="diemTot"
+
+value="${old?.diemTot||0}"
+
+>
 
 
 
-<td>
+<label>
+📚 Học bài
+</label>
 
-<select data-field="hocBai">
 
-<option ${old?.hocBai=="Tốt"?"selected":""}>
+<select class="hocBai">
+
+<option
+
+${old?.hocBai=="Tốt"?"selected":""}
+
+>
+
 Tốt
+
 </option>
 
-<option ${old?.hocBai=="Chưa tốt"?"selected":""}>
+
+<option
+
+${old?.hocBai=="Chưa tốt"?"selected":""}
+
+>
+
 Chưa tốt
+
 </option>
 
 
 </select>
 
 
-</td>
 
 
 
 
-<td>
+<label>
+📝 Làm bài
+</label>
 
-<select data-field="lamBai">
+
+<select class="lamBai">
 
 
-<option ${old?.lamBai=="Đầy đủ"?"selected":""}>
+<option>
+
 Đầy đủ
+
 </option>
 
 
-<option ${old?.lamBai=="Chưa đầy đủ"?"selected":""}>
+<option>
+
 Chưa đầy đủ
+
 </option>
 
 
 </select>
 
 
-</td>
 
 
 
 
-<td>
+<label>
+💬 Nói chuyện
+</label>
+
 
 <input
 
 type="number"
 
-data-field="noiChuyen"
+class="noiChuyen"
 
-value="${old?.noiChuyen||0}">
+value="${old?.noiChuyen||0}"
 
-</td>
+>
 
 
 
-<td>
+
+
+<label>
+⏰ Đi trễ
+</label>
+
 
 <input
 
 type="number"
 
-data-field="tre"
+class="tre"
 
-value="${old?.tre||0}">
+value="${old?.tre||0}"
 
-</td>
-
-
+>
 
 
-<td>
+
+
+<label>
+🚫 Nghỉ không phép
+</label>
+
 
 <input
 
 type="number"
 
-data-field="nghiKhongPhep"
+class="nghi"
 
-value="${old?.nghiKhongPhep||0}">
+value="${old?.nghi||0}"
 
-</td>
-
-
+>
 
 
-<td>
-
-<select data-field="veSinh">
 
 
-<option ${old?.veSinh=="Tốt"?"selected":""}>
+<label>
+🧹 Vệ sinh
+</label>
+
+
+<select class="veSinh">
+
+
+<option>
 Tốt
 </option>
 
-
-<option ${old?.veSinh=="Chưa tốt"?"selected":""}>
+<option>
 Chưa tốt
 </option>
 
 
-
 </select>
 
 
-</td>
 
 
 
-
-<td class="tongDiem">
-
-${old?.tongDiem||100}
-
-</td>
+<label>
+💬 Nhận xét
+</label>
 
 
-
-
-<td>
-
-<textarea data-field="nhanXet">
+<textarea class="nhanXet">
 
 ${old?.nhanXet||""}
 
 </textarea>
 
 
-</td>
+
+<div class="score">
+
+Điểm:
+<span class="diem">
+${old?.tongDiem||100}
+</span>
+
+</div>
 
 
 
-</tr>
+</div>
+
 
 
 `;
@@ -405,11 +435,9 @@ ${old?.nhanXet||""}
 
 document.getElementById(
 
-"bangDuLieu"
+"danhSach"
 
-).innerHTML=
-
-html;
+).innerHTML=html;
 
 
 
@@ -423,143 +451,9 @@ html;
 
 
 
-// ===============================
-// TÍNH ĐIỂM
-// ===============================
-
-
-function tinhDiem(row){
-
-
-
-let diem=100;
-
-
-
-
-let phatBieu=
-
-Number(
-
-row.querySelector(
-
-'[data-field="phatBieu"]'
-
-).value
-
-);
-
-
-
-let diemTot=
-
-Number(
-
-row.querySelector(
-
-'[data-field="diemTot"]'
-
-).value
-
-);
-
-
-
-let noiChuyen=
-
-Number(
-
-row.querySelector(
-
-'[data-field="noiChuyen"]'
-
-).value
-
-);
-
-
-
-let tre=
-
-Number(
-
-row.querySelector(
-
-'[data-field="tre"]'
-
-).value
-
-);
-
-
-
-let nghi=
-
-Number(
-
-row.querySelector(
-
-'[data-field="nghiKhongPhep"]'
-
-).value
-
-);
-
-
-
-
-// cộng
-
-
-diem += phatBieu;
-
-diem += diemTot*2;
-
-
-
-
-// trừ
-
-
-diem -= noiChuyen*2;
-
-diem -= tre*2;
-
-diem -= nghi*5;
-
-
-
-if(diem<0)
-
-diem=0;
-
-
-
-row.querySelector(
-
-".tongDiem"
-
-).innerHTML=
-
-diem;
-
-
-
-return diem;
-
-
-}
-
-
-
-
-
-
-
-
-// ===============================
-// LƯU THI ĐUA
-// ===============================
+// ================================
+// LƯU KẾT QUẢ
+// ================================
 
 
 function luuThiDua(){
@@ -571,28 +465,93 @@ let tuan=
 Number(
 
 document.getElementById(
-
 "chonTuan"
-
 ).value
 
 );
 
 
 
-let data=
+let ds=danhSachTo();
 
+
+
+let data =
 JSON.parse(
 
 localStorage.getItem(
-
-"thiDuaTuan97"
-
+"thiDua97"
 )
 
-||
+)||[];
 
-"[]"
+
+
+
+
+let cards =
+document.querySelectorAll(
+".student"
+);
+
+
+
+
+
+cards.forEach(
+
+(card,index)=>{
+
+
+let diem=100;
+
+
+
+let phat =
+
+Number(
+
+card.querySelector(".phatBieu").value
+
+);
+
+
+
+let tot =
+
+Number(
+
+card.querySelector(".diemTot").value
+
+);
+
+
+
+let noi =
+
+Number(
+
+card.querySelector(".noiChuyen").value
+
+);
+
+
+
+let tre =
+
+Number(
+
+card.querySelector(".tre").value
+
+);
+
+
+
+let nghi =
+
+Number(
+
+card.querySelector(".nghi").value
 
 );
 
@@ -600,154 +559,73 @@ localStorage.getItem(
 
 
 
+diem += phat;
 
-document.querySelectorAll(
+diem += tot*2;
 
-"#bangDuLieu tr"
 
-)
+diem -= noi*2;
 
-.forEach(row=>{
+diem -= tre*2;
+
+diem -= nghi*5;
 
 
 
 let obj={
 
 
-
 hocSinhId:
-
-Number(
-
-row.dataset.id
-
-),
+ds[index].id,
 
 
-
-to:
-
-taiKhoanToTruong.to,
-
+to:soTo,
 
 
 tuan:tuan,
 
 
-
-phatBieu:
-
-Number(
-
-row.querySelector(
-
-'[data-field="phatBieu"]'
-
-).value
-
-),
+phatBieu:phat,
 
 
-
-diemTot:
-
-Number(
-
-row.querySelector(
-
-'[data-field="diemTot"]'
-
-).value
-
-),
-
+diemTot:tot,
 
 
 hocBai:
 
-row.querySelector(
-
-'[data-field="hocBai"]'
-
-).value,
+card.querySelector(".hocBai").value,
 
 
 
 lamBai:
 
-row.querySelector(
-
-'[data-field="lamBai"]'
-
-).value,
+card.querySelector(".lamBai").value,
 
 
 
-noiChuyen:
-
-Number(
-
-row.querySelector(
-
-'[data-field="noiChuyen"]'
-
-).value
-
-),
+noiChuyen:noi,
 
 
-
-tre:
-
-Number(
-
-row.querySelector(
-
-'[data-field="tre"]'
-
-).value
-
-),
+tre:tre,
 
 
-
-nghiKhongPhep:
-
-Number(
-
-row.querySelector(
-
-'[data-field="nghiKhongPhep"]'
-
-).value
-
-),
-
+nghi:nghi,
 
 
 veSinh:
 
-row.querySelector(
-
-'[data-field="veSinh"]'
-
-).value,
+card.querySelector(".veSinh").value,
 
 
 
 nhanXet:
 
-row.querySelector(
-
-'[data-field="nhanXet"]'
-
-).value,
+card.querySelector(".nhanXet").value,
 
 
 
-tongDiem:
+tongDiem:diem
 
-tinhDiem(row)
 
 
 };
@@ -756,35 +634,27 @@ tinhDiem(row)
 
 
 
-let index=
-
-data.findIndex(
+let vt=data.findIndex(
 
 x=>
 
-x.hocSinhId==obj.hocSinhId
+x.hocSinhId===obj.hocSinhId
 
 &&
 
-x.tuan==obj.tuan
+x.tuan===obj.tuan
 
 );
 
 
 
+if(vt>=0)
 
+data[vt]=obj;
 
-if(index>=0){
-
-data[index]=obj;
-
-}
-
-else{
+else
 
 data.push(obj);
-
-}
 
 
 
@@ -795,7 +665,7 @@ data.push(obj);
 
 localStorage.setItem(
 
-"thiDuaTuan97",
+"thiDua97",
 
 JSON.stringify(data)
 
@@ -819,10 +689,9 @@ alert(
 
 
 
-
-// ===============================
-// QUAY VỀ TRANG CHỦ
-// ===============================
+// ================================
+// VỀ TRANG CHỦ
+// ================================
 
 
 function veTrangChu(){
@@ -830,7 +699,7 @@ function veTrangChu(){
 
 window.location.href=
 
-"trangchu.html";
+"index.html";
 
 
 }
@@ -841,15 +710,31 @@ window.location.href=
 
 
 
-// ===============================
+// ================================
 // KHỞI ĐỘNG
-// ===============================
+// ================================
 
 
-taoDanhSachTuan();
+taoTuan();
 
 
-hienThiThongTin();
+hienThiTo();
 
 
-taiDuLieu();
+hienThiDanhSach();
+
+
+
+document
+
+.getElementById(
+"chonTuan"
+)
+
+.addEventListener(
+
+"change",
+
+hienThiDanhSach
+
+);
