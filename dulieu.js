@@ -1,139 +1,29 @@
-// ==================================================
-// DỮ LIỆU QUẢN LÝ LỚP 97
-// TRỢ LÝ QUẢN LÝ LỚP - GVCN TRẦN SÁNG
-// ==================================================
+// ======================================
+// DỮ LIỆU LỚP 97
+// ======================================
 
 
 
-// ==================================================
-// KHỞI TẠO DỮ LIỆU HỌC SINH
-// ==================================================
-
-function khoiTaoDuLieu(){
-
-
-    let duLieu =
-    localStorage.getItem(
-        "danhSachHocSinh97"
-    );
-
-
-
-    // Nếu chưa có dữ liệu lưu
-
-    if(!duLieu){
-
-
-        if(typeof danhSachHocSinh !== "undefined"){
-
-
-            let ds =
-            danhSachHocSinh.map(
-                (hs,index)=>{
-
-
-                    return {
-
-
-                        id:index+1,
-
-
-                        hoTen:
-                        hs.hoTen 
-                        ||
-                        hs.ten
-                        ||
-                        "",
-
-
-                        to:
-                        hs.to || 0,
-
-
-                        ghiChu:""
-
-
-                    };
-
-
-                }
-            );
-
-
-
-            localStorage.setItem(
-
-                "danhSachHocSinh97",
-
-                JSON.stringify(ds)
-
-            );
-
-
-        }
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-// ==================================================
-// LẤY DANH SÁCH HỌC SINH
-// ==================================================
-
+// Lấy danh sách
 
 function layDanhSachHocSinh(){
 
 
-    let ds =
-
-    localStorage.getItem(
-
-        "danhSachHocSinh97"
-
-    );
+let ds=localStorage.getItem(
+"danhSachHocSinh97"
+);
 
 
 
-    if(ds){
+if(ds){
 
+return JSON.parse(ds);
 
-        return JSON.parse(ds);
-
-
-    }
-
-
-
-    khoiTaoDuLieu();
+}
 
 
 
-    ds =
-
-    localStorage.getItem(
-
-        "danhSachHocSinh97"
-
-    );
-
-
-
-    return ds ?
-
-    JSON.parse(ds)
-
-    :
-
-    [];
-
+return danhSachHocSinh;
 
 
 }
@@ -141,78 +31,18 @@ function layDanhSachHocSinh(){
 
 
 
-
-
-// ==================================================
-// LƯU DANH SÁCH HỌC SINH
-// ==================================================
-
+// Lưu danh sách
 
 function luuDanhSachHocSinh(ds){
 
 
+localStorage.setItem(
 
-    localStorage.setItem(
+"danhSachHocSinh97",
 
+JSON.stringify(ds)
 
-        "danhSachHocSinh97",
-
-
-        JSON.stringify(ds)
-
-
-    );
-
-
-
-}
-
-
-
-
-
-
-// ==================================================
-// PHÂN TỔ HỌC SINH
-// TỔ 1 - TỔ 2 - TỔ 3
-// ==================================================
-
-
-function capNhatToHocSinh(id,toMoi){
-
-
-
-    let ds =
-
-    layDanhSachHocSinh();
-
-
-
-    let hs =
-
-    ds.find(
-
-        x=>x.id==id
-
-    );
-
-
-
-    if(hs){
-
-
-
-        hs.to =
-        Number(toMoi);
-
-
-
-    }
-
-
-
-    luuDanhSachHocSinh(ds);
-
+);
 
 
 }
@@ -223,34 +53,60 @@ function capNhatToHocSinh(id,toMoi){
 
 
 
-// ==================================================
+// ======================================
+// PHÂN TỔ
+// ======================================
+
+
+function capNhatToHocSinh(id,to){
+
+
+
+let ds=layDanhSachHocSinh();
+
+
+
+let hs=ds.find(
+
+x=>x.id===id
+
+);
+
+
+
+if(hs){
+
+
+hs.to=Number(to);
+
+
+}
+
+
+
+luuDanhSachHocSinh(ds);
+
+
+}
+
+
+
+
+
+
 // LẤY HỌC SINH THEO TỔ
-// ==================================================
-
 
 function layHocSinhTheoTo(to){
 
 
-
-    let ds =
-
-    layDanhSachHocSinh();
+let ds=layDanhSachHocSinh();
 
 
+return ds.filter(
 
-    return ds.filter(
+x=>x.to==to
 
-        hs=>
-
-        Number(hs.to)
-
-        ===
-
-        Number(to)
-
-
-    );
-
+);
 
 
 }
@@ -260,156 +116,44 @@ function layHocSinhTheoTo(to){
 
 
 
-// ==================================================
-// LẤY DANH SÁCH 3 TỔ
-// ==================================================
 
 
-function layDanhSachTo(){
-
-
-return [
-
-
-{
-id:1,
-ten:"Tổ 1"
-},
-
-
-{
-id:2,
-ten:"Tổ 2"
-},
-
-
-{
-id:3,
-ten:"Tổ 3"
-}
-
-
-];
-
-
-}
+// ======================================
+// THI ĐUA TUẦN
+// ======================================
 
 
 
+function luuThiDua(obj){
 
 
 
-// ==================================================
-// DỮ LIỆU THI ĐUA TUẦN
-// 35 TUẦN
-// ==================================================
-
-
-function layThiDuaTuan(){
-
-
-let data =
+let ds=JSON.parse(
 
 localStorage.getItem(
 
-"thiDuaTuan97"
+"thiDua97"
+
+)
+
+)||[];
+
+
+
+let vt=ds.findIndex(x=>
+
+x.id===obj.id &&
+
+x.tuan===obj.tuan
 
 );
 
 
 
-return data ?
-
-JSON.parse(data)
-
-:
-
-[];
+if(vt>=0){
 
 
-
-
-}
-
-
-
-
-
-
-function luuThiDuaTuan(data){
-
-
-localStorage.setItem(
-
-"thiDuaTuan97",
-
-JSON.stringify(data)
-
-);
-
-
-}
-
-
-
-
-
-
-
-// ==================================================
-// LƯU ĐIỂM HỌC SINH THEO TUẦN
-// ==================================================
-
-
-function luuDiemTuan(
-
-hocSinhId,
-
-tuan,
-
-diem,
-
-nhanXet
-
-){
-
-
-
-let ds =
-
-layThiDuaTuan();
-
-
-
-
-
-let cu =
-
-ds.find(
-
-x=>
-
-x.hocSinhId==hocSinhId
-
-&&
-
-x.tuan==tuan
-
-
-);
-
-
-
-
-
-if(cu){
-
-
-
-cu.diem=diem;
-
-cu.nhanXet=nhanXet;
-
+ds[vt]=obj;
 
 
 }
@@ -417,33 +161,20 @@ cu.nhanXet=nhanXet;
 else{
 
 
-
-ds.push({
-
-
-hocSinhId:hocSinhId,
-
-
-tuan:tuan,
-
-
-diem:diem,
-
-
-nhanXet:nhanXet
-
-
-
-});
-
+ds.push(obj);
 
 
 }
 
 
 
-luuThiDuaTuan(ds);
+localStorage.setItem(
 
+"thiDua97",
+
+JSON.stringify(ds)
+
+);
 
 
 }
@@ -453,40 +184,18 @@ luuThiDuaTuan(ds);
 
 
 
-// ==================================================
-// LẤY ĐIỂM MỘT HỌC SINH
-// ==================================================
+function layThiDua(){
 
 
-function layDiemHocSinh(id,tuan){
+return JSON.parse(
 
+localStorage.getItem(
 
+"thiDua97"
 
-let ds=
+)
 
-layThiDuaTuan();
-
-
-
-let kq=
-
-ds.find(
-
-x=>
-
-x.hocSinhId==id
-
-&&
-
-x.tuan==tuan
-
-
-);
-
-
-
-return kq || null;
-
+)||[];
 
 
 }
@@ -496,44 +205,19 @@ return kq || null;
 
 
 
-// ==================================================
-// RESET DỮ LIỆU
-// CHỈ DÙNG KHI CẦN
-// ==================================================
 
 
-function resetDuLieu(){
+// ======================================
+// ĐIỂM KIỂM TRA
+// ======================================
 
 
-localStorage.removeItem(
-
-"danhSachHocSinh97"
-
-);
-
-
-
-localStorage.removeItem(
-
-"thiDuaTuan97"
-
-);
-
-
-
-alert(
-
-"Đã xóa dữ liệu quản lý lớp"
-
-);
-
-
-
-location.reload();
+function luuDiem(){
 
 
 
 }
+
 
 
 
