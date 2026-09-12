@@ -4,108 +4,77 @@
 // ======================================
 
 
-const taiKhoan97 = [
+const taiKhoan97=[
 
-
-
-// =================
-// GIÁO VIÊN CHỦ NHIỆM
-// =================
-
-{
-    username:"gvcn",
-    password:"123456",
-    ten:"GVCN Trần Sáng",
-    quyen:"gvcn",
-    to:0
-},
-
-
-
-
-
-// =================
-// LỚP TRƯỞNG
-// =================
-
-{
-    username:"loptruong",
-    password:"123456",
-    ten:"Lớp trưởng",
-    quyen:"loptruong",
-    to:0
-},
-
-
-
-
-
-// =================
-// LỚP PHÓ HỌC TẬP
-// =================
-
-{
-    username:"hoctap",
-    password:"123456",
-    ten:"Lớp phó học tập",
-    quyen:"hoc_tap",
-    to:0
-},
-
-
-
-
-
-// =================
-// LỚP PHÓ LAO ĐỘNG
-// =================
-
-{
-    username:"laodong",
-    password:"123456",
-    ten:"Lớp phó lao động",
-    quyen:"lao_dong",
-    to:0
-},
-
-
-
-
-
-
-// =================
-// TỔ TRƯỞNG
-// =================
 
 
 {
-    username:"to1",
-    password:"123456",
-    ten:"Tổ trưởng tổ 1",
-    quyen:"to_truong",
-    to:1
+username:"gvcn",
+password:"123456",
+ten:"GVCN Trần Sáng",
+quyen:"gvcn",
+to:0
 },
 
 
 
 {
-    username:"to2",
-    password:"123456",
-    ten:"Tổ trưởng tổ 2",
-    quyen:"to_truong",
-    to:2
+username:"loptruong",
+password:"123456",
+ten:"Lớp trưởng",
+quyen:"loptruong",
+to:0
 },
 
 
 
 {
-    username:"to3",
-    password:"123456",
-    ten:"Tổ trưởng tổ 3",
-    quyen:"to_truong",
-    to:3
+username:"hoctap",
+password:"123456",
+ten:"Lớp phó học tập",
+quyen:"hoc_tap",
+to:0
+},
+
+
+
+{
+username:"laodong",
+password:"123456",
+ten:"Lớp phó lao động",
+quyen:"lao_dong",
+to:0
+},
+
+
+
+{
+username:"to1",
+password:"123456",
+ten:"Tổ trưởng Tổ 1",
+quyen:"to_truong",
+to:1
+},
+
+
+
+{
+username:"to2",
+password:"123456",
+ten:"Tổ trưởng Tổ 2",
+quyen:"to_truong",
+to:2
+},
+
+
+
+{
+username:"to3",
+password:"123456",
+ten:"Tổ trưởng Tổ 3",
+quyen:"to_truong",
+to:3
 }
-
 
 
 
@@ -115,23 +84,14 @@ const taiKhoan97 = [
 
 
 
-
-// ======================================
 // ĐĂNG NHẬP
-// ======================================
-
 
 function dangNhapTaiKhoan(user,pass){
 
 
+let tk=taiKhoan97.find(x=>
 
-let taiKhoan = taiKhoan97.find(
-
-x =>
-
-x.username===user
-
-&&
+x.username===user &&
 
 x.password===pass
 
@@ -139,18 +99,16 @@ x.password===pass
 
 
 
-if(taiKhoan){
-
+if(tk){
 
 
 localStorage.setItem(
 
 "nguoiDungDangNhap",
 
-JSON.stringify(taiKhoan)
+JSON.stringify(tk)
 
 );
-
 
 
 return true;
@@ -163,7 +121,6 @@ return true;
 return false;
 
 
-
 }
 
 
@@ -171,34 +128,20 @@ return false;
 
 
 
-
-// ======================================
-// LẤY NGƯỜI DÙNG HIỆN TẠI
-// ======================================
-
+// LẤY NGƯỜI DÙNG
 
 function layNguoiDung(){
 
 
+return JSON.parse(
 
-let user = localStorage.getItem(
+localStorage.getItem(
 
 "nguoiDungDangNhap"
 
-);
+)
 
-
-
-if(user){
-
-
-return JSON.parse(user);
-
-
-}
-
-
-return null;
+)||null;
 
 
 }
@@ -209,13 +152,9 @@ return null;
 
 
 
-// ======================================
 // ĐĂNG XUẤT
-// ======================================
-
 
 function dangXuat(){
-
 
 
 localStorage.removeItem(
@@ -223,7 +162,6 @@ localStorage.removeItem(
 "nguoiDungDangNhap"
 
 );
-
 
 
 window.location.href="index.html";
@@ -235,59 +173,39 @@ window.location.href="index.html";
 
 
 
-
-
-// ======================================
-// KIỂM TRA QUYỀN
-// ======================================
-
+// KIỂM TRA
 
 function laGVCN(){
 
+let u=layNguoiDung();
 
-let user=layNguoiDung();
-
-
-return user && user.quyen==="gvcn";
-
+return u && u.quyen==="gvcn";
 
 }
-
-
 
 
 
 function laToTruong(){
 
+let u=layNguoiDung();
 
-let user=layNguoiDung();
-
-
-return user && user.quyen==="to_truong";
-
+return u && u.quyen==="to_truong";
 
 }
 
 
 
 
+
+// LẤY TỔ
 
 function laySoToNguoiDung(){
 
 
-let user=layNguoiDung();
+let u=layNguoiDung();
 
 
-if(user){
-
-
-return user.to;
-
-
-}
-
-
-return 0;
+return u ? u.to :0;
 
 
 }
