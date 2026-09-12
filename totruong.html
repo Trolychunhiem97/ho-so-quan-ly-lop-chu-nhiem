@@ -7,16 +7,27 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tổ trưởng - Thi đua lớp 97</title>
+
+<title>Thi đua tổ trưởng lớp 97</title>
 
 
 <style>
 
+
+*{
+box-sizing:border-box;
+}
+
+
 body{
 
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f1f6ff;
+margin:0;
+
+font-family:
+
+Arial, sans-serif;
+
+background:#f1f5ff;
 
 }
 
@@ -24,22 +35,25 @@ body{
 
 header{
 
-    background:linear-gradient(135deg,#1565c0,#42a5f5);
+background:
 
-    color:white;
+linear-gradient(135deg,#1565c0,#42a5f5);
 
-    padding:35px;
+color:white;
 
-    text-align:center;
+padding:25px 15px;
+
+text-align:center;
 
 }
 
 
+
 header h1{
 
-    margin:0;
+font-size:24px;
 
-    font-size:36px;
+margin:0 0 10px;
 
 }
 
@@ -47,17 +61,118 @@ header h1{
 
 .container{
 
-    width:95%;
+width:95%;
 
-    margin:30px auto;
+max-width:600px;
 
-    background:white;
+margin:20px auto;
 
-    padding:30px;
+}
 
-    border-radius:20px;
 
-    box-shadow:0 5px 20px #ccc;
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:18px;
+
+margin-bottom:20px;
+
+box-shadow:
+
+0 4px 15px rgba(0,0,0,.12);
+
+}
+
+
+
+.title{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#1565c0;
+
+}
+
+
+
+select,
+input,
+textarea{
+
+
+width:100%;
+
+padding:12px;
+
+margin-top:8px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+}
+
+
+
+.student{
+
+
+background:#fff;
+
+border-radius:18px;
+
+padding:18px;
+
+margin-bottom:18px;
+
+box-shadow:
+
+0 3px 12px #ddd;
+
+
+}
+
+
+
+.student h3{
+
+margin-top:0;
+
+color:#1565c0;
+
+}
+
+
+
+.row{
+
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:12px;
+
+
+}
+
+
+
+label{
+
+font-weight:bold;
+
+display:block;
+
+margin-top:12px;
 
 }
 
@@ -65,108 +180,46 @@ header h1{
 
 button{
 
-    background:#1565c0;
 
-    color:white;
+width:100%;
 
-    border:none;
+padding:15px;
 
-    padding:12px 25px;
+border:none;
 
-    border-radius:10px;
+border-radius:15px;
 
-    font-size:16px;
+background:#1565c0;
 
-    cursor:pointer;
+color:white;
 
-}
+font-size:18px;
 
-
-
-select,input,textarea{
-
-    padding:8px;
-
-    border-radius:8px;
-
-    border:1px solid #ccc;
+font-weight:bold;
 
 }
 
 
 
-.top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
+.score{
 
 
+font-size:22px;
 
-table{
+font-weight:bold;
 
-    width:100%;
+color:#e65100;
 
-    border-collapse:collapse;
+text-align:center;
 
-    margin-top:20px;
+margin-top:10px;
 
 }
 
-
-
-th{
-
-    background:#1565c0;
-
-    color:white;
-
-    padding:12px;
-
-}
-
-
-
-td{
-
-    border:1px solid #ddd;
-
-    text-align:center;
-
-    padding:8px;
-
-}
-
-
-
-input{
-
-    width:50px;
-
-}
-
-
-
-textarea{
-
-    width:120px;
-
-}
-
-
-
-h2{
-
-    color:#1565c0;
-
-}
 
 
 </style>
+
 
 </head>
 
@@ -177,12 +230,19 @@ h2{
 
 <header>
 
-<h1>🏆 THI ĐUA TUẦN - LỚP 97</h1>
 
-<p>Trợ lý quản lý lớp - GVCN Trần Sáng</p>
+<h1>
+🏆 THI ĐUA TUẦN LỚP 97
+</h1>
+
+
+<div id="thongTinTo">
+
+</div>
 
 
 </header>
+
 
 
 
@@ -191,7 +251,47 @@ h2{
 
 
 
-<div class="top">
+<div class="card">
+
+
+<div class="title">
+
+📅 Chọn tuần đánh giá
+
+</div>
+
+
+<select id="chonTuan">
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<div id="danhSach">
+
+</div>
+
+
+
+
+
+<button onclick="luuThiDua()">
+
+💾 LƯU KẾT QUẢ TUẦN
+
+</button>
+
+
+
+<br><br>
+
 
 
 <button onclick="veTrangChu()">
@@ -202,115 +302,8 @@ h2{
 
 
 
-<div>
-
-<b>Tổ trưởng:</b>
-
-<span id="tenToTruong"></span>
-
-<br>
-
-
-<b>Quản lý:</b>
-
-<span id="hienThiTo"></span>
-
-
 </div>
 
-
-
-</div>
-
-
-
-
-
-<h2>
-
-📅 Chọn tuần đánh giá
-
-</h2>
-
-
-<select id="chonTuan" onchange="taiDuLieu()">
-
-
-</select>
-
-
-
-
-
-<h2>
-
-📋 Bảng đánh giá thi đua
-
-</h2>
-
-
-
-
-<table>
-
-
-<thead>
-
-<tr>
-
-<th>STT</th>
-
-<th>Họ tên</th>
-
-<th>Phát biểu</th>
-
-<th>Điểm tốt</th>
-
-<th>Học bài</th>
-
-<th>Làm bài</th>
-
-<th>Nói chuyện</th>
-
-<th>Đi trễ</th>
-
-<th>Nghỉ KP</th>
-
-<th>Vệ sinh</th>
-
-<th>Tổng điểm</th>
-
-<th>Nhận xét</th>
-
-</tr>
-
-</thead>
-
-
-
-<tbody id="bangDuLieu">
-
-
-</tbody>
-
-
-</table>
-
-
-
-
-<br>
-
-
-<button onclick="luuThiDua()">
-
-💾 Lưu thi đua tuần
-
-</button>
-
-
-
-</div>
 
 
 
@@ -319,10 +312,11 @@ h2{
 
 <script src="dulieu.js"></script>
 
+<script src="phanquyen.js"></script>
+
 <script src="totruong.js"></script>
 
 
 </body>
-
 
 </html>
